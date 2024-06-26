@@ -1,0 +1,79 @@
+.purple-text-button {
+    width: 68px;
+    height: 30px;
+    background-color: var(--purple);
+    border-radius: 2px;
+    letter-spacing: .1em;
+    border: none;
+}
+
+.purple-text-button:hover {
+    background-color: var(--white);
+    color: var(--purple);
+    font-weight: 500;
+}
+
+.white-text-button {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    text-align: left;
+    background-color: transparent;
+    color: var(--white);
+    border-radius: 2px;
+    letter-spacing: .1em;
+    border: none;
+}
+
+.white-text-button:hover {
+    color: var(--purple);
+    background-color: transparent;
+    font-weight: 500;
+}
+
+.paging-button {
+    /* 상단 2px은 purple-text-button과 align 맞추기 위함 */
+    margin: 2px 3px 3px 0px;
+    width: 30px;
+    height: 29px;
+    border: none;
+    font-size: 15px;
+    font-weight: 300;
+    background-color: transparent;
+}
+
+.paging-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.paging-button:first-child {
+    margin-left: 20px;
+}
+
+.paging-button:last-child {
+    margin-right: 20px;
+}
+
+.paging-buttons {
+    /* margin-top 필요없으면 style 내부에서 제거하기 */
+    margin-top:15px;
+    width:100%;
+    text-align:center;
+}
+
+
+.underline-textbox {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1.8px solid var(--purple);
+    outline: none;
+    padding: 0px 8px 4px 8px;
+    letter-spacing: .2em;
+    font-size: 16px;
+}
+
+.underline-textbox:focus {
+    /* 일단 보류 */
+    border-bottom: 1.8px solid var(--white);
+}

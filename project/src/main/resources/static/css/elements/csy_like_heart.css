@@ -1,0 +1,71 @@
+.like-wrapper {
+    display: inline-block;
+    width: 100px;
+}
+
+.like-wrapper .check[type="checkbox"] {
+    display: none;
+}
+
+.like-wrapper .container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: -0.25em;
+    margin-bottom: -0.25em;
+}
+
+.like-wrapper .icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.like-wrapper .icon.active {
+    display: none;
+    /* fill: #f52121; */
+    fill: var(--purple);
+}
+
+.like-wrapper .check[type="checkbox"]:checked + .container .icon.active {
+    display: inline-block;
+    animation: wiggle 0.5s ease-in-out;
+}
+
+.like-wrapper .check[type="checkbox"]:checked + .container .icon.inactive {
+    display: none;
+}
+
+/* text */
+.like-wrapper .like-counter {
+    padding-left: 9px;
+    color: white;
+    font-family: Arial, sans-serif;
+    /* font-weight: bolder; */
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+@keyframes wiggle {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+}

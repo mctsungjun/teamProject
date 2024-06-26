@@ -1,0 +1,50 @@
+/********************************/
+/***   필수 요소 & 수정 불가   ***/
+/********************************/
+
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+html, body, #index {
+    background-color: var(--dark-gray);
+    margin: 0;
+    height: 100%;
+}
+
+#index {
+    display: flex;
+}
+
+#index .navbar {
+    padding: 0;
+    width: 60px;
+    height: 100%;
+    background-color: var(--purple);
+    border-radius: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+#index .content {
+    /* navbar이 fixed라서 navbar을 침범하기 때문에 margin 할당 */
+    margin-left: 60px;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    padding: 15px 25px 15px 25px; /* 상우하좌 */
+    /* content 내부 기본 폰트 컬러 white로 고정, 전체에 하면 navbar 아이콘 hover 컬러 같이 고정됨 */
+    color: var(--white);
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+
+/********************************/
+/***  디자인 요소 & 수정 가능  ***/
+/********************************/

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div id="board">
+            <script type="module">
+                import { csyBoard } from "/js/csy_board.js";
+                csyBoard();
+            </script>
+            <script>
+                async function csyDetail(sno) {
+                    let obj = await import ("/js/csy_board.js");
+                    // console.log(sno);
+                    obj.csyDetail(sno);
+                }
+            </script>
+            <h1 class="boardListTitle">글 목록</h1>
+            <div class="search">
+                <input type="text" class="underline-textbox findStr" style="margin-right: 10px;" placeholder="검색 내용을 입력하세요.">
+                <button type="button" class="btnSearch purple-text-button">검색</button>
+            </div>
+            <div class="item_list">
+                <div class="item_title">
+                    <span class="sno">NO</span>
+                    <span class="id">작성자</span>
+                    <span class="title">제목</span>
+                    <span class="nal">작성일</span>
+                    <span class="hits">조회수</span>
+                    <span class="likes">공감</span>
+                </div>
+                <div class="items" th:each="vo:${list}" th:onClick="csyDetail([[${vo.sno}]])">
+                    <div class="item">
+                        <span class="sno">[[${vo.sno}]]</span>
+                        <span class="id">[[${vo.id}]]</span>
+                        <span class="title">[[${vo.title}]]</span>
+                        <span class="nal">[[${vo.nal}]]</span>
+                        <span class="hits">[[${vo.hits}]]</span>
+                        <span class="likes">[[${vo.likes}]]</span>
+                    </div>
+                </div>
+            </div>
+            <div style="width:100%; margin-top:15px; text-align:right;">
+            <button type="button" class="btnRegister purple-text-button btnBoardNewPost" style="width:100px">새 글 작성</button>
+            </div>
+            <!-- TODO: next before 버튼 수정-->
+            <div class="paging-buttons">
+                <button class="paging-button" style="width:80px;">이전</button>
+                <!-- span 안넣으면 first-child, last-child가 부모의 처음과 마지막 태그가 아니기 때문에 margin 안먹힘-->
+                <span>
+                    <button class="paging-button">1</button>
+                    <button class="paging-button">2</button>
+                    <button class="paging-button">3</button>
+                    <button class="paging-button">4</button>
+                    <button class="paging-button">5</button>
+                    <button class="paging-button">6</button>
+                </span>
+                <button class="paging-button" style="width:80px;">다음</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

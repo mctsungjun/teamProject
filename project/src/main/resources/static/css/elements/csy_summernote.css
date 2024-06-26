@@ -1,0 +1,30 @@
+.modal-content, .note-status-output {
+    background-color: var(--dark-gray);
+}
+
+.note-editable, .note-statusbar {
+    background-color: var(--dark-gray);
+}
+
+.modal-dialog .btn {
+    padding: 0;
+    width: 120px;
+    height: 40px;
+    background-color: var(--purple);
+    border-radius: 2px;
+    letter-spacing: .1em;
+    border: none;
+    text-align: center;
+}
+
+.modal-dialog .btn:hover {
+    background-color: var(--white);
+    color: var(--purple);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal-dialog input { accent-color: var(--purple); }
+.modal-dialog input[type="text"] { color: var(--dark-gray); }
+.modal-dialog .close { color: var(--white); }
+.modal-dialog .modal-header, .modal-dialog .modal-footer { border-color: rgba(255,255,255,0.2); }

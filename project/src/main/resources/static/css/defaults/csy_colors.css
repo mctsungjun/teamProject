@@ -1,0 +1,13 @@
+/* 여름이라서 이 컬러 팔레트 괜찮을듯. */
+/* https://www.color-hex.com/color-palette/1046396 */
+
+
+/* 사용법: var(--dark-gray) */
+:root {
+    --white: white;
+    --skyblue: #40dbff;
+    --blue: #32b2ff;
+    --purple: #8753fb;
+    --dark-gray: #1e202b;
+    --black: #121216;
+}

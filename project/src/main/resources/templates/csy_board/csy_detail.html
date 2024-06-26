@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div id="boardDetail">
+            <script>
+                async function postDelete(sno) {
+                    let obj = await import ("/js/csy_board.js");
+                    // console.log(sno);
+                    obj.postDelete(sno);
+                }
+
+                async function toBoardList() {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.boardList();
+                }
+
+                // let postDelete = (sno) => {
+                //     let yn = confirm('게시물을 삭제하시겠습니까?');
+                //     if (!yn) return;
+
+                //     $.ajax ({
+                //         url : "/board/delete",
+                //         type: "GET",
+                //         data: {"sno" : sno},
+                //         success: (resp) => {
+                //             boardList();
+                //             setTimeout(() => {
+                //                 alert(resp)
+                //             }, 200);
+                            
+                //         }
+                //     })
+                // }
+            </script>
+
+            <button type="button" class="white-text-button" onclick="toBoardList();">↶ 목록으로 돌아가기</button>
+            <div style="background-color:var(--purple); height: 80px; margin: 0; padding: 0 20px 0 20px;"><h2 style="line-height: 80px;">[[${vo.title}]]</h2></div>
+            <div style="display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+                flex-direction: row;
+                align-content: space-between;
+                padding: 5px 20px 0 20px;
+                ">
+            <div style="width: 50%; text-align: left; color: var(--purple)">[[${vo.id}]]</div>
+            <div style="width: 50%; text-align: right; color: var(--purple)">[[${vo.nal}]]</div>
+            </div>
+            <div style="padding: 30px 20px 20px 20px" th:utext="${vo.content}"></div>
+
+            <div style="display: flex; align-content:space-between; padding: 30px 20px 5px 20px">
+                <div style="width: 50%; text-align: left;">
+                    <button type="button" class="purple-text-button">LIKE</button>
+                </div>
+                <div style="width: 50%; text-align: right; display: inline-block;">
+                    <button type="button" class="purple-text-button" style="margin-right: 15px;">수정</button>
+                    <button type="button" class="purple-text-button" th:onclick="postDelete([[${vo.sno}]])">
+                    삭제</button>
+                </div>
+            </div>
+
+
+            <hr>
+            <div style="background-color: blue; height: 80px"><span style="line-height: 80px;">여기 덧글 작성란인데 아직 디자인 안함</span></div>
+            <hr>
+            <div style="padding: 0px 20px 0px 20px">닉네임 : 덧글이 있습니다. 덧글도 수정 삭제 답글 버튼. 여긴 아이콘으로.</div>
+            <hr>
+            <div style="padding: 0px 20px 0px 20px">닉네임 : 덧글이 있습니다. 덧글도 수정 삭제 답글 버튼. 여긴 아이콘으로.</div>
+            <hr>
+            <div style="text-align: right;">
+                <button type="button" class="purple-text-button" onclick="toBoardList();" style="margin-right: 15px;">목록</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="csyBoard">
+    <!-- 이거 그냥 샘플 -->
+    <!-- <select id="post" parameterType="BoardVo" resultType="String">
+        select name from member where id=#{id} and pwd=#{pwd}
+    </select> -->
+    <insert id="post" parameterType="CsyBoardVo">
+        insert into board(id, title, content) values (#{id}, #{title}, #{content})
+    </insert>
+
+    <select id="search" parameterType="String" resultType="CsyBoardVo">
+        select * from board
+        where id like '%${_parameter}%'
+        or title like '%${_parameter}%'
+        or content like '%${_parameter}%'
+        order by nal desc
+    </select>
+
+    <update id="addHits" parameterType="String">
+        UPDATE board SET hits=hits+1 WHERE sno=#{_parameter}
+    </update>
+
+    <select id="detail" parameterType="String" resultType="CsyBoardVo">
+        select sno, likes, hits, title, content, id, nal from board
+        where sno=#{_parameter}
+    </select>
+    
+
+    <select id="delete" parameterType="String">
+        delete from board where sno=#{_parameter}
+    </select>
+</mapper>

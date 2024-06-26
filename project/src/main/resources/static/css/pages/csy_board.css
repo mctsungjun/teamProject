@@ -1,0 +1,48 @@
+
+/* 이하 아직 하지 않음 */
+/* https://programmer93.tistory.com/27 */
+.post-title {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 15px;
+    outline: none;
+    padding-bottom: 5px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+}
+
+#board, #boardPost, #boardDetail {
+    padding: 28px 18% 0px 18%;
+    width: 100%;
+}
+
+#board .search {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#board .item_list { width: 100%; }
+#board .item_title, #board .item {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    padding: 8px 0px 8px 0px;
+    letter-spacing: .1rem;
+}
+
+#board .item_title{font-weight: 400; font-size: 17px; background-color: var(--purple); }
+#board span.sno { width: 80px; }
+#board span.id { width: 100px; }
+#board span.title { flex-grow: 1; }
+#board span.nal { width: 180px; }
+#board span.hits { width: 80px; }
+#board span.likes { width: 80px; }
+
+#board .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+#board .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }
+
+.boardListTitle { width: 180px; }
+.boardListTitle:hover { color: var(--purple); cursor:pointer;}
