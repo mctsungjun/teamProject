@@ -14,7 +14,17 @@
     letter-spacing: 0.2em;
 }
 
-#board, #boardPost, #boardDetail {
+.boardListTitle {
+    width: 180px;
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.boardListTitle:hover { color: var(--purple); cursor:pointer;}
+
+#board, #boardPost, #boardDetail, #boardModify {
     padding: 28px 18% 0px 18%;
     width: 100%;
 }
@@ -43,6 +53,3 @@
 
 #board .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
 #board .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }
-
-.boardListTitle { width: 180px; }
-.boardListTitle:hover { color: var(--purple); cursor:pointer;}

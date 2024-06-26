@@ -47,5 +47,17 @@ document.querySelector("#navBtnToCS").onclick = () => { }
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 
-// * 프로필 관리
+// * 로그아웃
 document.querySelector("#navBtnToLogout").onclick = () => { }
+
+// * 프로필 관리
+document.querySelector("#navBtnToPwgIndex").onclick = () => { 
+    $.ajax ({
+        url : "/pwg_index",
+        type: "GET",
+        success: (resp) => {
+            let temp = $(resp).find(".pwg");
+            $(".content").html(temp);
+        }
+    })
+}
