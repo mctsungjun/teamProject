@@ -1,6 +1,7 @@
 .like-wrapper {
     display: inline-block;
     width: 100px;
+    margin-left: -15px;
 }
 
 .like-wrapper .check[type="checkbox"] {
@@ -16,7 +17,7 @@
 }
 
 .like-wrapper .icon {
-    width: 20px;
+    width: 24px;
     height: 20px;
     fill: white;
     transition: opacity 0.3s ease-in-out;
@@ -39,6 +40,7 @@
 
 /* text */
 .like-wrapper .like-counter {
+    padding-top: 1px;
     padding-left: 9px;
     color: white;
     font-family: Arial, sans-serif;
