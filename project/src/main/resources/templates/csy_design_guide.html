@@ -33,8 +33,6 @@
                     <h4 style="margin-bottom: 3px;">[ 사용법 ]</h4>skyblue의 경우, <span style="color: var(--skyblue)">color: var(--skyblue);</span>로 사용
                 </div>
             <!-- Color Code Section End -->
-
-
             <br>
             <h1>MENUS</h1>
             <div style="font-size: 16px; font-weight: 300;"><ul>
@@ -53,9 +51,23 @@
                 <li>프로필 관리: 프로필 수정</li>
                 <li>로그아웃: 로그아웃</li>
                 <li>----------------------------------------------------------------</li>
-                <h4 style="background-color:var(--purple); width: 515px;">버튼 이름 신경쓸 필요 없고, $.ajax ({}) 부분 작성해서 넘겨주시면 됨</h4>
-                <hr>
-            </ul></div>
+                </ul></div><hr>
+                <h1>AJAX</h1>
+            <h4 style="font-size: 16px; font-weight: 300;">
+            아래와 같은 AJAX 형식으로, 오른쪽 네비게이션 아이콘 버튼(csy_navbar.js)에<br>
+            등록할 각자의 메인 페이지 넘겨주셔야합니다.<br>
+            아래 .pwg 클래스처럼, div 태그 내에 클래스명 있는 div 있어야함.</h4>
+            <h4 style="background-color:var(--purple); width: 515px;">버튼 이름 신경쓸 필요 없고, $.ajax ({}) 부분 작성해서 넘겨주시면 됨</h4>
+<textarea style="background-color: transparent; height: 200px; width: 500px; padding: 15px; resize: none;">
+$.ajax ({
+  url : "/pwg_index",
+  type: "GET",
+  success: (resp) => {
+    let temp = $(resp).find(".pwg");
+    $(".content").html(temp);
+  }
+})</textarea>
+<br><hr>
             <h1>Elements</h1>
             <h3>LIKE 버튼</h3>
             <!-- Like Button Start -->
