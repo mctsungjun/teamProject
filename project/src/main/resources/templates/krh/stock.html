@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재고관리</title>
+    <link rel="stylesheet" href="css/krh/krh.css">
+    <script defer src="js/krh/krh_sale_stock.js"></script>
+</head>
+<body>
+    <div class="stock">
+        <h1>재고 관리 페이지</h1>
+        <!--재고현황-->
+        <div class="stockbottom">
+            <div class="stockleft">
+                <div class="change">
+                    <form name="frm" class="frm" method="get">
+                        <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
+                        <button type="button" class="btnSearch">검색</button>
+                    </form>
+                </div>
+                <table class="stocklisttable">
+                    <tr>
+                        <th>제품 코드</th>
+                        <th>제품 명</th>
+                        <th>현 재고</th>
+                    </tr>
+                    <tr th:each="f:${list}">
+                        <td>[[${f.ProductCode}]]</td>
+                        <td>[[${f.ProductName}]]</td>
+                        <td>[[${f.PresentStock}]]</td>
+                    </tr>
+                </table>
+                <!--페이징 처리-->
+            </div>
+            <!--그래프-->
+            <div class="stockright">
+                그래프 그려야하는데~ 그릴 수 있나~ㅋ
+            </div>
+        </div>
+    </div>
+</body>
+</html>
