@@ -1,0 +1,355 @@
+*{
+    box-sizing: border-box;
+}
+.sale h1{
+    text-align: center;
+}
+.big{
+    width:1200px;
+    margin:30px auto;
+    min-height: 400px;
+}
+.big .frm{
+    margin-bottom: 20px;
+    text-align: right;
+}
+.title{
+    border-top:2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    padding:5px;
+}
+.item{
+    border-bottom: 1px solid rgb(130, 130, 130);
+    text-align: center;
+    padding:5px;
+}
+.item .items{
+    border-bottom: 1px solid rgb(130, 130, 130);
+    text-align: center;
+    padding:5px;
+}
+
+.list span{
+    display:inline-block;
+    text-align: center;
+    padding:4px;
+}
+.list span :hover{
+    font-weight: bold;
+}
+.list .sno{
+    width:60px;
+}
+.list .CustomerId{
+    width:160px;
+}
+.list .ProductCode{
+    width:100px;
+}
+.list .ProductName{
+    width:100px;
+}
+.list .price{
+    width:100px;
+}
+.list .ea{
+    width:100px;
+}
+.list .amt{
+    width:110px;
+}
+.list .nal{
+    width:200px;
+}
+.list .SaleList{
+    width:100px;
+}
+
+.salelist{
+    border: 3px solid black;
+    width:500px;
+    text-align: center;
+    padding:30px;
+}
+.salelist h2{
+    margin-top:0;
+}
+.salelist .salelisttable{
+    display:inline-block;
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.salelisttable *{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.salelisttable th,td{
+    padding:10px;
+}
+ 
+/*상세보기*/
+.saleview{
+    text-align: center;
+    padding:30px;
+    border:3px solid rgb(0, 0, 0);
+    width:500px;
+}
+.saleview .saleviewtable{
+    display:inline-block;
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.saleviewtable *{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.saleviewtable th,td{
+    padding:10px;
+}
+.saleview h2{
+    margin-top:0;
+}
+.saleview img{
+    margin-bottom: 20px;
+}
+.saleviewlist{
+    text-decoration: underline;
+}
+
+/*월별년도별그래프*/
+.salegraph{
+    width:1200px;
+    margin:30px auto;
+    min-height: 400px;
+}
+.salegraph .frm{
+    margin-bottom: 20px;
+    text-align: right;
+}
+.salegraph .monthyear{
+    font-size:20px;
+    text-align: center;
+}
+
+/*재고관리*/
+.stockleft{
+    width:550px;
+    text-align: left;
+    margin-top: 48px;
+    float: left;
+}
+.stockright{
+    width:500px;
+    text-align: left;
+    margin-top: 100px;
+    border: 1px solid black;
+    min-height: 100px;
+    float: right;
+}
+.stock h1{
+    margin-top:50px;
+    text-align: center;
+    margin-bottom:30px;
+}
+.stocklisttable{
+    border-collapse: collapse;
+    text-align: center;
+    width:100%;
+    table-layout: fixed;
+}
+.stocklisttable th,td{
+    padding:10px;
+    border: 1px solid black;
+    text-align: center;
+}
+.stock{
+    width:1200px;
+    margin:30px auto;
+    min-height: 400px;
+}
+.stockleft .change{
+    text-align: right;
+    margin-bottom:20px;
+}
+.sale h1{
+    text-align: center;
+}
+.salepage{
+    width:1200px;
+    margin:30px auto;
+    min-height: 600px;
+}
+.salepagesearch{
+    text-align: right;
+    margin-top:50px;
+    height:35px;
+}
+.salepage .sort{
+    margin-left:52px;
+    margin-bottom:10px;
+    display: inline-block;
+    margin-right:10px;
+}
+.salepage .sort a{
+    text-decoration: none;
+    color:black;
+}
+.salepage .sort a:hover{
+    font-weight: bold;
+}
+.salepage .change .frm{
+    margin-bottom: 20px;
+    margin-right: 52px;
+    display: inline-block;
+    text-align: right;
+}
+.salepageproduct{
+    text-align: left;
+    padding-left: 0%;
+}
+.salepagelist li{
+    list-style: none;
+    width:200px;
+    display: inline-block;
+    margin:47px;
+    text-align: left;
+}
+.salepagelist .price{
+    font-weight: bold;
+    font-size: 20px;
+}
+.salepagelist .name{
+    font-weight: bold;
+    font-size: 15px;
+}
+.salepagelist .explanation{
+    color:gray;
+    font-size: 12px;
+}
+.salepagelist .won{
+    font-size:12px;
+}
+.salepage hr{
+    width:1100px;
+    color:black;
+}
+.salepageview{
+    width:1200px;
+    margin:30px auto;
+    min-height: 1000px;
+    text-align: center;
+}
+.salepageview .viewleft{
+    width:500px;
+    text-align: left;
+    float: left;
+
+    margin-top: 48px;
+    margin-left:50px;
+    height:350px;
+    max-height: 350px;
+}
+.salepageview .viewright{
+    width:500px;
+    height:350px;
+    text-align: right;
+    float: right;
+    margin-top: 48px;
+    margin-right:50px;
+    max-height: 350px;
+    padding:0;
+}
+.salepageview .viewbottom{
+    width:1100px;
+    position: relative;
+    border: 1px solid rgb(227, 227, 227);
+    top:50px;
+    text-align:center;
+    word-break: normal;
+    margin: 0 auto;
+    display: inline-block;
+    vertical-align: top;
+    min-height: 200px;
+}
+.viewright .name{
+    padding:10px;
+}
+.viewright .price{
+    font-weight: bold;
+    font-size:30px;
+    padding:10px;
+}
+.viewright .spec{
+    vertical-align: center;
+    font-size:15px;
+    color:gray;
+    padding:10px;
+}
+.viewright .number{
+    text-align: left;
+    background-color: rgb(211, 211, 211);
+    padding:10px;
+}
+.viewright .number #quantity{
+    text-align: right;
+    margin-right: 10px;
+}
+.viewright .amt{
+    font-weight: bold;
+    font-size:30px;
+    padding:12px;
+}
+.viewright .won{
+    font-weight: normal;
+    color:black;
+    font-size:15px;
+}
+.viewright .name{
+    font-weight:500;
+    font-size:20px;
+}
+.viewleft .main-image{
+    float: left;
+    border:1px solid black;
+}
+.viewleft .detailimage img{
+    margin-left:12px;
+    margin-bottom:12px;
+    border:1px solid black;
+}
+.viewright .btnBuy{
+    margin-top:25px;
+    padding-top:18px;
+    padding-bottom: 18px;
+    font-size: larger;
+    margin-bottom: 0px;
+    display: inline-block;
+    text-align: center;
+    width:499px;
+    border:none;
+    border-radius: 8px;
+}
+.viewright hr{
+    margin:0px;
+    padding:0px;
+}
+.saleviewmodify .saleviewtable{
+    display:inline-block;
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.saleviewtable *{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.saleviewtable th,td{
+    padding:10px;
+}
+.saleview h2{
+    margin-top:0;
+}

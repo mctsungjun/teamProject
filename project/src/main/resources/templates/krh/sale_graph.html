@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>월별 년도별 판매량</title>
+    <link rel="stylesheet" href="css/krh/krh.css">
+    <script defer src="js/krh/krh_sale_stock.js"></script>
+</head>
+<body>
+    <div class="sale">
+        <div class="salegraph">
+            <h1>판매 관리</h1>
+            <hr/>
+            <div class="monthyear">
+                <button type="button" class="monthly">월 별</button>
+                <button type="button" class="yearly">년도 별</button>
+            </div>
+            <hr/>
+            <form name="frm" class="frm" method="get">
+                <input type="text" name="findStr" class="findStr" placeholder="제품명 또는 제품코드를 입력하세요.">
+                <button type="button" class="btnSearch">검색</button>
+            </form>
+            <div class="bottom">여기다가 그래프 둘거임!!!</div>
+        </div>
+    </div>
+</body>
+</html>

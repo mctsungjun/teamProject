@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 내역 수정</title>
+    <link rel="stylesheet" href="css/krh/krh.css">
+    <script defer src="js/krh/krh_sale_stock.js"></script>
+    <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="sale">
+        <div class="saleviewmodify">
+            <h2>판매 내역 수정</h2>
+            <!--사진..-->
+            <form name="viewfrm" method="post" enctype="multipart/form-data">
+                <img src="[[${vo.photo}]]" width="200px" height="200px">
+                <!--controller에서 연결받기..-->
+                <table class="saleviewtable">
+                    <tr>
+                        <th>고객 아이디</th>
+                        <td>"${vo.CustomerId}"</td>
+                    </tr>
+                    <tr>
+                        <th>제품 코드</th>
+                        <td>"${vo.ProductCode}"</td>
+                    </tr>
+                    <tr>
+                        <th>제품 명</th>
+                        <td>"${vo.ProductName}"</td>
+                    </tr>
+                    <tr>
+                        <th>판매가</th>
+                        <td >"${vo.price}"</td>
+                    </tr>
+                    <tr>
+                        <th>판매 수량</th>
+                        <td><input type="text" name="ea" style="text-align: center;"></td>
+                    </tr>
+                    <tr>
+                        <th>판매 금액</th>
+                        <td>th:value="${vo.amt}"</td>
+                    </tr>
+                    <tr>
+                        <th>판매 일자</th>
+                        <td>th:value="${vo.nal}"</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <!--수량을 수정하고 저장하면 판매 금액도 변경되게..-->
+                            <button type="button" class="btnModifyR">저장</button>
+                            <button type="button" class="btnList">취소</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
