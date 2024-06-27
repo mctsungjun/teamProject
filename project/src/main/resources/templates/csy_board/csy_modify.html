@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div id="boardModify">
+            <script type="module" th:inline="javascript">
+                import { summernote } from "/js/csy_summernote.js";
+                // TODO: 여기로 전달하는 법
+                summernote([[${vo.content}]]);
+            </script>
+            <script>
+                async function toDetail(sno) {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.csyDetail(sno);
+                }
+
+                async function csyModifySubmit() {
+                    let obj = await import ("/js/csy_summernote.js");
+                    obj.csyModifySubmit();
+                }
+            </script>
+            <h1 style="width:100%; text-align: right;">글 수정</h1><br/>
+            <form name="frmBoardPost" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="sno" th:value="${vo.sno}" />
+                <input type="text" class="post-title" name="title" th:value="${vo.title}" placeholder="제목을 입력해주세요">
+                <!-- display:none으로 해둬야 summernote 로딩 이전 기본 textarea 글박스가 뜨지 않음 -->
+                <textarea id="summernote" class="note-editable" name="content" aria-multiline="true" style="display:none"></textarea>
+                <div style="text-align: right;">
+                    <!-- TODO: boardList가 아니라 디테일 페이지로 돌아가기 -->
+                    <button type="button" class="purple-text-button" th:onClick="toDetail([[${vo.sno}]])" style="margin-right: 15px;">취소</button>
+                    <button type="button" class="purple-text-button" onClick=csyModifySubmit()>수정</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

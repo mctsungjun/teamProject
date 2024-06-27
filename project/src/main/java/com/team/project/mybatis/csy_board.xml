@@ -12,6 +12,10 @@
         insert into board(id, title, content) values (#{id}, #{title}, #{content})
     </insert>
 
+    <update id="modify" parameterType="CsyBoardVo">
+        UPDATE board SET title=#{title}, content=#{content} WHERE sno=#{sno}
+    </update>
+
     <select id="search" parameterType="String" resultType="CsyBoardVo">
         select * from board
         where id like '%${_parameter}%'

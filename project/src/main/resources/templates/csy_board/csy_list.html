@@ -13,9 +13,8 @@
                 csyBoard();
             </script>
             <script>
-                async function csyDetail(sno) {
+                async function toDetail(sno) {
                     let obj = await import ("/js/csy_board.js");
-                    // console.log(sno);
                     obj.csyDetail(sno);
                 }
             </script>
@@ -33,7 +32,7 @@
                     <span class="hits">조회수</span>
                     <span class="likes">공감</span>
                 </div>
-                <div class="items" th:each="vo:${list}" th:onClick="csyDetail([[${vo.sno}]])">
+                <div class="items" th:each="vo:${list}" th:onClick="toDetail([[${vo.sno}]])">
                     <div class="item">
                         <span class="sno">[[${vo.sno}]]</span>
                         <span class="id">[[${vo.id}]]</span>

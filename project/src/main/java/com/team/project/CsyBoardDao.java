@@ -26,7 +26,23 @@ public class CsyBoardDao {
 
     public boolean post(CsyBoardVo vo) {
         boolean b = false;
+        vo.content = vo.content.replaceAll("<p><br></p>", "");
         int cnt = session.insert("csyBoard.post", vo);
+        if(cnt>0){
+            b=true;
+            session.commit();
+        }else{
+            b=false;
+            session.rollback();
+        }
+        return b;
+    }
+
+    public boolean modify(CsyBoardVo vo) {
+        System.out.println(vo);
+        boolean b = false;
+        vo.content = vo.content.replaceAll("<p><br></p>", "");
+        int cnt = session.insert("csyBoard.modify", vo);
         if(cnt>0){
             b=true;
             session.commit();
