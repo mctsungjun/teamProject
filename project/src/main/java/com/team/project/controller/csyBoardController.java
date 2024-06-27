@@ -33,6 +33,15 @@ public class csyBoardController {
         return mv;
     }
 
+    @RequestMapping(path="/board/modify")
+    public ModelAndView modifyPost(String sno) {
+        ModelAndView mv = new ModelAndView();
+        CsyBoardVo vo = BoardDao.detail(sno);
+        mv.addObject("vo", vo);
+        mv.setViewName("csy_board/csy_modify");
+        return mv;
+    }
+
     @RequestMapping(path="/board/delete")
     public String postDelete(String sno) {
         String msg = BoardDao.delete(sno);

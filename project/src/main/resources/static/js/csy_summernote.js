@@ -7,12 +7,7 @@
 
 // https://velog.io/@betweenhj702/%EC%84%9C%EB%A8%B8%EB%85%B8%ED%8A%B8-%ED%8E%B8%EC%A7%91%EA%B8%B0
 // https://programmer93.tistory.com/31#google_vignette
-export function summernote() {
-    // TODO: 수정페이지에서 원시 코드 보존을 통한 코드 깨짐 방지
-    // window.onload = function () {
-    //     $('#summernote').summernote('code', document.getElementById('temp').innerHTML)
-    // }
-
+export function summernote(content) {
     $(document).ready(function() {
         $('#summernote').summernote({
             height: 350,       // 에디터 높이
@@ -28,63 +23,70 @@ export function summernote() {
                     e.preventDefault();
                     document.execCommand('insertText', false, bufferText);
                 },
-                // onImageUpload : function(files, editor, welEditable) {
-                //     // * 다중 이미지처리 구문
-                //     for (var i = 0; i < files.length; i++) {
-                //         var fileName = files[i].name;
-                //         uploadSummernoteImageFile(files[i], this, fileName);
-                //     }
-                // },
-
-                // onImageUpload : function(files) {
-                //     uploadSummernoteImageFile(files[0],this);
-                // },
-
-
-                // onImageUpload: function (files) {
-                //     if (!files.length) return;
-                //     var file = files[0];
-                //     // create FileReader
-                //     var reader = new FileReader();
-                //     reader.onloadend = function () {
-                //         // when loaded file, img's src set datauri
-                //         console.log("img", $("<img>"));
-                //         var img = $("<img>").attr({src: reader.result, width: "80%"}); // << Add here img attributes !
-                //         console.log("var img", img);
-                //         $('#postBody').summernote("insertNode", img[0]);
-                //     }
-                //     if (file) {
-                //         // convert fileObject to datauri
-                //         reader.readAsDataURL(file);
-                //     }}
             }
-        }); // * 여기까지가 summernote
+        });
     });
-}
-
-export function modify() {
-    document.querySelector(".btnModifySubmit").onclick = () => {
+    if (content != null) {
+        $("#summernote").summernote('pasteHTML',  content);
     }
 }
 
-
-export function csyPost() {
+export function csyPostSubmit() {
     // * 게시글 입력 후 전송 누르는 버튼
     document.querySelector(".btnCsyPostSubmit").onclick = () => {
         let temp = document.frmBoardPost;
+        var content = temp.content.value;
+
+        var imgCnt = content.search("img");
+        var extract_content_html = content.replace(/(<([^>]+)>)/ig,"");
+        if (temp.title.value == "") {
+            alert("제목을 작성해주세요.")
+        } else if (extract_content_html == "" && imgCnt == -1) {
+            alert("게시물에 내용이 필요합니다.");
+        } else {
+            console.log("제목: " + temp.title.value);
+            console.log("내용: " + temp.content.value);
+            let frmPost = new FormData(temp);
+            $.ajax({
+                url: "/summernote/submit",
+                type: "POST",
+                data: frmPost,
+                processData: false,
+                contentType: false,
+                success: async (resp) => {
+                    let obj = await import ("/js/csy_board.js");
+                        obj.boardList();
+                    }
+                });
+            };
+        }
+    }
+
+export function csyModifySubmit() {
+    let temp = document.frmBoardPost;
+    var content = temp.content.value;
+
+    var imgCnt = content.search("img");
+    var extract_content_html = content.replace(/(<([^>]+)>)/ig,"");
+    if (temp.title.value == "") {
+        alert("제목을 작성해주세요.")
+    } else if (extract_content_html == "" && imgCnt == -1) {
+        alert("게시물에 내용이 필요합니다.");
+    } else {
         console.log("제목: " + temp.title.value);
         console.log("내용: " + temp.content.value);
-        let frm = new FormData(temp);
+        let frmModify = new FormData(temp);
         $.ajax({
-            url: "/summernote/submit",
+            url: "/summernote/modify",
             type: "POST",
-            data: frm,
+            data: frmModify,
             processData: false,
             contentType: false,
             success: async (resp) => {
-                let obj = await import ("/js/board.js");
-                    obj.boardList();
+                let obj = await import ("/js/csy_board.js");
+                    // 해당 디테일 페이지로
+                    obj.csyDetail(temp.sno.value);
                 }
-            });
-        };
+        });
     }
+};

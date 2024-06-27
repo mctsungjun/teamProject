@@ -13,8 +13,6 @@ public class csySummernoteController {
     @Autowired
     CsyBoardDao BoardDao;
 
-    private static String realPath = "실제 파일 저장 경로";
-
     // * 여기까지 잘 옴
     @RequestMapping(path="/summernote/submit")
     public ModelAndView newPostSubmit(CsyBoardVo vo) {
@@ -28,4 +26,18 @@ public class csySummernoteController {
         mv.setViewName("csy_board/csy_list");
         return mv;
     }
+
+    @RequestMapping(path="/summernote/modify")
+    public ModelAndView modifyPostSubmit(CsyBoardVo vo) {
+        ModelAndView mv = new ModelAndView();
+        System.out.println(vo);
+        /* TODO: 나중에 아이디 받아올 수 있을 때 수정 */
+        vo.setId("sampleID");
+        String status = BoardDao.modify(vo) ? "Post Complete" : "Something Went Wrong!";
+        System.out.println("summernotController: " + status);
+        // * 글 작성 페이지가 아니라, 해당 글 페이지로 들어가야할 듯..
+        mv.setViewName("csy_board/csy_list");
+        return mv;
+    }
+    
 }

@@ -9,7 +9,7 @@ export function boardList() {
     })
 }
 
-export function postDelete(sno) {
+export function csyPostDelete(sno) {
     let yn = confirm('게시물을 삭제하시겠습니까?');
     if (!yn) return;
 
@@ -26,25 +26,18 @@ export function postDelete(sno) {
     })
 }
 
-// export function postCRUD() {
-    // let postDelete = (sno) => {
-    //     let yn = confirm('게시물을 삭제하시겠습니까?');
-    //     if (!yn) return;
-
-    //     $.ajax ({
-    //         url : "/board/delete",
-    //         type: "GET",
-    //         data: {"sno" : sno},
-    //         success: (resp) => {
-    //             boardList();
-    //             setTimeout(() => {
-    //                 alert(resp)
-    //             }, 200);
-                
-    //         }
-    //     })
-    // }
-// }
+// * summernote에 내용 넘겨야함
+export function csyPostModify(sno) {
+    $.ajax ({
+        url : "/board/modify",
+        type: "POST",
+        data: {"sno" : sno},
+        success: (resp) => {
+            let temp = $(resp).find("#boardModify");
+            $(".content").html(temp);                 // * navbar : index.html
+        }
+    })
+}
 
 export function csyDetail(sno) {
     $.ajax({
