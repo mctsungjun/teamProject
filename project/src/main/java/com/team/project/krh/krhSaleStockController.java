@@ -11,14 +11,6 @@ public class krhSaleStockController {
     @Autowired
     SaleDao saleDao;
     StockDao stockDao;
-    public static String upload="C:\\finalproject\\src\\main\\resources\\static\\upload\\";
-    
-    @RequestMapping(path="/")
-    public ModelAndView index(){
-        ModelAndView mv=new ModelAndView();
-        mv.setViewName("krh/index");
-        return mv;
-    }
 
     //sale.html
     @RequestMapping(path="/sale")

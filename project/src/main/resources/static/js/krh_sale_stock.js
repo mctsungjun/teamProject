@@ -1,8 +1,4 @@
 //검색 기능
-$(function(){
-    sale();
-});
-
 function sale(){
     let findStr="";
     if(sessionStorage.getItem("findStr")!=null){ //null이 아닌 경우에만 실행됨
@@ -13,7 +9,7 @@ function sale(){
         type:"GET",
         success:(resp)=>{
             let temp=$(resp).find(".big");
-            $('.main').html(temp);
+            $('.big').html(temp);
             search();
         }
     })
@@ -50,7 +46,7 @@ function sale_view(sno){
         success:(resp)=>{
             console.log(resp);
             let temp=$(resp).find(".saleview");
-            $('.main').html(temp);
+            $('.big').html(temp);
             ViewEvent(sno);
         }
     })
@@ -68,8 +64,8 @@ function ViewEvent(sno){
             data:{"sno":sno},
             success:(resp)=>{
                 let temp=$(resp).find(".saleviewmodify");
-                $('.main').html(temp);
-                sale_view_modify(sno);
+                $('.big').html(temp);
+                sale_view_modify(vo);
             }
         })
     })
@@ -83,14 +79,16 @@ function ViewEvent(sno){
         sale(sno);
     })
 }
-
+/*
 let UpdateForm=(sno)=>{
     $.ajax({
         url:"/"
     })
 }
+    */
 
-function sale_view_modify(sno){
+
+function sale_view_modify(){
     let btnModifyR=document.querySelector(".btnModifyR");
     let btnList=document.querySelector(".btnList");
     
