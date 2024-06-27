@@ -71,4 +71,19 @@ public class CsyBoardDao {
         list = session.selectList("csyBoard.search", findStr);
         return list;
     }
+
+    public String likePressed(CsyBoardLikesVo vo) {
+        System.out.println(vo);
+        
+        String msg = "POST LIKE FAILED";
+        int cnt = session.insert((vo.isChecked) ? "csyBoard.postLikePressed" : "postLikeUnpressed", vo);
+
+        if(cnt>0){
+            msg = "POST LIKE SUCCEED";
+            session.commit();
+        }else{
+            session.rollback();
+        }
+        return msg;
+    }
 }

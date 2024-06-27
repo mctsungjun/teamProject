@@ -1,14 +1,17 @@
 package com.team.project.controller;
 
-
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.CsyBoardDao;
+import com.team.project.CsyBoardLikesVo;
 import com.team.project.CsyBoardVo;
 
 @RestController
@@ -55,6 +58,16 @@ public class csyBoardController {
         mv.addObject("vo", vo);
         mv.setViewName("csy_board/csy_detail");
         return mv;
+    }
+
+    @RequestMapping(path="/board/detail/likePressed", method = RequestMethod.POST)
+    public String postDetailLikes(@RequestBody HashMap<String, Object> json) {
+        CsyBoardLikesVo vo = new CsyBoardLikesVo();
+        vo.setChecked((boolean) json.get("is_checked"));
+        vo.setPost_sno((int) json.get("post_sno"));
+        vo.setUser_id((String) json.get("user_id"));
+        
+        return BoardDao.likePressed(vo);
     }
 
     // // * 추후 이름 수정

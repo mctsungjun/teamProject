@@ -51,6 +51,41 @@ export function csyDetail(sno) {
     })
 }
 
+
+
+
+export function csyBoardLikePressed(like_checked, post_sno) {
+    // var id = '<%=(String)session.getAttribute("id")%>';
+    var user_id = "SampleID";
+
+    // let postLikeCounter(post_sno) {
+    // }
+    
+    $.ajax({
+        url : "/board/detail/likePressed",
+        type: "POST",
+        async: false,
+        data:  JSON.stringify({post_sno: post_sno, user_id: user_id, is_checked: like_checked }),
+        dataType: "text",
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        // * update like counter
+        success: (resp) => {
+            // * TODO : 여기다 like update
+            // * postLikeCounter(post_sno); // 이런식으로
+            // let temp = $(resp).find("#boardDetail");
+            // $(".content").html(temp);                 // * navbar : index.html
+            document.getElementsByClassName('.like-counter').innerText = currentlike();
+            
+        },
+        error: (resp) => {
+            alert("잠시 후 다시 시도해주세요.");
+        }
+    })
+}
+
+
+
 export function csyBoard() {
     // * "글 목록" 텍스트 클릭시 전체 리스트 보여줌
     let boardListTitle = document.querySelector(".boardListTitle");
