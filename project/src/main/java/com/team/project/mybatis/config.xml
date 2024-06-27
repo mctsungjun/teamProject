@@ -24,5 +24,6 @@
 	<mappers>
 		<mapper resource="com/team/project/mybatis/csy_board.xml" />
 		<mapper resource="com/team/project/mybatis/krhSaleStock.xml" />
+		<mapper resource="com/team/project/mybatis/ojw_PurchaseProduct.xml" />
 	</mappers>
 </configuration>

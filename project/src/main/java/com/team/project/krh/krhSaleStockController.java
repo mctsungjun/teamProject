@@ -1,4 +1,4 @@
-package com.team.project.controller.krh;
+package com.team.project.krh;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;

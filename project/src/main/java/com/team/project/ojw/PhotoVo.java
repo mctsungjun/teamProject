@@ -1,9 +1,6 @@
-package com.team.project.krh;
+package com.team.project.ojw;
 
-import lombok.Data;
-
-@Data
-public class ProductPhotoVo{
+public class PhotoVo {
     int no;
     String productCode;
     String productName;

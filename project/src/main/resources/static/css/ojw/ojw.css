@@ -1,0 +1,156 @@
+*{
+    box-sizing: border-box;
+}
+.purchase{
+    width: 1200px;
+    min-height: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+.list .frm{
+    text-align: right;
+    margin-right: 10px;
+}
+.list .frm>*{
+    height: 24px;
+    vertical-align: middle;
+}
+.title{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-top: 10px;
+    font-weight: bold;
+    height: 40px;
+}
+.list span{
+    display: inline-block;
+}
+.list .no{width: 120px;}
+.list .productCode{width: 100px;}
+.list .productName{width: 150px;}
+.list .price{width: 100px;}
+.list .ea{width: 100px;}
+.list .nal{width: 150px;}
+.list .customer{width: 150px;}
+.list .purchaseCode{width: 100px;}
+.list .item:hover{
+    background-color: #eee;
+}
+
+/*-------------- purchase_view ---------------*/
+
+h2{
+    padding-top: 20px;
+}
+.purchase_view{
+    text-align: center;
+    border: 2px solid #000;
+    width: 450px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+}
+.purchase_view .list_table{
+    text-align: center;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.list_table *{
+    border: 1px solid black;
+    width: 150px;
+}
+.list_table th, td{
+    padding: 10px;
+
+}
+.purchase_view h2{
+    margin-top: 0;
+}
+hr{
+    border: 1px solid black;
+    margin-bottom: 40px;
+}
+.link{
+    border: none;
+}
+
+
+/* ----------------------- purchase_list ------------------------- */
+
+.purchase_list{
+    border: 1px solid #000;
+    width: 500px;
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+}
+table{
+    border: 1px solid #000;
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 400px;
+}
+td{
+    border: 1px solid #000;
+    width: 50px;
+    padding: 10px 5px;
+}
+
+/* ----------------------- purchase_register ------------------------- */
+*{
+    box-sizing: border-box;
+}
+h3{
+    text-align: center;
+    margin-top: 20px;
+}
+.product_register{
+    border: 1px solid #000;
+    width: 400px;
+    text-align: left;
+    margin: 0 auto;
+}
+.frm{
+    margin: 20px;
+}
+.product_input{
+    text-align: left;
+    margin-left: 30px;
+}
+.button{
+    text-align: right;
+    margin-bottom: 0;
+}
+
+/* ----------------------- product ------------------------- */
+*{
+    box-sizing: border-box;
+}
+.products h2{
+    text-align: center;
+}
+.product{
+    width: 1200px;
+    margin: 30px auto;
+    min-height: 600px;
+}
+.product_each{
+    text-align: right;
+    margin-top: 50px;
+}
+.product .frm{
+    margin-bottom: 20px;
+    margin-right: 52px;
+    text-align: right;
+}
+.product{
+    text-align: left;
+    padding-left: 0%;
+}
+.product_list li{
+    list-style: none;
+    width: 200px;
+    display: inline-block;
+    margin: 47px;
+    text-align: left;
+}
