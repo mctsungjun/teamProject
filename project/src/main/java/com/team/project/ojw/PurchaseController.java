@@ -17,7 +17,7 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         List<PurchaseVo> list = PurchaseDao.search(findStr);
         mv.addObject("purchase",list);
-        mv.setViewName("purchase");
+        mv.setViewName("ojw/purchase");
         return mv;
     }
 
@@ -26,7 +26,7 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         PurchaseVo vo = PurchaseDao.purchase_view(no);
         mv.addObject("vo", vo);
-        mv.setViewName("purchase_view");
+        mv.setViewName("ojw/purchase_view");
         return mv;
     }
 
@@ -35,7 +35,7 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         PurchaseVo vo = PurchaseDao.purchase_list(no);
         mv.addObject("vo", vo);
-        mv.setViewName("purchase_list");
+        mv.setViewName("ojw/purchase_list");
         return mv;
     }
 }
