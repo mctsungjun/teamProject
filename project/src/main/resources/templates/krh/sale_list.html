@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 내역서</title>
+    <link rel="stylesheet" href="css/krh/krh.css">
+    <script defer src="js/krh/krh_sale_stock.js"></script>
+</head>
+<body>
+    <div class="sale">
+        <div class="salelist">
+            <h2>판매 내역서</h2>
+            <!--vo를.. 판매상세보기에서 가져오기.. 그러면 수정 한 번 하면 같이 바뀔듯?..-->
+            <form name="frm" method="post" enctype="multipart/form-data">
+                <table class="salelisttable">
+                    <tr>
+                        <th>주문일</th>
+                        <td colspan="3">list에서</td>
+                    </tr>
+                    <tr>
+                        <th colspan="4">고객 정보</th>
+                    </tr>
+                    <tr>
+                        <th>고객 주소</th>
+                        <td>회원정보</td>
+                        <th>전화 번호</th>
+                        <td>회원정보</td>
+                    </tr>
+                    <tr>
+                        <th>성명</th>
+                        <td>회원정보에서</td>
+                        <th>이메일</th>
+                        <td>회원정보에서</td>
+                    </tr>
+                    <tr>
+                        <th colspan>No.</th>
+                        <th colspan="2">품목</th>
+                        <th>수량</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>5</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>6</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>7</th>
+                        <td colspan="2"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>총액</th>
+                        <td colspan="3"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <br/>
+        <button type="button" class="btnPrint">출력</button>
+    </div>
+</body>
+</html>
