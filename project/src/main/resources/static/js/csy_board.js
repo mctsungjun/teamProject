@@ -26,7 +26,6 @@ export function csyPostDelete(sno) {
     })
 }
 
-// * summernote에 내용 넘겨야함
 export function csyPostModify(sno) {
     $.ajax ({
         url : "/board/modify",
@@ -75,8 +74,9 @@ export function csyBoardLikePressed(like_checked, post_sno) {
             // * postLikeCounter(post_sno); // 이런식으로
             // let temp = $(resp).find("#boardDetail");
             // $(".content").html(temp);                 // * navbar : index.html
-            document.getElementsByClassName('.like-counter').innerText = currentlike();
-            
+            // document.getElementsByClassName('.like-counter').innerText = "HELLO";
+            // location.replace(location.href);
+            // csyDetail(sno);
         },
         error: (resp) => {
             alert("잠시 후 다시 시도해주세요.");

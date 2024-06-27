@@ -52,7 +52,7 @@ document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 // * 로그아웃
 document.querySelector("#navBtnToLogout").onclick = () => { }
 
-// * 프로필 관리
+// * 임시
 document.querySelector("#navBtnToPwgIndex").onclick = () => {
     $.ajax ({
         url : "/pwg_index",
