@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product_view</title>
+    <link rel="stylesheet" href="css/product_view.css">
+    <script defer src="js/index.js"></script>
+</head>
+<body>
+    <div class="products">
+        <h2>제품관리 상세페이지</h2>
+        <div class="product">
+            <div class="product_view_left">
+                <th:block th:each="k:${vo.photos}">
+                    <img src="[[${vo.photo}]]" width="350px" height="350px">
+                </th:block>
+            </div>
+            <div class="product_view_right">
+                <h2>[[${vo.productId}]] / [[${vo.productName}]]</h2>
+                <hr/>
+                <span class="price">[[${vo.price}]]</span>
+                <span class="spec">[[${vo.spec}]]</span>
+                <div>
+                    [[${vo.productName}]] / [[${vo.price}]]
+                    <form action="#" method="post">
+                        <p><input type="number" min="1" max="50"></p>
+                    </form>
+                </div>
+                <span>[[${vo.amt}]]</span>
+            </div>
+        </div>
+        <div class="product_view_bottom">
+            제품 설명
+        </div>
+    </div>
+</body>
+</html>

@@ -1,13 +1,8 @@
-package com.team.project.controller.krh;
+package com.team.project.krh;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.team.project.krh.SaleDao;
-import com.team.project.krh.SaleVo;
-import com.team.project.krh.StockDao;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
