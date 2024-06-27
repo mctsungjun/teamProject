@@ -50,7 +50,9 @@ document.querySelector("#navBtnToBoard").onclick = () => {
 document.querySelector("#navBtnToAdmin").onclick = () => { }
 
 // * 고객센터: Q & A
-document.querySelector("#navBtnToCS").onclick = () => { }
+document.querySelector("#navBtnToCS").onclick = () => {
+
+}
 
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => { }
@@ -59,7 +61,7 @@ document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 document.querySelector("#navBtnToLogout").onclick = () => { }
 
 // * 프로필 관리
-document.querySelector("#navBtnToPwgIndex").onclick = () => { 
+document.querySelector("#navBtnToPwgIndex").onclick = () => {
     $.ajax ({
         url : "/pwg_index",
         type: "GET",
