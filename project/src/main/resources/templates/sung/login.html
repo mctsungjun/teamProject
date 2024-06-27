@@ -12,8 +12,6 @@
 </head>
 <body>
     <div>
-    <div class="change">
-        <div class="container">
         <div class="login" id="loginPage">
     <div class="container conLogin col-4">
             <div class="row m-5 text-center  ">
@@ -43,7 +41,7 @@
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item" id="findIdPwd" ><a href="javascript:findIdPwd()" >아이디/비밀번호 찾기</a></li>
                           
-                          <li class="breadcrumb-item"><a href="javascript:registerForm()">회원가입</a></li>
+                          <li class="breadcrumb-item"><a href="/sung/registerF">회원가입</a></li>
                         </ol>
                       </nav>
                 </div>
@@ -69,7 +67,7 @@
                             let frmData = $loginfrm.serialize();
                             $.ajax({
                                 url: "/sung/login",
-                                type:"GET",
+                                type:"POST",
                                 data:frmData,
                                 success: function(resp){
                                     // 받은 정보중에 id, name을
@@ -78,19 +76,9 @@
                                         alert("아이디, 비번을 확인하세요");
                                     }else{
                                         //로그인 성공하면 클라이언트 세션에 아이디/이름 저장
-                                      
-                                        $(document).ready(function() {
-                                            $.ajax ({
-                                            url : "/design_guide",
-                                            type: "GET",
-                                            // data: {"findStr" : findStr},               // * 이거 selected icon 넘겨줘야함
-                                            success: (resp) => {
-                                                let temp = $(resp).find(".designGuide");  // * nav    : nav.html
-                                                $(".content").html(temp);                 // * navbar : index.html
-                                            }
-                                        })
-                                                
-                                    });
+                                      sessionStorage.setItem("id",id);
+                                      sessionStorage.setItem("name",name);
+                                      location.href="/";
                                         }
 
                                     
@@ -136,11 +124,7 @@
         
     </div>
     </div>
-    </div>
-</div>
-    
     
 </body>
-
 
 </html>
