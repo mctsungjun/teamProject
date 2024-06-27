@@ -6,6 +6,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.team.project.CsyBoardVo" alias="CsyBoardVo" />
+		<typeAlias type="com.team.project.SaleVo" alias="SaleVo" />
+		<typeAlias type="com.team.project.StockVo" alias="StockVo" />
+		<typeAlias type="com.team.project.ProductPhotoVo" alias="ProductPhotoVo" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -20,5 +23,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/team/project/mybatis/csy_board.xml" />
+		<mapper resource="com/team/project/mybatis/krhSaleStock.xml" />
 	</mappers>
 </configuration>

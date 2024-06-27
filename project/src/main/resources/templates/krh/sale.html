@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 관리 페이지</title>
+    <link rel="stylesheet" href="css/krh/krh.css">
+    <script defer src="js/krh/krh_sale_stock.js"></script>
+    <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> <!--요기-->
+</head>
+<body>
+    <div class="sale">
+        <div class="big">
+            <h1>판매 관리 페이지</h1>
+            <div class="change">
+                <form name="frm" class="frm" method="get">
+                    <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
+                    <button type="button" class="btnSearch">검색</button>
+                </form>
+            </div>
+            <div class="list">
+                <div class="title">
+                    <span class="sno">순번</span>
+                    <span class="CustomerId">고객 아이디</span>
+                    <span class="ProductCode">제품 코드</span>
+                    <span class="ProductName">제품 명</span>
+                    <span class="price">판매가</span>
+                    <span class="ea">수량</span>
+                    <span class="amt">판매 금액</span>
+                    <span class="nal">판매 일자</span>
+                </div>
+                <div class="items"> 
+                    <!--팝업......-->
+                    <div class="item" th:each="d:${sale}" th:onClick="sale_view([[${d.sno}]])">
+                        <span class="sno">[[${d.sno}]]</span>
+                        <span class="CustomerId">[[${d.CustomerId}]]</span>
+                        <span class="ProductCode">[[${d.ProductCode}]]</span>
+                        <span class="ProductName">[[${d.ProductName}]]</span>
+                        <span class="price">[[${d.price}]]</span>
+                        <span class="ea">[[${d.ea}]]</span>
+                        <span class="amt">[[${d.amt}]]</span>
+                        <span class="nal">[[${d.nal}]]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
