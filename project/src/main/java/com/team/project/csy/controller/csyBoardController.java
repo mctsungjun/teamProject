@@ -1,4 +1,4 @@
-package com.team.project.controller;
+package com.team.project.csy.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.project.CsyBoardDao;
-import com.team.project.CsyBoardLikesVo;
-import com.team.project.CsyBoardVo;
+import com.team.project.csy.CsyBoardDao;
+import com.team.project.csy.CsyBoardLikesVo;
+import com.team.project.csy.CsyBoardVo;
 
 @RestController
 public class csyBoardController {
@@ -69,6 +69,12 @@ public class csyBoardController {
         
         return BoardDao.likePressed(vo);
     }
+
+    // @RequestMapping(path="/board/detail/likePressed/updateLikes")
+    // public String postDetailLikes(String sno) {
+    //     String numOfLikes = BoardDao.singlePostLikes(sno);
+    //     return numOfLikes;
+    // }
 
     // // * 추후 이름 수정
     // @RequestMapping(path="/boardpostsubmit", method=RequestMethod.POST)
