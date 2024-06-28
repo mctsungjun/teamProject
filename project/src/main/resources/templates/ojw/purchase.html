@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="js/index.js"></script>
+</head>
+<body>
+    <div class="products">
+        <div class="purchase">
+            <h1>구매정보</h1>
+            <div class="list">
+                <form name="frm" class="frm" method="post">
+                    <input type="text" name="findStr" class="findStr">
+                    <button type="button" class="btnSearch">검색</button>
+                </form>
+                <div class="title">
+                    <span class="no">NO</span>
+                    <span class="productCode">제품 코드</span>
+                    <span class="productName">제품명</span>
+                    <span class="price">단가</span>
+                    <span class="ea">수량</span>
+                    <span class="nal">날짜</span>
+                    <span class="customer">거래처</span>
+                    <span class="purchaseCode">구매코드</span>
+                </div>
+                <div class="items">
+                    <div class="item" th:each="d : ${purchase}" th:onclick="purchase_view([[${d.no}]])">
+                        <span class="no">[[${d.no}]]</span>
+                        <span class="productCode">[[${d.productCode}]]</span>
+                        <span class="productName">[[${d.productName}]]</span>
+                        <span class="price">[[${d.price}]]</span>
+                        <span class="ea">[[${d.ea}]]</span>
+                        <span class="nal">[[${d.nal}]]</span>
+                        <span class="customer">[[${d.customer}]]</span>
+                        <span class="purchaseCode">[[${d.purchaseCode}]]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

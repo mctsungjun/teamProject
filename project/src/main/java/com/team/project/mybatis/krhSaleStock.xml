@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="salestock">
+    <select id="search" parameterType="String" resultType="SaleVo">
+        select * from sale
+        where CustomerId like '%${findStr}%'
+        or ProductCode like '%${findStr}%'
+        or ProductName like '%${findStr}%'
+        or nal like '%${findStr}%'
+        or ea like '%${findStr}%'
+        or price like '%${findStr}%'
+        or amt like '%${findStr}%'
+    </select>
+    <select id="view" parameterType="Integer" resultType="SaleVo">
+        select CustomerId, ProductCode, ProductName, price, ea, amt, nal from sale
+        where sno=#{_parameter}
+    </select>
+
+    <!--지언언니가 테이블 만들면 만들기!-->
+    <select id="saleviewphotos" parameterType="Integer" resultType="ProductPhotoVo">
+        select no,productCode, productName, photo, oriPhoto, flag, nal from photo
+        where no=#{_parameter}
+    </select>
+    
+    <select id="select" parameterType="Integer" resultType="SaleVo">
+        select * from sale where sno=#{sno}
+    </select>
+    
+    <update id="update" parameterType="SaleVo">
+        update sale set ea=#{ea}
+        where sno=#{sno};
+    </update>
+</mapper>

@@ -12,6 +12,10 @@
         insert into board(id, title, content) values (#{id}, #{title}, #{content})
     </insert>
 
+    <update id="modify" parameterType="CsyBoardVo">
+        UPDATE board SET title=#{title}, content=#{content} WHERE sno=#{sno}
+    </update>
+
     <select id="search" parameterType="String" resultType="CsyBoardVo">
         select * from board
         where id like '%${_parameter}%'
@@ -28,9 +32,33 @@
         select sno, likes, hits, title, content, id, nal from board
         where sno=#{_parameter}
     </select>
-    
 
     <select id="delete" parameterType="String">
         delete from board where sno=#{_parameter}
     </select>
+
+    <select id="postLikeCounter" parameterType="String" resultType="String">
+        select count(user_id) from board_likes where post_sno=#{_parameter}
+    </select>
+
+    <select id="postUserLikeCounter" parameterType="CsyBoardLikesVo" resultType="String">
+        select count(user_id) from board_likes where post_sno=#{post_sno} and user_id=#{user_id}
+    </select>
+
+    <insert id="postLikePressed" parameterType="CsyBoardLikesVo">
+        insert into board_likes(post_sno, user_id) values (#{post_sno}, #{user_id});
+        UPDATE board SET likes=likes+1 WHERE sno=#{post_sno}
+    </insert>
+
+    <delete id="postLikeUnpressed" parameterType="CsyBoardLikesVo">
+        delete from board_likes where post_sno=#{post_sno} and user_id=#{user_id};
+        UPDATE board SET likes=likes-1 WHERE sno=#{post_sno}
+    </delete>
+
+    <select id="detailLikedByMe" parameterType="CsyBoardVo" resultType="int">
+        select count(post_sno) from board_likes where post_sno=#{sno} and user_id=#{viewersId}
+    </select>
+    <!-- <select id="detailLikes" parameterType="String" resultType="String">
+        select likes from board where sno=#{_parameter}
+    </select> -->
 </mapper>
