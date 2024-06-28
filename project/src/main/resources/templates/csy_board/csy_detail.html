@@ -30,7 +30,7 @@
                 }
 
                 async function likePressed(like_checked, sno) {
-                    document.getElementById("like-counter").innerText = (like_checked) ? "Liked!" : "[[${vo.likes}]]";
+                    document.getElementById("like-counter").innerText = (like_checked) ? "Liked!" : ("[[${vo.isLikedByMe}]]") ? "[[${vo.likes - 1}]]" : "[[${vo.likes}]]";
                     let obj = await import ("/js/csy_board.js");
                     obj.csyBoardLikePressed(like_checked, sno);
                 }
@@ -74,7 +74,7 @@
 
 
             <hr>
-            <div style="background-color: blue; height: 80px"><span style="line-height: 80px;">여기 덧글 작성란인데 아직 디자인 안함</span></div>
+            <div style="background-color: blue; height: 80px"></div>
             <hr>
             <div style="padding: 0px 20px 0px 20px">닉네임 : 덧글이 있습니다. 덧글도 수정 삭제 답글 버튼. 여긴 아이콘으로.</div>
             <hr>

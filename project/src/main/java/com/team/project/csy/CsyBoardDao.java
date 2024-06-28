@@ -1,6 +1,8 @@
 package com.team.project.csy;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -24,11 +26,8 @@ public class CsyBoardDao {
 
         vo.setViewersId("SampleID");
         int result = session.selectOne("csyBoard.detailLikedByMe", vo);
-        System.out.println("DETAIL PAGE: ");
-        System.out.println(result);
 
         vo.setLikedByMe(result != 0);
-        System.out.println(vo);
         return vo;
     }
 
@@ -47,7 +46,6 @@ public class CsyBoardDao {
     }
 
     public boolean modify(CsyBoardVo vo) {
-        System.out.println(vo);
         boolean b = false;
         vo.content = vo.content.replaceAll("<p><br></p>", "");
         int cnt = session.insert("csyBoard.modify", vo);
@@ -73,16 +71,32 @@ public class CsyBoardDao {
         return msg;
     }
 
-    public List<CsyBoardVo> search(String findStr) {
-        if (findStr == null) findStr = "";
-        List<CsyBoardVo> list = null;
-        list = session.selectList("csyBoard.search", findStr);
-        return list;
+    public Map<String, Object> search(CsyBoardListPageVo pageVo) {
+        Map<String, Object> map = new HashMap<>();
+        List<CsyBoardVo> postList = null;
+
+        System.out.println("BEFORE: " + pageVo);
+
+        int numOfPosts = session.selectOne("csyBoard.numOfPosts", pageVo.getFindStr());
+        pageVo.setTotSize(numOfPosts);
+
+        pageVo.pageCompute();
+        postList = session.selectList("csyBoard.search", pageVo);
+        
+
+        map.put("postList", postList);
+        map.put("pageVo", pageVo);
+
+        System.out.println(postList);
+
+        // TODO: 테스트용
+        // System.out.println("SEARCH");
+        // System.out.println(pageVo);
+        // System.out.println(postList);
+        return map;
     }
 
     public String likePressed(CsyBoardLikesVo vo) {
-        System.out.println(vo);
-        
         String msg = "POST LIKE FAILED";
         int cnt = session.insert((vo.isChecked) ? "csyBoard.postLikePressed" : "postLikeUnpressed", vo);
 

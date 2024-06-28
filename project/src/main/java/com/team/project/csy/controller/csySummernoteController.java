@@ -17,7 +17,6 @@ public class csySummernoteController {
     @RequestMapping(path="/summernote/submit")
     public ModelAndView newPostSubmit(CsyBoardVo vo) {
         ModelAndView mv = new ModelAndView();
-        System.out.println(vo);
         /* TODO: 나중에 아이디 받아올 수 있을 때 수정 */
         vo.setId("sampleID");
         String status = BoardDao.post(vo) ? "Post Complete" : "Something Went Wrong!";
