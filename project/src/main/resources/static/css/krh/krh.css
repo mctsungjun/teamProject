@@ -25,23 +25,19 @@
     text-align: center;
     padding:5px;
 }
-.item .items{
-    border-bottom: 1px solid rgb(130, 130, 130);
-    text-align: center;
-    padding:5px;
+.item:hover{
+    background-color: rgb(231, 231, 231);
 }
-
 .list span{
     display:inline-block;
     text-align: center;
     padding:4px;
 }
-.list span :hover{
-    font-weight: bold;
-}
+
 .list .sno{
     width:60px;
 }
+
 .list .CustomerId{
     width:160px;
 }
@@ -63,8 +59,17 @@
 .list .nal{
     width:200px;
 }
-.list .SaleList{
+.list .saleList{
     width:100px;
+}
+.list .item:hover{
+    cursor:pointer;
+}
+.list .item .saleList{
+    text-decoration: underline;
+}
+.list .saleList:hover{
+    font-weight: bold;
 }
 
 .salelist{

@@ -21,7 +21,17 @@ document.querySelector("#navBtnToStock").onclick = () => { }
 document.querySelector("#navBtnToBuyInfo").onclick = () => { }
 
 // * 판매정보관리
-document.querySelector("#navBtnToSellInfo").onclick = () => { }
+document.querySelector("#navBtnToSellInfo").onclick = () => { 
+    $.ajax({
+        url:"/sale",
+        type:"GET",
+        success:(resp)=>{
+            let temp=$(resp).find(".big");
+            $('.content').html(temp);
+            search();
+        }
+    })
+}
 
 // * 거래처 관리
 document.querySelector("#navBtnToPartners").onclick = () => { }

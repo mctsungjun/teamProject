@@ -1,8 +1,13 @@
 package com.team.project.krh;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import ch.qos.logback.core.model.Model;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -11,6 +16,7 @@ public class krhSaleStockController {
     @Autowired
     SaleDao saleDao;
     StockDao stockDao;
+    int sno=0;
 
     //sale.html
     @RequestMapping(path="/sale")
@@ -31,7 +37,7 @@ public class krhSaleStockController {
         return mv;
     }
     
-    @RequestMapping(path="/sale_update_form")
+    @RequestMapping(path="/saleUpdateForm")
     public ModelAndView UpdateForm(Integer sno){
         ModelAndView mv= new ModelAndView();
         SaleVo vo=saleDao.select(sno);
@@ -41,11 +47,30 @@ public class krhSaleStockController {
     }
 
     @RequestMapping(path="/sale_view_modify")
-    public boolean sale_view_modify(SaleVo vo){
-        System.out.println(vo);
-        boolean isSuccess=false;
-        isSuccess=saleDao.sale_view_modify(vo);
-        return isSuccess;
+    public ModelAndView sale_view_modify(Integer sno){
+        ModelAndView mv= new ModelAndView();
+        SaleVo vo=saleDao.sale_view(sno);
+        mv.addObject("vo", vo);
+        mv.setViewName("krh/sale_view_modify");
+        return mv;
+    }
+     
+    @RequestMapping(path="/sale_view_modifyR")
+    public ModelAndView modifyR(@ModelAttribute SaleVo vo){
+        ModelAndView mv=new ModelAndView();
+        String msg=saleDao.sale_view_modify(vo);
+        mv=search("");
+        mv.addObject("msg",msg);
+        return mv;
+}
+
+    @RequestMapping(path="/sale_list")
+    public ModelAndView sale_list(Integer sno){
+        ModelAndView mv=new ModelAndView();
+        SaleVo vo=saleDao.sale_list(sno);
+        mv.addObject("vo",vo);
+        mv.setViewName("krh/sale_list");
+        return mv;
     }
 }
 

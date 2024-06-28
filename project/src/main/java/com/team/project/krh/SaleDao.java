@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.team.project.mybatis.MyFactory;
-
+import org.springframework.transaction.annotation.Transactional;
+@Service
 @Component
 public class SaleDao {
     SqlSession session;
@@ -23,7 +25,7 @@ public class SaleDao {
 
     public SaleVo sale_view(Integer sno){
         session=MyFactory.getSession();
-        SaleVo vo=session.selectOne("salestock.view",sno);
+        SaleVo vo=session.selectOne("salestock.list",sno);
         return vo;
     }
 
@@ -35,16 +37,24 @@ public class SaleDao {
         return vo;
     }
 
-    public boolean sale_view_modify(SaleVo vo){
-        boolean isDaoSuccess=false;
+    public SaleVo sale_list(Integer sno){
+        session=MyFactory.getSession();
+        SaleVo vo=session.selectOne("salestock.list",sno);
+        return vo;
+    }
+    
+    @Transactional
+    public String sale_view_modify(SaleVo vo){
         session=MyFactory.getSession();
         int cnt=session.update("salestock.update", vo);
+        String msg="";
         if(cnt>0){
-            isDaoSuccess=true;
+            msg="정상적으로 수정되었습니다.";
             session.commit();
         }else{
+            msg="수정에 실패하였습니다.";
             session.rollback();
         }
-        return isDaoSuccess;
+        return msg;
     }
 }
