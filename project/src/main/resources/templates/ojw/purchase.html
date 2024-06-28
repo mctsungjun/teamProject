@@ -28,15 +28,15 @@
                     <span class="purchaseCode">구매코드</span>
                 </div>
                 <div class="items">
-                    <div class="item" th:each="d : ${purchase}" th:onclick="purchase_view([[${d.no}]])">
-                        <span class="no">[[${d.no}]]</span>
-                        <span class="productCode">[[${d.productCode}]]</span>
-                        <span class="productName">[[${d.productName}]]</span>
-                        <span class="price">[[${d.price}]]</span>
-                        <span class="ea">[[${d.ea}]]</span>
-                        <span class="nal">[[${d.nal}]]</span>
-                        <span class="customer">[[${d.customer}]]</span>
-                        <span class="purchaseCode">[[${d.purchaseCode}]]</span>
+                    <div class="item" th:each="d : ${purchase}">
+                        <span class="no" th:onclick="purchase_view([[${d.no}]])">[[${d.no}]]</span>
+                        <span class="productCode" th:onclick="purchase_view([[${d.no}]])">[[${d.productCode}]]</span>
+                        <span class="productName" th:onclick="purchase_view([[${d.no}]])">[[${d.productName}]]</span>
+                        <span class="price" th:onclick="purchase_view([[${d.no}]])">[[${d.price}]]</span>
+                        <span class="ea" th:onclick="purchase_view([[${d.no}]])">[[${d.ea}]]</span>
+                        <span class="nal" th:onclick="purchase_view([[${d.no}]])">[[${d.nal}]]</span>
+                        <span class="customer" th:onclick="purchase_view([[${d.no}]])">[[${d.customer}]]</span>
+                        <span class="purchaselist" th:onclick="purchase_list([[${d.no}]])">보기</span>
                     </div>
                 </div>
             </div>

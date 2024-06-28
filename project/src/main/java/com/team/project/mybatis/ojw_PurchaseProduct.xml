@@ -19,6 +19,12 @@
         select * from purchase
         where no=#{_parameter}
     </select>
+    <update id="purchase_modify" parameterType="PurchaseVo">
+        update purchase set ea=#{ea}
+        where no=#{no}
+    </update>
+
+
 
 
 </mapper>

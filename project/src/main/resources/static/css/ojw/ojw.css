@@ -1,3 +1,4 @@
+/* ------------------- purchase ------------------ */
 *{
     box-sizing: border-box;
 }
@@ -16,14 +17,22 @@
     vertical-align: middle;
 }
 .title{
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
     margin-top: 10px;
     font-weight: bold;
     height: 40px;
+    line-height: 40px;
 }
 .list span{
     display: inline-block;
+}
+.item{
+    border-bottom: 2px solid #eee;
+}
+.items span{
+    height: 40px;
+    line-height: 40px;
 }
 .list .no{width: 120px;}
 .list .productCode{width: 100px;}
@@ -32,7 +41,13 @@
 .list .ea{width: 100px;}
 .list .nal{width: 150px;}
 .list .customer{width: 150px;}
-.list .purchaseCode{width: 100px;}
+.list .purchaselist{
+    width: 100px;
+    text-decoration: underline;
+}
+.list .purchaselist:hover{
+    color: purple;
+}
 .list .item:hover{
     background-color: #eee;
 }
@@ -94,6 +109,9 @@ td{
     border: 1px solid #000;
     width: 50px;
     padding: 10px 5px;
+}
+.btnPrint{
+    margin-top: 20px;
 }
 
 /* ----------------------- purchase_register ------------------------- */

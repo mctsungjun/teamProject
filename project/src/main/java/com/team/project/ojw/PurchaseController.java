@@ -3,8 +3,11 @@ package com.team.project.ojw;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -36,6 +39,23 @@ public class PurchaseController {
         PurchaseVo vo = PurchaseDao.purchase_list(no);
         mv.addObject("vo", vo);
         mv.setViewName("ojw/purchase_list");
+        return mv;
+    }
+
+    @RequestMapping(path="/purchase_modify")
+    public ModelAndView purchase_update(Integer no){
+        ModelAndView mv = new ModelAndView();
+        PurchaseVo vo = PurchaseDao.purchase_view(no);
+        mv.addObject("vo", vo);
+        mv.setViewName("ojw/purchase_modify");
+        return mv;
+    }
+    @RequestMapping(path="/purchase_modifyR")
+    public ModelAndView purchase_modifyR(@ModelAttribute PurchaseVo vo){
+        ModelAndView mv = new ModelAndView();
+        String msg=PurchaseDao.purchase_modify(vo);
+        mv = purchase("");
+        mv.addObject("msg", msg);
         return mv;
     }
 }
