@@ -19,7 +19,7 @@ public class NoticeController {
         ModelAndView mv = new ModelAndView();
         // Map<String, Object> map = dao.noticeList(page);
         // mv.addObject("map", map);
-        mv.setViewName("index"); // 깃에서는 notice/noticeList로 변경필요
+        mv.setViewName("bjm_notice/noticeList"); // 깃에서는 notice/noticeList로 변경필요
         return mv;
     }
     @RequestMapping(path="/notice/bjmRegister")

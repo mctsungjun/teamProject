@@ -24,7 +24,8 @@ document.querySelector("#navBtnToBuyInfo").onclick = () => { }
 document.querySelector("#navBtnToSellInfo").onclick = () => { }
 
 // * 거래처 관리
-document.querySelector("#navBtnToPartners").onclick = () => { }
+document.querySelector("#navBtnToPartners").onclick = () => {
+}
 
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
