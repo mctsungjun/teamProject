@@ -10,4 +10,7 @@ public class CsyBoardVo {
     // * DETAIL PAGE를 위한 추가 부분 * //
     boolean isLikedByMe;
     String viewersId;
+
+    // // * 페이징 처리를 위한 추가 부분 * //
+    // int numOfPosts;
 }

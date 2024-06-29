@@ -17,6 +17,11 @@
                     let obj = await import ("/js/csy_board.js");
                     obj.csyDetail(sno);
                 }
+
+                async function pageRedirection(pageToGo) {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.csyNumPaging(pageToGo);
+                }
             </script>
             <h1 class="boardListTitle">글 목록</h1>
             <div class="search">
@@ -32,7 +37,7 @@
                     <span class="hits">조회수</span>
                     <span class="likes">공감</span>
                 </div>
-                <div class="items" th:each="vo:${list}" th:onClick="toDetail([[${vo.sno}]])">
+                <div class="items" th:each="vo:${postList}" th:onClick="toDetail([[${vo.sno}]])">
                     <div class="item">
                         <span class="sno">[[${vo.sno}]]</span>
                         <span class="id">[[${vo.id}]]</span>
@@ -43,14 +48,57 @@
                     </div>
                 </div>
             </div>
+            <th:block th:if="${pageVo.totSize eq 0}">
+                <div style="padding-top: 120px; padding-bottom: 120px;">
+                    <i class="fa-solid fa-heart-crack" style="width: 100%; display:inline-block; font-size: 80px; color: var(--purple); text-align:center; padding: 15px;"></i>
+                    <h3 style="width: 100%; display:inline-block; text-align: center;">앗, 포스트가 없어요!</h3>
+                    
+                </div>
+                <hr style="border-color: rgba(255, 255, 255, 0.5);"/>
+            </th:block>
+
+
             <div style="width:100%; margin-top:15px; text-align:right;">
             <button type="button" class="btnRegister purple-text-button btnBoardNewPost" style="width:100px">새 글 작성</button>
             </div>
-            <!-- TODO: next before 버튼 수정-->
+
+            <!-- <div class="pageZone" th:if="${page != null }">
+
+				<th:block th:if="${page.nowPage gt 1}">
+					<button type="button" th:onclick="|move(${page.nowPage-1})|">&lt</button>
+				</th:block>
+
+				<th:block th:if="${page.totPage gt page.nowPage}">
+					<button type="button" th:onclick="|move(${page.nowPage+1})|">&gt</button>
+				</th:block>
+			</div> -->
             <div class="paging-buttons">
-                <button class="paging-button" style="width:80px;">이전</button>
+            <th:block th:if="${pageVo.nowPage gt 10}">
+                <button class="paging-button" style="width:80px;" th:onClick="pageRedirection([[${(pageVo.nowPage -10) / 10 * 10 + 1}]])">이전</button>
+            </th:block>
+
+            <!-- 윗 줄 시작 넘버, 아랫줄 어디까지 반복할건지 -->
+            <!-- -1은 1부터 시작해서 최대 넘버 -1 -->
+            <th:block th:each="pageNum:${#numbers.sequence(
+                (pageVo.nowPage/10 == 0 || pageVo.nowPage == 10) ? 1 : (pageVo.nowPage/10*10+1),
+                (pageVo.nowPage%10==0)
+                    ? pageVo.nowPage
+                    : pageVo.totPage == 0 ? 1
+                        : ((pageVo.nowPage/10*10+10) le pageVo.totPage)
+                            ? (pageVo.nowPage/10*10+10)
+                            : pageVo.totPage)}">
+                <button class="paging-button" th:text="${pageNum}" th:onClick="pageRedirection([[${pageNum}]])"></button>
+            </th:block>
+            <!-- 이거 10단위 때문에 or -->
+            <th:block th:if="${(pageVo.nowPage/10*10+10) lt pageVo.totPage || (pageVo.nowPage % 10 == 0) && (pageVo.nowPage lt pageVo.totPage)}">
+                <button class="paging-button" style="width:80px;" th:onClick="pageRedirection([[${(pageVo.nowPage % 10 == 0) ? pageVo.nowPage + 1 : pageVo.nowPage / 10 * 10 + 11}]])">다음</button>
+            </th:block>
+            </div>
+            
+            <!-- TODO: next before 버튼 수정 -->
+            <!-- <div class="paging-buttons"> -->
                 <!-- span 안넣으면 first-child, last-child가 부모의 처음과 마지막 태그가 아니기 때문에 margin 안먹힘-->
-                <span>
+                <!-- <span>
                     <button class="paging-button">1</button>
                     <button class="paging-button">2</button>
                     <button class="paging-button">3</button>
@@ -58,8 +106,7 @@
                     <button class="paging-button">5</button>
                     <button class="paging-button">6</button>
                 </span>
-                <button class="paging-button" style="width:80px;">다음</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
