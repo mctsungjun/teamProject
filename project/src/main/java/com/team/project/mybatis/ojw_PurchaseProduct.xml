@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="project">
-    <select id="purchase_main" parameterType="String" resultType="PurchaseVo">
+    <select id="purchase_search" parameterType="String" resultType="PurchaseVo">
         select * from purchase
         where productCode like '%${findStr}%'
         or productName like '%${findStr}%'
@@ -24,6 +24,19 @@
         where no=#{no}
     </update>
 
+    <!--_______________product______________-->
+    <select id="product_search" parameterType="String" resultType="ProductVo">
+        select * from product
+        where productCode like '%${findStr}%'
+    </select>
+    <select id="product_view" parameterType="String" resultType="ProductVo">
+        select * from product
+        where productCode=#{_parameter}
+    </select>
+    <select id="product_photos" parameterType="String" resultType="PhotoVo">
+        select * from photos
+        where productCode=#{_parameter}
+    </select>
 
 
 

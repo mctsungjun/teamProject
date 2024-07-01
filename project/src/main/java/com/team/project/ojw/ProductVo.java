@@ -13,5 +13,5 @@ public class ProductVo {
     String comment;
     String explain;
     String photo;
-    List<PhotoVo> photos;
+    List<ojw_PhotoVo> photos;
 }

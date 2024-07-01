@@ -20,7 +20,7 @@ public class PurchaseDao {
     public List<PurchaseVo> search(String findStr){
         List<PurchaseVo> list = null;
         session = MyFactory.getSession();
-        list = session.selectList("project.purchase_main",findStr);
+        list = session.selectList("project.purchase_search",findStr);
 
         return list;
     }
