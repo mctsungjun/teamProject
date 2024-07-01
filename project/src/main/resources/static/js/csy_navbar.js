@@ -13,9 +13,21 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToProduct").onclick = () => {
+<<<<<<< HEAD
 
  }
 
+=======
+    $.ajax({
+        url: '/qa', // 요청할 URL
+        type: 'GET', // HTTP 요청 방식 (GET)
+        success: function(resp) {
+            console.log('QA', resp);
+            let qaContainer = $(resp).find('.qa-container');   
+        }
+    })
+}
+>>>>>>> be271b24051276203bc2bc03814d123593aa1082
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToStock").onclick = () => { }
 
