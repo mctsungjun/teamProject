@@ -1,12 +1,12 @@
-package com.team.project.controller;
+package com.team.project.csy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.project.CsyBoardDao;
-import com.team.project.CsyBoardVo;
+import com.team.project.csy.CsyBoardDao;
+import com.team.project.csy.CsyBoardVo;
 
 @RestController
 public class csySummernoteController {

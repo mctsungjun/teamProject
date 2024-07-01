@@ -7,4 +7,5 @@ public class StockVo {
     String ProductCode;
     String PresentStock;
     String ProductName;
+    int ea;
 }

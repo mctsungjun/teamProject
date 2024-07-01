@@ -38,4 +38,10 @@
         update sale set ea=#{ea}, amt=#{ea}*#{price}
         where nal=#{nal}
     </update>
+
+    <select id="searchstock" parameterType="String" resultType="StockVo">
+        select * from stock
+        where ProductCode like '%${findStr}%'
+        or ProductName like '%${findStr}%'
+    </select>
 </mapper>

@@ -35,7 +35,7 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
 
 // * 거래처 관리
 document.querySelector("#navBtnToPartners").onclick = () => { }
-
+    
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
     $.ajax ({
@@ -52,7 +52,9 @@ document.querySelector("#navBtnToBoard").onclick = () => {
 document.querySelector("#navBtnToAdmin").onclick = () => { }
 
 // * 고객센터: Q & A
-document.querySelector("#navBtnToCS").onclick = () => { }
+document.querySelector("#navBtnToCS").onclick = () => {
+
+}
 
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => { }
@@ -60,8 +62,8 @@ document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 // * 로그아웃
 document.querySelector("#navBtnToLogout").onclick = () => { }
 
-// * 프로필 관리
-document.querySelector("#navBtnToPwgIndex").onclick = () => { 
+// * 임시
+document.querySelector("#navBtnToPwgIndex").onclick = () => {
     $.ajax ({
         url : "/pwg_index",
         type: "GET",

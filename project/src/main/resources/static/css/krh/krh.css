@@ -146,6 +146,7 @@
     text-align: left;
     margin-top: 48px;
     float: left;
+    
 }
 .stockright{
     width:500px;
@@ -160,22 +161,35 @@
     text-align: center;
     margin-bottom:30px;
 }
-.stocklisttable{
+.stocklist .title{
     border-collapse: collapse;
     text-align: center;
     width:100%;
     table-layout: fixed;
 }
-.stocklisttable th,td{
-    padding:10px;
-    border: 1px solid black;
+.item{
+    border-bottom: 1px solid rgb(130, 130, 130);
     text-align: center;
+    padding:5px;
 }
-.stock{
-    width:1200px;
-    margin:30px auto;
-    min-height: 400px;
+.stockitem:hover{
+    background-color: rgb(231, 231, 231);
 }
+.stocklist span{
+    display:inline-block;
+    text-align: center;
+    padding:4px;
+}
+.stocklist .ProductCode{
+    width:140px;
+}
+.stocklist .ProductName{
+    width:140px;
+}
+.stocklist .PresentStock{
+    width:140px;
+}
+
 .stockleft .change{
     text-align: right;
     margin-bottom:20px;

@@ -126,9 +126,3 @@ let sale_view_modify=(sno)=>{
         })
     })
 }
-
-/*재고 관리!!!!*/
-function stock(){
-    let findStr="";
-    
-}

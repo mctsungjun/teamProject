@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>재고관리</title>
     <link rel="stylesheet" href="css/krh/krh.css">
-    <script defer src="js/krh_sale_stock.js"></script>
-    <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="js/krh_stock.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="stock">
@@ -20,18 +20,20 @@
                         <button type="button" class="btnSearch">검색</button>
                     </form>
                 </div>
-                <table class="stocklisttable">
-                    <tr>
-                        <th>제품 코드</th>
-                        <th>제품 명</th>
-                        <th>현 재고</th>
-                    </tr>
-                    <tr th:each="f:${list}">
-                        <td>[[${f.ProductCode}]]</td>
-                        <td>[[${f.ProductName}]]</td>
-                        <td>[[${f.PresentStock}]]</td>
-                    </tr>
-                </table>
+                <div class="stocklist">
+                    <div class="title">
+                        <span class="ProductCode">제품 코드</span>
+                        <span class="ProductName">제품 명</span>
+                        <span class="PresentStock">현 재고</span>
+                    </div>
+                    <div class="stockitems">
+                        <div class="stockitem" th:each="f:${stock}">
+                            <span calss="ProductCode">[[${f.ProdcutCode}]]</span>
+                            <span calss="ProductName">[[${f.ProdcutName}]]</span>
+                            <span calss="PresentStock">[[${f.PresentStock}]]</span>
+                        </div> 
+                    </div>
+                </div>
                 <!--페이징 처리-->
             </div>
             <!--그래프-->

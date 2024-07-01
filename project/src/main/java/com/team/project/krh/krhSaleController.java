@@ -1,18 +1,14 @@
 package com.team.project.krh;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import ch.qos.logback.core.model.Model;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
-public class krhSaleStockController {
+public class krhSaleController {
     @Autowired
     SaleDao saleDao;
     StockDao stockDao;

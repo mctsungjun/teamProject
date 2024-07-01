@@ -1,4 +1,4 @@
-package com.team.project;
+package com.team.project.csy;
 
 import java.util.List;
 
@@ -21,6 +21,14 @@ public class CsyBoardDao {
         if(cnt>0) { session.commit();
         } else { session.rollback(); }
         vo = session.selectOne("csyBoard.detail", sno);
+
+        vo.setViewersId("SampleID");
+        int result = session.selectOne("csyBoard.detailLikedByMe", vo);
+        System.out.println("DETAIL PAGE: ");
+        System.out.println(result);
+
+        vo.setLikedByMe(result != 0);
+        System.out.println(vo);
         return vo;
     }
 
@@ -70,5 +78,20 @@ public class CsyBoardDao {
         List<CsyBoardVo> list = null;
         list = session.selectList("csyBoard.search", findStr);
         return list;
+    }
+
+    public String likePressed(CsyBoardLikesVo vo) {
+        System.out.println(vo);
+        
+        String msg = "POST LIKE FAILED";
+        int cnt = session.insert((vo.isChecked) ? "csyBoard.postLikePressed" : "postLikeUnpressed", vo);
+
+        if(cnt>0){
+            msg = "POST LIKE SUCCEED";
+            session.commit();
+        }else{
+            session.rollback();
+        }
+        return msg;
     }
 }
