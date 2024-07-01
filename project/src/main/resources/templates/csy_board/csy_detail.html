@@ -9,11 +9,6 @@
     <div>
         <div id="boardDetail">
             <script th:inline="javascript">
-                // function likedByMe() {
-                //     document.getElementById("like-counter").innerText = (like_checked) ? "Liked!" : "[[${vo.likes}]]";
-                // }
-                // likedByMe();
-
                 async function postModify(sno) {
                     let obj = await import ("/js/csy_board.js");
                     obj.csyPostModify(sno);
@@ -30,9 +25,23 @@
                 }
 
                 async function likePressed(like_checked, sno) {
-                    document.getElementById("like-counter").innerText = (like_checked) ? "Liked!" : ("[[${vo.isLikedByMe}]]") ? "[[${vo.likes - 1}]]" : "[[${vo.likes}]]";
+                    // boolean이 아니라 문자로 인식됨.
+                    if ("[[${vo.isLikedByMe}]]" == "true") {
+                        oriUnlikes = "[[${vo.likes-1}]]";
+                    } else oriUnlikes = "[[${vo.likes}]]";
+
+                    document.getElementById("like-counter").innerText = (like_checked) ? "Liked!" : oriUnlikes;
                     let obj = await import ("/js/csy_board.js");
                     obj.csyBoardLikePressed(like_checked, sno);
+                }
+
+                async function commentSubmit(form) {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.csyPostComment(form);
+                }
+                async function commentDelete(sno, post_sno) {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.csyDeleteComment(sno, post_sno);
                 }
             </script>
 
@@ -66,23 +75,50 @@
                 </div>
                 </div>
                 <div style="width: 50%; text-align: right; display: inline-block;">
-                    <button type="button" class="purple-text-button" th:onclick="postModify([[${vo.sno}]])"style="margin-right: 15px;">수정</button>
-                    <button type="button" class="purple-text-button" th:onclick="postDelete([[${vo.sno}]])">
-                    삭제</button>
+                    <button type="button" class="purple-text-button" th:onclick="postModify([[${vo.sno}]])" style="margin-right: 15px;">수정</button>
+                    <button type="button" class="purple-text-button" th:onclick="postDelete([[${vo.sno}]])">삭제</button>
                 </div>
             </div>
 
 
-            <hr>
-            <div style="background-color: blue; height: 80px"></div>
-            <hr>
-            <div style="padding: 0px 20px 0px 20px">닉네임 : 덧글이 있습니다. 덧글도 수정 삭제 답글 버튼. 여긴 아이콘으로.</div>
-            <hr>
-            <div style="padding: 0px 20px 0px 20px">닉네임 : 덧글이 있습니다. 덧글도 수정 삭제 답글 버튼. 여긴 아이콘으로.</div>
-            <hr>
-            <div style="text-align: right;">
-                <button type="button" class="purple-text-button" onclick="toBoardList();" style="margin-right: 15px;">목록</button>
+            <!-- <hr style="margin-top: 10px;"> -->
+            <div style="width: 100%; height:48px; margin-top: 38px; margin-bottom: 10px; background-color: var(--purple); border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <h5 style="font-size: 18px; margin-left: 20px; line-height: 48px;">COMMENTS</h5>
             </div>
+            <div class="board-detail-comment" th:each="cmtVo:${commentList}">
+                <div class="board-detail-img-div">
+                    <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image">
+                </div>
+                <div class="board-detail-text-div">
+                    <div class="board-detail-comment-specials">
+                        <span style="display: none;">([[${cmtVo.sno}]])</span>
+                        <span class="board-detail-comment-nickname">[[${cmtVo.id}]]</span>
+                        <div class="board-detail-comment-buttons">
+                            <span class="board-detail-comment-button"><i class="fa-solid fa-reply"></i></span>
+                            <span class="board-detail-comment-button"><i class="fa-solid fa-pencil"></i></span>
+                            <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
+                        </div>
+                    </div>
+                    <span class="board-detail-comment-comment">[[${cmtVo.content}]]</span>
+                </div>
+            </div>
+            <!-- <hr> -->
+            <form name="frmComment" class="board-comment-write-box">
+                <input type="text" style="display: none" name="post_sno" th:value="${vo.sno}"/>
+                <input type="text" name="id" style="display: none" />
+                <div class="board-detail-img-div">
+                    <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image">
+                </div>
+                <textarea name="content" class="board-comment-textarea"></textarea>
+                <div style="flex-grow: 1; justify-content: space-between; margin-left: 15px; display: flex;">
+                <button type="button" class="purple-text-button" onclick="commentSubmit(this.form);" style="height: 100%; align-items: end; align-self: self-end;">작성</button>
+                </div>
+            </form>
+
+            <!-- <hr style="margin-top: 40px;">
+            <div style="text-align: right;">
+                <button type="button" class="purple-text-button" onclick="toBoardList();" style="margin-right: 20px;">목록</button>
+            </div> -->
         </div>
     </div>
 </body>

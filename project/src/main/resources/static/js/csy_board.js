@@ -53,7 +53,6 @@ export function csyDetail(sno) {
 
 export function csyNumPaging(pageToGo) {
     let findStr = $(".findStr").val();
-    alert(pageToGo);
     $.ajax ({
         url : "/board",
         type: "GET",
@@ -67,12 +66,10 @@ export function csyNumPaging(pageToGo) {
 }
 
 
-
-
 export function csyBoardLikePressed(like_checked, post_sno) {
     // var id = '<%=(String)session.getAttribute("id")%>';
     var user_id = "SampleID";
-    
+
     $.ajax({
         url : "/board/detail/likePressed",
         type: "POST",
@@ -86,7 +83,6 @@ export function csyBoardLikePressed(like_checked, post_sno) {
         }
     })
 }
-
 
 
 export function csyBoard() {
@@ -123,4 +119,35 @@ export function csyBoard() {
             }
         })
     }
+}
+
+
+export function csyPostComment(frm) {
+    var user_id = "SampleID";
+    frm.id.value = user_id;
+    let form = $(frm).serialize();
+    // alert(frm.id.value);
+    console.log(form);
+    $.ajax({
+        url : "/board/detail/comments/post",
+        type: "POST",
+        data: form,
+        success: (resp)=> {
+            csyDetail(frm.post_sno.value);
+        }
+    })
+}
+
+export function csyDeleteComment(sno, post_sno) {
+    let yn = confirm('정말 삭제하시겠습니까?');
+    if (!yn) return;
+
+    $.ajax({
+        url : "/board/detail/comments/delete",
+        type: "POST",
+        data: {"sno": sno},
+        success: (resp)=> {
+            csyDetail(post_sno);
+        }
+    })
 }

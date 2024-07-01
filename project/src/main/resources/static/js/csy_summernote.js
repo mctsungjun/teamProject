@@ -54,8 +54,14 @@ export function csyPostSubmit() {
                 processData: false,
                 contentType: false,
                 success: async (resp) => {
-                    let obj = await import ("/js/csy_board.js");
-                        obj.boardList();
+                    // let obj = await import ("/js/csy_board.js");
+                        // obj.boardList();
+                        let obj = await import ("/js/csy_board.js");
+                        if (resp != -1) {
+                            obj.csyDetail(resp);
+                        } else {
+                            alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
+                        }
                     }
                 });
             };
@@ -83,7 +89,7 @@ export function csyModifySubmit() {
             processData: false,
             contentType: false,
             success: async (resp) => {
-                let obj = await import ("/js/csy_board.js");
+                    let obj = await import ("/js/csy_board.js");
                     // 해당 디테일 페이지로
                     obj.csyDetail(temp.sno.value);
                 }
