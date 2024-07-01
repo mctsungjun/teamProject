@@ -18,6 +18,7 @@ function noticelist(){
 function noticeRegister(){
     let bjmBtnRegister = document.querySelector(".bjmBtnRegister")
     bjmBtnRegister.addEventListener("click",()=>{
+        
         $.ajax({
             url : "/notice/bjmRegister",
             type : "GET",

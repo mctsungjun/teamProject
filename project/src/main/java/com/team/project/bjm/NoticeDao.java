@@ -27,7 +27,7 @@ public class NoticeDao {
         return list;
     }
     // 삭제 dao
-    public String delete(Integer sno){
+    public String noticeDelete(Integer sno){
         int cnt = session.delete("notice.delete", sno);
         String msg = "";
         if(cnt>0){
@@ -46,10 +46,28 @@ public class NoticeDao {
         return b;
     }
 
-    public String registerR(NoticeVo vo){
+    public String noticeRegisterR(NoticeVo vo){
         session = new MyFactory().getSession();
         String msg ="";
-        
+
+        // int sno = session.selectOne("notice.getSerial");
+        // vo.setSno(sno);
+        // vo.setGrp(sno);
+
+        // int cnt = session.insert("notice.register",vo);
+        // int cntAtt = 0;
+        // if(attFiles.size()>0){
+        //     Map<String, Object> map = new HashMap<>();
+        //     map.put("pSno", vo.getSno());
+        //     map.put("attFiles", attFiles);
+        //     cntAtt = session.insert("notice.registerAtt", map);
+        // }
+        // if(cnt>0 && cntAtt == attFiles.size()){
+        //     session.commit();
+        // }else{
+        //     session.rollback();
+        //     msg="ERROR";
+        // }
         session.close();
         return msg;
     }

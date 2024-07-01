@@ -68,7 +68,7 @@ public class NoticeController {
             att.setSysFile(sysFile);
             attFiles.add(att);
         }
-        msg = dao.registerR(vo);
+        msg = dao.noticeRegisterR(vo);
         return msg;
     }
     
@@ -94,8 +94,8 @@ public class NoticeController {
     return msg;
     */
     @RequestMapping(path="/notice/bjmDelete")
-    public String delete(Integer sno){
-        String msg = dao.delete(sno);
+    public String noticeDelete(Integer sno){
+        String msg = dao.noticeDelete(sno);
         return msg;
     }
 }
