@@ -13,45 +13,27 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToProduct").onclick = () => {
-
- }
-
-// * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { }
-
-// * 구매 정보 관리
-document.querySelector("#navBtnToBuyInfo").onclick = () => { 
     $.ajax({
-        url : "/purchase",
-        type : "GET",
-        success : (resp) =>{
-            let temp = $(resp).find(".purchase");
-            $('.content').html(temp);
-            search();
+        url: '/qa', // 요청할 URL
+        type: 'GET', // HTTP 요청 방식 (GET)
+        success: function(resp) {
+            console.log('QA', resp);
+            let qaContainer = $(resp).find('.qa-container');   
         }
     })
 }
+// * 제품관리 + 재고 정보 관리
+document.querySelector("#navBtnToStock").onclick = () => { }
 
-// * 판매 정보 관리
-document.querySelector("#navBtnToSellInfo").onclick = () => {
-    // $.ajax({
-    //     url:"/sale",
-    //     type:"GET",
-    //     success:(resp)=>{
-    //         let temp=$(resp).find(".big");
-    //         $('.content').html(temp);
-    //         search();
-    //     }
-    // })
-}
+// * 구매정보관리
+document.querySelector("#navBtnToBuyInfo").onclick = () => { }
 
-// * 판매 관리
-document.querySelector("#navBtnToSell").onclick = () => { }
+// * 판매정보관리
+document.querySelector("#navBtnToSellInfo").onclick = () => { }
 
 // * 거래처 관리
-document.querySelector("#navBtnToPartners").onclick = () => {
-}
-    
+document.querySelector("#navBtnToPartners").onclick = () => { }
+
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
     $.ajax ({
@@ -78,14 +60,14 @@ document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 // * 로그아웃
 document.querySelector("#navBtnToLogout").onclick = () => { }
 
-// * 공지사항
-document.querySelector("#navBtnToAnnouncement").onclick = () => {
-    // $.ajax({
-    //     url : "/bjmNoticeList",
-    //     type : "GET",
-    //     success : (resp) => {
-    //         let temp = $(resp).find(".noticeList");
-    //         $(".content").html(temp)
-    //     }
-    // })
+// * 프로필 관리
+document.querySelector("#navBtnToPwgIndex").onclick = () => {
+    $.ajax ({
+        url : "/pwg_index",
+        type: "GET",
+        success: (resp) => {
+            let temp = $(resp).find(".pwg");
+            $(".content").html(temp);
+        }
+    })
 }
