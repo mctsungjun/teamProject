@@ -2,6 +2,7 @@ package com.team.project.csy.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.csy.CsyBoardDao;
 import com.team.project.csy.CsyBoardLikesVo;
+import com.team.project.csy.CsyBoardListPageVo;
 import com.team.project.csy.CsyBoardVo;
 
 @RestController
@@ -20,11 +22,24 @@ public class csyBoardController {
     CsyBoardDao BoardDao;
     
     @RequestMapping(path="/board")
-    public ModelAndView search(String findStr){
+    public ModelAndView search(CsyBoardListPageVo pageVo){
         ModelAndView mv = new ModelAndView();
-        List<CsyBoardVo> list = BoardDao.search(findStr);
-        mv.addObject("list", list);
-        mv.addObject("findStr", findStr);
+
+        // TODO: 일단 보존
+        // pageVo.setStartNo((pageVo.getNowPage() == 1) ? 1 : pageVo.getListSize() * pageVo.getNowPage());
+
+
+        if (pageVo.getFindStr() == null) { pageVo.setFindStr("");}
+
+        Map<String, Object> map = BoardDao.search(pageVo);
+        List<CsyBoardVo> postList = (List<CsyBoardVo>) map.get("postList");
+        
+        pageVo = (CsyBoardListPageVo) map.get("pageVo");
+        mv.addObject("postList", postList);
+        mv.addObject("pageVo", pageVo);
+        mv.addObject("findStr", pageVo.getFindStr());
+
+        System.out.println(pageVo);
         mv.setViewName("csy_board/csy_list");
         return mv;
     }
@@ -70,52 +85,104 @@ public class csyBoardController {
         return BoardDao.likePressed(vo);
     }
 
-    // @RequestMapping(path="/board/detail/likePressed/updateLikes")
-    // public String postDetailLikes(String sno) {
-    //     String numOfLikes = BoardDao.singlePostLikes(sno);
-    //     return numOfLikes;
-    // }
-
-    // // * 추후 이름 수정
-    // @RequestMapping(path="/boardpostsubmit", method=RequestMethod.POST)
-    // public ModelAndView newPostSubmit(HttpSession httpSession, BoardVo vo) {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("board/list");
-    //     return mv;
-    // }
-}
 
 
-// @RestController
-// public class boardController2 {
-//     @Autowired
-//     BoardDao dao;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
-//     static String uploadPath = "C:\\myjob\\th_mysql_board\\board\\src\\main\\resources";
+/* Home 메뉴 버튼이 클릭되었을 때 */
+// @RequestMapping("/top10")
+// public ModelAndView top10(CsyBoardListPageVo page, String menu) {
+//     ModelAndView mv = new ModelAndView();
+//     List<BoardVo> list = null;
 
-//     @RequestMapping(path="/")
-//     public ModelAndView index() {
-//         ModelAndView mv = new ModelAndView();
-//         mv.setViewName("index");
-//         return mv;
-//     }
+//     list = BoardDao.page(page);
+//     mv.addObject("subTitle", "최신 top10");
+//     mv.addObject("top10List", list);
+//     mv.addObject("menu", menu);
+//     mv.setViewName("board/top_10");
 
-//     @RequestMapping(path="/list")
-//     public ModelAndView list(Page page) {
-//         System.out.println("ctrl: " + page);
-//         ModelAndView mv = new ModelAndView();
-//         Map<String, Object> map = dao.list(page);
-//         mv.addObject("map", map);
-//         mv.setViewName("board/list");
-//         return mv;
-//     }
+//     /* 메뉴(조회, 댓글, 최신)에 따라 분기 */
 
-//     @RequestMapping(path="/view")
-//     public ModelAndView view(Integer sno) {
-//         ModelAndView mv = new ModelAndView();
-//         Map map = dao.view(sno);
-//         mv.addObject("attFiles", map.get("attFiles"));
-//         mv.addObject("vo", map.get("vo"));
-//         mv.setViewName("board/view");
-//     }
+//     // switch (menu) {
+
+
+//     //     case "hit":
+//     //         list = BoardDao.hitTop10(page);
+//     //         mv.addObject("subTitle", "조회 top10");
+//     //         mv.addObject("top10List", list);
+//     //         mv.addObject("menu", menu);
+//     //         mv.setViewName("board/top_10");
+//     //         break;
+
+//     //     case "repl":
+//     //         list = BoardDao.replTop10(page);
+//     //         mv.addObject("subTitle", "댓글 top10");
+//     //         mv.addObject("top10List", list);
+//     //         mv.addObject("menu", menu);
+//     //         mv.setViewName("board/top_10");
+//     //         break;
+
+//     //     case "newer":
+//     //         list = BoardDao.newerTop10(page);
+//     //         mv.addObject("subTitle", "최신 top10");
+//     //         mv.addObject("top10List", list);
+//     //         mv.addObject("menu", menu);
+//     //         mv.setViewName("board/top_10");
+//     //         break;
+//     // }
+
+//     return mv;
 // }
+
+
+
+// @RequestMapping("/list")
+// public ModelAndView list(String menu,  CsyBoardListPageVo page) {
+
+//     ModelAndView mv = new ModelAndView();
+//     List<CsyBoardVo> list = null;
+//     list = BoardDao.newerTop10(page);
+
+//     // switch(menu){
+//     //     case "hit":
+//     //         list = BoardDao.hitTop10(page);
+//     //         break;
+//     //     case "repl":
+//     //         list = BoardDao.replTop10(page);
+//     //         break;
+//     //     case "newer":
+//     //         list = BoardDao.newerTop10(page);
+//     //         break;
+//     // }
+    
+//     mv.addObject("page", BoardDao.getPage());
+//     mv.addObject("list", list);
+
+//     mv.setViewName("board/list");
+//     return mv;
+// }
+
+
+
+
+
+
+
+
+
+
+
+}
