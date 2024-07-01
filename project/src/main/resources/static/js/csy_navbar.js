@@ -12,46 +12,20 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 }
 
 // * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToProduct").onclick = () => {
-
- }
+document.querySelector("#navBtnToProduct").onclick = () => { }
 
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToStock").onclick = () => { }
 
-// * 구매 정보 관리
-document.querySelector("#navBtnToBuyInfo").onclick = () => { 
-    $.ajax({
-        url : "/purchase",
-        type : "GET",
-        success : (resp) =>{
-            let temp = $(resp).find(".purchase");
-            $('.content').html(temp);
-            search();
-        }
-    })
-}
+// * 구매정보관리
+document.querySelector("#navBtnToBuyInfo").onclick = () => { }
 
-// * 판매 정보 관리
-document.querySelector("#navBtnToSellInfo").onclick = () => {
-    // $.ajax({
-    //     url:"/sale",
-    //     type:"GET",
-    //     success:(resp)=>{
-    //         let temp=$(resp).find(".big");
-    //         $('.content').html(temp);
-    //         search();
-    //     }
-    // })
-}
-
-// * 판매 관리
-document.querySelector("#navBtnToSell").onclick = () => { }
+// * 판매정보관리
+document.querySelector("#navBtnToSellInfo").onclick = () => { }
 
 // * 거래처 관리
-document.querySelector("#navBtnToPartners").onclick = () => {
-}
-    
+document.querySelector("#navBtnToPartners").onclick = () => { }
+
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
     $.ajax ({
@@ -68,24 +42,30 @@ document.querySelector("#navBtnToBoard").onclick = () => {
 document.querySelector("#navBtnToAdmin").onclick = () => { }
 
 // * 고객센터: Q & A
-document.querySelector("#navBtnToCS").onclick = () => {
-
-}
+document.querySelector("#navBtnToCS").onclick = () => { }
 
 // * 프로필 관리
-document.querySelector("#navBtnToProfileEdit").onclick = () => { }
+//document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 
-// * 로그아웃
-document.querySelector("#navBtnToLogout").onclick = () => { }
-
-// * 공지사항
-document.querySelector("#navBtnToAnnouncement").onclick = () => {
-    // $.ajax({
-    //     url : "/bjmNoticeList",
-    //     type : "GET",
-    //     success : (resp) => {
-    //         let temp = $(resp).find(".noticeList");
-    //         $(".content").html(temp)
-    //     }
-    // })
+// * 프로필 관리
+document.querySelector("#navBtnToLogout").onclick = () => { 
+    // sung
+        $.ajax({
+            url:"/sung/logout",
+            type:"GET",
+            success:(resp)=>{
+                //alert("로그아웃되었음")
+                
+               
+                $.ajax ({
+                    url : "/login",
+                    type: "GET",
+                    success: (resp) => {
+                        let temp = $(resp).find(".change");  
+                        $(".content").html(temp);                
+                    }
+                })
+            }
+        })             
+       
 }
