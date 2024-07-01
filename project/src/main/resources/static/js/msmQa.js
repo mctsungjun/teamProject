@@ -1,16 +1,11 @@
-$(function() {
-
-    $('.btnMain').click(function() {
-        window.location.href = 'index1.html';
+document.querySelector(".btnAdd").onclick = () => {
+    $.ajax({
+        url: "/question",
+        type: "GET",
+        success: (resp) => {
+            console.log("123123")
+            let temp = $(resp).find("#questionId");
+            $(".content").html(temp);
+        }
     });
-
-    $('.btnAdd').click(function() {
-        window.location.href = 'question.html';
-    })
-
-    //화살표 이미지 회전
-    document.getElementById('btnArrow').addEventListener('click', function() {
-        this.classList.toggle('clicked');
-    });
-
-});
+}

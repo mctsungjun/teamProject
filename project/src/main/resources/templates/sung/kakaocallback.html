@@ -15,10 +15,11 @@
         let loginId = document.querySelector(".loginId").value;
         // sessionStorage.setItem("id",loginId);
         // sessionStorage.setItem("name",name);
-        if( loginId == null || loginId ===""){
+        if( loginId === "sns 아이디 등록실패"){
             alert("회원가입해주세요!");
-            alert(loginId);
+            
             window.close();
+        
         }else{
 
             window.opener.location.href="/indexx";
