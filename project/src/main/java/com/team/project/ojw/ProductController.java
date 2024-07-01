@@ -17,7 +17,7 @@ public class ProductController {
     public ModelAndView product(String findStr){
         ModelAndView mv = new ModelAndView();
         List<ProductVo> list = ProductDao.product(findStr);
-        //mv.addObject("product", list);
+        mv.addObject("product", list);
         mv.setViewName("ojw/product");
         return mv;
     }

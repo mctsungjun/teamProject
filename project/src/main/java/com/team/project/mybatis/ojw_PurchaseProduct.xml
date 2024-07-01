@@ -26,16 +26,16 @@
 
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">
-        select * from product
-        where productCode like '%${findStr}%'
+        select productName from product
+        where productName like '%${findStr}%'
     </select>
     <select id="product_view" parameterType="String" resultType="ProductVo">
-        select * from product
-        where productCode=#{_parameter}
+        select productName from product
+        where productName=#{_parameter}
     </select>
-    <select id="product_photos" parameterType="String" resultType="PhotoVo">
-        select * from photos
-        where productCode=#{_parameter}
+    <select id="product_photos" parameterType="String" resultType="ojw_PhotoVo">
+        select productName from photos
+        where productName=#{_parameter}
     </select>
 
 
