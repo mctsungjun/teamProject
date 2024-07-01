@@ -29,14 +29,14 @@
                 <label for="inputPwd">비밀번호</label>
             </div>
             <div class="row mt-1">
-                <div class="col">
+                <!-- <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="checkChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                           아이디 저장
                         </label>
                       </div>
-                </div>
+                </div> -->
             <div class="row mt-5">
                 <div class="breadcrumb-container mx-5">
                     <nav aria-label="breadcrumb" >
@@ -106,29 +106,26 @@
                     
                     
                 </script>
-
-
-                <div class="row mt-5">
+            <div class="container mt-5">
+                <div class="row">
                     <div class="col-md-5">
-                       <!--네이버로그인 naverKakaoLogin.js파일로 이동-->
-                        <span class="list-group-item"><a href="javascript:openNaver();"  ><img src="imgs/btnD_축약형.png"  class="btn-img img-fluid bIcon"> </a></span>
-
+                        <div class="text-center">
+                            <a href="javascript:openNaver();">
+                                <img src="imgs/btnD_축약형.png" class="btn-img img-fluid bIcon" style="max-width: 110%; height: 50px;">
+                            </a>
+                        </div>
                     </div>
-                    <script>
-                    
-
-                      </script>
                     <div class="col-md-5 mx-md-4">
-                     
-                            <span class="list-group-item"><a href="javascript:openkakao();"  ><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="200"
-                              alt="카카오 로그인 버튼" /> </a></span>    
+                        <div class="text-center">
+                            <a href="javascript:openkakao();">
+                                <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"class="img-fluid" style="max-width: 110%; height: 50px;" />
+                            </a>
+                        </div>
                     </div>
-                    <ul class="list-group list-group-horizontal">
-                        
-                      </ul>
-                      
-                     
                 </div>
+            </div>
+
+              
             </div>
             
         </form>
@@ -141,5 +138,6 @@
     
     
 </body>
+
 
 </html>
