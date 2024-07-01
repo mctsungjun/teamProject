@@ -8,11 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="change">
-            <h2 class="text-center text-primary mb-5 text-body-emphasis fw-bold">회원상세보기</h2>
-            <div class="container">
-                <ul class="list-group col-md-5 text-center m-auto">
+    <div class="container mt-5 ">
+        <div class="change justify-content-center">
+            <h2 class="text-center text-info mb-5 ">마이페이지</h2>
+            <div class="container d-flex justify-content-center">
+                <ul class="list-group col-md-5 text-center  ">
                     <li class="list-group-item  list-group-item-primary text-primary-emphasis" >id:       [[${vo.id}]]</li>
                     <li class="list-group-item list-group-item-secondary text-secondary-emphasis">name:       [[${vo.name}]]</li>
                     <li class="list-group-item list-group-item-info text-success-emphasis">phone:     [[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</li>
@@ -53,7 +53,8 @@
                     gap: 5px; /* 이미지 간격을 5px로 설정 */
                 }
             </style>
-            <div class="col-md-5 m-auto mt-3 mb-5" >
+              <div class="d-flex justify-content-center">
+                 <div class="col-md-4 mt-3 mb-5" >
 
                 <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
                     <button type="button" class="btn btn-outline-primary btnModify" onClick="modifyFrom()">수정</button>
@@ -63,6 +64,8 @@
                     <button type="button" class="btn btn-outline-primary" onClick="btnListForm()">목록</button>
                 </div>
             </div>
+              </div>
+           
         </div> 
            
     </div>
