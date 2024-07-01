@@ -9,21 +9,27 @@
     <div>
         <div class="noticeRegist">
             <h1>공지사항 글 작성</h1>
-            <form method="post" name="frmRegister" enctype="multipart/form-data">
+            <form method="post" name="frmRegister" enctype="multipart/form-data" action="/notice/bjmRegisterR">
                 <div>
                     <label for="title">제목</label>
                     <input type="text" id="title" required/>
                 </div>
                 <div id="post-form">
                     <label for="content">내용</label>
-                    <textarea id="summernote"></textarea>
+                    <textarea id="summernote" name="content" aria-multiline="true"></textarea>
                     <script>
-                        console.log("summernote")
-                        $('#summernote').summernote();
+                        $(document).ready(function() {
+                        $('#summernote').summernote({
+                            height: 300, // 에디터의 높이 설정
+                            minHeight: null, // 최소 높이
+                            maxHeight: null, // 최대 높이
+                            focus: true // 에디터 로딩후 포커스를 맞출지 여부
+                        });
+                    });
                     </script>
                 </div>
                 <div class="registerButton">
-                    <button type="button" class="bjmBtnRegisterR">작성</button>
+                    <button type="submit" class="bjmBtnRegisterR">작성</button>
                     <button type="button" class="bjmBtnCancelR">취소</button>
                 </div>
             </form>
