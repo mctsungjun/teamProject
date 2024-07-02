@@ -35,6 +35,6 @@ export function loginPage() {
                     }
                 })  // ajax ends
             }else{
-                alert('아이디와 비번을 확인해주세요')
+                alert('아이디와 비밀번호를 확인해주세요.')
             }
 }}
