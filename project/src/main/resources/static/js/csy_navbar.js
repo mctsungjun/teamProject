@@ -16,11 +16,36 @@ document.querySelector("#navBtnToProduct").onclick = () => { }
 
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToStock").onclick = () => { 
-  
+
 }
 
-// * 구매정보관리
-document.querySelector("#navBtnToBuyInfo").onclick = () => { }
+
+// * 구매 정보 관리
+document.querySelector("#navBtnToBuyInfo").onclick = () => { 
+    // $.ajax({
+    //     url : "/purchase",
+    //     type : "GET",
+    //     success : (resp) =>{
+    //         let temp = $(resp).find(".purchase");
+    //         $('.content').html(temp);
+    //         search();
+    //     }
+    // })
+}
+
+// * 판매 정보 관리
+document.querySelector("#navBtnToSellInfo").onclick = () => {
+    // $.ajax({
+    //     url:"/sale",
+    //     type:"GET",
+    //     success:(resp)=>{
+    //         let temp=$(resp).find(".big");
+    //         $('.content').html(temp);
+    //         search();
+    //     }
+    // })
+}
+
 
 // * 판매정보관리
 document.querySelector("#navBtnToSellInfo").onclick = () => { }
@@ -58,6 +83,7 @@ document.querySelector("#navBtnToCS").onclick = () => {
 }
 
 
+
 // * 프로필 관리
 //document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 
@@ -82,4 +108,17 @@ document.querySelector("#navBtnToLogout").onclick = () => {
             }
         })             
        
+    }
+
+// * 공지사항
+document.querySelector("#navBtnToAnnouncement").onclick = () => {
+    // $.ajax({
+    //     url : "/bjmNoticeList",
+    //     type : "GET",
+    //     success : (resp) => {
+    //         let temp = $(resp).find(".noticeList");
+    //         $(".content").html(temp)
+    //     }
+    // })
+
 }

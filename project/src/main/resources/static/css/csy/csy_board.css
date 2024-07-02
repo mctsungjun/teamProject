@@ -64,3 +64,86 @@
 
 #board .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
 #board .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }
+
+
+
+/* Board Detail CSS */
+
+.board-detail-comment {
+    padding: 24px 20px 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+}
+
+/* .board-detail-img-div {
+    width: 72px;
+} */
+
+.board-detail-img-div .board-detail-img {
+    padding-top: 0;
+    margin-top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    margin-right: 22px;
+}
+
+.board-detail-text-div .board-detail-comment-button {
+    margin-left: 12px;
+}
+
+
+.board-detail-text-div .board-detail-comment-button:first {
+    margin-left: 0px;
+}
+
+.board-detail-comment .board-detail-text-div {
+    display: block;
+    flex-grow: 1;
+}
+
+.board-detail-comment-specials {
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-detail-text-div .board-detail-comment-nickname {
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.board-detail-text-div .board-detail-comment-nickname:hover {
+    color: var(--purple);
+    cursor: pointer;
+}
+
+.board-detail-text-div .board-detail-comment-buttons {
+    display: inline-block;
+}
+
+.board-detail-text-div .board-detail-comment-button:hover {
+    color: var(--purple);
+    cursor: pointer;
+}
+
+.board-detail-text-div .board-detail-comment-comment {
+    display: block;
+}
+
+.board-comment-write-box {
+    display: flex;
+    padding: 40px 20px 0px 20px;
+}
+
+.board-comment-write-box .board-comment-textarea {
+    flex-grow: 1;
+    background-color: transparent;
+    height: 72px;
+    width: 100%;
+    resize: none;
+}
+
+.board-comment-write-box .board-comment-textarea:focus {
+    border: solid 1px var(--purple);
+}

@@ -1,48 +1,75 @@
 package com.team.project.csy;
 
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 
-import com.team.project.mybatis.MyFactory;
 
 @Component
 public class CsyBoardDao {
-    SqlSession session;
-    public CsyBoardDao() {
-        session = MyFactory.getSession();
+
+    public SqlSession getSession() {
+        SqlSession session = null;
+        try{
+            Reader reader = Resources.getResourceAsReader("com/team/project/mybatis/config.xml");
+        SqlSessionFactory factory = 
+            new SqlSessionFactoryBuilder().build(reader);
+            session = factory.openSession();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return session;
     }
 
-    public CsyBoardVo detail(String sno) {
-        CsyBoardVo vo = null;
+    SqlSession session = getSession();
+    
+    
+
+    public Map<String, Object> detail(String sno) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        CsyBoardVo boardVo;
+
+        // * BoardVo 관련 */
         // * 조회수는 그렇게 중요한건 아니니까 성공실패여부 안봄
         int cnt = session.update("csyBoard.addHits", sno);
         if(cnt>0) { session.commit();
         } else { session.rollback(); }
-        vo = session.selectOne("csyBoard.detail", sno);
+        boardVo = session.selectOne("csyBoard.detail", sno);
 
-        vo.setViewersId("SampleID");
-        int result = session.selectOne("csyBoard.detailLikedByMe", vo);
+        boardVo.setViewersId("SampleID");
+        int result = session.selectOne("csyBoard.detailLikedByMe", boardVo);
+        
+        boardVo.setLikedByMe(result != 0);
 
-        vo.setLikedByMe(result != 0);
-        return vo;
+        // * COMMENTS 관련 */
+        List<CsyBoardCommentVo> commentList = session.selectList("csyBoard.commentList", sno);
+
+        System.out.println(commentList);
+        map.put("boardVo", boardVo);
+        map.put("commentList", commentList);
+
+        return map;
     }
 
-    public boolean post(CsyBoardVo vo) {
-        boolean b = false;
+    public int post(CsyBoardVo vo) {
+        int sno = -1;
         vo.content = vo.content.replaceAll("<p><br></p>", "");
-        int cnt = session.insert("csyBoard.post", vo);
-        if(cnt>0){
-            b=true;
+        session.insert("csyBoard.post", vo);
+        sno = vo.getSno();
+        if(sno != -1){
             session.commit();
+            return sno;
         }else{
-            b=false;
             session.rollback();
+            return sno;
         }
-        return b;
     }
 
     public boolean modify(CsyBoardVo vo) {
@@ -82,17 +109,10 @@ public class CsyBoardDao {
 
         pageVo.pageCompute();
         postList = session.selectList("csyBoard.search", pageVo);
-        
 
         map.put("postList", postList);
         map.put("pageVo", pageVo);
-
         System.out.println(postList);
-
-        // TODO: 테스트용
-        // System.out.println("SEARCH");
-        // System.out.println(pageVo);
-        // System.out.println(postList);
         return map;
     }
 
@@ -107,5 +127,33 @@ public class CsyBoardDao {
             session.rollback();
         }
         return msg;
+    }
+
+
+    public boolean commentPost(CsyBoardCommentVo vo) {
+        boolean isSucceeded = false;
+        int cnt = session.insert("csyBoard.commentPost", vo);
+
+        if(cnt>0){
+            session.commit();
+            isSucceeded = true;
+        }else{
+            session.rollback();
+        }
+        return isSucceeded;
+    }
+
+    public boolean commentDelete(String sno) {
+        boolean isSucceeded = false;
+        int cnt = session.delete("csyBoard.commentDelete", Integer.parseInt(sno));
+
+        if(cnt>0) {
+            session.commit();
+            isSucceeded = true;
+        }else{
+            session.rollback();
+        }
+
+        return isSucceeded;
     }
 }

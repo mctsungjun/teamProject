@@ -1,4 +1,4 @@
-package com.team.project.controller;
+package com.team.project.csy.controller;
 
 public class msmQaVo {
     String msmQusId;
