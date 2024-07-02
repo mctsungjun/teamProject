@@ -6,10 +6,17 @@
     font-family: "Noto Sans KR", sans-serif;
 }
 
-html, body, #index {
+html, body, #index, .authPage {
     background-color: var(--dark-gray);
     margin: 0;
     height: 100%;
+}
+
+.no-drag {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #index {

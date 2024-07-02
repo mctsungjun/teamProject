@@ -1,4 +1,4 @@
-.purple-text-button {
+.purple-text-button, #loginBtn {
     width: 68px;
     height: 30px;
     background-color: var(--purple);
@@ -13,7 +13,23 @@
     font-weight: 500;
 }
 
-.white-text-button {
+#loginBtn {
+    width:100%;
+    margin-bottom: 15px;
+    height: 48px;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: white;
+}
+
+#loginBtn:hover {
+    background-color: var(--skyblue);
+    color: var(--dark-grey);
+}
+
+
+.white-text-button, .grey-text-button {
     margin: 0;
     padding: 0;
     font-size: 15px;
@@ -25,10 +41,19 @@
     border: none;
 }
 
-.white-text-button:hover {
+.white-text-button:hover, .grey-text-button:hover {
+    text-decoration:none;
     color: var(--purple);
     background-color: transparent;
     font-weight: 500;
+}
+
+.grey-text-button {
+    color: rgba(255, 255, 255, 0.4)
+}
+
+.grey-text-button:hover {
+    color: var(--white);
 }
 
 .paging-button {
@@ -76,4 +101,16 @@
 .underline-textbox:focus {
     /* 일단 보류 */
     border-bottom: 1.8px solid var(--white);
+}
+
+.login-api-button {
+    width: 49%;
+    height: 48px;
+    display: flex;
+    border: none;
+    line-height: 48px;
+    border-radius: 4px; 
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 15px 0 15px;
 }

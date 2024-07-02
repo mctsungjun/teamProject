@@ -39,12 +39,11 @@ let loadMain = (findStr) => {
 }
 
 let loadAuthPage = () => {
-    alert("loadAuthPage");
     $.ajax({
         url:"/login",
         type:"GET",
         success:(resp)=>{
-            let temp = $(resp).find(".change");
+            let temp = $(resp).find(".loginPage");
             $(".authPage").html(temp);
         }
     })
