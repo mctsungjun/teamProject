@@ -39,9 +39,47 @@
                     let obj = await import ("/js/csy_board.js");
                     obj.csyPostComment(form);
                 }
+
                 async function commentDelete(sno, post_sno) {
                     let obj = await import ("/js/csy_board.js");
                     obj.csyDeleteComment(sno, post_sno);
+                }
+                async function commentModify(form, post_sno) {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.csyModifyComment(form, post_sno);
+                }
+
+                function showCommentEdit(e) {
+                    e.parentElement.style.display = 'none';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-nickname").style.display = 'none';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-comment").style.display = 'none';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-modify-form").style.display = 'flex';
+                }
+
+                function showCommentEditCancel(e) {
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-buttons").style.display = '';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-nickname").style.display = '';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-comment").style.display = '';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-modify-form").style.display = 'none';
+                }
+
+                function showReplyEdit(e) {
+                    e.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-reply").style.display = 'flex';
+                }
+
+                function showReplyEditCancel(e) {
+                    e.parentElement.parentElement.parentElement.parentElement.style.display = 'none';
+                }
+
+                function showReplyCommentModify(e) {
+                    e.parentElement.parentElement.style.display = 'none';
+                    e.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-reply").style.display = 'none';
+                    e.parentElement.parentElement.parentElement.querySelector(".board-detail-reply-modify-form").style.display = 'flex';
+                }
+                function showReplyCommentModifyCancel(e) {
+                    e.parentElement.parentElement.parentElement.style.display = 'none';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-reply").style.display = '';
+                    e.parentElement.parentElement.parentElement.parentElement.querySelector(".board-detail-comment-specials").style.display = '';
                 }
             </script>
 
@@ -81,44 +119,98 @@
             </div>
 
 
-            <!-- <hr style="margin-top: 10px;"> -->
-            <div style="width: 100%; height:48px; margin-top: 38px; margin-bottom: 10px; background-color: var(--purple); border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                <h5 style="font-size: 18px; margin-left: 20px; line-height: 48px;">COMMENTS</h5>
+            <!-- * 여기부터 커맨트 * -->
+            <div class="board-detail-comment-title-background">
+                <h5 class="board-detail-comments-title-text">COMMENTS</h5>
             </div>
-            <div class="board-detail-comment" th:each="cmtVo:${commentList}">
+            <!-- * 유저의 프로필 이미지 * -->
+            <div th:each="cmtVo:${commentList}">
+            <div class="board-detail-comment">
                 <div class="board-detail-img-div">
                     <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image">
                 </div>
+                <!-- * 커멘트 보이는 부분 * -->
                 <div class="board-detail-text-div">
                     <div class="board-detail-comment-specials">
-                        <span style="display: none;">([[${cmtVo.sno}]])</span>
                         <span class="board-detail-comment-nickname">[[${cmtVo.id}]]</span>
-                        <div class="board-detail-comment-buttons">
-                            <span class="board-detail-comment-button"><i class="fa-solid fa-reply"></i></span>
-                            <span class="board-detail-comment-button"><i class="fa-solid fa-pencil"></i></span>
+                        <div th:if="${cmtVo.id != 'DELETED COMMENT'}" class="board-detail-comment-buttons">
+                            <span class="board-detail-comment-button" th:onclick="showReplyEdit(this);"><i class="fa-solid fa-reply"></i></span>
+                            <span class="board-detail-comment-button" th:onclick="showCommentEdit(this);"><i class="fa-solid fa-pencil"></i></span>
                             <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
                         </div>
                     </div>
                     <span class="board-detail-comment-comment">[[${cmtVo.content}]]</span>
                 </div>
+                    <!-- * 커멘트 수정 부분 * -->
+                    <form class="board-detail-comment-modify-form" style="display:none; width: 100%;">
+                            <input type="hidden" name="sno" th:value="${cmtVo.sno}">
+                            <textarea name="content" class="board-comment-textarea">[[${cmtVo.content}]]</textarea>
+                            <div style="display: block; width: 83px; height: 72px;">
+                                <div style="position: relative; height: 72px;">
+                                    <span class="board-detail-comment-button" style="font-size:18px; position: absolute; top: 0px; right:5px;" th:onclick="showCommentEditCancel(this)"><i class="fa-solid fa-xmark"></i></span>
+                                    <button type="button" class="purple-text-button" th:onclick="commentModify(this.form, [[${vo.sno}]]);" style="position: absolute; bottom: 0px; right: 0px;">수정</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- * 답글 작성 부분 * -->
+                <form name="csyBoardFrmReply" class="board-detail-comment board-detail-comment-reply" style="display:none;">
+                    <input type="text" name="id" style="display: none" />
+                    <input type="text" style="display: none" name="post_sno" th:value="${vo.sno}"/>
+                    <input type="text" style="display: none" name="reply_sno" th:value="${cmtVo.sno}"/>
+                    <!-- <input type="text" name="reply_sno" display="none" th:value="${cmtVo.sno}"/> -->
+                    <div style="width:80px; height: 100%; letter-spacing: 1px;">ㄴ REPLY</i></div>
+                    <div style="display: flex; width: 100%; height:72px;">
+                        <textarea name="content" class="board-comment-textarea" th:placeholder="${cmtVo.id} + '님께 보내는 답글입니다.'"></textarea>
+                        <div style="display: block; width: 83px; height: 72px;">
+                        <div style="position: relative; height: 72px;">
+                            <span class="board-detail-comment-button" style="font-size:18px; position: absolute; top: 0px; right:5px;" th:onclick="showReplyEditCancel(this)">
+                                <i class="fa-solid fa-xmark"></i></span>
+                            <button type="button" class="purple-text-button" onclick="commentSubmit(this.form);" style="position: absolute; bottom: 0px; right: 0px;">작성</button>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- * 덧글의 답글 display 부분 * -->
+                <div th:each="cmtReplyVo:${cmtVo.replies}" class="board-detail-comment board-detail-replies">
+                    <span style="width: 72px; text-align: right; padding-right: 15px;">ㄴ</span>
+                    <div class="board-detail-text-div">
+                        <div class="board-detail-comment-specials">
+                            <span class="board-detail-comment-nickname">[[${cmtReplyVo.id}]]</span>
+                            <div class="board-detail-comment-buttons">
+                                <span class="board-detail-comment-button" th:onclick="showReplyCommentModify(this);"><i class="fa-solid fa-pencil"></i></span>
+                                <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtReplyVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
+                            </div>
+                        </div>
+                        <span class="board-detail-comment-reply">[[${cmtReplyVo.content}]]</span>
+                        <!-- * 덧글의 답글 수정 부분 * -->
+                        <form class="board-detail-reply-modify-form" style="display:none; width: 100%;">
+                            <input type="hidden" name="sno" th:value="${cmtReplyVo.sno}">
+                            <textarea name="content" class="board-comment-textarea" th:placeholder="${cmtVo.id} + '님께 보내는 답글입니다.'">[[${cmtReplyVo.content}]]</textarea>
+                            <div style="display: block; width: 83px; height: 72px;">
+                                <div style="position: relative; height: 72px;">
+                                    <span class="board-detail-comment-button" style="font-size:18px; position: absolute; top: 0px; right:5px;" th:onclick="showReplyCommentModifyCancel(this)"><i class="fa-solid fa-xmark"></i></span>
+                                    <button type="button" class="purple-text-button" th:onclick="commentModify(this.form, [[${vo.sno}]]);" style="position: absolute; bottom: 0px; right: 0px;">수정</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <!-- <hr> -->
-            <form name="frmComment" class="board-comment-write-box">
+            
+            <!-- * 신규 커맨트 작성란 * -->
+            <form name="csyBoardFrmComment" class="board-comment-write-box">
                 <input type="text" style="display: none" name="post_sno" th:value="${vo.sno}"/>
                 <input type="text" name="id" style="display: none" />
                 <div class="board-detail-img-div">
                     <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image">
                 </div>
                 <textarea name="content" class="board-comment-textarea"></textarea>
-                <div style="flex-grow: 1; justify-content: space-between; margin-left: 15px; display: flex;">
+                <div style="flex-grow: 1; margin-left: 15px; display: flex;">
                 <button type="button" class="purple-text-button" onclick="commentSubmit(this.form);" style="height: 100%; align-items: end; align-self: self-end;">작성</button>
                 </div>
             </form>
-
-            <!-- <hr style="margin-top: 40px;">
-            <div style="text-align: right;">
-                <button type="button" class="purple-text-button" onclick="toBoardList();" style="margin-right: 20px;">목록</button>
-            </div> -->
+            <div style="height: 180px"></div>
         </div>
     </div>
 </body>
