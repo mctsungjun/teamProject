@@ -105,16 +105,7 @@ document.querySelector("#navBtnToLogout").onclick = () => {
             url:"/sung/logout",
             type:"GET",
             success:(resp)=>{
-                //alert("로그아웃되었음")
-                
-                $.ajax ({
-                    url : "/login",
-                    type: "GET",
-                    success: (resp) => {
-                        let temp = $(resp).find(".change");
-                        $(".content").html(temp);
-                    }
-                })
+                location.reload(true);
             }
         })
     }

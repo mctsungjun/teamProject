@@ -6,8 +6,6 @@ export async function joinformBtn() {
     if (isProperForm) {
         let frm = document.joinForm;
         let frmData = new FormData(frm);
-        alert(frm.email.value);
-        alert(frm.id.value);
         // alert("FormData: " + JSON.stringify(Object.fromEntries(frmData.entries())));
         //컨트롤러 /sung/registerR로 회원등록 정보 보냄
         $.ajax({
@@ -17,16 +15,8 @@ export async function joinformBtn() {
             processData: false,  // 필수: FormData를 문자열로 변환하지 않음
             contentType: false,  // 필수: 컨텐츠 타입을 false로 설정하여 jQuery가 설정할 수 있도록 함
             success: function(resp) {
-                console.log(resp);
-                // 성공 시 처리할 코드
-                $.ajax({
-                    url:"/login",
-                    type:"GET",
-                    success:(resp)=>{
-                let temp = $(resp).find(".change");
-                    $(".content").html(temp);
-                }
-                })
+                alert("가입을 환영합니다!");
+                location.reload(true);
             },
             error: function(xhr, status, error) {
                 console.error('AJAX 오류 발생:', status, error);
