@@ -274,4 +274,19 @@ public String getMemberName(String id){
         System.out.println(vo);
         return vo;
     }
+    // 회원삭제
+    public String memberDelete(String id){
+        session = new MyFactory().getSession();
+        String msg = "";
+        int cnt = session.delete("member.memberDelete", id);
+        if (cnt>0){
+            msg = "탈퇴하였습니다.";
+            session.commit();
+        }else{
+            msg = "탈퇴실패";
+            session.rollback();
+        }
+        session.close();
+        return msg;
+    }
 }

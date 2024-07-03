@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class CsyBoardListPageVo {
     int startNo = 0, endNo;
-	int listSize = 1;
-	int blockSize=5;
+	int listSize = 10;
+	int blockSize = 5;
 	int startPage = 1, endPage;
 	int totSize, totPage;
 	int nowPage = 1;

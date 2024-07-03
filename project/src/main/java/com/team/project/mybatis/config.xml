@@ -8,6 +8,7 @@
 		<typeAlias type="com.team.project.csy.CsyBoardVo" alias="CsyBoardVo" />
 		<typeAlias type="com.team.project.csy.CsyBoardLikesVo" alias="CsyBoardLikesVo" />
 		<typeAlias type="com.team.project.csy.CsyBoardListPageVo" alias="CsyBoardListPageVo" />
+		<typeAlias type="com.team.project.csy.CsyBoardCommentVo" alias="CsyBoardCommentVo" />
 		<typeAlias type="com.team.project.krh.SaleVo" alias="SaleVo" />
 		<typeAlias type="com.team.project.krh.StockVo" alias="StockVo" />
 		<typeAlias type="com.team.project.krh.ProductPhotoVo" alias="ProductPhotoVo" />

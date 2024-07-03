@@ -282,6 +282,30 @@ var modifyFrom=()=>{
 
 	})
 }
+//회원탈퇴
+function btnMemberOff(){
+	var yn = confirm("정말로 탈퇴하시겠습니까?");
+	if (yn){
+		
+		$.ajax({
+			url:"/sung/memberOff",
+			type:"GET",
+			success:(resp)=>{
+				alert(resp);
+				
+                $.ajax ({
+                    url : "/login",
+                    type: "GET",
+                    success: (resp) => {
+                        let temp = $(resp).find(".change");  
+                        $(".content").html(temp);                
+                    }
+                })
+				
+			}
+		})
+	}
+}
 
 
 

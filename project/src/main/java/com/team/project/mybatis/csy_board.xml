@@ -10,6 +10,9 @@
     </select> -->
     <insert id="post" parameterType="CsyBoardVo">
         insert into board(id, title, content) values (#{id}, #{title}, #{content})
+        <selectKey keyProperty="sno" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <update id="modify" parameterType="CsyBoardVo">
@@ -17,7 +20,7 @@
     </update>
 
     <select id="search" parameterType="CsyBoardListPageVo" resultType="CsyBoardVo">
-        select * from board
+        select sno, title, id, nal, likes, hits from board
 		<where>
 			<if test="findStr != ''">
 				id like '%${findStr}%'
@@ -73,7 +76,16 @@
     <select id="detailLikedByMe" parameterType="CsyBoardVo" resultType="int">
         select count(post_sno) from board_likes where post_sno=#{sno} and user_id=#{viewersId}
     </select>
-    <!-- <select id="detailLikes" parameterType="String" resultType="String">
-        select likes from board where sno=#{_parameter}
-    </select> -->
+
+    <select id="commentList" parameterType="String" resultType="CsyBoardCommentVo">
+        select * from board_comments where post_sno=#{_parameter} order by nal ASC
+    </select>
+
+    <insert id="commentPost" parameterType="CsyBoardCommentVo">
+        insert into board_comments(post_sno, id, reply_sno, content) values (#{post_sno}, #{id}, #{reply_sno}, #{content})
+    </insert>
+
+    <delete id="commentDelete" parameterType="int">
+        delete from board_comments where sno=#{_parameter}
+    </delete>
 </mapper>

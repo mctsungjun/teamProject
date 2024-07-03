@@ -448,4 +448,15 @@ public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpSession se
     mv.setViewName("sung/kakaocallback");
     return mv;
     }
+
+// 회원탈퇴
+    @RequestMapping(path="/sung/memberOff")
+    public String memberOff(HttpSession session){
+        
+        String id = (String)session.getAttribute("id");
+        String msg = dao.memberDelete(id);
+        
+       
+        return msg;
+    }    
 }

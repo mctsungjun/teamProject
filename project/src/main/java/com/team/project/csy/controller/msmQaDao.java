@@ -1,4 +1,4 @@
-package com.team.project.controller;
+package com.team.project.csy.controller;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
