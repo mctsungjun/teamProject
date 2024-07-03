@@ -381,7 +381,7 @@ function goAndStay(){
 }
 
 //비밀번호----------------------------------------------------------
-function text_chkpw(){
+export function text_chkpw() {
 	var form = document.querySelector("#pwd").value;
     var pattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,20}$/;
 	if(form.length < 6 || pattern.test(form) == false){
@@ -395,7 +395,8 @@ function text_chkpw(){
 	$('#no_multipw').hide();
 	$('#ok_multipw').hide();
 }
-function multi_chkpw(){
+
+export function multi_chkpw(){
 	var formchk = document.querySelector("#pwdchk").value;
     var form = document.querySelector("#pwd").value;
 	if(form != formchk) {
@@ -408,12 +409,8 @@ function multi_chkpw(){
 }
 // 체크박스 선택시 필요한 양식 표시-------------------------------------------
 
-function joinform_chk(event)     
-{
- 
+export function joinform_chk() {
 	var form = document.joinForm;
-	var checked = $("input[name='chked']:checkbox:checked").val();
-	
 
 			if(form.id.value==""){
 				alert('아이디를 입력해주세요.');
@@ -427,14 +424,8 @@ function joinform_chk(event)
 				return false;
 				
 			}
-			// else if(form.id.value.length < 3 || form.id.value.length > 16) {
-			// 	alert("아이디는 3~15자로 입력 주세요.");
-			// 	form.id.focus();
-            //     event.preventDefault();
-			// 	return;
-			// }
-			
-			 if(form.pwd.value=="") {
+
+			if(form.pwd.value=="") {
 				alert("비밀번호를 입력해 주세요.");
 				form.pwd.focus();
                 return false;
@@ -447,18 +438,14 @@ function joinform_chk(event)
                 return false;
 				
 			}
-			// if(form.pwd.value != form.pwdchk.value) {
-			// 	alert("비밀번호가 정확하지 않습니다. 정확히 입력해 주세요.");
-			// 	form.pwdchk.focus();
-            //     return false;
-				
-			// }
+
 			if(form.name.value=="") {
 				alert("이름을 입력해 주세요.");
 				form.name.focus();
                 return false;
 				
 			}
+
 			if(form.birthday.value=="") {
 				alert("생년월일을 입력해 주세요.");
 				form.birth.focus();
@@ -466,9 +453,6 @@ function joinform_chk(event)
 				
 			}
 
-
-			
-			
 			if(form.roadAddress.value=="") {
 				alert("주소를 입력해 주세요.");
 				form.roadAddress.focus();
@@ -487,67 +471,54 @@ function joinform_chk(event)
 				return false;
 				
 			}
-			if(form.phone1.value=="") {
+			if(form.phone1.value=="" || form.phone2.value=="" || form.phone3.value=="") {
 				alert("회원님의 휴대폰 번호를 입력해 주세요.");
 				form.phone1.focus();
 				return false;
 				
 			}
-			if(form.phone2.value=="") {
-				alert("회원님의 휴대폰 번호를 입력해 주세요.");
-				form.phone2.focus();
-                return false;
+			// if(form.phone2.value=="") {
+			// 	alert("회원님의 휴대폰 번호를 입력해 주세요.");
+			// 	form.phone2.focus();
+            //     return false;
 				
-			}
-			if(form.phone3.value=="") {
-				alert("회원님의 휴대폰 번호를 입력해 주세요.");
-				form.phone3.focus();
-                return false;
-				
-			
-			}
-		else{
-		 	return "ok";
-			
-		 }
+			// }
+			// if(form.phone3.value=="") {
+			// 	alert("회원님의 휴대폰 번호를 입력해 주세요.");
+			// 	form.phone3.focus();
+            //     return false;
+			// }
+		return true;
 	}
 //--------------------------------------------------------주소----------------------------
          //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-         var sample4_execDaumPostcode=()=> {
-            var postcodePopup = new daum.Postcode({
-                oncomplete: function(data) {
-                  
-                    var roadAddr = data.roadAddress; // 도로명 주소 변수
-                    var extraRoadAddr = ''; // 참고 항목 변수
-        
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraRoadAddr += data.bname;
-                    }
-                   
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                       extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                 
-                    if(extraRoadAddr !== ''){
-                        extraRoadAddr = ' (' + extraRoadAddr + ')';
-                    }
-        
-                  
-                    document.getElementById('postcode').value = data.zonecode;
-                    document.getElementById("roadAddress").value = roadAddr;
-                    document.getElementById("jibunAddress").value = data.jibunAddress;
-       
-                
-                }
-                
-            }).open();
 
-        }
+export function sample4_execDaumPostcode() {
+	var postcodePopup = new daum.Postcode({
+		oncomplete: function(data) {
+			
+			var roadAddr = data.roadAddress; // 도로명 주소 변수
+			var extraRoadAddr = ''; // 참고 항목 변수
+
+			if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+				extraRoadAddr += data.bname; }
+
+			if(data.buildingName !== '' && data.apartment === 'Y'){
+				extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName); }
+			
+			if(extraRoadAddr !== ''){
+				extraRoadAddr = ' (' + extraRoadAddr + ')'; }
+			
+			document.getElementById('postcode').value = data.zonecode;
+			document.getElementById("roadAddress").value = roadAddr;
+			document.getElementById("jibunAddress").value = data.jibunAddress;
+		}
+	}).open();
+}
 
 
  // 아이디체크----------------------------------------------------
-function userChk()
-{
+export function userChk() {
 
     var userId = document.querySelector("#id");
     var pattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{3,16}$/;
@@ -591,7 +562,7 @@ function userChk()
     
 }
 //이메일 option값 input에 넣기-------------------------------------------
-function updateEmailInput(){
+export function updateEmailInput(){
     var select = document.getElementById("email_sel");
     var selectedValue = select.value;
     var email2 = document.getElementById("email2");
@@ -608,10 +579,3 @@ export function returnToLoginPage() {
         }
     })
 }
-
-       
-
-
-
-    
-  
