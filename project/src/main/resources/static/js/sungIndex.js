@@ -32,26 +32,26 @@
 // 	})
 // }
 //회원상세보기 보튼 클릭
-var detail = ()=>{
-	// var id = sessionStorage.getItem("id");
-	// // alert(id)
-	// var name = sessionStorage.getItem("name");
-	$.ajax({
-		url:"/sung/detail",
-		type:"GET",
-		// data:{"id":id,"name":name},
-		success:(resp)=>{
+// var detail = ()=>{
+// 	// var id = sessionStorage.getItem("id");
+// 	// // alert(id)
+// 	// var name = sessionStorage.getItem("name");
+// 	$.ajax({
+// 		url:"/sung/detail",
+// 		type:"GET",
+// 		// data:{"id":id,"name":name},
+// 		success:(resp)=>{
 			
-			let temp = $(resp).find(".change");
-			$(".content").html(temp);
-			if(resp==="logout"){
-				console.log(resp);
+// 			let temp = $(resp).find(".change");
+// 			$(".content").html(temp);
+// 			if(resp==="logout"){
+// 				console.log(resp);
 				
-			}
+// 			}
 			
-		}
-	})
-}
+// 		}
+// 	})
+// }
 // 대표이미지 바뀌때 테두리변함
 var repreImage="";
 var change=(tag,photo)=>{
