@@ -126,3 +126,26 @@ let sale_view_modify=(sno)=>{
         })
     })
 }
+
+//salepage.html 검색
+function salepage_search(){
+    let btnSearch=document.querySelector(".btnSearch");
+    let findStr=sessionStorage.getItem(".findStr");
+    if(findStr!=null){
+        $(".findStr").val(findStr);
+    }
+    btnSearch.addEventListener('click',()=>{
+        findStr=$(".findStr").val();
+        sessionStorage.setItem("findStr",findStr);
+
+        $.ajax({
+            url:"/salepage_search",
+            type:'GET',
+            data:{"findStr":findStr},
+            success:(resp)=>{
+                let temp=$(resp).fine(".salepageproduct")
+                $(".salepageproduct").html(temp);
+            }
+        })
+    })
+}
