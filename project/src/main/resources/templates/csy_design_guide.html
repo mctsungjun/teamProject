@@ -110,5 +110,17 @@ $.ajax ({
     <div style="display:inline-block;">
         <button class="purple-text-button">이전</button> class="purple-text-button"
     </div>
+    <!-- 서버 session에서 id 가져오는 방법
+     public ModelAndView repreChangForm(HttpSession session){
+   
+    String id = (String)session.getAttribute("id");
+   
+    String name = (String)session.getAttribute("name");
+     위에서 만들고 싶은 메서드에서 HttpSession session를 매개변수해주고
+     String id = (String)session.getAttribute("id"); 이런식으로
+    불러온다. "id" 는 키값임
+
+    
+    -->
 </body>
 </html>
