@@ -22,17 +22,8 @@ export function loginPage() {
                     if(resp.message==="false"){
                         alert("아이디, 비번을 확인하세요");
                     }else{
-                        //로그인 성공하면 클라이언트 세션에 아이디/이름 저장
-                        $(document).ready(function() {
-                            $.ajax ({
-                            url : "/design_guide",
-                            type: "GET",
-                            // data: {"findStr" : findStr},               // * 이거 selected icon 넘겨줘야함
-                            success: (resp) => {
-                                let temp = $(resp).find(".designGuide");  // * nav    : nav.html
-                                $(".content").html(temp);                 // * navbar : index.html
-                            }})});}
-                    }
+                        location.reload(true);
+                    }}
                 })  // ajax ends
             }else{
                 alert('아이디와 비밀번호를 확인해주세요.')
