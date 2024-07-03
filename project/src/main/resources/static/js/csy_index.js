@@ -1,7 +1,7 @@
 $(function(){
     loadAuthPage();
-    // loadMain();
-    // loadNav();
+    loadMain();
+    loadNav();
 })
 
 // let loadLoginPage = () => {
