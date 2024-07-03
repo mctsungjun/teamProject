@@ -41,6 +41,7 @@ public class SaleDao {
         return vo;
     }
 
+
     public SaleVo sale_list(Integer sno){
         session=new MyFactory().getSession();
         SaleVo vo=session.selectOne("salestock.list",sno);
@@ -51,6 +52,7 @@ public class SaleDao {
     @Transactional
     public String sale_view_modify(SaleVo vo){
         session= new MyFactory().getSession();
+
         int cnt=session.update("salestock.update", vo);
         String msg="";
         if(cnt>0){

@@ -33,8 +33,9 @@ public class ProductDao {
     }
     
     public String product_register(ProductVo vo){
-        session = new MyFactory().getSession();
         String msg="";
+        session = new MyFactory().getSession();
+        
         int cnt = session.insert("project.product_register", vo);
         if(cnt>0){
             session.commit();
