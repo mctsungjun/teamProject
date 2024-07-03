@@ -12,7 +12,7 @@ public class MyFactory {
     
     public MyFactory(){
         try{
-            String path="com/team/project/mybatis/krhconfig.xml";
+            String path="com/team/project/mybatis/config.xml";
             Reader reader = Resources.getResourceAsReader(path);
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
             session = factory.openSession();
