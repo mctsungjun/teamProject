@@ -329,7 +329,7 @@ public ModelAndView repreChangForm(HttpSession session){
 
             return "fail";
         }
-        //다시 인덱스로감 아무설정도 없으니
+       
        
     }
     //아이디중복확인
