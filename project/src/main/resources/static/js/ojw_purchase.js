@@ -11,7 +11,6 @@ function purchase(){
             let temp = $(resp).find(".purchase");
             $('.purchase').html(temp);
             search();
-            purchase_list();
         }
     })
 }
@@ -46,7 +45,6 @@ function purchase_view(no){
         type : "GET",
         data : {"no" : no},
         success:(resp)=>{
-            console.log(resp);
             let temp=$(resp).find(".purchase_view");
             $('.purchase').html(temp);
             viewEvent(no);
@@ -120,3 +118,4 @@ let purchase_modify=(no)=>{
         purchase_view();
     })
 }
+

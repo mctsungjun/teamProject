@@ -11,7 +11,7 @@ public class ProductVo {
     int price;
     String spec;
     String comment;
-    String explain;
+    String explanation;
     String photo;
     List<ojw_PhotoVo> photos;
 }

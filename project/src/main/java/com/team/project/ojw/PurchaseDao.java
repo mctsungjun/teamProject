@@ -14,34 +14,34 @@ import com.team.project.mybatis.MyFactory;
 public class PurchaseDao {
     SqlSession session;
     public PurchaseDao(){
-        session= MyFactory.getSession();
+        session= new MyFactory().getSession();
     }
 
     public List<PurchaseVo> search(String findStr){
         List<PurchaseVo> list = null;
-        session = MyFactory.getSession();
+        session = new MyFactory().getSession();
         list = session.selectList("project.purchase_search",findStr);
-
+        session.close();
         return list;
     }
 
     public PurchaseVo purchase_view(Integer no){
-        session = MyFactory.getSession();
+        session = new MyFactory().getSession();
         PurchaseVo vo = session.selectOne("project.purchase_view",no);
-
+        session.close();
         return vo;
     }
 
     public PurchaseVo purchase_list(Integer no){
-        session = MyFactory.getSession();
+        session = new MyFactory().getSession();
         PurchaseVo vo = session.selectOne("project.purchase_list",no);
-
+        session.close();
         return vo;
     }
 
     @Transactional
     public String purchase_modify(PurchaseVo vo){
-        session = MyFactory.getSession();
+        session = new MyFactory().getSession();
         int cnt = session.update("project.purchase_modify",vo);
         String msg="";
         
@@ -52,7 +52,7 @@ public class PurchaseDao {
             msg="수정 실패";
             session.rollback();
         }
-
+        session.close();
         return msg;
     }
 

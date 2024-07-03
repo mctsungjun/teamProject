@@ -16,7 +16,7 @@
         where no=#{_parameter}
     </select>
     <select id="purchase_list" parameterType="Integer" resultType="PurchaseVo">
-        select * from purchase
+        select no, productCode, productName, price, ea, nal, customer from purchase
         where no=#{_parameter}
     </select>
     <update id="purchase_modify" parameterType="PurchaseVo">
@@ -26,17 +26,33 @@
 
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">
-        select productName from product
+        select productName, comment, price from product
         where productName like '%${findStr}%'
+        or comment like '%${findStr}%'
+    </select>
+    <select id="product" parameterType="String" resultType="ProductVo">
+        select productName, explanation, price
+        where productName=#{_parameter}
     </select>
     <select id="product_view" parameterType="String" resultType="ProductVo">
         select productName from product
         where productName=#{_parameter}
     </select>
-    <select id="product_photos" parameterType="String" resultType="ojw_PhotoVo">
-        select productName from photos
-        where productName=#{_parameter}
+    <select id="photos" parameterType="String" resultType="ojw_PhotoVo">
+        select no, photo, oriPhoto from product_photos
+        where no=#{_parameter}
     </select>
+    <insert id="product_register" parameterType="ProductVo">
+        insert into product(productName, productCode, price, spec, comment, explanation, photo)
+        values(#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo})
+
+        <if test="photos != null">
+            insert into product_photos(no, oriPhoto, photo) values
+            <foreach collection="photos" item="p" separator=",">
+                (#{no}, #{p.oriPhoto}, #{p.photo})
+            </foreach>
+        </if>
+    </insert>
 
 
 
