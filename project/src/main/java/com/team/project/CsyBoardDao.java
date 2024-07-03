@@ -11,7 +11,7 @@ import com.team.project.mybatis.MyFactory;
 public class CsyBoardDao {
     SqlSession session;
     public CsyBoardDao() {
-        session = MyFactory.getSession();
+        session = new MyFactory().getSession();
     }
 
     public CsyBoardVo detail(String sno) {
