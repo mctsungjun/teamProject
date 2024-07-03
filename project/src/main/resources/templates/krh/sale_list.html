@@ -17,22 +17,22 @@
                 <table class="salelisttable">
                     <tr>
                         <th>주문일</th>
-                        <td colspan="3">[[${vo.nal}]]</td>
+                        <td colspan="3">[[${vo.s_nal}]]</td>
                     </tr>
                     <tr>
                         <th colspan="4">고객 정보</th>
                     </tr>
                     <tr>
                         <th>고객 주소</th>
-                        <td>uservo에서..</td>
+                        <td>[[${vo.userJibunAddress}]] [[${vo.userAddressDetail}]]</td>
                         <th>전화 번호</th>
-                        <td></td>
+                        <td>[[${vo.userPhone1}]]-[[${vo.userPhone2}]]-[[${vo.userPhone3}]]</td>
                     </tr>
                     <tr>
                         <th>성명</th>
-                        <td></td>
+                        <td>[[${vo.userName}]]</td>
                         <th>이메일</th>
-                        <td></td>
+                        <td>[[${vo.userEmail}]] @ [[${vo.userEmail2}]]</td>
                     </tr>
                     <tr>
                         <th colspan>No.</th>
@@ -41,8 +41,8 @@
                     </tr>
                     <tr>
                         <th>1</th>
-                        <td colspan="2">[[${vo.ProductName}]]</td>
-                        <td>[[${vo.ea}]]</td>
+                        <td colspan="2">[[${vo.s_ProductName}]]</td>
+                        <td>[[${vo.s_ea}]]</td>
                     </tr>
                     <tr>
                         <th>2</th>
@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <th>총액</th>
-                        <td colspan="3">[[${vo.amt}]]</td>
+                        <td colspan="3">[[${vo.s_price*vo.s_ea}]]</td>
                     </tr>
                 </table>
             </div>

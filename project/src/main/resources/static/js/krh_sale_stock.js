@@ -13,7 +13,6 @@ function sale(){
             search();
         }
     })
-
 }
 function sale_list(sno) {
     $.ajax({
@@ -126,6 +125,7 @@ let sale_view_modify=(sno)=>{
         })
     })
 }
+
 
 //salepage.html 검색
 function salepage_search(){
