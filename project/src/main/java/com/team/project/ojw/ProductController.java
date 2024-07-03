@@ -19,7 +19,7 @@ public class ProductController {
     ProductDao ProductDao;
 
     //upload 경로
-    public static String upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
+    public static String ojw_upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
 
     @RequestMapping(path="/product")
     public ModelAndView product(String findStr){
@@ -41,7 +41,6 @@ public class ProductController {
     public String product_registerR(
             @RequestParam("files")List<MultipartFile> photo,
             @ModelAttribute ProductVo vo){
-        ModelAndView mv = new ModelAndView();
         List<ojw_PhotoVo> photos = new ArrayList<>();
 
         if (photo != null){
@@ -54,7 +53,7 @@ public class ProductController {
                 // 파일 전송 및 저장
                 uuid = UUID.randomUUID();
                 sysFile = String.format("%s-%s", uuid, f.getOriginalFilename());
-                File saveFile = new File(upload+sysFile);
+                File saveFile = new File(ojw_upload+sysFile);
 
                 try{
                     f.transferTo(saveFile);
@@ -74,8 +73,6 @@ public class ProductController {
             }
         }
         String msg = ProductDao.product_register(vo);
-        mv = product("");
-        mv.addObject(msg, msg);
         return msg;
         }
 }

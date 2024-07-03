@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.team.project.mybatis.MyFactory;
 
+@Service
 @Component
 public class ProductDao {
     SqlSession session;
@@ -32,10 +35,11 @@ public class ProductDao {
         return vo;
     }
     
+    @Transactional
     public String product_register(ProductVo vo){
         String msg="";
         session = new MyFactory().getSession();
-        
+
         int cnt = session.insert("project.product_register", vo);
         if(cnt>0){
             session.commit();
