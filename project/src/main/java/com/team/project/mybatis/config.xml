@@ -12,7 +12,8 @@
 		<typeAlias type="com.team.project.krh.SaleVo" alias="SaleVo" />
 		<typeAlias type="com.team.project.krh.StockVo" alias="StockVo" />
 		<typeAlias type="com.team.project.krh.ProductPhotoVo" alias="ProductPhotoVo" />
-		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo"></typeAlias>
+		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo"/>
+		<typeAlias type="com.team.project.ojw.PurchaseVo" alias="PurchaseVo"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -26,6 +27,8 @@
 		</environment>
 	</environments>
 	<mappers>
+		<mapper resource="com/team/project/mybatis/csy_board.xml" />
 		<mapper resource="com/team/project/mybatis/krhSaleStock.xml" />
+		<mapper resource="com/team/project/mybatis/ojw_PurchaseProduct.xml" />
 	</mappers>
 </configuration>

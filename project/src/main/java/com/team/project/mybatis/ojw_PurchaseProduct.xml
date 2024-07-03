@@ -19,6 +19,4 @@
         select * from purchase
         where no=#{_parameter}
     </select>
-
-
 </mapper>
