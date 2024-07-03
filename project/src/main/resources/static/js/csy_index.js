@@ -1,5 +1,5 @@
 $(function(){
-    // loadLoginPage();
+    loadAuthPage();
     loadMain();
     loadNav();
 })
@@ -10,7 +10,7 @@ $(function(){
 //         type: "GET",
 //         // data: {"findStr" : findStr},       // * 이거 selected icon 넘겨줘야함
 //         success: (resp) => {
-//             let temp = $(resp).find("#loginPage");  // * nav    : nav.html
+//             let temp = $(resp).find("#loginPage");  // * nav    : nav.htm
 //             $("#loginPage").html(temp);          // * navbar : index.html
 //         }
 //     })
@@ -34,6 +34,17 @@ let loadMain = (findStr) => {
         success: (resp) => {
             let temp = $(resp).find(".designGuide");
             $(".content").html(temp);
+        }
+    })
+}
+
+let loadAuthPage = () => {
+    $.ajax({
+        url:"/login",
+        type:"GET",
+        success:(resp)=>{
+            let temp = $(resp).find(".loginPage");
+            $(".authPage").html(temp);
         }
     })
 }

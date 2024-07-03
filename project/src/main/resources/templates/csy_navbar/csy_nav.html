@@ -9,7 +9,7 @@
     <div>
         <div class="nav">
             <!-- 이거 여기 아니면 navbar 버튼 생성되기 전에 onclick이 먼저 나와서 null error 뜸 -->
-            <script defer src="js\csy_navbar.js"></script>
+            <script defer src="js/csy_navbar.js"></script>
             <div style="width:100%;">
                 <!-- * 아이콘 찾는 곳: https://fontawesome.com/search * -->
                 <!-- * 임시 홈, 디자인 가이드: 공지 넣을까 싶음 * -->
@@ -67,14 +67,6 @@
                         <i class="fa-solid fa-feather"></i><h4 style="font-size: 13px;">게시판</h4>
                     </label>
                 </div>
-
-                <!-- * PWG INDEX : 임시 * -->
-                <div class="nav-icon-block">
-                    <input type="radio" name="navbar-elements" id="navBtnToPwgIndex">
-                    <label for="navBtnToPwgIndex" class="navIcon">
-                        <i class="fa-brands fa-github"></i><h4 style="font-size: 13px;">PWG</h4>
-                    </label>
-                </div>
             </div>
             <!-- * 하단 아이콘들 * -->
             <div style="width:100%; align-content: end;">
@@ -100,7 +92,7 @@
                         <div class="profile-menu">
                             <!-- * Q & A * -->
                             <button class="navIcon profile-menu-button" id="navBtnToCS"><i class="fa-regular fa-pen-to-square"></i><h4>고객센터</h4></button>
-                            <!-- * PROFILE * -->
+                            <!-- * PROFILE * <a href="javascript:detail();"> 이거 추가해주세요 -->
                             <button class="navIcon profile-menu-button" id="navBtnToProfileEdit"><i class="fa-regular fa-user"></i><h4>프로필 관리</h4></button>
                             <!-- * LOGOUT * -->
                             <button class="navIcon profile-menu-button" id="navBtnToLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i><h4>로그아웃</h4></button>
@@ -111,4 +103,6 @@
             </div>
         </div>
     </div>
+    <!--sung-->
+    <script defer src="js/sungIndex.js"></script>
 </body>

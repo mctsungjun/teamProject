@@ -1,4 +1,4 @@
-package com.team.project.controller;
+package com.team.project.csy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

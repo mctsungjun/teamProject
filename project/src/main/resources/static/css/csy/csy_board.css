@@ -14,6 +14,17 @@
     letter-spacing: 0.2em;
 }
 
+/* post 아니고 페이지 타이틀, "글 작성", "글 수정" 이런거 */
+.summernote-page-title {
+    width: 100%;
+    text-align: right;
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .boardListTitle {
     width: 180px;
     /* 드래그 방지 구문: 그냥 지저분해서  */
@@ -43,7 +54,7 @@
     letter-spacing: .1rem;
 }
 
-#board .item_title{font-weight: 400; font-size: 17px; background-color: var(--purple); }
+#board .item_title{ font-weight: 400; font-size: 17px; background-color: var(--purple); }
 #board span.sno { width: 80px; }
 #board span.id { width: 100px; }
 #board span.title { flex-grow: 1; }
@@ -53,3 +64,115 @@
 
 #board .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
 #board .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }
+
+
+
+/* Board Detail CSS */
+.board-detail-comment-title-background {
+    width: 100%;
+    height:48px;
+    margin-top: 38px;
+    margin-bottom: 10px;
+    background-color: var(--purple);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.board-detail-comments-title-text {
+    font-size: 18px; 
+    margin-left: 20px;
+    line-height: 48px;
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.board-detail-comment {
+    padding: 24px 20px 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+}
+
+.board-detail-replies {
+    padding: 20px 20px 24px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+}
+
+.board-detail-img-div .board-detail-img {
+    padding-top: 0;
+    margin-top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    margin-right: 22px;
+
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.board-detail-text-div .board-detail-comment-button {
+    margin-left: 12px;
+    /* appearance: none; */
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+}
+
+
+.board-detail-text-div .board-detail-comment-button:first {
+    margin-left: 0px;
+}
+
+.board-detail-comment .board-detail-text-div {
+    display: block;
+    flex-grow: 1;
+}
+
+.board-detail-comment-specials {
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-detail-text-div .board-detail-comment-nickname {
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.board-detail-text-div .board-detail-comment-nickname:hover {
+    color: var(--purple);
+    cursor: pointer;
+}
+
+.board-detail-comment-buttons {
+    display: inline-block;
+}
+
+.board-detail-comment-button:hover {
+    color: var(--purple);
+    cursor: pointer;
+}
+
+.board-detail-comment-comment, .board-detail-comment-reply {
+    display: block;
+    font-weight: 300;
+}
+
+.board-comment-write-box {
+    display: flex;
+    padding: 40px 20px 0px 20px;
+}
+
+.board-comment-textarea {
+    flex-grow: 1;
+    background-color: transparent;
+    height: 72px;
+    width: 100%;
+    resize: none;
+    padding: 5px 8px 5px 8px;
+}

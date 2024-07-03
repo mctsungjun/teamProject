@@ -8,17 +8,25 @@
 </head>
 <body>
     <h4>카카오 인증이 완료되었습니다.</h4>
-    <input type="hidden" class="loginId">[[session.id]] 
+    <input type="hidden" class="loginId" th:value="${session.id}"/> 
 </body>
 <script>
     window.onload = function() {
         let loginId = document.querySelector(".loginId").value;
-        sessionStorage.setItem("id",loginId);
-        sessionStorage.setItem("name",name);
-        window.opener.location.href="/";
+        // sessionStorage.setItem("id",loginId);
+        // sessionStorage.setItem("name",name);
+        if( loginId === "sns 아이디 등록실패"){
+            alert("회원가입해주세요!");
+            
+            window.close();
+        
+        }else{
+
+            window.opener.location.href="/indexx";
+            window.close();
+        }
        
-        // 자신(현재 창) 닫기
-        window.close();
+      
     };
 </script>
 </html>
