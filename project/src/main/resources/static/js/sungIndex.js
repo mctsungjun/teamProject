@@ -159,13 +159,13 @@ var search=()=>{
 	}				
 
 //회원가입 버튼 클릭됨-----------------------------------------
-var registerForm=()=>{
+export function registerForm() {
     $.ajax({
         url:"/sung/registerF",
         type:"GET",
         success:(resp)=>{
             let temp=$(resp).find(".register");
-            $(".content").html(temp);
+            $(".authPage").html(temp);
         }
     })
 }
@@ -298,7 +298,7 @@ function btnMemberOff(){
                     type: "GET",
                     success: (resp) => {
                         let temp = $(resp).find(".change");  
-                        $(".content").html(temp);                
+                        $(".authPage").html(temp);                
                     }
                 })
 				
@@ -310,21 +310,17 @@ function btnMemberOff(){
 
 
 //아이디/비번 찾기폼------------------------------------
-  
-function findIdPwd() {
-       
-
-        $.ajax({
-            url:"/sung/findIdPwd",
-            type: "GET",
-            success: (resp)=> {
-                
-                // 응답 처리
-                let temp = $(resp).find(".change");
-                $(".change").html(temp);
-            }
-        });
-    };
+export function findIdPwd() {
+	$.ajax({
+		url:"/sung/findIdPwd",
+		type: "GET",
+		success: (resp)=> {
+		// 응답 처리
+		let temp = $(resp).find(".findIdPw");
+		$(".authPage").html(temp);
+		}
+    });
+};
 
 // // 아이디/비번찾기 함수들-------------------------------------------
 // function inputSendit(num) {
@@ -334,8 +330,8 @@ function findIdPwd() {
 // }
 
 
-function idpwsearch()
-{	let a = goAndStay();
+export function idpwsearch() {
+	let a = goAndStay();
 	
 	if(a==="ok"){
 		var passSearchForm2 = document.passSearchForm2
@@ -602,7 +598,16 @@ function updateEmailInput(){
     email2.value = selectedValue;
 }   
 
-
+export function returnToLoginPage() {
+	$.ajax({
+        url:"/login",
+        type:"GET",
+        success:(resp)=>{
+            let temp = $(resp).find(".loginPage");
+            $(".authPage").html(temp);
+        }
+    })
+}
 
        
 

@@ -30,7 +30,7 @@ public class CsyBoardDao {
 
     SqlSession session = getSession();
     
-    
+
 
     public Map<String, Object> detail(String sno) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -50,6 +50,10 @@ public class CsyBoardDao {
 
         // * COMMENTS 관련 */
         List<CsyBoardCommentVo> commentList = session.selectList("csyBoard.commentList", sno);
+
+        for (CsyBoardCommentVo comment : commentList) {
+            comment.replies = session.selectList("csyBoard.commentListReply", comment);
+        }
 
         System.out.println(commentList);
         map.put("boardVo", boardVo);
@@ -145,8 +149,20 @@ public class CsyBoardDao {
 
     public boolean commentDelete(String sno) {
         boolean isSucceeded = false;
-        int cnt = session.delete("csyBoard.commentDelete", Integer.parseInt(sno));
+        int cnt;
 
+        int numOfReplies = session.selectOne("csyBoard.commentNumberOfReplies", Integer.parseInt(sno));
+        System.out.println(numOfReplies);
+        if (numOfReplies == 0) {
+            cnt = session.delete("csyBoard.commentDelete", Integer.parseInt(sno));
+        } else {
+            CsyBoardCommentVo vo = new CsyBoardCommentVo();
+            vo.setSno(Integer.parseInt(sno));
+            vo.setId("DELETED COMMENT");
+            vo.setContent("삭제된 덧글입니다.");
+            cnt = session.update("csyBoard.commentModify", vo);
+        }
+        
         if(cnt>0) {
             session.commit();
             isSucceeded = true;
@@ -154,6 +170,19 @@ public class CsyBoardDao {
             session.rollback();
         }
 
+        return isSucceeded;
+    }
+
+    public boolean commentModify(CsyBoardCommentVo vo) {
+        boolean isSucceeded = false;
+        int cnt = session.update("csyBoard.commentModify", vo);
+
+        if(cnt>0){
+            session.commit();
+            isSucceeded = true;
+        }else{
+            session.rollback();
+        }
         return isSucceeded;
     }
 }

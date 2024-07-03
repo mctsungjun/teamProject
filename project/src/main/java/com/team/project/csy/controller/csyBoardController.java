@@ -100,4 +100,9 @@ public class csyBoardController {
     public boolean boardDetailCommentDelete(String sno) {
         return BoardDao.commentDelete(sno);
     }
+
+    @RequestMapping("/board/detail/comments/modify")
+    public boolean boardDetailCommentModify(CsyBoardCommentVo vo) {
+        return BoardDao.commentModify(vo);
+    }
 }

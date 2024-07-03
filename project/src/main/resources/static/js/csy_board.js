@@ -126,7 +126,6 @@ export function csyPostComment(frm) {
     var user_id = "SampleID";
     frm.id.value = user_id;
     let form = $(frm).serialize();
-    // alert(frm.id.value);
     console.log(form);
     $.ajax({
         url : "/board/detail/comments/post",
@@ -146,6 +145,19 @@ export function csyDeleteComment(sno, post_sno) {
         url : "/board/detail/comments/delete",
         type: "POST",
         data: {"sno": sno},
+        success: (resp)=> {
+            csyDetail(post_sno);
+        }
+    })
+}
+
+export function csyModifyComment(frm, post_sno) {
+    let form = $(frm).serialize();
+    console.log(form);
+    $.ajax({
+        url : "/board/detail/comments/modify",
+        type: "POST",
+        data: form,
         success: (resp)=> {
             csyDetail(post_sno);
         }

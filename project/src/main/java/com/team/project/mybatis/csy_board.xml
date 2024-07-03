@@ -78,7 +78,14 @@
     </select>
 
     <select id="commentList" parameterType="String" resultType="CsyBoardCommentVo">
-        select * from board_comments where post_sno=#{_parameter} order by nal ASC
+        select * from board_comments where post_sno=#{_parameter} and reply_sno=0 order by nal ASC
+    </select>
+    <select id="commentListReply" parameterType="CsyBoardCommentVo" resultType="CsyBoardCommentVo">
+        select * from board_comments where post_sno=#{post_sno} and reply_sno=#{sno} order by nal ASC
+    </select>
+
+    <select id="commentNumberOfReplies" parameterType="CsyBoardCommentVo" resultType="int">
+        select count(sno) from board_comments where reply_sno=#{sno} order by nal ASC
     </select>
 
     <insert id="commentPost" parameterType="CsyBoardCommentVo">
@@ -88,4 +95,13 @@
     <delete id="commentDelete" parameterType="int">
         delete from board_comments where sno=#{_parameter}
     </delete>
+
+    <update id="commentModify" parameterType="CsyBoardCommentVo">
+        <if test='id != null'>
+            update board_comments SET content=#{content}, id=#{id} WHERE sno=#{sno}
+        </if>
+        <if test='id == null'>
+            update board_comments SET content=#{content} WHERE sno=#{sno}
+        </if>
+    </update>
 </mapper>

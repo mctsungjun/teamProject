@@ -62,16 +62,7 @@
             <button type="button" class="btnRegister purple-text-button btnBoardNewPost" style="width:100px">새 글 작성</button>
             </div>
 
-            <!-- <div class="pageZone" th:if="${page != null }">
-
-				<th:block th:if="${page.nowPage gt 1}">
-					<button type="button" th:onclick="|move(${page.nowPage-1})|">&lt</button>
-				</th:block>
-
-				<th:block th:if="${page.totPage gt page.nowPage}">
-					<button type="button" th:onclick="|move(${page.nowPage+1})|">&gt</button>
-				</th:block>
-			</div> -->
+            <!-- * 페이징 * -->
             <div class="paging-buttons">
             <th:block th:if="${pageVo.nowPage gt 10}">
                 <button class="paging-button" style="width:80px;" th:onClick="pageRedirection([[${(pageVo.nowPage -10) / 10 * 10 + 1}]])">이전</button>

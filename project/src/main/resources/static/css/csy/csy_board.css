@@ -54,7 +54,7 @@
     letter-spacing: .1rem;
 }
 
-#board .item_title{font-weight: 400; font-size: 17px; background-color: var(--purple); }
+#board .item_title{ font-weight: 400; font-size: 17px; background-color: var(--purple); }
 #board span.sno { width: 80px; }
 #board span.id { width: 100px; }
 #board span.title { flex-grow: 1; }
@@ -68,6 +68,25 @@
 
 
 /* Board Detail CSS */
+.board-detail-comment-title-background {
+    width: 100%;
+    height:48px;
+    margin-top: 38px;
+    margin-bottom: 10px;
+    background-color: var(--purple);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.board-detail-comments-title-text {
+    font-size: 18px; 
+    margin-left: 20px;
+    line-height: 48px;
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 .board-detail-comment {
     padding: 24px 20px 24px 20px;
@@ -75,9 +94,13 @@
     display: flex;
 }
 
-/* .board-detail-img-div {
-    width: 72px;
-} */
+.board-detail-replies {
+    padding: 20px 20px 24px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+}
 
 .board-detail-img-div .board-detail-img {
     padding-top: 0;
@@ -86,10 +109,18 @@
     height: 50px;
     border-radius: 15px;
     margin-right: 22px;
+
+    /* 드래그 방지 구문: 그냥 지저분해서  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .board-detail-text-div .board-detail-comment-button {
     margin-left: 12px;
+    /* appearance: none; */
+    /* 드래그 방지 구문: 그냥 지저분해서  */
 }
 
 
@@ -118,17 +149,18 @@
     cursor: pointer;
 }
 
-.board-detail-text-div .board-detail-comment-buttons {
+.board-detail-comment-buttons {
     display: inline-block;
 }
 
-.board-detail-text-div .board-detail-comment-button:hover {
+.board-detail-comment-button:hover {
     color: var(--purple);
     cursor: pointer;
 }
 
-.board-detail-text-div .board-detail-comment-comment {
+.board-detail-comment-comment, .board-detail-comment-reply {
     display: block;
+    font-weight: 300;
 }
 
 .board-comment-write-box {
@@ -136,14 +168,11 @@
     padding: 40px 20px 0px 20px;
 }
 
-.board-comment-write-box .board-comment-textarea {
+.board-comment-textarea {
     flex-grow: 1;
     background-color: transparent;
     height: 72px;
     width: 100%;
     resize: none;
-}
-
-.board-comment-write-box .board-comment-textarea:focus {
-    border: solid 1px var(--purple);
+    padding: 5px 8px 5px 8px;
 }

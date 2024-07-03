@@ -24,16 +24,16 @@ function joinformBtn() {
                 type:"GET",
                 success:(resp)=>{
 			let temp = $(resp).find(".change");
-			         $(".content").html(temp);
-                }
-              })        
+                $(".content").html(temp);
+            }
+            })
         },
         error: function(xhr, status, error) {
             console.error('AJAX 오류 발생:', status, error);
             // 오류 발생 시 처리할 코드를 추가할 수 있습니다.
         }
-    });   
-     } 
+    });
+    }
     
     }else{
         alert("check me out 체크해주세요");
