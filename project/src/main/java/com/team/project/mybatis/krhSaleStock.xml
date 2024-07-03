@@ -39,9 +39,21 @@
         where nal=#{nal}
     </update>
 
-    <select id="searchstock" parameterType="String" resultType="StockVo">
+    <select id="stocksearch" parameterType="String" resultType="StockVo">
         select * from stock
         where ProductCode like '%${findStr}%'
         or ProductName like '%${findStr}%'
+    </select>
+
+    <!--재고 그래프-->
+    <select id="stockgraph" parameterType="map" resultType="StockVo">
+        select * from stock
+    </select>
+
+    <select id="salepagesearch" parameterType="String" resultType="ProductVo">
+        select * from product
+        where productName like '%${findStr2}'
+        or spec like '%${findStr2}'
+        or productCode like '%${findStr2}'
     </select>
 </mapper>

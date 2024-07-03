@@ -9,7 +9,7 @@ function sale(){
         type:"GET",
         success:(resp)=>{
             let temp=$(resp).find(".big");
-            $('.content').html(temp);
+            $('.big').html(temp);
             search();
         }
     })

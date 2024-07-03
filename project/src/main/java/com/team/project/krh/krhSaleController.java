@@ -3,6 +3,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.team.project.ojw.ProductVo;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -68,5 +71,13 @@ public class krhSaleController {
         mv.setViewName("krh/sale_list");
         return mv;
     }
-}
 
+    @RequestMapping(path="/salepage")
+    public ModelAndView salepagesearch(String findStr2){
+        ModelAndView mv = new ModelAndView();
+        List<ProductVo> list = saleDao.salepagesearch(findStr2);
+        mv.addObject("salepage",list);
+        mv.setViewName("krh/salepage");
+        return mv;
+    }
+}

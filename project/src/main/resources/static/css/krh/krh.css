@@ -141,20 +141,27 @@
 }
 
 /*재고관리*/
+
+.stockbottom{
+    width:1200px;
+    margin:50px auto;
+}
 .stockleft{
-    width:550px;
+    width:450px;
     text-align: left;
     margin-top: 48px;
     float: left;
+    margin-right:100px;
     
 }
 .stockright{
-    width:500px;
+    width:450px;
     text-align: left;
     margin-top: 100px;
     border: 1px solid black;
-    min-height: 100px;
+    min-height: 400px;
     float: right;
+    margin-left:100px;
 }
 .stock h1{
     margin-top:50px;
@@ -167,14 +174,14 @@
     width:100%;
     table-layout: fixed;
 }
-.item{
-    border-bottom: 1px solid rgb(130, 130, 130);
+
+.stocklist .stockitem{
+    border-collapse: collapse;
     text-align: center;
-    padding:5px;
+    width:100%;
+    table-layout: fixed;
 }
-.stockitem:hover{
-    background-color: rgb(231, 231, 231);
-}
+
 .stocklist span{
     display:inline-block;
     text-align: center;
@@ -194,6 +201,11 @@
     text-align: right;
     margin-bottom:20px;
 }
+
+/*재고 그래프 */
+
+
+
 .sale h1{
     text-align: center;
 }
