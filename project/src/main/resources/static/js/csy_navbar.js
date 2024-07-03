@@ -14,9 +14,7 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 document.querySelector("#navBtnToProduct").onclick = () => { }
 
 // * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { 
-
-}
+document.querySelector("#navBtnToStock").onclick = () => { }
 
 
 // * 구매 정보 관리
@@ -79,27 +77,20 @@ document.querySelector("#navBtnToCS").onclick = () => {
     });
 }
 
-
-
 // * 프로필 관리
-document.querySelector("#navBtnToProfileEdit").onclick = () => { 
+document.querySelector("#navBtnToProfileEdit").onclick = () => {
     $.ajax({
 		url:"/sung/detail",
 		type:"GET",
-		// data:{"id":id,"name":name},
 		success:(resp)=>{
-			let temp = $(resp).find(".change");
+			let temp = $(resp).find(".myProfilePage");
 			$(".content").html(temp);
-			if(resp==="logout"){
-				console.log(resp);
-				
-			}
 		}
 	})
 }
 
 // * 로그아웃
-document.querySelector("#navBtnToLogout").onclick = () => { 
+document.querySelector("#navBtnToLogout").onclick = () => {
     // sung
         $.ajax({
             url:"/sung/logout",
