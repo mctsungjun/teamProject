@@ -11,31 +11,27 @@ import com.team.project.mybatis.MyFactory;
 public class SaleDao {
     SqlSession session;
     public SaleDao(){
-        session=new MyFactory().getSession();
+        session= new MyFactory().getSession();
     }
 
     public List <SaleVo> search(String findStr){
         List<SaleVo> list=null;
-        SqlSession session=new MyFactory().getSession();
+        session=new MyFactory().getSession();
         list = session.selectList("salestock.search",findStr);
-        session.close();
         return list;
     }
 
     public SaleVo sale_view(Integer sno){
         session=new MyFactory().getSession();
         SaleVo vo=session.selectOne("salestock.view",sno);
-
-        session.close();
         return vo;
     }
+
     public SaleVo select(Integer sno){
         System.out.println("sno:"+sno);
         SaleVo vo=null;
         session=new MyFactory().getSession();
         vo = session.selectOne("salestock.select",sno);
-
-        session.close();
         return vo;
     }
 
@@ -49,7 +45,6 @@ public class SaleDao {
         }else{
             session.rollback();
         }
-        session.close();
         return isDaoSuccess;
     }
 }

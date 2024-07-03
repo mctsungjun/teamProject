@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="js\msmQa.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="css\qa\msmQa.css">
+</head>
+<body id="qa-container">  
+    <!--06.26 추가-->
+    <div id="index">
+        <div class="navbar"></div>
+    
+        <!--msm 기존 코드-->
+<div>
+    <div id="qaBoard">
+        <style>
+            /* css가 작용되지 않아 임시 */
+            .topTitle{
+                font-size:100px;
+                color:white;
+                margin-left:300px;
+            }
+            .search-wrap{
+                height:60px;
+                width:1300px;
+                margin-left: 1300px;
+            }
+            .search input{ 
+                width: 300px;
+                height: 30px;
+                border: 1px solid #1e202b;
+                border-bottom: 1px solid #8753fb;
+                background-color: #1e202b;
+                box-shadow: none;
+                
+            }
+            .btnSearch{
+                width:60px;
+                height:30px;
+                margin-top:10px;
+                border: 1px solid #8753fb;
+                background-color: #8753fb;
+                color: white;
+            }
+            .board-table {
+                font-size: 14px;
+                width: 100%;
+                margin-top: 50px;
+            }
+            .board-table th, .board-table td {
+                padding: 14px 0;
+                color:white;
+                text-align: center;
+                font-size:24px;
+            }
+            .board-table tbody td {
+                border-bottom: 1px solid #e7e7e7;
+                text-align: center;
+                color:white;
+            }
+            .board-table thead th{
+                background-color:#8753fb;
+            }
+            .btnAdd{
+                margin-top: 10px;
+                border:1px solid #1e202b;
+                background-color: #8753fb;
+                color:white;
+                float:right;
+                width:70px;
+                height:35px;
+            }
+            .btnMain{
+                margin-right: 5px;
+                margin-top: 10px;
+                border:1px solid #1e202b;
+                background-color: #8753fb;
+                color:white;
+                float:right;
+                width:70px;
+                height:35px;
+            }
+        </style>
+        <div class="topContainer">
+            <label for="search" class="topTitle">QA</label>
+            <form id="searchFrm" class="search" action="#" method="GET">
+                <div class="search-wrap">
+                    <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
+                    <button type="submit" class="btnSearch">검색</button>
+                </div>
+            </form>
+        </div>
+    
+    
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="num">번호</th>
+                        <th scope="col" class="title">제목</th>
+                        <th scope="col" class="writer">작성자</th>
+                        <th scope="col" class="date">등록일</th>
+                        <th scope="col" class="action">작업</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>대충 질문내용</td>
+                        <td>작성자</td>
+                        <td>2024.06.18</td>
+                        <td><!--현재 버튼에 이미지가 적용되지 않음-->
+                            <button type="button" class='btnArrow' id="btnArrow">
+                                <img href="https://ibb.co/ygYHQfL" width="20" height="20">
+                            </button>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>2</td>
+                        <td>대충 질문내용</td>
+                        <td>작성자</td>
+                        <td>2024.06.18</td>
+                        <td>
+                            <button type="button" class='btnArrow' id="btnArrow">
+                                <img src="" width="20" height="20">
+                            </button>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>1</td>
+                        <td>대충 질문내용</td>
+                        <td>작성자</td>
+                        <td>2024.06.18</td>
+                        <td>
+                            <button type="button" class='btnArrow' id="btnArrow">
+                                <img src="" width="20" height="20">
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btnAdd" >작성</button>
+            <button type="button" class="btnMain">메인화면</button>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

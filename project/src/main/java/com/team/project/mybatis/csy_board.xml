@@ -10,18 +10,35 @@
     </select> -->
     <insert id="post" parameterType="CsyBoardVo">
         insert into board(id, title, content) values (#{id}, #{title}, #{content})
+        <selectKey keyProperty="sno" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <update id="modify" parameterType="CsyBoardVo">
         UPDATE board SET title=#{title}, content=#{content} WHERE sno=#{sno}
     </update>
 
-    <select id="search" parameterType="String" resultType="CsyBoardVo">
-        select * from board
-        where id like '%${_parameter}%'
-        or title like '%${_parameter}%'
-        or content like '%${_parameter}%'
-        order by nal desc
+    <select id="search" parameterType="CsyBoardListPageVo" resultType="CsyBoardVo">
+        select sno, title, id, nal, likes, hits from board
+		<where>
+			<if test="findStr != ''">
+				id like '%${findStr}%'
+                or title like '%${findStr}%'
+			</if>
+		</where>
+        order by sno desc
+        limit #{startNo}, #{listSize}
+    </select>
+
+    <select id="numOfPosts" parameterType="String" resultType="int">
+        select count(sno) from board
+		<where>
+			<if test="findStr != ''">
+				id like '%${_parameter}%'
+                or title like '%${_parameter}%'
+			</if>
+		</where>
     </select>
 
     <update id="addHits" parameterType="String">
@@ -32,9 +49,59 @@
         select sno, likes, hits, title, content, id, nal from board
         where sno=#{_parameter}
     </select>
-    
 
     <select id="delete" parameterType="String">
-        delete from board where sno=#{_parameter}
+        delete from board where sno=#{_parameter};
+        delete from board_likes where post_sno=#{_parameter};
     </select>
+
+    <select id="postLikeCounter" parameterType="String" resultType="String">
+        select count(user_id) from board_likes where post_sno=#{_parameter}
+    </select>
+
+    <select id="postUserLikeCounter" parameterType="CsyBoardLikesVo" resultType="String">
+        select count(user_id) from board_likes where post_sno=#{post_sno} and user_id=#{user_id}
+    </select>
+
+    <insert id="postLikePressed" parameterType="CsyBoardLikesVo">
+        insert into board_likes(post_sno, user_id) values (#{post_sno}, #{user_id});
+        UPDATE board SET likes=likes+1 WHERE sno=#{post_sno}
+    </insert>
+
+    <delete id="postLikeUnpressed" parameterType="CsyBoardLikesVo">
+        delete from board_likes where post_sno=#{post_sno} and user_id=#{user_id};
+        UPDATE board SET likes=likes-1 WHERE sno=#{post_sno}
+    </delete>
+
+    <select id="detailLikedByMe" parameterType="CsyBoardVo" resultType="int">
+        select count(post_sno) from board_likes where post_sno=#{sno} and user_id=#{viewersId}
+    </select>
+
+    <select id="commentList" parameterType="String" resultType="CsyBoardCommentVo">
+        select * from board_comments where post_sno=#{_parameter} and reply_sno=0 order by nal ASC
+    </select>
+    <select id="commentListReply" parameterType="CsyBoardCommentVo" resultType="CsyBoardCommentVo">
+        select * from board_comments where post_sno=#{post_sno} and reply_sno=#{sno} order by nal ASC
+    </select>
+
+    <select id="commentNumberOfReplies" parameterType="CsyBoardCommentVo" resultType="int">
+        select count(sno) from board_comments where reply_sno=#{sno} order by nal ASC
+    </select>
+
+    <insert id="commentPost" parameterType="CsyBoardCommentVo">
+        insert into board_comments(post_sno, id, reply_sno, content) values (#{post_sno}, #{id}, #{reply_sno}, #{content})
+    </insert>
+
+    <delete id="commentDelete" parameterType="int">
+        delete from board_comments where sno=#{_parameter}
+    </delete>
+
+    <update id="commentModify" parameterType="CsyBoardCommentVo">
+        <if test='id != null'>
+            update board_comments SET content=#{content}, id=#{id} WHERE sno=#{sno}
+        </if>
+        <if test='id == null'>
+            update board_comments SET content=#{content} WHERE sno=#{sno}
+        </if>
+    </update>
 </mapper>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div class="nav">
+            <!-- 이거 여기 아니면 navbar 버튼 생성되기 전에 onclick이 먼저 나와서 null error 뜸 -->
+            <script defer src="js\csy_navbar.js"></script>
+            <div style="width:100%;">
+                <!-- * 아이콘 찾는 곳: https://fontawesome.com/search * -->
+                <!-- * 임시 홈, 디자인 가이드: 공지 넣을까 싶음 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToDesignGuide" checked="checked">
+                    <label for="navBtnToDesignGuide" class="navIcon">
+                        <i class="fa fa-home"></i><h4 style="font-size: 13px; margin-top: 2px;">임시</h4>
+                    </label>
+                </div>
+
+                <!-- * 제품관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToProduct">
+                    <label for="navBtnToProduct" class="navIcon">
+                        <i class="fa-solid fa-gift"></i><h4 style="font-size: 12px;">제품관리</h4>
+                    </label>
+                </div>
+
+                <!-- * 재고관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToStock">
+                    <label for="navBtnToStock" class="navIcon">
+                        <i class="fa-solid fa-boxes-stacked"></i><h4 style="font-size: 12px;">재고관리</h4>
+                    </label>
+                </div>
+
+                <!-- * 구매정보관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToBuyInfo">
+                    <label for="navBtnToBuyInfo" class="navIcon">
+                        <i class="fa-solid fa-basket-shopping"></i><h4 style="font-size: 12px;">구매정보</h4>
+                    </label>
+                </div>
+
+                <!-- * 판매정보관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToSellInfo">
+                    <label for="navBtnToSellInfo" class="navIcon">
+                        <i class="fa-solid fa-hand-holding-dollar"></i><h4 style="font-size: 12px;">판매정보</h4>
+                    </label>
+                </div>
+
+                <!-- * 판매정보관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToSell">
+                    <label for="navBtnToSell" class="navIcon">
+                        <i class="fa-solid fa-basket-shopping"></i><h4 style="font-size: 12px;">판매관리</h4>
+                    </label>
+                </div>
+
+                <!-- * 거래처 관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToPartners">
+                    <label for="navBtnToPartners" class="navIcon">
+                        <i class="fa-solid fa-people-arrows"></i><h4 style="font-size: 13px;">거래처</h4>
+                    </label>
+                </div>
+                
+                <!-- * 게시판 + 공지사항? * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToBoard">
+                    <label for="navBtnToBoard" class="navIcon">
+                        <i class="fa-solid fa-feather"></i><h4 style="font-size: 13px;">게시판</h4>
+                    </label>
+                </div>
+
+                <!-- * 공지사항 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToAnnouncement">
+                    <label for="navBtnToAnnouncement" class="navIcon">
+                        <i class="fa-solid fa-bullhorn"></i><h4 style="font-size: 12px;">공지사항</h4>
+                    </label>
+                </div>
+            </div>
+            <!-- * 하단 아이콘들 * -->
+            <div style="width:100%; align-content: end;">
+                <!-- * 회원정보관리 * -->
+                <div class="nav-icon-block">
+                    <input type="radio" name="navbar-elements" id="navBtnToAdmin">
+                    <label for="navBtnToAdmin" class="navIcon">
+                        <i class="fa-brands fa-black-tie"></i><h4 style="font-size: 13px;">ADMIN</h4>
+                    </label>
+                </div>
+                <!-- * HOVER or CLICK으로 profile-menu 나오게 만듬 * -->
+                    <div class="user-profile-block">
+                        
+                        <div class="profile-boarder">
+                            <div class="profile-boarder1">
+                                
+                        <!-- <div class="user-profile-image-border"> -->
+                            <!-- <div class="user-profile-image-border-inside"> -->
+                            </div>
+                        </div>
+                        <!-- * 여기다 프로필 이미지 -->
+                        <img src="https://picsum.photos/200"  class="user-profile-image" alt="User Profile Image">
+                        <div class="profile-menu">
+                            <!-- * Q & A * -->
+                            <button class="navIcon profile-menu-button" id="navBtnToCS"><i class="fa-regular fa-pen-to-square"></i><h4>고객센터</h4></button>
+                            <!-- * PROFILE * -->
+                            <button class="navIcon profile-menu-button" id="navBtnToProfileEdit"><i class="fa-regular fa-user"></i><h4>프로필 관리</h4></button>
+                            <!-- * LOGOUT * -->
+                            <button class="navIcon profile-menu-button" id="navBtnToLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i><h4>로그아웃</h4></button>
+                        </div>
+                    </div>
+                    <!-- <button class="navIcon"><i class="fa fa-home"></i><h4 style="font-size: 13px; margin-top: 2px;">프로필</h4></button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -7,36 +7,32 @@
 </head>
 <body>
     <div>
-        <div class="change">
-           <div class="container col-md-6">
-            <div class="row">
-                
-                <div class="h2 text-center"><strong>아이디/비밀번호 찾기</strong></div>
-                <div class="h4 text-center">아이디/비밀번호가 생각나지 않으세요?</div>        
+        <div class="findIdPw" style="display: flex; justify-content: center; height: 100%; align-items: center;">
+            <script>
+                async function idpwsearch() {
+                    let obj = await import ('/js/sungIndex.js');
+                    obj.idpwsearch();
+                    }
 
-            </div>
-                    <!-- Find Account : 아이디 찾기-->
-            <div class="row">
-               <form method="post" name="idsearch_form2" id="idsearch_form2"  onsubmit="idpwsearch(2);event.returnValue = false;">
-                            <input type="hidden" name="find_mode" value="2">
-                                    <div class="form-control mt-5">
-                                        <div class="text-bg-info text-center">회원가입시 입력하셨던 이름과 이메일을 입력해 주시면 회원정보를 이메일로 보내드립니다.</div>
-                                        <ul class="row">
-                                            <li class="mt-5"><label for="email_name" class="form-label">이름</label><input type="text" class="form-control" id="email_name" name="name" onKeyDown="inputSendit(2);"></li>
-                                            <li class="mt-5"><label for="email" class="form-label">이메일</label><input type="text" id="email" class="form-control" name="email" onKeyDown="inputSendit(2);"></li>
-                                        </ul>
-                                        <p class="btn btn-outline-primary  mt-3 d-grid gap-2"><a href="javascript:idpwsearch(2);">확인</a></p>
-                                    </div>
-                            </div>
+                    async function returnToLoginPage() {
+                    let obj = await import ('/js/sungIndex.js');
+                    obj.returnToLoginPage();
+                    }
+            </script>
+            <div style="width: 400px; text-align: center; margin-top: -3%">
+            <h1 class="no-drag" style='color: var(--white); letter-spacing: 5px; font-weight: 300; font-size: 30px; margin-bottom: 20px;'>내 계정 찾기</h1>
+            <h5 style="color: rgba(255, 255, 255, 0.7); font-weight: 200; margin-bottom: 56px; line-height:20px; letter-spacing: 2px;">회원가입시 입력하셨던 정보를 입력해 주시면<br> 회원정보를 이메일로 보내드립니다.</h5>
+               <form method="post" name="passSearchForm2" id="passSearchForm2" >
+                                        <input type="text" class="form-control login-text-input" style="margin-bottom: 34px;" name="name" placeholder="이름" id="findIdPw_name"><!-- id="email_name" -->
+                                        <input type="text" class="form-control login-text-input" style="margin-bottom: 48px;"name="email" placeholder="이메일"  id="findIdPw_email">
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <button type="button" class="purple-text-button" style="width:47%; height:40px;" onclick="returnToLoginPage()">취소</button>
+                                                <button type="button" class="purple-text-button" style="width:47%; height:40px;" onclick="idpwsearch();">확인</button>
+                                            </div>
                         </form> 
-            </div>        
-                
-    
-                   
+                    </div>
             </div>
-    </div> 
-        </div>
-        
+        </div> 
     </div>
 </body>
 </html>
