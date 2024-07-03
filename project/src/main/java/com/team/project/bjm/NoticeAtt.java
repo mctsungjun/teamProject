@@ -6,6 +6,7 @@ import lombok.Data;
 public class NoticeAtt {
     int sno;
     int pSno;
+    
     String noticeId;
     String oriFile;
     String sysFile;

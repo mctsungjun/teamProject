@@ -9,33 +9,36 @@
           insert into notice(id, title, content) values(#{id}, #{title}, #{content})
     </insert>
     <!-- Post-AttRegister -->
-    <insert id="postAtt" parameterType="NoticeAtt">
-        insert into noticeAtt(noticeId, oriFile, sysFile) values
+    <insert id="postAtt" parameterType="Map">
+        insert into noticeAtt(sno, oriFile, sysFile) values
         <!-- attFiles로 저장 -->
         <foreach collection="attFiles" item="f" separator=",">
-            (#{noticeId}, #{f.oriFile}, #{f.sysFile})
+            (#{pSno}, #{f.oriFile}, #{f.sysFile})
         </foreach>
     </insert>
+    <!-- 첨부파일 조회 -->
+    <select id="attFiles" parameterType="Integer" resultType="NoticeAtt">
+        select * from noticeAtt
+        where sno = #{sno}
+    </select>
     <!-- Post-Modify -->
-    <update id="modify" parameterType="NoticeVo">
+    <!-- <update id="modify" parameterType="NoticeVo">
         update notice set title=#{title}, content=#{content}
-        <!-- sno로 할지 id로 할지? 어차피 selectOne으로 찾아서 넣는거니 생각좀해보자 -->
         where sno=#{sno}
-    </update>
+    </update> -->
     <!-- Post-hit -->
-    <update id="postHit" parameterType="Integer">
+    <!-- <update id="postHit" parameterType="Integer">
         update notice set hit=hit + 1 
         where sno=#{_parameter}
-    </update>
+    </update> -->
     <!-- search -->
     <select id="search" parameterType="NoticePage" resultType="NoticeVo">
-        select sno, id, title, hit, contetnt, date_format(nal, "%Y-%m-%d") nal,
-        concat(lapd(' ', deep*12, <![CDATA['&nbsp;&nbsp;']]>), title) title from notice
+        select sno, id, title, hit, content, date_format(nal, "%Y-%m-%d") nal,
+        title from notice
         <where>
-            <if test="findStr != null and findStr != ''">
-                <!-- concat을 사용한 sql인젝션방지? 검색에서 필요할까? -->
-                (title like CONCAT('%', #{findStr}, '%')
-                or content like CONCAT('%', #{findStr}, '%'))
+            <if test="findStr != ''">
+                id like '%${findStr}%'
+                or title like '%${findStr}%'
             </if>
         </where>
         order by sno desc
@@ -45,20 +48,19 @@
     <select id="totSize" parameterType="String" resultType="Integer">
         select count(sno) from notice
         <where>
-            <if test="findStr != null and findStr != ''">
-                id like '%${_parameter}%'
-                or title like '%${_parameter}%'
+            <if test="findStr != ''">
+                id like '%${findStr}%'
+                or title like '%${findStr}%'
             </if>
         </where>
     </select>
     <!-- delete -->
-    <select id="delete" parameterType="String" resultType="NoticeVo">
+    <!-- <select id="delete" parameterType="String" resultType="NoticeVo">
         delete from notice where sno=#{_parameter}
-    </select>
+    </select> -->
     <!-- view -->
-    <select id="view" parameterType="String" resultType="">
+    <select id="view" parameterType="Integer" resultType="NoticeVo">
         select sno, title, content, id, hit, nal from notice
         where sno=#{_parameter}
     </select>
-    
 </mapper>

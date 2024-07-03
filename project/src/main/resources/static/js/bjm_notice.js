@@ -18,10 +18,14 @@ function noticelist(){
 function noticeRegister(){
     let bjmBtnRegister = document.querySelector(".bjmBtnRegister")
     bjmBtnRegister.addEventListener("click",()=>{
-        
+        let temp = document.frmRegister;
+        let frm = new FormData(temp);
         $.ajax({
             url : "/notice/bjmRegister",
-            type : "GET",
+            type : "POST",
+            dadta : frm,
+            processData : false,
+            contentType : false,
             success : (resp) => {
                 let temp = $(resp).find(".noticeRegist");
                 $(".container").html(temp);
@@ -29,17 +33,18 @@ function noticeRegister(){
             }
         })
     })
-    let title = document.querySelector(".contentList")
-    title.addEventListener("click",()=>{
-        $.ajax({
-            url : "/notice/bjmNoticeView",
-            type : "GET",
-            success : (resp) =>{
-                let temp = $(resp).find(".noticeView");
-                $(".container").html(temp);
-                noticeView();
-            }
-        })
+}
+const noticeViewer = (sno) => {
+    console.log("failed")
+    $.ajax({
+        url : "/notice/bjmNoticeView",
+        type : "GET",
+        data : {"sno" : sno},
+        success : (resp) =>{
+            let temp = $(resp).find(".noticeView");
+            $(".container").html(temp);
+            noticeView();
+        }
     })
 }
 function noticeRegisterR(){
@@ -57,13 +62,37 @@ function noticeRegisterR(){
                 console.log(resp)
                 console.log("성공")
                 noticelist();
+                uploadImage()
             }
         })
 
     })
+    function uploadImage(file) {
+        var data = new FormData();
+        data.append("file", file);
+        $.ajax({
+          url: '/uploadImage', // 서버에서 이미지 업로드를 처리할 URL
+          method: 'POST',
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            $('#summernote').summernote('insertImage', response.url);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus + " " + errorThrown);
+          }
+        });
+      }
+   
+    // 취소 버튼 클릭 시
     let bjmBtnCancelR = document.querySelector(".bjmBtnCancelR")
     bjmBtnCancelR.addEventListener("click",()=>{
-        noticelist();
+        let result = confirm('목록');
+        if (result) {
+            window.location.href = '/bjmNoticeList'; // home으로 이동
+        }
+        // noticelist();
     })
 }
 function noticeView(){
