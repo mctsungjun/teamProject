@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class ProductVo {
+    int no;
     String productCode;
     String productName;
     int price;
@@ -13,5 +14,6 @@ public class ProductVo {
     String comment;
     String explanation;
     String photo;
+    String nal;
     List<ojw_PhotoVo> photos;
 }
