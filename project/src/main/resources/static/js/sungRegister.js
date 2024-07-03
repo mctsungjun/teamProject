@@ -2,12 +2,12 @@ export async function joinformBtn() {
 
     var obj = await import ('/js/sungIndex.js');
     var isProperForm = obj.joinform_chk();
-
+    
     if (isProperForm) {
         let frm = document.joinForm;
         let frmData = new FormData(frm);
-        alert(frm);
-        alert(frmData.name.value);
+        alert(frm.email.value);
+        alert(frm.id.value);
         // alert("FormData: " + JSON.stringify(Object.fromEntries(frmData.entries())));
         //컨트롤러 /sung/registerR로 회원등록 정보 보냄
         $.ajax({
