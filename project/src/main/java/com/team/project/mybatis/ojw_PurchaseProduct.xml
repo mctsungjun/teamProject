@@ -42,7 +42,7 @@
         select no, photo, oriPhoto from product_photos
         where no=#{_parameter}
     </select>
-    <insert id="product_register" parameterType="ProductVo">
+    <insert id="product_register" parameterType="Map">
         insert into product(productName, productCode, price, spec, comment, explanation, photo)
         values(#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo})
 
@@ -53,7 +53,4 @@
             </foreach>
         </if>
     </insert>
-
-
-
 </mapper>

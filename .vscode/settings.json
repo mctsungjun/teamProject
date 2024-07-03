@@ -1,4 +1,5 @@
 {
+
     "redhat.telemetry.enabled": true,
     "editor.fontSize": 17,
     "files.autoSave": "afterDelay",
@@ -42,5 +43,9 @@
         }
     ],
     "java.debug.settings.onBuildFailureProceed": true,
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.debug.settings.onBuildFailureProceed": true,
+    "liveServer.settings.port": 5501,
+    "java.configuration.updateBuildConfiguration": "automatic"
+
 }

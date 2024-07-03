@@ -9,10 +9,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyFactory {
     public SqlSession session;
-
+    
     public MyFactory(){
         try{
-            String path = "com/team/project/mybatis/config.xml";
+            String path="com/team/project/mybatis/config.xml";
             Reader reader = Resources.getResourceAsReader(path);
             SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
             session = factory.openSession();

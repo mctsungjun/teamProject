@@ -19,6 +19,11 @@
         where sno=#{_parameter}
     </select>
 
+    <select id="list" parameterType="Integer" resultType="SaleVo">
+        select CustomerId, ProductCode, ProductName, price, ea, amt, nal from sale
+        where sno=#{_parameter}
+    </select>
+
     <!--지언언니가 테이블 만들면 만들기!-->
     <select id="saleviewphotos" parameterType="Integer" resultType="ProductPhotoVo">
         select no,productCode, productName, photo, oriPhoto, flag, nal from photo
@@ -26,11 +31,29 @@
     </select>
     
     <select id="select" parameterType="Integer" resultType="SaleVo">
-        select * from sale where sno=#{sno}
+        select * from sale where sno=#{_parameter}
     </select>
     
     <update id="update" parameterType="SaleVo">
-        update sale set ea=#{ea}
-        where sno=#{sno};
+        update sale set ea=#{ea}, amt=#{ea}*#{price}
+        where nal=#{nal}
     </update>
+
+    <select id="stocksearch" parameterType="String" resultType="StockVo">
+        select * from stock
+        where ProductCode like '%${findStr}%'
+        or ProductName like '%${findStr}%'
+    </select>
+
+    <!--재고 그래프-->
+    <select id="stockgraph" parameterType="map" resultType="StockVo">
+        select * from stock
+    </select>
+
+    <select id="salepagesearch" parameterType="String" resultType="ProductVo">
+        select * from product
+        where productName like '%${findStr2}'
+        or spec like '%${findStr2}'
+        or productCode like '%${findStr2}'
+    </select>
 </mapper>

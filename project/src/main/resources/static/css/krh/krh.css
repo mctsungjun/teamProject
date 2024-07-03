@@ -25,23 +25,19 @@
     text-align: center;
     padding:5px;
 }
-.item .items{
-    border-bottom: 1px solid rgb(130, 130, 130);
-    text-align: center;
-    padding:5px;
+.item:hover{
+    background-color: rgb(231, 231, 231);
 }
-
 .list span{
     display:inline-block;
     text-align: center;
     padding:4px;
 }
-.list span :hover{
-    font-weight: bold;
-}
+
 .list .sno{
     width:60px;
 }
+
 .list .CustomerId{
     width:160px;
 }
@@ -63,8 +59,17 @@
 .list .nal{
     width:200px;
 }
-.list .SaleList{
+.list .saleList{
     width:100px;
+}
+.list .item:hover{
+    cursor:pointer;
+}
+.list .item .saleList{
+    text-decoration: underline;
+}
+.list .saleList:hover{
+    font-weight: bold;
 }
 
 .salelist{
@@ -136,45 +141,71 @@
 }
 
 /*재고관리*/
+
+.stockbottom{
+    width:1200px;
+    margin:50px auto;
+}
 .stockleft{
-    width:550px;
+    width:450px;
     text-align: left;
     margin-top: 48px;
     float: left;
+    margin-right:100px;
+    
 }
 .stockright{
-    width:500px;
+    width:450px;
     text-align: left;
     margin-top: 100px;
     border: 1px solid black;
-    min-height: 100px;
+    min-height: 400px;
     float: right;
+    margin-left:100px;
 }
 .stock h1{
     margin-top:50px;
     text-align: center;
     margin-bottom:30px;
 }
-.stocklisttable{
+.stocklist .title{
     border-collapse: collapse;
     text-align: center;
     width:100%;
     table-layout: fixed;
 }
-.stocklisttable th,td{
-    padding:10px;
-    border: 1px solid black;
+
+.stocklist .stockitem{
+    border-collapse: collapse;
     text-align: center;
+    width:100%;
+    table-layout: fixed;
 }
-.stock{
-    width:1200px;
-    margin:30px auto;
-    min-height: 400px;
+
+.stocklist span{
+    display:inline-block;
+    text-align: center;
+    padding:4px;
 }
+.stocklist .ProductCode{
+    width:140px;
+}
+.stocklist .ProductName{
+    width:140px;
+}
+.stocklist .PresentStock{
+    width:140px;
+}
+
 .stockleft .change{
     text-align: right;
     margin-bottom:20px;
 }
+
+/*재고 그래프 */
+
+
+
 .sale h1{
     text-align: center;
 }
