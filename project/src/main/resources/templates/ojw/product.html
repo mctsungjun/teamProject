@@ -18,10 +18,9 @@
                 <button type="button" class="abcabc">신규 등록</button>
             </form>
             <div class="product_list">
-                <ul class="product_ul" th:each="j:${product}" onClick="product_view('${f.ProductName}')">
-                    <li class="product_each">
-                        <!--24번째줄만 류나가 추가..-->
-                        <span><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
+                <ul class="product_ul">
+                    <li class="product_each" th:each="j:${product}" th:onClick="product_view([[${j.productCode}]])">
+                        <span class="product_image"><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
                         <br/>
                         <span class="name">[[${j.productName}]]</span>
                         <br/>
