@@ -20,7 +20,8 @@
             <div class="product_list">
                 <ul class="product_ul" th:each="j:${product}" onClick="product_view('${f.ProductName}')">
                     <li class="product_each">
-                        <span><img src="[[${j.photo}]]" width="200px" height="200px"></span>
+                        <!--24번째줄만 류나가 추가..-->
+                        <span><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
                         <br/>
                         <span class="name">[[${j.productName}]]</span>
                         <br/>

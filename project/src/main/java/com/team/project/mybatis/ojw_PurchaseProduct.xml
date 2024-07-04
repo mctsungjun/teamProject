@@ -48,9 +48,10 @@
         values(#{no},#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo});
 
         <if test="photos != null">
-            insert into product_photos(no, oriPhoto, photo) values
+            <!--52번째줄도 좀만... 수정하게뜸다 류나가..-->
+            insert into product_photos(no, productCode, productName, oriPhoto, photo) values
             <foreach collection="photos" item="p" separator=",">
-                (#{no}, #{p.oriPhoto}, #{p.photo})
+                (#{no}, #{productCode}, #{productName}, #{p.oriPhoto}, #{p.photo})
             </foreach>
         </if>
     </insert>

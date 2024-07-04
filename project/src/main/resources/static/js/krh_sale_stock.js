@@ -13,7 +13,6 @@ function sale(){
             search();
         }
     })
-
 }
 function sale_list(sno) {
     $.ajax({
@@ -122,6 +121,30 @@ let sale_view_modify=(sno)=>{
             success:(resp)=>{
                 console.log(resp);
                 sale();
+            }
+        })
+    })
+}
+
+
+//salepage.html 검색
+function salepage_search(){
+    let btnSearch=document.querySelector(".btnSearch");
+    let findStr=sessionStorage.getItem(".findStr");
+    if(findStr!=null){
+        $(".findStr").val(findStr);
+    }
+    btnSearch.addEventListener('click',()=>{
+        findStr=$(".findStr").val();
+        sessionStorage.setItem("findStr",findStr);
+
+        $.ajax({
+            url:"/salepage_search",
+            type:'GET',
+            data:{"findStr":findStr},
+            success:(resp)=>{
+                let temp=$(resp).fine(".salepageproduct")
+                $(".salepageproduct").html(temp);
             }
         })
     })
