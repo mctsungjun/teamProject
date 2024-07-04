@@ -11,17 +11,17 @@
 </head>
 <body>
     <div class="sale">
+        <h1>판매 페이지</h1>
         <div class="salepage">
-            <h1>판매 페이지</h1>
             <div class="change">
                 <!--검색 기준-->
                 <div class="salepagesearch">
-                    <div class="sort">
-                        <button type="button" class="btnCheap">가격 낮은 순</button> |
-                        <button type="button" class="btnEx">가격 높은 순</button> |
-                        <button type="button" class="btnNew">신상품 순</button>
-                    </div>
                     <form name="frm" class="frm" method="GET">
+                        <div class="sort">
+                            <button type="button" class="btnCheap">가격 낮은 순</button> |
+                            <button type="button" class="btnEx">가격 높은 순</button> |
+                            <button type="button" class="btnNew">신상품 순</button> | 
+                        </div>
                         <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
                         <button type="button" class="btnSearch">검색</button>
                     </form>
@@ -30,7 +30,7 @@
             <hr/>
             <div class="salepagelist">
                 <ul class="salepageproduct">
-                    <li class="salepageproducteach" th:each="j:${map.list}">
+                    <li class="salepageproducteach" th:each="j:${salepage_new}">
                         <span><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
                         <br/>
                         <span class="name">[[${j.productName}]]</span>
@@ -40,10 +40,6 @@
                         <span class="price">[[${j.price}]]<span class="won">원</span></span>
                     </li>
                 </ul>
-                <div class="btnZone">
-                    <button type="button" th:class="${(page.nowPage > 1) ? 'btnPrevEnable' : 'btnPrev'}">◁</button>
-                    <button type="button" th:class="${(page.totSize > page.endNo) ? 'btnNextEnable' : 'btnNext'}">▷</button>
-                </div>
             </div>
         </div>
     </div>

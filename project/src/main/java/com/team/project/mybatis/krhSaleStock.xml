@@ -28,18 +28,12 @@
         where s.sno=#{_parameter};
     </select>
 
-    <!--지언언니가 테이블 만들면 만들기!-->
-    <select id="saleviewphotos" parameterType="Integer" resultType="ProductPhotoVo">
-        select no,productCode, productName, photo, oriPhoto, flag, nal from photo
-        where no=#{_parameter}
-    </select>
-    
     <select id="select" parameterType="Integer" resultType="SaleVo">
         select * from sale where sno=#{_parameter}
     </select>
     
     <update id="update" parameterType="SaleVo">
-        update sale set ea=#{ea}, amt=#{ea}*#{price}
+        update sale set ea=#{ea}
         where nal=#{nal}
     </update>
 
@@ -54,22 +48,38 @@
         select * from stock
     </select>
 
-    <!--판매 페이지 정렬 검색-->
-    <select id="salepagesearch" parameterType="String" resultType="ProductVo">
-        select * from product
-        where productName like '%${findStr}'
-        or spec like '%${findStr}'
-    </select>
     <select id="salepage_cheap" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by price asc
     </select>
-    <select id="salepage_expensive" resultType="ProductVo">
+    <select id="salepage_expensive" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by price desc
     </select>
-    <select id="salepage_nal" resultType="ProductVo">
+    <select id="salepage_new" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by nal desc
+    </select>
+
+    <!--판매 페이지 리스트 (페이징 처리)-->
+    <select id="totSize" parameterType="String" resultType="Integer">
+        select count(no) from product
+        where productName   like '%${_parameter}%'
+        or    spec    like '%${_parameter}%'
+    </select>
+
+    <select id="salepagesearch" parameterType="Page" resultType="ProductVo">
+        select * from product
+        where productName like '%${findStr}%'
+        or spec like '%${findStr}%'
+        limit #{startNo}, #{listSize}
+    </select>
+
+    <select id="salepagelist" parameterType="Page" resultType="ProductVo">
+        select * from product
+        where productName   like '%${findStr}%'
+        or    spec       like '%${findStr}%'
+        order by nal desc
+        limit #{startNo}, #{listSize}
     </select>
 </mapper>

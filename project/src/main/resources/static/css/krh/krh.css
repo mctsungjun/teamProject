@@ -268,6 +268,41 @@
     width:1100px;
     color:black;
 }
+
+.salepage .sort .btnCheap,.btnEx,.btnNew{
+    border:none;
+    background-color: white;
+    font-size: 15px;
+}
+
+.salepage .sort .btnCheap:hover,.btnEx:hover,.btnNew:hover{
+    border:none;
+    background-color: white;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.salepage .btnZone{
+    text-align: center;
+    word-spacing: 10px;
+}
+
+.salepage .btnPrev, .salepage .btnZone .btnNext{
+    pointer-events: none;
+    background-color: #bbbbbb;
+    border: 0px;
+}
+.salepage .btnPrevEnable, .salepage .btnNextEnable{
+    pointer-events: all;
+    border: 0px;
+    cursor: pointer;
+    background-color: rgb(182, 84, 199);
+}
+
+.salepage .btnprev
+
+/*판매 페잉지 상세보기 */
 .salepageview{
     width:1200px;
     margin:30px auto;
