@@ -14,21 +14,21 @@
         <h2>제품관리 상세페이지</h2>
             <div class="product_view_left" th:src="|ojw_upload/${vo.photo}">
                 <img th:src="|ojw_upload/${vo.photo}" width="350px" height="350px">
-                <img th:src="|ojw_upload/${vo.photo}" width="170px" height="170px" class="product_main">
-                <img th:src="|ojw_upload/${vo.photo}" width="170px" height="170px" class="product_sub">
+            </div>
+            <div class="product_image_sub">
+                <span th:each="p:${vo.photos}" class="product_image_sub_each">
+                    <img th:src="|ojw_upload/${p.photo}" width="100px" height="100px">
+                </span>
             </div>
             <div class="product_view_right">
                 <h2>[[${vo.productCode}]] / [[${vo.productName}]]</h2>
                 <hr/>
                 <span class="price">[[${vo.price}]]</span>
                 <span class="spec">[[${vo.spec}]]</span>
-                <div>
+                <div class="explanation">
                     [[${vo.explanation}]]
                 </div>
             </div>
-        </div>
-        <div class="product_view_bottom">
-            [[${vo.explanation}]]
         </div>
     </div>
 </body>

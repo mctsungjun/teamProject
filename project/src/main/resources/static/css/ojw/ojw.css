@@ -145,7 +145,7 @@ h3{
 .product{
     width: 1200px;
     margin: 30px auto;
-    min-height: 600px;
+    min-height: 400px;
     text-align: left;
 }
 .product_each{
@@ -178,7 +178,7 @@ h3{
     margin-bottom: 40px;
 }
 .product_view_left{
-    width: 550px;
+    width: 380px;
     text-align: left;
     float: left;
 
@@ -187,15 +187,16 @@ h3{
     height: 350px;
     max-height: 350px;
 }
-.product_main{
-    position: relative;
-    top: -180px;
-    left: 20px;
+.product_image_sub{
+    display: flex;
+    width: 150px;
+    height: 400px;
+    flex-direction: column;
+    margin-top: 48px;
+    float: left;
 }
-.product_sub{
-    position: relative;
-    top: -174px;
-    left: 376px;
+.product_image_sub_each{
+    margin-bottom: 20px;
 }
 .product_view_right{
     width: 500px;
@@ -207,11 +208,12 @@ h3{
     max-height: 350px;
     padding: 0;
 }
-.product_view_bottom{
-    width: 90%;
-    min-height: 200px;
-    margin: 0 auto;
-    border: 1px solid red;
+.product_view_right .explanation{
+    width: 100%;
+    min-height: 150px;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid lightgray;
 
 }
 .product_view_right .name{
