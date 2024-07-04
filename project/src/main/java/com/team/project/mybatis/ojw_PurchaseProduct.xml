@@ -26,9 +26,10 @@
 
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">
-        select productName, comment, price from product
+        select productName, comment, price, photo from product
         where productName like '%${findStr}%'
         or comment like '%${findStr}%'
+        or photo like '%${findStr}%'
     </select>
     <select id="product" parameterType="String" resultType="ProductVo">
         select productName, explanation, price
@@ -42,9 +43,9 @@
         select no, photo, oriPhoto from product_photos
         where no=#{_parameter}
     </select>
-    <insert id="product_register" parameterType="Map">
-        insert into product(productName, productCode, price, spec, comment, explanation, photo)
-        values(#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo})
+    <insert id="product_register" parameterType="ProductVo">
+        insert into product(no, productName, productCode, price, spec, comment, explanation, photo)
+        values(#{no},#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo});
 
         <if test="photos != null">
             insert into product_photos(no, oriPhoto, photo) values
