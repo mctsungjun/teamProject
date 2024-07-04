@@ -13,6 +13,26 @@ function sale(){
             search();
         }
     })
+
+}
+function sale_list(sno) {
+    $.ajax({
+        url: "/sale_list",
+        type: 'get', // 올바른 HTTP 메소드로 설정
+        data: { "sno": sno },
+        success: function(resp) {
+            let temp=$(resp).find(".salelist");
+            $('.big').html(temp); // 받은 HTML을 .big 클래스를 가진 요소에 삽입
+            salelistevent(sno);
+        }
+    })
+}
+
+function salelistevent(sno){
+    let btnList=document.querySelector(".btnList");
+    btnList.addEventListener('click',()=>{
+        sale();
+    })
 }
 
 function search(){
@@ -65,7 +85,7 @@ function ViewEvent(sno){
             success:(resp)=>{
                 let temp=$(resp).find(".saleviewmodify");
                 $('.big').html(temp);
-                sale_view_modify(vo);
+                sale_view_modify(sno);
             }
         })
     })
@@ -79,39 +99,30 @@ function ViewEvent(sno){
         sale(sno);
     })
 }
-/*
-let UpdateForm=(sno)=>{
-    $.ajax({
-        url:"/"
-    })
-}
-    */
 
-
-function sale_view_modify(){
-    let btnModifyR=document.querySelector(".btnModifyR");
-    let btnList=document.querySelector(".btnList");
-    
-    btnModifyR.addEventListener('click',()=>{
-        let frm=document.viewfrm;
-        let frmData=$(frm).serialize();
-
-        $.ajax({
-            url:"/sale_view_modify",
-            type:"POST",
-            data:frmData,
-            success:(resp)=>{
-                if(resp){
-                    alert("수정에 성공하였습니다.");
-                }else{
-                    alert("수정에 실패하였습니다.");
-                }
-            }
-        })
-    })
+let sale_view_modify=(sno)=>{
+    btnModifyR=document.querySelector(".btnModifyR");
+    btnList=document.querySelector(".btnList");
 
     btnList.addEventListener('click',()=>{
         sale_view(sno);
     })
 
+    btnModifyR.addEventListener('click',()=>{
+
+        let frm=document.viewfrm;
+        let frmData=new FormData(frm);
+
+        $.ajax({
+            url:"/sale_view_modifyR",
+            type:"POST",
+            contentType:false,
+            processData:false,
+            data:frmData,
+            success:(resp)=>{
+                console.log(resp);
+                sale();
+            }
+        })
+    })
 }

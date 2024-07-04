@@ -26,8 +26,6 @@ function search(){
         findStr = $('.findStr').val();
         sessionStorage.setItem("findStr",findStr);
 
-        console.log("버튼")
-        
         $.ajax({
             url : '/purchase',
             type : "GET",
@@ -47,12 +45,12 @@ function purchase_view(no){
         type : "GET",
         data : {"no" : no},
         success:(resp)=>{
-            console.log(resp);
             let temp=$(resp).find(".purchase_view");
             $('.purchase').html(temp);
-
+            viewEvent(no);
         }
     })
+    
 }
 
 function purchase_list(no){
@@ -62,31 +60,62 @@ function purchase_list(no){
         data : {"no":no},
         success:(resp)=>{
             let temp=$(resp).find(".purchase_list");
-            $('.main').html(temp);
+            $('.purchase').html(temp);
         }
     })
 }
 
 
-/*
+
 function viewEvent(no){
     let btnModify = document.querySelector(".btnModify");
     let btnDelete = document.querySelector(".btnDelete");
     let btnList = document.querySelector(".btnList");
 
     btnModify.addEventListener("click",()=>{
-        let yn=confirm("수정하시겠습니까?");
-        if(!yn) return;
 
         $.ajax({
-            url : "/purchase_update",
+            url : "/purchase_modify",
             type : "GET",
             data : {"no" : no},
             success : (resp)=>{
-                let temp = $(resp).find(".update")
-                $(".")
+                let temp = $(resp).find(".purchase_modify")
+                $(".purchase").html(temp);
+                purchase_modify(no);
             }
         })
     })
+    btnList.addEventListener('click',()=>{
+        purchase();
+    })
 }
-*/
+
+let purchase_modify=(no)=>{
+    btnModifyR = document.querySelector('.btnModifyR');
+    btnList = document.querySelector('.btnList');
+
+    btnList.addEventListener('click',()=>{
+        purchase_list();
+    })
+
+    btnModifyR.addEventListener("click",()=>{
+        let frm = document.purchasefrm;
+
+        let frmData = new FormData(frm);
+        $.ajax({
+            url : "/purchase_modifyR", //Controll의 path
+            type : "POST",
+            contentType : false,
+            processData : false,
+            data : frmData,
+            success : (resp)=>{
+                console.log(resp)
+                purchase();
+            }
+        })
+    })
+    btnList.addEventListener('click',()=>{
+        purchase_view();
+    })
+}
+
