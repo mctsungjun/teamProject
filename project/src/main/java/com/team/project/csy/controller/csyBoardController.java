@@ -17,7 +17,6 @@ import com.team.project.csy.CsyBoardLikesVo;
 import com.team.project.csy.CsyBoardListPageVo;
 import com.team.project.csy.CsyBoardVo;
 
-// * 깃 재업로드용 주석
 @RestController
 public class csyBoardController {
     @Autowired

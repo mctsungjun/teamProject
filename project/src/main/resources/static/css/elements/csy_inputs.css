@@ -28,11 +28,12 @@
 
 #loginBtn:hover {
     background-color: var(--white);
-    color: var(--dark-grey);
+    color: var(--dark-gray);
+    font-weight: 600;
 }
 
 
-.login-text-input {
+.login-text-input, .login-select {
     margin-bottom: 20px;
     height: 50px;
     background-color: transparent;
@@ -43,8 +44,16 @@
     padding: 0 20px 0 20px;
 }
 
-.login-text-input:hover { border: 2px solid var(--purple); }
-.login-text-input:focus { border: 2px solid var(--white); }
+.login-text-input:hover, .login-select:hover { border: 2px solid var(--purple); }
+.login-text-input:focus, .login-select:focus { border: 2px solid var(--white); }
+
+.login-select {
+    background-color: var(--purple);
+}
+
+.login-select option {
+    padding-left: 5px;
+}
 
 .white-text-button, .grey-text-button {
     margin: 0;
