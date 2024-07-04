@@ -25,7 +25,7 @@
     user-select: none;
 }
 
-.boardListTitle {
+.boardListTitle, .myPageTitle {
     width: 180px;
     /* 드래그 방지 구문: 그냥 지저분해서  */
     -webkit-user-select: none;
