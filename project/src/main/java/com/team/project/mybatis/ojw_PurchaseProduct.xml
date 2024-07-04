@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="project">
-    <select id="purchase_main" parameterType="String" resultType="PurchaseVo">
+    <select id="purchase_search" parameterType="String" resultType="PurchaseVo">
         select * from purchase
         where productCode like '%${findStr}%'
         or productName like '%${findStr}%'
@@ -16,9 +16,43 @@
         where no=#{_parameter}
     </select>
     <select id="purchase_list" parameterType="Integer" resultType="PurchaseVo">
-        select * from purchase
+        select no, productCode, productName, price, ea, nal, customer from purchase
         where no=#{_parameter}
     </select>
+    <update id="purchase_modify" parameterType="PurchaseVo">
+        update purchase set ea=#{ea}
+        where no=#{no}
+    </update>
 
+    <!--_______________product______________-->
+    <select id="product_search" parameterType="String" resultType="ProductVo">
+        select productName, comment, price, photo from product
+        where productName like '%${findStr}%'
+        or comment like '%${findStr}%'
+        or photo like '%${findStr}%'
+    </select>
+    <select id="product" parameterType="String" resultType="ProductVo">
+        select productName, explanation, price
+        where productName=#{_parameter}
+    </select>
+    <select id="product_view" parameterType="String" resultType="ProductVo">
+        select productName from product
+        where productName=#{_parameter}
+    </select>
+    <select id="photos" parameterType="String" resultType="ojw_PhotoVo">
+        select no, photo, oriPhoto from product_photos
+        where no=#{_parameter}
+    </select>
+    <insert id="product_register" parameterType="ProductVo">
+        insert into product(no, productName, productCode, price, spec, comment, explanation, photo)
+        values(#{no},#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo});
 
+        <if test="photos != null">
+            <!--52번째줄도 좀만... 수정하게뜸다 류나가..-->
+            insert into product_photos(no, productCode, productName, oriPhoto, photo) values
+            <foreach collection="photos" item="p" separator=",">
+                (#{no}, #{productCode}, #{productName}, #{p.oriPhoto}, #{p.photo})
+            </foreach>
+        </if>
+    </insert>
 </mapper>

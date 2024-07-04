@@ -3,8 +3,11 @@ package com.team.project.ojw;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -17,7 +20,7 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         List<PurchaseVo> list = PurchaseDao.search(findStr);
         mv.addObject("purchase",list);
-        mv.setViewName("purchase");
+        mv.setViewName("ojw/purchase");
         return mv;
     }
 
@@ -26,7 +29,7 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         PurchaseVo vo = PurchaseDao.purchase_view(no);
         mv.addObject("vo", vo);
-        mv.setViewName("purchase_view");
+        mv.setViewName("ojw/purchase_view");
         return mv;
     }
 
@@ -35,7 +38,24 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         PurchaseVo vo = PurchaseDao.purchase_list(no);
         mv.addObject("vo", vo);
-        mv.setViewName("purchase_list");
+        mv.setViewName("ojw/purchase_list");
+        return mv;
+    }
+
+    @RequestMapping(path="/purchase_modify")
+    public ModelAndView purchase_update(Integer no){
+        ModelAndView mv = new ModelAndView();
+        PurchaseVo vo = PurchaseDao.purchase_view(no);
+        mv.addObject("vo", vo);
+        mv.setViewName("ojw/purchase_modify");
+        return mv;
+    }
+    @RequestMapping(path="/purchase_modifyR")
+    public ModelAndView purchase_modifyR(@ModelAttribute PurchaseVo vo){
+        ModelAndView mv = new ModelAndView();
+        String msg=PurchaseDao.purchase_modify(vo);
+        mv = purchase("");
+        mv.addObject("msg", msg);
         return mv;
     }
 }
