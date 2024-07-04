@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import com.team.project.mybatis.MyFactory;
 import com.team.project.ojw.ProductVo;
+import com.team.project.ojw.ojw_PhotoVo;
+
 import java.util.*;
 
 @Component
@@ -51,5 +53,14 @@ public class SalePageDao {
         list=session.selectList("salestock.salepage_new",vo);
         session.close();
         return list;
+    }
+
+    public ProductVo salepage_view(String productCode){
+        session=new MyFactory().getSession();
+        ProductVo vo=session.selectOne("salestock.salepage_view",productCode);
+        List<ojw_PhotoVo>photos = session.selectList("salestock.salepage_photos", productCode);
+        vo.setPhotos(photos);
+        session.close();
+        return vo;
     }
 }

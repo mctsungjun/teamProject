@@ -82,4 +82,15 @@
         order by nal desc
         limit #{startNo}, #{listSize}
     </select>
+
+    <!--판매 상세보기-->
+    <select id="salepage_view" parameterType="String" resultType="ProductVo">
+        select * from product
+        where productCode=#{productCode}
+    </select>
+    <select id="salepage_photos" parameterType="String" resultType="ojw_PhotoVo">
+        select photo, oriPhoto from product_photos
+        where productCode=#{productCode}
+    </select>
+    
 </mapper>

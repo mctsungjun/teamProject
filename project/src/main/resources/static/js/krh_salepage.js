@@ -12,18 +12,32 @@ function salepage(){
             console.log(temp);
             salepagesearch();
             loadItem(findStr,nowPage);
-            salepage_sort();
         }
     })
 }
 salepage();
-function salepagesearch(){
+export function salepagesearch(){
     let btnSearch = document.querySelector(".btnSearch");
     btnSearch.addEventListener('click',()=>{
         let findStr=$(".findStr").val();
         sessionStorage.setItem("findStr",findStr);
         loadItem(findStr,nowPage);
     })
+
+    const salepage_view=(productCode)=>{
+        $.ajax({
+            url:"/salepage_view",
+            type:"GET",
+            data:{"productCode":productCode},
+            success:(resp)=>{
+                console.log(resp);
+                let temp=$(resp).find(".salepage_view")
+                $(".salepage").html(temp);
+            }
+        })
+    }
+    return {salepage_view}
+
 }
 
 

@@ -303,7 +303,7 @@
 .salepage .btnprev
 
 /*판매 페잉지 상세보기 */
-.salepageview{
+.salepage_view{
     width:1200px;
     margin:30px auto;
     min-height: 1000px;
@@ -313,7 +313,6 @@
     width:500px;
     text-align: left;
     float: left;
-
     margin-top: 48px;
     margin-left:50px;
     height:350px;

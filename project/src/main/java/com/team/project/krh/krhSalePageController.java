@@ -47,4 +47,13 @@ public class krhSalePageController {
         mv.setViewName("krh/salepagenew");
         return mv;
     }
+
+    @RequestMapping(path="salepage_view")
+    public ModelAndView salepage_view(String productCode){
+        ModelAndView mv = new ModelAndView();
+        ProductVo vo=salepageDao.salepage_view(productCode);
+        mv.addObject("vo",vo);
+        mv.setViewName("krh/salepage_view");
+        return mv;
+    }
 }
