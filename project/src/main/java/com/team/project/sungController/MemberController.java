@@ -83,6 +83,7 @@ public ModelAndView login(){
         Map<String, Object> response = new HashMap<>();
         if (password.length()>=20){
             vo = dao.loginForgot(id,password);
+            
            
         }else{
 
@@ -126,13 +127,18 @@ public ModelAndView login(){
         if( id != null && !id.equals("")){
 
               vo = dao.detail(id,name);
-              if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
-                  for(PhotoVo pv:vo.getPhotos()){
-                      if(pv.photo.contains(vo.getPhoto())){
+            if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+                for(PhotoVo pv:vo.getPhotos()){
+                    if(pv.photo.contains(vo.getPhoto())){
                           vo.setPhoto(pv.photo);;
                         }
-                    }
                 }
+            }else{
+                PhotoVo defaultPhoto = dao.defaultPhot();
+                vo.setPhoto(defaultPhoto.getPhoto());
+            }
+            
+                
                 System.out.println(vo);
                   mv.addObject("vo", vo);
                   
