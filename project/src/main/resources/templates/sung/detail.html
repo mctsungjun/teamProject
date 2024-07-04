@@ -4,27 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>detail</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container mt-5 ">
-        <div class="change justify-content-center">
-            <h2 class="text-center text-info mb-5 ">마이페이지</h2>
-            <div class="container d-flex justify-content-center">
-                <ul class="list-group col-md-5 text-center  ">
-                    <li class="list-group-item  list-group-item-primary text-primary-emphasis" >id:       [[${vo.id}]]</li>
-                    <li class="list-group-item list-group-item-secondary text-secondary-emphasis">name:       [[${vo.name}]]</li>
-                    <li class="list-group-item list-group-item-info text-success-emphasis">phone:     [[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</li>
-                    <li class="list-group-item list-group-item-warning text-danger-emphasis ">address:      [[${vo.roadAddress}]] [[${vo.addressDetail}]]</li>
-                    <li class="list-group-item list-group-item-secondary text-warning-emphasis">email:     [[${vo.email}]]@[[${vo.email2}]]</li>
-                    <li class="list-group-item list-group-item-dark text-info-emphasis ">birthday:    [[${vo.birthday}]]</li>
-                  </ul>
+    <div>
+        <div class="myProfilePage" style="margin-top:80px;">
 
+
+            <div style="display:flex; justify-content: space-between;">
+                <!-- * 프로필 대표 이미지 부분 * -->
+                <div class="user-profile-block mypage-profile-block">
+                    <div class="profile-border mypage-profile-border">
+                        <div class="profile-border1 mypage-profile-border3"></div>
+                        <div class="profile-border1 mypage-profile-border1"></div>
+                    </div>
+                    <div class="profile-border1 mypage-profile-border2"></div>
+                    <img src="https://picsum.photos/200" class="mypage-profile-image" alt="User Profile Image">
+                </div>
+                <!-- * 페이지 제목 * -->
+                <div style="margin-top: 130px; width: 95%;">
+                    <h1 class="myPageTitle"
+                        style="width: 100%; text-align: right; letter-spacing: 7px; font-size: 50px;">환영합니다, [[${vo.name}]]님!</h1>
+                        <div style="display: flex; justify-content: right; margin-top: 56px; margin-right: 10px;">
+                            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;">게시물 조회</button>
+                            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px;">프로필 수정</button>
+                        </div>
+                        <hr style="margin-top: 30;border-bottom: 1px solid var(--purple); filter:blur(8px);">
+                </div>
             </div>
+            <hr style="margin-top:0px; border: 1px solid var(--purple); filter: blur(6px);">
+            <div style="height: 40px;"></div>
+        
+                <span>id:</span>[[${vo.id}]]
+                name:       [[${vo.name}]]
+                phone:     [[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]
+                address:      [[${vo.roadAddress}]] [[${vo.addressDetail}]]
+                email:     [[${vo.email}]]@[[${vo.email2}]]
+                birthday:    [[${vo.birthday}]]
             <div class="photoSection">
                 <div class="container mt-5 ">
-                <h2 class="text-center text-info display-4 fst-italic">대표이미지</h2>
                 
                 <div class="photo_list row d-flex justify-content-center">
                     <div class="col-md-2 mb-3">
@@ -42,7 +59,6 @@
                 .img-container{
                     width: 150px;
                     height: 150px;
-                   
                 }
                 .img-container img{
                     width:100%;

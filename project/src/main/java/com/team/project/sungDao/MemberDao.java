@@ -163,6 +163,14 @@ public String getMemberName(String id){
             session.close();
             return msg;
         }
+
+    // default 사진 불러오기
+    public PhotoVo defaultPhot(){
+        session = new MyFactory().getSession();
+        PhotoVo phot = session.selectOne("member.defaultPhoto");
+        session.close();
+        return phot;
+    }
     // 수정
     
     public MemberVo updateFrom(String id){

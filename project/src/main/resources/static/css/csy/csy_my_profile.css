@@ -1,0 +1,80 @@
+.myProfilePage {
+    padding-left: 18%;
+    padding-right: 18%;
+}
+
+
+.mypage-profile-block {
+    height: 320px;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.mypage-profile-block:hover {
+    height: 320px;
+    width: 320px;
+}
+
+.mypage-profile-border {
+    height: 320px;
+    width: 320px;
+    background-image: linear-gradient(var(--purple) 35%, rgba(255, 255, 255, 0.3));
+    animation: spinning82341 5s linear infinite;
+    text-align: center;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0px -5px 8px 0px transparent, 0px 5px 8px 0px var(--white);
+}
+
+.mypage-profile-border {
+    animation: spinning82341 5s linear infinite;
+}
+
+.mypage-profile-border1 {
+    height: 320px;
+    width: 320px;
+}
+
+.mypage-profile-border2 {
+    margin-top: -26px;
+    height: 340px;
+    width: 340px;
+    animation: spinning82341 7s linear infinite;
+    box-shadow: 0px 2px 5px 0px transparent, 0px 2px 5px 0px var(--white);
+}
+.mypage-profile-border3 {
+    margin-top: -26px;
+    height: 320px;
+    width: 320px;
+    animation: spinning82341 10s linear infinite;
+    box-shadow: 0px 4px -10px 0px transparent, 0px 4px -10px 0px var(--white);
+}
+
+.mypage-profile-image {
+    position: absolute;
+    padding-left: 16px;
+    padding-bottom: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+    filter: blur(2px);
+}
+
+.mypage-profile-border {
+    position: absolute;
+    padding-left: 16px;
+    padding-bottom: 25px;
+    height: 300px;
+    width: 300px;
+    border: 3px solid var(--white);
+    filter: blur(5px);
+}
+
+.mypage-profile-image:hover {
+    /* height: 420px;
+    width: 420px; */
+    filter: none;
+}
