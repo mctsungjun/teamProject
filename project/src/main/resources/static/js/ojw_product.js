@@ -100,19 +100,6 @@ let fileChange = (tag)=>{
 
         repre.appendChild(label);
         repre.appendChild(br)
-
-        //첫번째 파일을 대표이미지로 설정
-        if(!mainImage.src){
-            mainImage.src = URL.createObjectURL(f);
-        }else{
-            //나머지 파일을 product_sub 클래스를 가진 이미지 요소에 설정
-            for (let i=0; i<subImages.lenght;i++){
-                if(!subImages[i].src){
-                    subImages[i].src=URL.createObjectURL(f);
-                    break;
-                }
-            }
-        }
     }
 }
 
