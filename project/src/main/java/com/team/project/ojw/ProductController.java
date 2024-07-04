@@ -18,9 +18,9 @@ public class ProductController {
     @Autowired
     ProductDao ProductDao;
 
-    //upload 경로
-    public static String ojw_upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
-
+    //upload 경로 (류나가 추가..)
+    public static String ojw_upload = "C:\\gitwork\\final_project\\project\\src\\main\\resources\\static\\ojw_upload\\";
+    
     @RequestMapping(path="/product")
     public ModelAndView product(String findStr){
         ModelAndView mv = new ModelAndView();
@@ -42,6 +42,13 @@ public class ProductController {
             @RequestParam("files")List<MultipartFile> photo,
             @ModelAttribute ProductVo vo){
         List<ojw_PhotoVo> photos = new ArrayList<>();
+        
+        //륜하
+        File directory = new File(ojw_upload);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        //가 추가함
 
         if (photo != null){
             UUID uuid = null;
@@ -59,6 +66,8 @@ public class ProductController {
                     f.transferTo(saveFile);
                 }catch(Exception ex){
                     ex.printStackTrace();
+                    //류나가 70번째만 추가
+                    return "error";
                 }
 
                 ojw_PhotoVo v = new ojw_PhotoVo();

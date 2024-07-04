@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/krh/krh.css">
     <script defer src="js/krh_salepage.js"></script>
     <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div class="sale">
@@ -15,12 +16,12 @@
             <div class="change">
                 <!--검색 기준-->
                 <div class="salepagesearch">
-                    <div class="sort">
-                        <button type="button" class="btnCheap">가격 낮은 순</button> |
-                        <button type="button" class="btnEx">가격 높은 순</button> |
-                        <button type="button" class="btnNew">신상품 순</button> | 
-                    </div>
                     <form name="frm" class="frm" method="GET">
+                        <div class="sort">
+                            <button type="button" class="btnCheap">가격 낮은 순</button> |
+                            <button type="button" class="btnEx">가격 높은 순</button> |
+                            <button type="button" class="btnNew">신상품 순</button> | 
+                        </div>
                         <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
                         <button type="button" class="btnSearch">검색</button>
                     </form>
@@ -28,16 +29,15 @@
             </div>
             <hr/>
             <div class="salepagelist">
-                <ul class="salepageproduct" th:each="j:${product}">
+                <ul class="salepageproduct" th:each="j:${salepage}">
                     <li class="salepageproducteach">
-                        <!--지원언니가 제품등록하면 해당 정보가 넘어오게..-->
-                        [[${j.photo}]]
+                        <span><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
                         <br/>
-                        [[${j.productName}]]
+                        <span class="name">[[${j.productName}]]</span>
                         <br/>
-                        [[${j.comment}]]
+                        <span class="comment">[[${j.comment}]]</span>
                         <br/>
-                        [[${j.price}]]
+                        <span class="price">[[${j.price}]]</span>
                     </li>
                 </ul>
             </div>
