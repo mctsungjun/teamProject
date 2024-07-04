@@ -6,6 +6,7 @@ export async function joinformBtn() {
     if (isProperForm) {
         let frm = document.joinForm;
         let frmData = new FormData(frm);
+
         // alert("FormData: " + JSON.stringify(Object.fromEntries(frmData.entries())));
         //컨트롤러 /sung/registerR로 회원등록 정보 보냄
         $.ajax({
