@@ -4,10 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import java.util.*;
-
 import com.team.project.mybatis.MyFactory;
-import com.team.project.ojw.ProductVo;
-
 import org.springframework.transaction.annotation.Transactional;
 @Service
 @Component
@@ -27,7 +24,7 @@ public class SaleDao {
 
     public SaleVo sale_view(Integer sno){
         session=new MyFactory().getSession();
-        SaleVo vo=session.selectOne("salestock.list",sno);
+        SaleVo vo=session.selectOne("salestock.view",sno);
         session.close();
         return vo;
     }
@@ -42,9 +39,9 @@ public class SaleDao {
     }
 
 
-    public SaleVo sale_list(Integer sno){
+    public SaleWithUsersVo sale_list(Integer sno){
         session=new MyFactory().getSession();
-        SaleVo vo=session.selectOne("salestock.list",sno);
+        SaleWithUsersVo vo=session.selectOne("salestock.list",sno);
         session.close();
         return vo;
     }
@@ -64,13 +61,5 @@ public class SaleDao {
         }
         session.close();
         return msg;
-    }
-
-    public List<ProductVo> salepagesearch(String findStr2){
-        List<ProductVo> list2 =null;
-        session=new MyFactory().getSession();
-        list2=session.selectList("salestock.salepagesearch",findStr2);
-        session.close();
-        return list2;
     }
 }

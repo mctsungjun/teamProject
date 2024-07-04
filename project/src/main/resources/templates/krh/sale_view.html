@@ -22,12 +22,11 @@
             <!--지언니가 등록한..사진..대표사진..-->
             
             <img src="[[${p.photo}]]" width="200px" height="200px">
-            
             <!--controller에서 연결받기..-->
             <table class="saleviewtable">
                 <tr>
                     <th>고객 아이디</th>
-                    <td>[[${vo.CustomerId}]]</td>
+                    <td>[[${vo.id}]]</td>
                 </tr>
                 <tr>
                     <th>제품 코드</th>
@@ -47,7 +46,7 @@
                 </tr>
                 <tr>
                     <th>판매 금액</th>
-                    <td>[[${vo.amt}]]</td>
+                    <td>[[${vo.ea*vo.price}]]</td>
                 </tr>
                 <tr>
                     <th>판매 일자</th>

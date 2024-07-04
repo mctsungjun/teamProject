@@ -3,9 +3,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.team.project.ojw.ProductVo;
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -66,18 +63,9 @@ public class krhSaleController {
     @RequestMapping(path="/sale_list")
     public ModelAndView sale_list(Integer sno){
         ModelAndView mv=new ModelAndView();
-        SaleVo vo=saleDao.sale_list(sno);
+        SaleWithUsersVo vo=saleDao.sale_list(sno);
         mv.addObject("vo",vo);
         mv.setViewName("krh/sale_list");
-        return mv;
-    }
-
-    @RequestMapping(path="/salepage")
-    public ModelAndView salepagesearch(String findStr2){
-        ModelAndView mv = new ModelAndView();
-        List<ProductVo> list = saleDao.salepagesearch(findStr2);
-        mv.addObject("salepage",list);
-        mv.setViewName("krh/salepage");
         return mv;
     }
 }
