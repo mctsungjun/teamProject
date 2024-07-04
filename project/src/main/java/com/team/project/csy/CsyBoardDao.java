@@ -11,7 +11,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 
-// * 깃 재업로드용 주석
 @Component
 public class CsyBoardDao {
 
