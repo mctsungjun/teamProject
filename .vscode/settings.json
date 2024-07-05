@@ -44,8 +44,16 @@
     ],
     "java.debug.settings.onBuildFailureProceed": true,
     "java.compile.nullAnalysis.mode": "automatic",
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "java.debug.settings.onBuildFailureProceed": true
+=======
+    "liveServer.settings.port": 5501
+>>>>>>> 84a1ea6c2f545da9678f94d2410311a7ec579ea7
+=======
     "java.debug.settings.onBuildFailureProceed": true,
     "liveServer.settings.port": 5501,
     "java.configuration.updateBuildConfiguration": "automatic"
 
+>>>>>>> 668552c69eff91bad284df9f0d88c23d3e4cc755
 }
