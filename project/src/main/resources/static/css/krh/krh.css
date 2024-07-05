@@ -268,23 +268,68 @@
     width:1100px;
     color:black;
 }
-.salepageview{
-    width:1200px;
-    margin:30px auto;
+
+.salepage .sort .btnCheap,.btnEx,.btnNew{
+    border:none;
+    background-color: white;
+    font-size: 15px;
+}
+
+.salepage .sort .btnCheap:hover,.btnEx:hover,.btnNew:hover{
+    border:none;
+    background-color: white;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.salepage .btnZone{
+    text-align: center;
+    word-spacing: 10px;
+}
+
+.salepage .btnPrev, .salepage .btnZone .btnNext{
+    pointer-events: none;
+    background-color: #bbbbbb;
+    border: 0px;
+}
+.salepage .btnPrevEnable, .salepage .btnNextEnable{
+    pointer-events: all;
+    border: 0px;
+    cursor: pointer;
+    background-color: rgb(182, 84, 199);
+}
+
+.salepage .btnprev
+
+/*판매 페잉지 상세보기 */
+.salepage_view{
+    margin-bottom:40px;
     min-height: 1000px;
     text-align: center;
 }
-.salepageview .viewleft{
-    width:500px;
+.salepage_view .viewleft{
+    width: 380px;
     text-align: left;
     float: left;
-
     margin-top: 48px;
-    margin-left:50px;
-    height:350px;
+    margin-left: 50px;
+    height: 350px;
     max-height: 350px;
 }
-.salepageview .viewright{
+.salepage_view .product_image_sub{
+    display: flex;
+    width: 150px;
+    height: 400px;
+    flex-direction: column;
+    margin-top: 48px;
+    float: left;
+}
+.product_image_sub_each{
+    margin-bottom: 20px;
+}
+
+.salepage_view .viewright{
     width:500px;
     height:350px;
     text-align: right;
@@ -294,7 +339,7 @@
     max-height: 350px;
     padding:0;
 }
-.salepageview .viewbottom{
+.salepage_view .viewbottom{
     width:1100px;
     position: relative;
     border: 1px solid rgb(227, 227, 227);
@@ -302,6 +347,7 @@
     text-align:center;
     word-break: normal;
     margin: 0 auto;
+    margin-left:50px;
     display: inline-block;
     vertical-align: top;
     min-height: 200px;
@@ -311,7 +357,7 @@
 }
 .viewright .price{
     font-weight: bold;
-    font-size:30px;
+    font-size:45px;
     padding:10px;
 }
 .viewright .spec{
