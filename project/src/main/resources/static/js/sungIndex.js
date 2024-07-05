@@ -32,26 +32,26 @@
 // 	})
 // }
 //회원상세보기 보튼 클릭
-// var detail = ()=>{
-// 	// var id = sessionStorage.getItem("id");
-// 	// // alert(id)
-// 	// var name = sessionStorage.getItem("name");
-// 	$.ajax({
-// 		url:"/sung/detail",
-// 		type:"GET",
-// 		// data:{"id":id,"name":name},
-// 		success:(resp)=>{
+var detail = ()=>{
+	// var id = sessionStorage.getItem("id");
+	// // alert(id)
+	// var name = sessionStorage.getItem("name");
+	$.ajax({
+		url:"/sung/detail",
+		type:"GET",
+		// data:{"id":id,"name":name},
+		success:(resp)=>{
 			
-// 			let temp = $(resp).find(".change");
-// 			$(".content").html(temp);
-// 			if(resp==="logout"){
-// 				console.log(resp);
+			let temp = $(resp).find(".myprofile-main");
+			$(".myProfilePage").html(temp);
+			if(resp==="logout"){
+				console.log(resp);
 				
-// 			}
+			}
 			
-// 		}
-// 	})
-// }
+		}
+	})
+}
 // 대표이미지 바뀌때 테두리변함
 var repreImage="";
 var change=(tag,photo)=>{
@@ -66,7 +66,7 @@ var change=(tag,photo)=>{
 //대표 이미지 수정폼
 
 
-var	btnChangePhoto=()=>{
+export function btnChangePhoto() {
 		$.ajax({
 			url:"/sung/repreChangeForm",
 			type:"GET",
@@ -85,7 +85,6 @@ var	btnChangePhoto=()=>{
 						data:{"photo":repreImage},
 						success:(resp)=>{
 							detail();
-						
 						}
 					})
 				}
@@ -93,7 +92,7 @@ var	btnChangePhoto=()=>{
 		})
 	}
 // 홈으로 이동---------------------------------------------
-var btnGoHome = ()=>{
+export function btnGoHome() {
 	$.ajax ({
         url : "/design_guide",
         type: "GET",
@@ -106,7 +105,7 @@ var btnGoHome = ()=>{
 }
 
 // 목록으로 이동 (관리자만)
-var btnListForm = ()=>{
+export function btnListForm() {
 	let managerCode = prompt("관리코드를 입력하세요");
 	if( managerCode !=null && managerCode !=""){
 		$.ajax({
@@ -143,7 +142,6 @@ function view(id){
 	
 var search=()=>{
 	let finStr = document.querySelector(".findStr").value;
-    	        
 		
 		$.ajax({
 			url:"/sung/search",
@@ -170,7 +168,7 @@ export function registerForm() {
     })
 }
 //이미지등록버튼 클릭됨-------------------------------------------------
-function regiPhoto() {
+export function regiPhoto() {
 	// photoSection의 내용을 새로운 내용으로 변경
 	var photoSection = document.querySelector('.photoSection');
 	photoSection.innerHTML = `
@@ -239,8 +237,7 @@ function uploadFiles(){
 }
 
 // 수정버튼 클릭됨-------------------------------------------
-
-var modifyFrom=()=>{
+export function modifyFrom(){
 	// let id = sessionStorage.getItem("id");
 	// alert(id);
 	$.ajax({
@@ -248,42 +245,52 @@ var modifyFrom=()=>{
 		type:"GET",
 		// data:{"id":id},
 		success:(resp)=>{
-			let temp =$(resp).find(".change");
-			$(".change").html(temp);
+			let temp =$(resp).find(".myprofile-modify");
+			$(".myprofile-detail-content").html(temp);
 			
-			let btnCancel = document.querySelector(".btnCancel");
-			let btnUpdate = document.querySelector(".btnUpdate");
 			// 취소버튼 클릭시 다시 상세페이지로 이동
-			btnCancel.onclick = ()=>{
-				detail();
-			}
-			//수정 버튼 클릭시 수정
-			btnUpdate.onclick = () =>{
-				let frm = document.form;
-				let frmdata = new FormData(frm);
-				$.ajax({
-					url:"/sung/updateR",
-					type:"POST",
-					data:frmdata,
-					processData:false,
-					contentType:false,
-					success:(resp)=>{
-						console.log(resp)
-						detail();
-					}
-				})
-
-
-			}
-
-
 		}
-
-
 	})
 }
+
+
+
+// 수정 버튼 클릭시 수정
+export function myProfileModifySubmit() {
+	let frm = document.form;
+	let frmdata = new FormData(frm);
+	$.ajax({
+		url:"/sung/updateR",
+		type:"POST",
+		data:frmdata,
+		processData:false,
+		contentType:false,
+		success:(resp)=>{
+			console.log(resp);
+			alert("회원 정보가 정상적으로 수정되었습니다.");
+			// cancel은 아닌데, 회원 정보 메인으로 돌아가는 코드가 같아서 이걸로 대체
+			myProfileModifyCancled();
+		}
+	})
+}
+
+// 취소 버튼: 상세 페이지 이동
+export function myProfileModifyCancled() {
+	$.ajax({
+		url: "/sung/detail_main",
+		type: "GET",
+		success:(resp) => {
+			let temp = $(resp).find(".myprofile-main");
+			$(".myprofile-detail-content").html(temp);
+		}
+	})
+}
+
+
+
+
 //회원탈퇴
-function btnMemberOff(){
+export function btnMemberOff(){
 	var yn = confirm("정말로 탈퇴하시겠습니까?");
 	if (yn){
 		
@@ -291,16 +298,25 @@ function btnMemberOff(){
 			url:"/sung/memberOff",
 			type:"GET",
 			success:(resp)=>{
+				// * 로그아웃
+				$.ajax({
+					url:"/sung/logout",
+					type:"GET",
+					success:(resp)=>{
+						location.reload(true);
+					}
+				})
 				alert(resp);
 				
-                $.ajax ({
-                    url : "/login",
-                    type: "GET",
-                    success: (resp) => {
-                        let temp = $(resp).find(".change");  
-                        $(".authPage").html(temp);                
-                    }
-                })
+                // $.ajax ({
+                //     url : "/login",
+                //     type: "GET",
+                //     success: (resp) => {
+
+                //         let temp = $(resp).find(".change");  
+                //         $(".authPage").html(temp);                
+                //     }
+                // })
 				
 			}
 		})

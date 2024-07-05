@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,10 +31,7 @@ import com.team.project.sung_service.KakaoApi;
 import com.team.project.sung_service.NaverAPI;
 
 import jakarta.servlet.http.HttpServletRequest;
-
 import jakarta.servlet.http.HttpSession;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 @RestController
@@ -109,29 +106,27 @@ public ModelAndView login(){
         System.out.println("로그아웃");
         session.setAttribute("id", null);
         session.setAttribute("name", null);
-
     }
-      //상세페이지로
-      @RequestMapping(path="/sung/detail")
-      public ModelAndView detail(HttpSession session){
-          ModelAndView mv = new ModelAndView();
-          MemberVo vo = new MemberVo();
+
+    // CSY ADDED:
+    @RequestMapping(path="/sung/detail_main")
+    public ModelAndView detailMain(HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        MemberVo vo = new MemberVo();
         //서버 세션에서 id값 받아오기
         // dao로 전달
+        
         String id = (String)session.getAttribute("id");
         String name = (String)session.getAttribute("name");
-        System.out.println("상세페이지입니다.-----");
-        System.out.println(name);
-     
-        System.out.println("id:"  +id);
+        // System.out.println("id:"  +id);
         if( id != null && !id.equals("")){
 
-              vo = dao.detail(id,name);
+            vo = dao.detail(id,name);
             if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
                 for(PhotoVo pv:vo.getPhotos()){
                     if(pv.photo.contains(vo.getPhoto())){
-                          vo.setPhoto(pv.photo);;
-                        }
+                            vo.setPhoto(pv.photo);;
+                    }
                 }
             }else{
                 PhotoVo defaultPhoto = dao.defaultPhot();
@@ -140,19 +135,55 @@ public ModelAndView login(){
             
                 
                 System.out.println(vo);
-                  mv.addObject("vo", vo);
-                  
-                  mv.setViewName("/sung/detail");
-                 
+                mv.addObject("vo", vo);
+                mv.setViewName("/sung/detail/detail_main");
                 
             }
              // id 값이 null 이거나 공백인 경우 예외 처리합니다.
-       else if( id == null || id.trim().isEmpty()){
+        else if( id == null || id.trim().isEmpty()){
             mv.addObject("logout", "logout");
             mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
         }
         return mv;
+    }
+      //상세페이지로
+    @RequestMapping(path="/sung/detail")
+    public ModelAndView detail(HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        MemberVo vo = new MemberVo();
+        //서버 세션에서 id값 받아오기
+        // dao로 전달
+        
+        String id = (String)session.getAttribute("id");
+        String name = (String)session.getAttribute("name");
+        // System.out.println("id:"  +id);
+        if( id != null && !id.equals("")){
+
+            vo = dao.detail(id,name);
+            if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+                for(PhotoVo pv:vo.getPhotos()){
+                    if(pv.photo.contains(vo.getPhoto())){
+                            vo.setPhoto(pv.photo);;
+                    }
+                }
+            }else{
+                PhotoVo defaultPhoto = dao.defaultPhot();
+                vo.setPhoto(defaultPhoto.getPhoto());
+            }
+            
+                
+                System.out.println(vo);
+                mv.addObject("vo", vo);
+                mv.setViewName("/sung/detail/detail");
+                
+            }
+             // id 값이 null 이거나 공백인 경우 예외 처리합니다.
+        else if( id == null || id.trim().isEmpty()){
+            mv.addObject("logout", "logout");
+            mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
         }
+        return mv;
+    }
       // 리스트 목록에서 클릭 상세페이지
       @RequestMapping(path="/sung/view")
       public ModelAndView view(String id){
