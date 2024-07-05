@@ -16,6 +16,7 @@
 		<typeAlias type="com.team.project.bjm.NoticeVo" alias="NoticeVo" />
 		<typeAlias type="com.team.project.bjm.NoticeAtt" alias="NoticeAtt" />
 		<typeAlias type="com.team.project.bjm.NoticePage" alias="NoticePage" />
+		<typeAlias type="com.team.project.krh.Page" alias="Page"/>
 		<typeAlias type="com.team.project.ojw.PurchaseVo" alias="PurchaseVo" />
 		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo" />
 		<typeAlias type="com.team.project.ojw.ojw_PhotoVo" alias="ojw_PhotoVo" />
