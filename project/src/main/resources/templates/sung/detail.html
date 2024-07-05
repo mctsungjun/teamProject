@@ -8,9 +8,19 @@
 <body>
     <div>
         <div class="myProfilePage" style="margin-top:80px;">
+            <script>
+                
+
+                <button type="button" class="btn btn-outline-primary btnModify" onClick="modifyFrom()">수정</button>
+                <button type="button" class="btn btn-outline-primary " onClick="btnChangePhoto()" >대표이미지 수정</button>
+                <button type="button" class="btn btn-outline-primary" title="이미지파일을 등록하세요" onClick="regiPhoto()" >이미지등록</button>
+                <button type="button" class="btn btn-outline-primary" onClick="btnGoHome()" >홈</button>
+                <button type="button" class="btn btn-outline-primary" onClick="btnListForm()">목록</button>
+                <button type="button" class="btn btn-outline-primary" onClick="btnMemberOff()">회원탈퇴</button>
+            </script>
             <div style="display:flex; justify-content: space-between;">
                 <!-- * 프로필 대표 이미지 부분 * -->
-                <div class="user-profile-block mypage-profile-block">
+                <div class="user-profile-block mypage-profile-block no-drag">
                     <div class="profile-border mypage-profile-border">
                         <div class="profile-border1 mypage-profile-border3"></div>
                         <div class="profile-border1 mypage-profile-border1"></div>
@@ -27,22 +37,42 @@
                             <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;">게시물 조회</button>
                             <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px;">프로필 수정</button>
                         </div>
-                        <hr style="margin-top: 30;border-bottom: 1px solid var(--purple); filter:blur(8px);">
+                    <hr style="margin-top: 30;border-bottom: 1px solid var(--purple); filter:blur(8px);">
                 </div>
             </div>
             <hr style="margin-top:0px; border: 1px solid var(--purple); filter: blur(6px);">
             <div style="height: 40px;"></div>
         
-                <span>id:</span>[[${vo.id}]]
-                name:       [[${vo.name}]]
-                phone:     [[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]
-                address:      [[${vo.roadAddress}]] [[${vo.addressDetail}]]
-                email:     [[${vo.email}]]@[[${vo.email2}]]
-                birthday:    [[${vo.birthday}]]
-            <div class="photoSection">
-                <div class="container mt-5 ">
+            <div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">아이디</div>
+                    <div class="mypage-table-right">[[${vo.id}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">이름</div>
+                    <div class="mypage-table-right">[[${vo.name}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">연락처</div>
+                    <div class="mypage-table-right">[[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">주소</div>
+                    <div class="mypage-table-right">[[${vo.roadAddress}]] [[${vo.addressDetail}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">이메일</div>
+                    <div class="mypage-table-right">[[${vo.email}]]@[[${vo.email2}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">생년월일</div>
+                    <div class="mypage-table-right">[[${vo.birthday}]]</div>
+                </div>
+            </div>
+            <!-- <div class="photoSection">
+                <div class="container mt-5 "> -->
                 
-                <div class="photo_list row d-flex justify-content-center">
+                <!-- <div class="photo_list row d-flex justify-content-center">
                     <div class="col-md-2 mb-3">
                         <div class="d-flex justify-content-center">
                             <div class="img-container">
@@ -50,10 +80,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            </div>
-            
+                </div> -->
+            <!-- </div>
+            </div> -->
+<!--             
             <style>
                 .img-container{
                     width: 150px;
@@ -66,7 +96,7 @@
                 }
                 .photo_list {
                     gap: 5px; /* 이미지 간격을 5px로 설정 */
-                }
+                } -->
             </style>
               <div class="d-flex justify-content-center">
                  <div class="col-md-4 mt-3 mb-5" >

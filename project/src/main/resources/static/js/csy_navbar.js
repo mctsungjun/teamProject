@@ -11,10 +11,6 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 }
 
 // * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToProduct").onclick = () => {
-}
-
-// * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToStock").onclick = () => {
     $.ajax({
         url:"/stock",
@@ -27,7 +23,19 @@ document.querySelector("#navBtnToStock").onclick = () => {
         }
     })
  }
-
+ 
+// * 제품 관리
+document.querySelector("#navBtnToProduct").onclick = () => { 
+    $.ajax({
+        url : "/product",
+        type : "GET",
+        success : (resp)=>{
+            let temp = $(resp).find(".product");
+            $('.content').html(temp);
+            product_search();
+        }
+    })
+}
 
 // * 구매 정보 관리
 document.querySelector("#navBtnToBuyInfo").onclick = () => { 
