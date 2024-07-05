@@ -26,19 +26,20 @@ public class NoticeController {
     public static String upload="C:\\workspace-github-backup\\github\\project\\src\\main\\resources\\static\\upload\\";
 
     @RequestMapping(path="/bjmNoticeList")
-    public ModelAndView noticeList(NoticePage page,NoticeVo vo){ // NoticePage page, findStr findStr, NoticeVo vo
+    public ModelAndView noticeList(NoticePage page,NoticeVo vo){
         ModelAndView mv = new ModelAndView();
+        System.out.println("Controller:"+page.getNowPage());
         if(page.getFindStr() == null){
             page.setFindStr("");
         }
-        
+
         List<NoticeVo> list = dao.noticeList(page,vo);
         
         mv.addObject("list", list);
         mv.addObject("page", page);
         mv.addObject("findStr", page.getFindStr());
-
-        mv.setViewName("bjm_notice/noticeList"); // 깃에서는 notice/noticeList로 변경필요
+        System.out.println("findStr"+page.getFindStr());
+        mv.setViewName("bjm_notice/noticeList");
         return mv;
     }
 
@@ -85,31 +86,54 @@ public class NoticeController {
             attFiles.add(att);
         }
         vo.setId("12345");
-        // System.out.println("여기서 나오나요? " + vo);
         msg = dao.noticeRegisterR(vo, attFiles);
         return msg;
     }
 
-//     @RequestMapping(path="/notice/bjmModify")
-//     public ModelAndView noticeModify(/*String sno */){
-//         ModelAndView mv = new ModelAndView();
-//         // Map<String,Object> map = dao.view(sno);
-//         // mv.addObject("vo",map.get("vo"));
-//         mv.setViewName("bjm_notice/noticeModify");
-//         return mv;
-//     }
-//     /*
-//     @RequestMapping(path="/notice/bjmModifyR")
-//     public String modifyR(NoticeVo vo)
-//     String msg ="";
-//     msg= dao.modifyR(vo);
-//     return msg;
-//     */
-//     @RequestMapping(path="/notice/bjmDelete")
-//     public String noticeDelete(Integer sno){
-//         String msg = dao.noticeDelete(sno);
-//         return msg;
-//     }
+    @RequestMapping(path="/notice/bjmModify")
+    public ModelAndView noticeModify(Integer sno){
+        ModelAndView mv = new ModelAndView();
+        Map<String,Object> map = dao.noticeView(sno);
+        NoticeVo vo = (NoticeVo)map.get("vo");
+        mv.addObject("vo",vo);
+        mv.setViewName("bjm_notice/noticeModify");
+        return mv;
+    }
+    
+    @RequestMapping(path="/notice/bjmModifyR")
+    public String noticeModifyR(
+        @ModelAttribute NoticeVo vo, 
+        @RequestParam("files") List<MultipartFile> files
+    ){
+        String msg ="";
+        List<NoticeAtt> attFiles = new ArrayList<>();
+        UUID uuid = null;
+        String sysFile = "";
+        for(MultipartFile f : files){
+            if(f.getSize()<=0)continue;
+            uuid=UUID.randomUUID();
+            sysFile = String.format("%s-%s",uuid, f.getOriginalFilename());
+            File saveFile = new File(upload+sysFile);
+            try{
+                f.transferTo(saveFile);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            NoticeAtt att = new NoticeAtt();
+            att.setOriFile(f.getOriginalFilename());
+            att.setSysFile(sysFile);
+            attFiles.add(att);
+        }
+        vo.setId("12345");
+        msg = dao.noticeModifyR(vo, attFiles);
+        return msg;
+    }
+    
+    @RequestMapping(path="/notice/bjmDelete")
+    public String noticeDelete(Integer sno){
+        String msg = dao.noticeDelete(sno);
+        return msg;
+    }
     @PostMapping("/uploadImage")
     public Map<String, String> uploadImage(@RequestParam("file") MultipartFile file) {
         String uploadDir = "/path/to/upload/directory";
@@ -127,10 +151,9 @@ public class NoticeController {
         throw new RuntimeException("File upload failed", e);
     }
 }
+    
     @PostMapping("/noticeRegister")
     public String noticeRegister(@ModelAttribute NoticeVo vo) {
-        // NoticeVo에 content가 포함된 폼 데이터가 전송됨
-        // 여기서 필요한 데이터를 처리하고 데이터베이스에 저장
         return "저장 성공";
     }
 }

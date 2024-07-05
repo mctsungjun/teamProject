@@ -21,11 +21,7 @@
         select * from noticeAtt
         where sno = #{sno}
     </select>
-    <!-- Post-Modify -->
-    <!-- <update id="modify" parameterType="NoticeVo">
-        update notice set title=#{title}, content=#{content}
-        where sno=#{sno}
-    </update> -->
+    
     <!-- Post-hit -->
     <!-- <update id="postHit" parameterType="Integer">
         update notice set hit=hit + 1 
@@ -54,13 +50,33 @@
             </if>
         </where>
     </select>
-    <!-- delete -->
-    <!-- <select id="delete" parameterType="String" resultType="NoticeVo">
-        delete from notice where sno=#{_parameter}
-    </select> -->
     <!-- view -->
     <select id="view" parameterType="Integer" resultType="NoticeVo">
         select sno, title, content, id, hit, nal from notice
         where sno=#{_parameter}
     </select>
+    <!-- delete -->
+    <delete id="delete" parameterType="Integer">
+        delete from notice where sno=#{_parameter}
+    </delete>
+    <!-- Post-Modify -->
+    <update id="modify" parameterType="NoticeVo">
+         update notice set title=#{title}, content=#{content}
+         where sno=#{sno}
+    </update>
+
+    <!-- 여기서부터 -->
+    <!-- <select id="delFiles" parameterType="Integer" resultType="String">
+        select sysFile from noticeAtt
+        where sno = #{_parameter}
+    </select>
+    <select id="deleteFiles" parameterType="Integer" resultType="String">
+        select sysFile from noticeAtt
+        where sno = #{_parameter}
+    </select>
+    <delete id="delete_boardAtt" parameterType="Integer">
+        delete from notice
+        where sno=#{_parameter}
+    </delete> -->
+    <!-- 여기까지가 의미가없는 쿼리 -->
 </mapper>

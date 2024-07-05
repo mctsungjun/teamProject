@@ -40,21 +40,17 @@
         <div id="btnZone">
             <button type="button" name="bjmBtnRegister" class="bjmBtnRegister">작성</button>
         </div>
-            <nav class="footer">
-                <ul>
-                    <li><a href='#'>&#171;</a></li>
-                    <li><a href='#'>1</a></li>
-                    <li><a href='#'>2</a></li>
-                    <li><a href='#'>3</a></li>
-                    <li><a href='#'>4</a></li>
-                    <li><a href='#'>5</a></li>
-                    <li><a href='#'>6</a></li>
-                    <li><a href='#'>7</a></li>
-                    <li><a href='#'>8</a></li>
-                    <li><a href='#'>9</a></li>
-                    <li><a href='#'>&#187;</a></li>
-                </ul>
-            </nav>
+        <nav class="footer">
+            <th:block th:if="${page.startPage > 1}">
+                <span th:onClick="|noticelist(${page.startPage - 1})|">&#171;</span>
+            </th:block>
+            <th:block th:each="i : ${#numbers.sequence(page.startPage, page.endPage)}">
+                <span th:onClick="|noticelist(${i})|" th:text="${i}">1</span>
+            </th:block>
+            <th:block th:if="${page.totPage > page.endPage}">
+                <span th:onClick="|noticelist(${page.endPage + 1})|">&#187;</span>
+            </th:block>
+        </nav>
         </div>
     </div>
 </body>

@@ -8,11 +8,23 @@ public class NoticePage {
     int startNo;
     int endNo;
     int totSize;
-    int listSize = 4;
+    int listSize = 10;
+    int blockSize = 5;
     String findStr;
 
-    public void compute(){
+    int totPage,startPage,endPage;
+
+    public void compute() {
         endNo = nowPage * listSize;
         startNo = endNo - listSize;
+        
+        totPage = (int) Math.ceil(totSize / (double) listSize);
+
+        startPage = ((nowPage - 1) / blockSize) * blockSize + 1;
+        endPage = startPage + blockSize - 1;
+        
+        if (endPage > totPage) {
+            endPage = totPage;
+        }
     }
 }
