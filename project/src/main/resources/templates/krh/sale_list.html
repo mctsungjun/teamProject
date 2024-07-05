@@ -11,28 +11,28 @@
 <body>
     <div class="sale">
         <div class="salelist">
-            <h2>판매 내역서</h2>
-            <!--vo를.. 판매상세보기에서 가져오기.. 그러면 수정 한 번 하면 같이 바뀔듯?..-->
-            <form name="frm" method="post" enctype="multipart/form-data">
+            <div class="salelistlist">
+                <h2>판매 내역서</h2>
+                <!--vo를.. 판매상세보기에서 가져오기.. 그러면 수정 한 번 하면 같이 바뀔듯?..-->
                 <table class="salelisttable">
                     <tr>
                         <th>주문일</th>
-                        <td colspan="3">list에서</td>
+                        <td colspan="3">[[${vo.s_nal}]]</td>
                     </tr>
                     <tr>
                         <th colspan="4">고객 정보</th>
                     </tr>
                     <tr>
                         <th>고객 주소</th>
-                        <td>회원정보</td>
+                        <td>[[${vo.userJibunAddress}]] [[${vo.userAddressDetail}]]</td>
                         <th>전화 번호</th>
-                        <td>회원정보</td>
+                        <td>[[${vo.userPhone1}]]-[[${vo.userPhone2}]]-[[${vo.userPhone3}]]</td>
                     </tr>
                     <tr>
                         <th>성명</th>
-                        <td>회원정보에서</td>
+                        <td>[[${vo.userName}]]</td>
                         <th>이메일</th>
-                        <td>회원정보에서</td>
+                        <td>[[${vo.userEmail}]] @ [[${vo.userEmail2}]]</td>
                     </tr>
                     <tr>
                         <th colspan>No.</th>
@@ -41,8 +41,8 @@
                     </tr>
                     <tr>
                         <th>1</th>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2">[[${vo.s_ProductName}]]</td>
+                        <td>[[${vo.s_ea}]]</td>
                     </tr>
                     <tr>
                         <th>2</th>
@@ -76,13 +76,14 @@
                     </tr>
                     <tr>
                         <th>총액</th>
-                        <td colspan="3"></td>
+                        <td colspan="3">[[${vo.s_price*vo.s_ea}]]</td>
                     </tr>
                 </table>
-            </form>
-        </div>
+            </div>
         <br/>
         <button type="button" class="btnPrint">출력</button>
+        <button type="button" class="btnList">취소</button>
+        </div>
     </div>
 </body>
 </html>

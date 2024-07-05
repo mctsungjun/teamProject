@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>판매 페이지</title>
     <link rel="stylesheet" href="css/krh/krh.css">
-    <script defer src="js/krh_sale_stock.js"></script>
-    <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="js/krh_salepage.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div class="sale">
@@ -15,13 +16,12 @@
             <div class="change">
                 <!--검색 기준-->
                 <div class="salepagesearch">
-                    <div class="sort">
-                        <a href="#" class="cheap">가격 낮은 순</a> |
-                        <a href="#" class="expensive">가격 높은 순</a> |
-                        <a href="#" class="new">신상품순</a> |
-                        <a href="#" class="original">추천순</a>
-                    </div>
                     <form name="frm" class="frm" method="GET">
+                        <div class="sort">
+                            <button type="button" class="btnCheap">가격 낮은 순</button> |
+                            <button type="button" class="btnEx">가격 높은 순</button> |
+                            <button type="button" class="btnNew">신상품 순</button> | 
+                        </div>
                         <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
                         <button type="button" class="btnSearch">검색</button>
                     </form>
@@ -29,30 +29,15 @@
             </div>
             <hr/>
             <div class="salepagelist">
-                <ul class="salepageproduct" th:each="f:${list}" onClick="view2('${f.ProductName}')">
+                <ul class="salepageproduct" th:each="j:${salepage}">
                     <li class="salepageproducteach">
-                        <!--지원언니가 제품등록하면 해당 정보가 넘어오게..-->
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
+                        <span><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
                         <br/>
-                        <span class="name">[[${q.ProductName}]]</span>
+                        <span class="name">[[${j.productName}]]</span>
                         <br/>
-                        <span class="explanation">[[${q.ProductExplanation}]]</span>
+                        <span class="comment">[[${j.comment}]]</span>
                         <br/>
-                        <span class="price">[[${q.price}]]</span><span class="won">원</span>
-                    </li>
-                    <li class="salepageproducteach">
-                        <!--지원언니가 제품등록하면 해당 정보가 넘어오게..-->
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
-                        <br/>
-                        <span class="name">오렌지</span>
-                        <br/>
-                        <span class="explanation">달달한 오렌지</span>
-                        <br/>
-                        <span class="price">9800</span> <span class="won">원</span>
+                        <span class="price">[[${j.price}]]</span>
                     </li>
                 </ul>
             </div>

@@ -8,129 +8,125 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-M2XG4oUH05MJvooFQwq8b03mEjF2XnUGg2d1KLyTz9s=" crossorigin="anonymous"></script>
-    
-    
-    <!-- <style>
-        .hyphen{
-            font-size:px;
-            font-weight:bold;
-             
-        }
-    
-    </style> -->
 </head>
 <body>
     <div>
-         <div class="container col-md-8 mt-5 ">
-            <div class="register">
+        <div class="register" style="display: flex; justify-content: center; align-items: center; padding-top:120px; padding-bottom:120px; overflow: auto;">
+        <script>
+            $('#m').prop('checked',true);
 
-            
-        <h1 class="display-5 text-center">회원등록</h1>
-        <form class="row g-3 mt-3 " id="joinForm" name="joinForm"  >
-        <div class="col-md-6">
-          <label for="id" class="form-label"><span class="text-danger">*</span> 아이디</label>
-          <input type="text" class="form-control" id="id" name="id"  >
-          <span>※ 3~15자의 영문과 숫자를 포함해 주세요.</span>
-          
+            async function userChk() {
+                let obj = await import ('/js/sungIndex.js');
+                obj.userChk();
+            }
 
-          </div>
-        <div class="col-md-6 mt-5 w-25" >
-            <input type="button" class="btn btn-outline-info form-control" onClick="userChk();" value="중복확인">
+            async function text_chkpw() {
+                let obj = await import ('/js/sungIndex.js');
+                obj.text_chkpw();
+            }
 
+            async function multi_chkpw() {
+                let obj = await import ('/js/sungIndex.js');
+                obj.multi_chkpw();
+            }
+
+            async function updateEmailInput() {
+                let obj = await import ('/js/sungIndex.js');
+                obj.updateEmailInput();
+            }
+
+            async function joinformBtn() {
+                let obj = await import ('/js/sungRegister.js');
+                obj.joinformBtn();
+            }
+        </script>
+
+        <div style="width:800px; text-align: left; margin-top:-2.5%;">
+
+        <!-- <div class="container"> -->
+        <h1 class="no-drag" style='letter-spacing: 7px; margin-bottom: 50px; font-weight: 300; text-align: center;'>회원등록</h1>
+        <form id="joinForm" name="joinForm" method="post" >
+        <!-- <div class="col-md-6 "> -->
+
+        <!-- * 아이디 * -->
+        <label for="id" class="form-label" style="font-weight:400; font-size: 16px;">아이디</label>
+        <div style="display: flex; justify-content: space-between;">
+            <input type="text" class="form-control login-text-input" style="width: 80%; margin-bottom: 0;" id="id" name="id" />
+            <input type="button" class="purple-text-button" style="width: 18%; height: 50px; letter-spacing: 3px;" name="idchk" onClick="userChk();" value="중복확인"> <!-- class=   btn btn-outline-info form-control -->
         </div>
-        <!--비밀번호-->
-        <div class="row mt-2">
-            <div class="col-md-6">
-                <label for="pwd" class="form-label"><span class="text-danger">*</span> 비밀번호</label>
-                <input type="password" class="form-control" id="pwd" name="password" onblur="text_chkpw();">
-                <span style="color:red; display:none;" id="no_pw">※ 비밀번호 형식이 일치하지 않습니다.</span>
-				<span style="color:blue; display:none;" id="ok_pw">※ 사용가능한 비밀번호 입니다.</span>
-                <span>"※ 영문/숫자/특수문자 조합 6~20자 이상." </span>
+        <div style="margin-top: 5px; margin-bottom: 24px;">※ 3~15자의 영문과 숫자를 포함해 주세요.</div>
+
+        <!-- * 비밀번호 * -->
+        <div style="display: flex; justify-content: space-between;">
+            <div style="width: 48%;">
+                <label for="pwd" class="form-label" style="font-weight:400; font-size: 16px;">비밀번호</label>
+                <input type="password" class="form-control login-text-input" style="margin-bottom: 0;" id="pwd" name="password" onblur="text_chkpw();" />
             </div>
-            <div class="col-md-6">
-                <label for="pwdchk" class="form-label"><span class="text-danger">*</span> 비밀번호확인</label>
-                <input type="password" class="form-control" id="pwdchk"  onblur="multi_chkpw();">
-                <span style="color:red; display:none;" id="no_multipw">※ 비밀번호가 일치하지 않습니다.</span>
-                <span style="color:blue; display:none;" id="ok_multipw">※ 비밀번호가 일치 합니다.</span>
-            </div>
-        </div>
-        <!-- 이름 -->
-        <div class="row mt-4">
-            <div class="col-md-1">
-                <label for="name" class="form-label"><span class="text-danger">*</span> 이름</label>
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control" id="name" name="name">
-                    
-            </div>
-            <div class="col-md-5 d-flex" >
-                <div class="row form-check mx-2">
-                    <input class="form-check-input c" type="radio" id="w" name="gender" value="female">
-					<label class="form-check-label text-bg-info" for="w" >여자</label>		
-                </div>
-				<div class="row form-check mx-5">
-                    <input class="form-check-input c" type="radio" id="m" name="gender" value="male" checked >
-					<label class="form-check-label text-bg-warning" for="m">남자</label>	
-                </div>				
-								
-		    </div>
-        </div>
-        <!--생년월일-->
-        <div class="row md-6 mt-4">
-            <div class="col-md-2">
-                <label for="birth" class="form-label"><span class="text-danger">*</span> 생년월일</label>
-            </div>
-            <div class="col-md-5 d-flex">
-                <input type="date" class="form-control " name="birthday" id="birth" placeholder="2019-05-20" >
-                <!--<input type="button" class="form-control btn btn-outline-primary mx-3" value="입력">-->
+            <div style="width: 48%;">
+                <label for="password" class="form-label" style="font-weight:400; font-size: 16px;">비밀번호 확인</label>
+                <input type="password" class="form-control login-text-input" style="margin-bottom: 0;"  id="pwdchk" name="passwd_check" onblur="multi_chkpw();" /> <!-- class=   btn btn-outline-info form-control -->
             </div>
         </div>
-        <!-- 주소 -->
-        <div class="row mt-4 ">
-            <div class="col-1">
+        <div style="margin-top: 5px;">※ 영문/숫자/특수문자 조합 6~20자 이하.</div>
+        <div style="color:red; display:none; margin-top: 5px;" id="no_pw">※ 비밀번호 형식이 올바르지 않습니다.</div>
+		<div style="color: var(--skyblue); display:none; margin-top: 5px;" id="ok_pw">※ 사용가능한 비밀번호 입니다.</div>
+        <div style="color:red; display:none; margin-top: 5px;" id="no_multipw">※ 비밀번호가 일치하지 않습니다.</div>
+        <div style="color: var(--skyblue); display:none; margin-top: 5px;" id="ok_multipw">※ 비밀번호가 일치 합니다.</div>
+        <div style="height:24px; width:100%;"></div>
 
-                <label for="postcode" class="form-label"><span class="text-danger">*</span>주소</label>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+            <!-- * 이름 * -->
+            <div style="width: 48%;">
+                <label for="name" class="form-label" style="font-weight:400; font-size: 16px;">이름</label>
+                <input type="name" class="form-control login-text-input" style="margin-bottom: 0;" id="name" name="name" />
             </div>
-            <div class="col-md-4 ">
-                
-          <input type="text" class="form-control" id="postcode"  readonly placeholder="우편번호">
-          </div>
-          <div class="col-md-3 ">
-              <input type="button" class="btn btn-outline-info" onclick="sample4_execDaumPostcode()" value="우편번호찾기"/> 
-          </div>
-        </div>
-        
-          
-        <div class="col-md-2">
-            <label for="inputAddress2" class="form-label"><span class="text-danger">*</span>상세주소</label>
+            <!-- * 생년월일 및 성별 * -->
+            <div style="width: 48%;">
+                <label for="gender" class="form-label" style="font-weight:400; font-size: 16px;">생년월일 및 성별</label>
+                <!-- <span lass="form-label" style="font-weight:400; font-size: 16px; line-height: 50px; width: 100px;">성별 : </span> -->
+            <div style="display:flex;">
+            <input type="date" class="form-control login-text-input" style="color-scheme: dark; width:234px; color: var(--white);"name="birthday" id="birth">
+            <div class="checkbox-wrapper" style="display:flex; margin-top:2px; margin-left: 6px;">
+                    <input type="radio" id="w" name="gender" value="female"/>
+                    <label for="w" class="label">
+                        <svg width="45" height="45" viewBox="0 0 95 95">
+                        <!-- width="50" height="50" stroke="var(--purple)" stroke-width: 3; fill="none" -->
+                        <rect x="30" y="20" class="rect"></rect>
+                        <g transform="translate(0,-952.36222)">
+                            <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4" class="path1"></path>
+                        </g></svg><span>여성</span></label>
+                <!-- * 이거 체크박스 디폴트 체크 script에서 처리: checked value는 모르겠는데, 애니메이션이 안먹힘 * -->
+                <input type="radio" id="m" name="gender" value="male" style="width: 50%" />
+                <label for="m" class="label">
+                    <svg width="45" height="45" viewBox="0 0 95 95">
+                    <rect x="30" y="20" class="rect"></rect>
+                    <g transform="translate(0,-952.36222)">
+                        <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4" class="path1"></path>
+                    </g></svg><span>남성</span></label>
+            </div></div></div></div>
 
+        <!-- * 주소 * -->
+        <label for="postcode" class="form-label" style="font-weight:400; font-size: 16px;">주소</label>
+        <div style="display: flex; margin-bottom: 18px;">
+            <input type="text" class="form-control login-text-input" id="postcode"
+            placeholder="우편번호" readonly style="font-weight: 400; width: 250px; margin-bottom: 0; background-color:var(--white); color:var(--dark-gray);" onclick="sample4_execDaumPostcode()"/>
+            <input type="button" class="purple-text-button" style="margin-left:20px; width:150px; height: 50px; letter-spacing: 3px;" onclick="sample4_execDaumPostcode()" value="우편번호 검색"> <!-- class=   btn btn-outline-info form-control -->
         </div>
-        <div class="col-md-6 ">
-            <input type="text" class="form-control" name="roadAddress" id="roadAddress"    placeholder="도로명주소">
-            <input type="text" class="form-control mt-1" name="jibunAddress" id="jibunAddress" placeholder="지번주소">
+        <input type="text" class="form-control login-text-input" style="margin-bottom: 18px; font-weight: 400; background-color:var(--white); color:var(--dark-gray);" 
+        readonly onclick="sample4_execDaumPostcode()"
+        name="roadAddress" id="roadAddress" placeholder="도로명주소">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+            <input type="text" class="form-control login-text-input" style="width:48%;" name="jibunAddress" id="jibunAddress" placeholder="지번주소">
+            <input type="text" class="form-control login-text-input" style="width:48%;" id="addressDetail"  name="addressDetail" placeholder="상세주소">
         </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="addressDetail"  name="addressDetail" placeholder="상세주소">
-            
-        </div>
-   
-   
-       <!--이메일-->
-       <div class="row mt-4">  
-         <div class="col-md-2">
-        <label for="email" class="form-label"><span class="text-danger">*</span>이메일</label>
-        </div>
-        <div class="col-md-3 d-flex align-items-center ">
-            <input type="text" class="form-control " id="email" name="email"><span >@</span>
-
-        </div>
-       
-        <div class="col-md-2 d-flex ">
-            <input type="text" class="form-control" name="email2" id="email2" >
-
-        </div>
-        <div class="col-md-3">
-             <select  class="form-select"  id="email_sel" onchange="updateEmailInput()">
+        <!-- * 이메일 * -->
+        <label for="email" class="form-label" style="font-weight:400; font-size: 16px;">이메일</label>
+        <div style="display: flex; margin-bottom: 18px;">
+            <input type="text" class="form-control login-text-input" style="width: 280px;" id="email" name="email" />
+            <span style="line-height:50px; margin-left:15px; margin-right:15px; font-size:20px;">@</span>
+            <input type="text" class="form-control login-text-input" id="email2" name="email2" />
+            <select  class="form-control login-select" style="margin-left:15px; width: 180px;"
+            id="email_sel" onchange="updateEmailInput()">
                 <option value="">직접입력</option>
                 <option value="naver.com">naver.com</option>
                 <option value="hanmail.net">hanmail.net</option>
@@ -146,52 +142,27 @@
                 <option value="hanmir.com">hanmir.com</option>
             </select>
         </div>
-           
-        
-        
-        </div>
-        <!--휴대번호-->
-        <div class="row mt-4">
-            <div class="col-md-2">
-                <label for="phone" class="form-label"><span class="text-danger">*</span>휴대폰번호</label>
-            </div>
-            <div class="col-md-6 d-flex align-text-center">
-                <select name="phone1" id="phone1" class="form-select">
-                    <option value="010">010</option>
-                    <option value="011">011</option>
-                    <option value="016">016</option>
-                    <option value="017">017</option>
-                    <option value="018">018</option>
-                    <option value="019">019</option>
-                </select>
-                <span class="hyphen">-</span>
-				<input type="text" class="form-control mx-1" name="phone2" >
-                <span class="hyphen">-</span>
-				<input type="text" class="form-control mx-1" name="phone3">
-            </div>
-            
-        </div>
-    
 
-        <div class="col-md-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="Check"
-            >
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
+        <!--  * 휴대폰 번호 * -->
+        <label for="phone" class="form-label" style="font-weight:400; font-size: 16px;">연락처</label>
+        <div style="display: flex; margin-bottom: 25px;">
+        <select name="phone1" id="phone1" class="form-control login-select" style="width: 150px;">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="017">017</option>
+            <option value="018">018</option>
+            <option value="019">019</option>
+        </select>
+        <span style="line-height:50px; margin-left:15px; margin-right:15px; font-size:20px;">-</span>
+        <input type="text" class="form-control login-text-input" name="phone2" />
+        <span style="line-height:50px; margin-left:15px; margin-right:15px; font-size:20px;">-</span>
+        <input type="text" class="form-control login-text-input" name="phone3" />
         </div>
-        <div class="col-md-12 mb-5">
-          <button type="btn" class="btn btn-primary" onclick="joinform_chk();">가입하기</button>
-        </div>
-      </form>
+        <button type="button" class="purple-text-button no-drag" id="loginBtn" style="width: 100%; height:50px; font-size: 18px; font-weight: 500; letter-spacing: 8px;" onclick="joinformBtn();">가입하기</div>
+    </form>
     </div>
     </div>
     </div>
- 
-    
 </body>
- 
-
 </html>

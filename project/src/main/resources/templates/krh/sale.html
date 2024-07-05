@@ -28,18 +28,19 @@
                     <span class="ea">수량</span>
                     <span class="amt">판매 금액</span>
                     <span class="nal">판매 일자</span>
+                    <span class="saleList">판매 내역서</span>
                 </div>
                 <div class="items"> 
-                    <!--팝업......-->
-                    <div class="item" th:each="d:${sale}" th:onClick="sale_view([[${d.sno}]])">
-                        <span class="sno">[[${d.sno}]]</span>
-                        <span class="CustomerId">[[${d.CustomerId}]]</span>
-                        <span class="ProductCode">[[${d.ProductCode}]]</span>
-                        <span class="ProductName">[[${d.ProductName}]]</span>
-                        <span class="price">[[${d.price}]]</span>
-                        <span class="ea">[[${d.ea}]]</span>
-                        <span class="amt">[[${d.amt}]]</span>
-                        <span class="nal">[[${d.nal}]]</span>
+                    <div class="item" th:each="d:${sale}">
+                        <span class="sno" th:onClick="sale_view([[${d.sno}]])">[[${d.sno}]]</span>
+                        <span class="CustomerId" th:onClick="sale_view([[${d.sno}]])">[[${d.id}]]</span>
+                        <span class="ProductCode" th:onClick="sale_view([[${d.sno}]])">[[${d.ProductCode}]]</span>
+                        <span class="ProductName" th:onClick="sale_view([[${d.sno}]])">[[${d.ProductName}]]</span>
+                        <span class="price" th:onClick="sale_view([[${d.sno}]])">[[${d.price}]]</span>
+                        <span class="ea" th:onClick="sale_view([[${d.sno}]])">[[${d.ea}]]</span>
+                        <span class="amt" th:onClick="sale_view([[${d.sno}]])">[[${d.ea*d.price}]]</span>
+                        <span class="nal" th:onClick="sale_view([[${d.sno}]])">[[${d.nal}]]</span>                
+                        <span class="saleList" th:onClick="sale_list([[${d.sno}]])">보기<span>
                     </div>
                 </div>
             </div>

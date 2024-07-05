@@ -2,6 +2,7 @@ package com.team.project.csy.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,21 +11,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.csy.CsyBoardCommentVo;
 import com.team.project.csy.CsyBoardDao;
 import com.team.project.csy.CsyBoardLikesVo;
+import com.team.project.csy.CsyBoardListPageVo;
 import com.team.project.csy.CsyBoardVo;
 
 @RestController
 public class csyBoardController {
     @Autowired
     CsyBoardDao BoardDao;
-    
+
     @RequestMapping(path="/board")
-    public ModelAndView search(String findStr){
+    public ModelAndView search(CsyBoardListPageVo pageVo){
         ModelAndView mv = new ModelAndView();
-        List<CsyBoardVo> list = BoardDao.search(findStr);
-        mv.addObject("list", list);
-        mv.addObject("findStr", findStr);
+
+        if (pageVo.getFindStr() == null) { pageVo.setFindStr("");}
+
+        Map<String, Object> map = BoardDao.search(pageVo);
+        List<CsyBoardVo> postList = (List<CsyBoardVo>) map.get("postList");
+    
+        pageVo = (CsyBoardListPageVo) map.get("pageVo");
+        mv.addObject("postList", postList);
+        mv.addObject("pageVo", pageVo);
+        mv.addObject("findStr", pageVo.getFindStr());
+
+        System.out.println(pageVo);
         mv.setViewName("csy_board/csy_list");
         return mv;
     }
@@ -39,8 +51,11 @@ public class csyBoardController {
     @RequestMapping(path="/board/modify")
     public ModelAndView modifyPost(String sno) {
         ModelAndView mv = new ModelAndView();
-        CsyBoardVo vo = BoardDao.detail(sno);
-        mv.addObject("vo", vo);
+        
+        Map<String, Object> map = BoardDao.detail(sno);
+        mv.addObject("vo", map.get("boardVo"));
+        mv.addObject("commentList", map.get("commentList"));
+
         mv.setViewName("csy_board/csy_modify");
         return mv;
     }
@@ -54,8 +69,13 @@ public class csyBoardController {
     @RequestMapping(path="/board/detail")
     public ModelAndView postDetail(String sno) {
         ModelAndView mv = new ModelAndView();
-        CsyBoardVo vo = BoardDao.detail(sno);
-        mv.addObject("vo", vo);
+        Map<String, Object> map = BoardDao.detail(sno);
+
+        CsyBoardVo boardVo = (CsyBoardVo) map.get("boardVo");
+        List<CsyBoardCommentVo> commentList = (List<CsyBoardCommentVo>) map.get("commentList");
+
+        mv.addObject("vo", boardVo);
+        mv.addObject("commentList", commentList);
         mv.setViewName("csy_board/csy_detail");
         return mv;
     }
@@ -70,52 +90,18 @@ public class csyBoardController {
         return BoardDao.likePressed(vo);
     }
 
-    // @RequestMapping(path="/board/detail/likePressed/updateLikes")
-    // public String postDetailLikes(String sno) {
-    //     String numOfLikes = BoardDao.singlePostLikes(sno);
-    //     return numOfLikes;
-    // }
+    @RequestMapping("/board/detail/comments/post")
+    public boolean boardDetailCommentPost(CsyBoardCommentVo vo) {
+        return BoardDao.commentPost(vo);
+    }
 
-    // // * 추후 이름 수정
-    // @RequestMapping(path="/boardpostsubmit", method=RequestMethod.POST)
-    // public ModelAndView newPostSubmit(HttpSession httpSession, BoardVo vo) {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("board/list");
-    //     return mv;
-    // }
+    @RequestMapping("/board/detail/comments/delete")
+    public boolean boardDetailCommentDelete(String sno) {
+        return BoardDao.commentDelete(sno);
+    }
+
+    @RequestMapping("/board/detail/comments/modify")
+    public boolean boardDetailCommentModify(CsyBoardCommentVo vo) {
+        return BoardDao.commentModify(vo);
+    }
 }
-
-
-// @RestController
-// public class boardController2 {
-//     @Autowired
-//     BoardDao dao;
-    
-//     static String uploadPath = "C:\\myjob\\th_mysql_board\\board\\src\\main\\resources";
-
-//     @RequestMapping(path="/")
-//     public ModelAndView index() {
-//         ModelAndView mv = new ModelAndView();
-//         mv.setViewName("index");
-//         return mv;
-//     }
-
-//     @RequestMapping(path="/list")
-//     public ModelAndView list(Page page) {
-//         System.out.println("ctrl: " + page);
-//         ModelAndView mv = new ModelAndView();
-//         Map<String, Object> map = dao.list(page);
-//         mv.addObject("map", map);
-//         mv.setViewName("board/list");
-//         return mv;
-//     }
-
-//     @RequestMapping(path="/view")
-//     public ModelAndView view(Integer sno) {
-//         ModelAndView mv = new ModelAndView();
-//         Map map = dao.view(sno);
-//         mv.addObject("attFiles", map.get("attFiles"));
-//         mv.addObject("vo", map.get("vo"));
-//         mv.setViewName("board/view");
-//     }
-// }

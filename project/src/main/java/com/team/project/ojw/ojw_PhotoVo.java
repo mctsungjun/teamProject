@@ -1,6 +1,9 @@
 package com.team.project.ojw;
 
-public class PhotoVo {
+import lombok.Data;
+
+@Data
+public class ojw_PhotoVo {
     int no;
     String productCode;
     String productName;

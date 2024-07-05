@@ -1,4 +1,4 @@
-.purple-text-button {
+.purple-text-button, #loginBtn, .purple-text-button-rev {
     width: 68px;
     height: 30px;
     background-color: var(--purple);
@@ -13,7 +13,49 @@
     font-weight: 500;
 }
 
-.white-text-button {
+.purple-text-button-rev { background-color: var(--white); color: var(--purple); }
+.purple-text-button-rev:hover { background-color: var(--purple); color: var(--white); }
+
+#loginBtn {
+    width:100%;
+    margin-bottom: 15px;
+    height: 48px;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: white;
+}
+
+#loginBtn:hover {
+    background-color: var(--white);
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+
+.login-text-input, .login-select {
+    margin-bottom: 20px;
+    height: 50px;
+    background-color: transparent;
+    border: 1.2px solid var(--purple);
+    color: var(--white);
+    letter-spacing: 5px;
+    font-weight: 200;
+    padding: 0 20px 0 20px;
+}
+
+.login-text-input:hover, .login-select:hover { border: 2px solid var(--purple); }
+.login-text-input:focus, .login-select:focus { border: 2px solid var(--white); }
+
+.login-select {
+    background-color: var(--purple);
+}
+
+.login-select option {
+    padding-left: 5px;
+}
+
+.white-text-button, .grey-text-button {
     margin: 0;
     padding: 0;
     font-size: 15px;
@@ -25,11 +67,16 @@
     border: none;
 }
 
-.white-text-button:hover {
+.white-text-button:hover, .grey-text-button:hover {
+    text-decoration:none;
     color: var(--purple);
     background-color: transparent;
     font-weight: 500;
+    cursor: pointer;
 }
+
+.grey-text-button { color: rgba(255, 255, 255, 0.4); }
+.grey-text-button:hover { color: var(--white); }
 
 .paging-button {
     /* 상단 2px은 purple-text-button과 align 맞추기 위함 */
@@ -61,7 +108,6 @@
     text-align:center;
 }
 
-
 .underline-textbox {
     background-color: transparent;
     border-radius: 0;
@@ -76,4 +122,16 @@
 .underline-textbox:focus {
     /* 일단 보류 */
     border-bottom: 1.8px solid var(--white);
+}
+
+.login-api-button {
+    width: 49%;
+    height: 48px;
+    display: flex;
+    border: none;
+    line-height: 48px;
+    border-radius: 4px; 
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 15px 0 15px;
 }

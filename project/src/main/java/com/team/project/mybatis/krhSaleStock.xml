@@ -6,17 +6,26 @@
 <mapper namespace="salestock">
     <select id="search" parameterType="String" resultType="SaleVo">
         select * from sale
-        where CustomerId like '%${findStr}%'
+        where id like '%${findStr}%'
         or ProductCode like '%${findStr}%'
         or ProductName like '%${findStr}%'
         or nal like '%${findStr}%'
         or ea like '%${findStr}%'
         or price like '%${findStr}%'
-        or amt like '%${findStr}%'
     </select>
     <select id="view" parameterType="Integer" resultType="SaleVo">
-        select CustomerId, ProductCode, ProductName, price, ea, amt, nal from sale
+        select id, ProductCode, ProductName, price, ea, nal from sale
         where sno=#{_parameter}
+    </select>
+
+    <select id="list" parameterType="Integer" resultType="SaleWithUsersVo">
+        SELECT s.id as s_id, s.ProductName as s_ProductName, s.nal as s_nal, s.ea as s_ea, s.price as s_price,
+            u.name AS userName, u.email AS userEmail, u.email2 AS userEmail2,
+           u.phone1 AS userPhone1, u.phone2 AS userPhone2, u.phone3 AS userPhone3,
+           u.jibunAddress AS userJibunAddress, u.addressDetail AS userAddressDetail
+        FROM sale s
+        INNER JOIN users u ON s.id = u.id
+        where s.sno=#{_parameter};
     </select>
 
     <!--지언언니가 테이블 만들면 만들기!-->
@@ -26,11 +35,41 @@
     </select>
     
     <select id="select" parameterType="Integer" resultType="SaleVo">
-        select * from sale where sno=#{sno}
+        select * from sale where sno=#{_parameter}
     </select>
     
     <update id="update" parameterType="SaleVo">
-        update sale set ea=#{ea}
-        where sno=#{sno};
+        update sale set ea=#{ea}, amt=#{ea}*#{price}
+        where nal=#{nal}
     </update>
+
+    <select id="stocksearch" parameterType="String" resultType="StockVo">
+        select * from stock
+        where ProductCode like '%${findStr}%'
+        or ProductName like '%${findStr}%'
+    </select>
+
+    <!--재고 그래프-->
+    <select id="stockgraph" parameterType="map" resultType="StockVo">
+        select * from stock
+    </select>
+
+    <!--판매 페이지 정렬 검색-->
+    <select id="salepagesearch" parameterType="String" resultType="ProductVo">
+        select * from product
+        where productName like '%${findStr}'
+        or spec like '%${findStr}'
+    </select>
+    <select id="salepage_cheap" parameterType="ProductVo" resultType="ProductVo">
+        select * from product
+        order by price asc
+    </select>
+    <select id="salepage_expensive" resultType="ProductVo">
+        select * from product
+        order by price desc
+    </select>
+    <select id="salepage_nal" resultType="ProductVo">
+        select * from product
+        order by nal desc
+    </select>
 </mapper>

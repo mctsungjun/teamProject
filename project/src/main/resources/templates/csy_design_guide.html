@@ -70,7 +70,7 @@ $.ajax ({
 <br><hr>
             <h1>Elements</h1>
             <h4 style="background-color:var(--purple); width: 295px;">CSS 파일 추가하실 분 와서 알려주세요.</h4>
-            <h3>LIKE 버튼</h3>
+            <h3 stlye="text-align: left">LIKE 버튼</h3>
             <!-- Like Button Start -->
             <div class="like-wrapper">
                 <input class="check" type="checkbox" id="like-toggle" />
@@ -110,5 +110,17 @@ $.ajax ({
     <div style="display:inline-block;">
         <button class="purple-text-button">이전</button> class="purple-text-button"
     </div>
+    <!-- 서버 session에서 id 가져오는 방법
+     public ModelAndView repreChangForm(HttpSession session){
+   
+    String id = (String)session.getAttribute("id");
+   
+    String name = (String)session.getAttribute("name");
+     위에서 만들고 싶은 메서드에서 HttpSession session를 매개변수해주고
+     String id = (String)session.getAttribute("id"); 이런식으로
+    불러온다. "id" 는 키값임
+
+    
+    -->
 </body>
 </html>

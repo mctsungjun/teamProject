@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구매내역수정</title>
+    <link rel="stylesheet" href="css/ojw/ojw.css">
+    <script src="https:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="js/ojw_purchase.js"></script>
+</head>
+<body>
+    <div class="products">
+        <div class="purchase_modify">
+            <h2>구매 내역 수정</h2>
+            <hr>
+            <form name="purchasefrm" method="post" enctype="multipart/form-data">
+                <input type="text" name="no" style="display: none;" th:value="${vo.no}">
+                <table class="list_modify">
+                    <tr>
+                        <td>거래처</td>
+                        <td><input type="text" name="customer" readonly th:value="${vo.customer}"></td>
+                    </tr>
+                    <tr>
+                        <td>제품 코드</td>
+                        <td><input type="text" name="productCode" readonly th:value="${vo.productCode}"></td>
+                    </tr>
+                    <tr>
+                        <td>제품명</td>
+                        <td><input type="text" name="productName" readonly th:value="${vo.productName}"></td>
+                    </tr>
+                    <tr>
+                        <td>단가</td>
+                        <td><input type="text" name="price" readonly th:value="${vo.price}"></td>
+                    </tr>
+                    <tr>
+                        <td>수량</td>
+                        <td><input type="text" name="ea" th:value="${vo.ea}"></td>
+                    </tr>
+                    <tr>
+                    <td>총액</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>날짜</td>
+                    <td><input type="text" name="nal" readonly th:value="${vo.nal}"></td>
+                </tr>
+            </table>
+        </form>
+            <br/>
+            <button type="button" class="btnModifyR">저장</button>
+            <button type="button" class="btnList">취소</button>
+        </div>
+    </div>
+</body>
+</html>
