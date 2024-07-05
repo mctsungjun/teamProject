@@ -10,35 +10,40 @@
 </head>
 <body>
     <div class="salepageview">
-        <div class="salepage_view">
-            <div class="viewleft" th:src="|ojw_upload/${vo.photo}">
-                <img th:src="|ojw_upload/${vo.photo}" width="350px" height="350px">
-            </div>
-            <div class="product_image_sub">
-                <span th:each="p:${vo.photos}" class="product_image_sub_each">
-                    <img th:src="|ojw_upload/${p.photo}" width="100px" height="100px">
-                </span>
-            </div>
-            <div class="viewright">
-                <div class="name">[ [[${vo.productCode}]] ] / [[${vo.productName}]]</div>
-                <div class="price">[[${vo.price}]]<span class="won">원</span></div>
-                <div class="spec">[[${vo.spec}]]</div>
-                <div class="number">
-                    [ [[${vo.productName}]] ] / [ [[${vo.price}]] 원 ]&nbsp;
-                    <span class="ea"><input type="number" min="1" max="50" id="quantity"></span>
+        <div class="viewleft">
+            <!--사진은 등록할 때의 모든 사진을 갖고 오기..-->
+            <th:block th:each="k:${vo.photos}">
+                <div class="main-image">
+                    <img id="mainImage" src="[[${k.photo}]]" width="350px" height="350px">
+                </div>    
+                <div class="detailimage">
+                    <img src="[[${k.photo}]]" width="100px" height="100px" onClick="changeImage('[[${k.photo}]]')">
+                    <img src="[[${k.photo}]]" width="100px" height="100px" onClick="changeImage('[[${k.photo}]]')">
                 </div>
-                <div class="amt">합계 : [[${vo.price}]]<span class="won">원</span></div>  
-                <div class="buy">
-                    <form>
-                        <button type="button" class="btnBuy">바로 구매</button>
-                    </form>
-                </div>
+            </th:block>
+        </div>
+        <div class="viewright">
+            <div class="name">[ [[${vo.ProductId}]] ] / [[${vo.ProductName}]]</div>
+            <hr/>
+            <div class="price">[[${vo.price}]] <span class="won">원</span></div>
+            <hr/>
+            <div class="spec">[[${vo.spec}]]</div>
+            <hr/>
+            <div class="number">
+                [[${vo.ProductName}]] / [[${vo.price}]]] &nbsp;
+                <input type="number" min="1" max="50" id="quantity">
             </div>
-            <div class="viewbottom">
-                [[${vo.explanation}]]     
+            <hr/>
+            <div class="amt">합계 : [[${vo.amt}]] <span class="won">원</span></div>  
+            <div class="buy">
+                <form>
+                    <button type="button" class="btnBuy">바로 구매</button>
+                </form>
             </div>
         </div>
+        <div class="viewbottom">
+            [[${vo.ProductExplanationLong}]]     
+        </div>
     </div>
-</div>
 </body>
 </html>

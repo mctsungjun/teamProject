@@ -91,7 +91,7 @@ let fileChange = (tag)=>{
         let label=document.createElement("label");
         let br=document.createElement("br");
 
-        chkbox.type="radio";
+        chkbox.type="checkbox";
         chkbox.name="photo";
         chkbox.value=f.name;
 
@@ -101,19 +101,4 @@ let fileChange = (tag)=>{
         repre.appendChild(label);
         repre.appendChild(br)
     }
-}
-
-let repreImage="";
-
-let product_view = (productCode)=>{
-    $.ajax({
-        url : "/product_view",
-        type : "GET",
-        data : {"productCode" : productCode},
-        success : (resp)=>{
-            let temp = $(resp).find(".product_view");
-            $(".product").html(temp);
-            viewEvent(productCode);
-        }
-    })
 }

@@ -1,75 +1,80 @@
-let nowPage = 1;
-//페이징 처리
 function salepage(){
     let findStr="";
+    if(sessionStorage.getItem("findStr")!=null){ //null이 아닌 경우에만 실행됨
+        findStr = sessionStorage.getItem("findStr");
+    }
     $.ajax({
         url:"/salepage",
         type:"GET",
-        data:{"findStr":findStr,"nowPage":nowPage},
-        success:(resp)=>{
+        succes:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".salepage").html(temp);
-            console.log(temp);
-            salepagesearch();
-            loadItem(findStr,nowPage);
+            salepage_search();
+            salepage_sort();
         }
     })
 }
-salepage();
-export function salepagesearch(){
-    let btnSearch = document.querySelector(".btnSearch");
+//salepage.html 검색
+function salepage_search(){
+    let btnSearch=document.querySelector(".btnSearch");
+    let findStr=sessionStorage.getItem(".findStr");
+    if(findStr!=null){
+        $(".findStr").val(findStr);
+    }
     btnSearch.addEventListener('click',()=>{
-        let findStr=$(".findStr").val();
+        findStr=$(".findStr").val();
         sessionStorage.setItem("findStr",findStr);
-        loadItem(findStr,nowPage);
-    })
-
-    const salepage_view=(productCode)=>{
+        
         $.ajax({
-            url:"/salepage_view",
-            type:"GET",
-            data:{"productCode":productCode},
+            url:"/salepage",
+            type:'GET',
+            data:{"findStr":findStr},
             success:(resp)=>{
                 console.log(resp);
-                let temp=$(resp).find(".salepage_view")
+                let temp=$(resp).find(".salepagelist")
                 $(".salepagelist").html(temp);
             }
         })
-    }
-    return {salepage_view}
-
-}
-
-
-function loadItem(findStr,nowPage){
-    console.log("loadItem.....", findStr, nowPage)
-    $.ajax({
-        url:"/salepage",
-        type:"GET",
-        data:{"findStr":findStr,"nowPage":nowPage},
-        success:(resp)=>{
-            let temp=$(resp).find(".salepagelist");
-            $(".salepagelist").html(temp);
-            sessionStorage.setItem("saleNowPage",nowPage);
-            $(".btnPrevEnable").on("click",()=>{
-                console.log("prev...");
-                let findStr=$(".findStr").val();
-                if(sessionStorage.getItem("saleNowPage")!=null){
-                    nowPage=sessionStorage.getItem("saleNowPage");
-                    if(nowPage>1) nowPage--;
-                }
-                loadItem(findStr,nowPage);
-            })
-            $(".btnNextEnable").on("click", ()=>{
-                console.log("next...")
-                console.log(nowPage);
-                let findStr = $(".findStr").val();
-                if(sessionStorage.getItem("saleNowPage") != null){
-                    nowPage = sessionStorage.getItem("saleNowPage");
-                    nowPage++;               
-                }
-                loadItem(findStr, nowPage);
-            })
-        }
     })
 }
+salepage_search();
+
+function salepage_sort(){
+    let btnCheap=document.querySelector(".btnCheap");
+    let btnEx=document.querySelector(".btnEx");
+    let btnNew=document.querySelector(".btnNew");
+
+    btnCheap.addEventListener('click',()=>{
+        console.log("Qbd");
+        $.ajax({
+            url:"/salepage_cheap",
+            type:'GET',
+            success:(resp)=>{
+                console.log(resp);
+                let temp=$(resp).find(".salepage")
+                $(".salepage").html(temp);
+            }
+        })
+    })
+    btnNew.addEventListener('click',()=>{
+        $.ajax({
+            url:"/salepage_new",
+            type:'GET',
+            success:(resp)=>{
+                let temp=$(resp).find(".salepage")
+                $(".salepage").html(temp);
+            }
+        })
+    })
+    btnEx.addEventListener('click',()=>{
+        $.ajax({
+            url:"/salepage_ex",
+            type:'GET',
+            success:(resp)=>{
+                let temp=$(resp).find(".salepage")
+                $(".salepage").html(temp);
+            }
+        })
+    })
+}
+salepage_sort();
