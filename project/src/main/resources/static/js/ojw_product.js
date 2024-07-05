@@ -137,7 +137,7 @@ function productViewEvent(productCode){
     })
 }
 
-let repreProductImage="";
+//let repreProductImage="";
 
 function product_modify(productCode){
     btnModifyR = document.querySelector('.btnModifyR');
