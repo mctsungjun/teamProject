@@ -55,26 +55,22 @@ function product_register(){
     let btnList=document.querySelector(".btnList");
 
     btnRegisterR.addEventListener('click',()=>{
-        product_registerR();
+        let frm = document.frm;
+        let frmData = new FormData(frm);
+
+        $.ajax({
+            url : "/product_registerR",
+            type : "POST",
+            data : frmData,
+            contentType : false,
+            processData : false,
+            success : (resp) =>{
+                product();
+            }
+        })
     })
     btnList.addEventListener('click',()=>{
         product();
-    })
-}
-
-function product_registerR(){
-    let frm = document.frm;
-    let frmData = new FormData(frm);
-
-    $.ajax({
-        url : "/product_registerR",
-        type : "POST",
-        data : frmData,
-        contentType : false,
-        processData : false,
-        success : (resp) =>{
-            product();
-        }
     })
 }
 
@@ -135,9 +131,35 @@ function productViewEvent(productCode){
             }
         })
     })
+    btnChangePhoto.addEventListener('click',()=>{
+        $.ajax({
+            url : "/changeProductPhoto",
+            type : "GET",
+            data : {"productCode" : productCode, "photo" : repreProductImage},
+            success : (resp)=>{
+                alert(resp)
+            }
+        })
+    })
+    btnList.addEventListener('click',()=>{
+        product(productCode);
+    })
+    btnDelete.addEventListener('click',()=>{
+        let yn = confirm(productName+"를 삭제하시겠습니까?");
+        if(!yn) return;
+
+        $.ajax({
+            url : "/product_deleteR",
+            type : "GET",
+            data : {"productCode" : productCode},
+            success : (resp)=>{
+                product("");
+            }
+        })
+    })
 }
 
-//let repreProductImage="";
+let repreProductImage="";
 
 function product_modify(productCode){
     btnModifyR = document.querySelector('.btnModifyR');

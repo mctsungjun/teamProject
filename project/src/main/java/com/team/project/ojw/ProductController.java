@@ -92,6 +92,12 @@ public class ProductController {
         return msg;
     }
 
+    @RequestMapping(path="/product_deleteR")
+    public String product_delete(String productCode){
+        String msg = ProductDao.product_delete(productCode);
+        return msg;
+    }
+
     @RequestMapping(path="/product_modify")
     public ModelAndView product_modify(String productCode){
         ModelAndView mv = new ModelAndView();

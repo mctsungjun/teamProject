@@ -14,17 +14,17 @@
             <form name="frm" method="post" class="frm" enctype="multipart/form-data">
                 <div class="product_input">
                     <label class="label">제품명</label><br/>
-                    <input type="text" name="productName" class="input"><br/>
+                    <input type="text" name="productName" class="input" th:value="${vo.productName}"><br/>
                     <label class="label">제품 코드</label><br/>
-                    <input type="text" name="productCode" class="input"><br/>
+                    <input type="text" name="productCode" class="input" th:value="${vo.productCode}"><br/>
                     <label class="label">단가</label><br/>
-                    <input type="text" name="price" class="input"><br/>
+                    <input type="text" name="price" class="input" th:value="${vo.price}"><br/>
                     <label class="label">스펙</label><br/>
-                    <input type="text" name="spec" class="input"><br/>
+                    <input type="text" name="spec" class="input" th:value="${vo.spec}"><br/>
                     <label class="label">한줄 설명</label><br/>
-                    <input type="text" name="comment" class="input"><br/>
+                    <input type="text" name="comment" class="input" th:value="${vo.comment}"><br/>
                     <label class="label">설명</label><br/>
-                    <input type="text" name="explanation" class="input"><br/>
+                    <input type="text" name="explanation" class="input" th:value="${vo.explanation}"><br/>
                 </div>
                 <br/>
                 <label>
