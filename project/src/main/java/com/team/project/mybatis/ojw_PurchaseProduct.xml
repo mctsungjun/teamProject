@@ -50,4 +50,12 @@
             </foreach>
         </if>
     </insert>
+    <update id="product_modify" parameterType="ProductVo">
+        update product set productName=#{productName}, productCode=#{productCode}, price=#{price},
+                            comment=#{comment}, explanation=#{explanation}
+        where productCode=#{productCode}
+    </update>
+    <update id="change_productPhoto" parameterType="Map">
+        update product set photo=#{photo} where productCode=#{productCode}
+    </update>
 </mapper>

@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register</title>
+    <title>제품 수정</title>
 </head>
 <body>
     <div class="products">
-        <div class="product_register">
+        <div class="product_modify">
             <link rel="stylesheet" href="css/ojw/ojw.css">
-            <h3>신규 제품 등록</h3>
+            <h3>제품 수정</h3>
             <hr/>
             <form name="frm" method="post" class="frm" enctype="multipart/form-data">
                 <div class="product_input">
                     <label class="label">제품명</label><br/>
-                    <input type="text" name="productName"><br/>
+                    <input type="text" name="productName" class="input"><br/>
                     <label class="label">제품 코드</label><br/>
                     <input type="text" name="productCode" class="input"><br/>
                     <label class="label">단가</label><br/>
@@ -23,20 +23,21 @@
                     <input type="text" name="spec" class="input"><br/>
                     <label class="label">한줄 설명</label><br/>
                     <input type="text" name="comment" class="input"><br/>
-                    <label class="label">제품 설명</label><br/>
+                    <label class="label">설명</label><br/>
                     <input type="text" name="explanation" class="input"><br/>
                 </div>
                 <br/>
                 <label>
                     파일 첨부
-                    <input type="file" name="files" multiple onchange="fileChange(this)">
+                    <input type="file" name="files" multiple="multipart">
                 </label>
                 <br/>
-                <fieldset class="repre">
-                    <legend>대표이미지 선택</legend>
+                <fieldset>
+                    <legend>이미 첨부된 파일</legend>
+                    
                 </fieldset>
                 <br/>
-                <div class="productRegisterButton">
+                <div class="button">
                     <button type="button" class="btnRegisterR">등록</button>
                     <button type="button" class="btnList">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
                 </div>

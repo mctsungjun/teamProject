@@ -35,7 +35,7 @@ document.querySelector("#navBtnToBuyInfo").onclick = () => {
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.content').html(temp);
-            search();
+            purchase_search();
         }
     })
 }

@@ -14,7 +14,7 @@ function purchase(){
         }
     })
 }
-
+purchase();
 function purchase_search(){
     let btnSearch = document.querySelector(".btnSearch")
     let findStr = sessionStorage.getItem(".findStr");
@@ -47,14 +47,13 @@ function purchase_view(no){
         success:(resp)=>{
             let temp=$(resp).find(".purchase_view");
             $('.purchase').html(temp);
-            viewEvent(no);
+            purchaseViewEvent(no);
         }
     })
     
 }
 
 function purchase_list(no){
-    let btnPurchaseList = document.getElementById(".btnPurchaseList")
     $.ajax({
         url : "/purchase_list",
         type : "GET",
@@ -76,7 +75,7 @@ function purchaseListEvent(no){
 }
 
 
-function viewEvent(no){
+function purchaseViewEvent(no){
     let btnModify = document.querySelector(".btnModify");
     let btnDelete = document.querySelector(".btnDelete");
     let btnList = document.querySelector(".btnList");
@@ -99,7 +98,7 @@ function viewEvent(no){
     })
 }
 
-let purchase_modify=(no)=>{
+function purchase_modify(no){
     btnModifyR = document.querySelector('.btnModifyR');
     btnList = document.querySelector('.btnList');
 
@@ -112,7 +111,7 @@ let purchase_modify=(no)=>{
 
         let frmData = new FormData(frm);
         $.ajax({
-            url : "/purchase_modifyR", //Controll의 path
+            url : "/purchase_modifyR", //Controller의 path
             type : "POST",
             contentType : false,
             processData : false,
@@ -122,9 +121,6 @@ let purchase_modify=(no)=>{
                 purchase();
             }
         })
-    })
-    btnList.addEventListener('click',()=>{
-        purchase();
     })
 }
 
