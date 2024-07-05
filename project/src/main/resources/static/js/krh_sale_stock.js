@@ -63,15 +63,14 @@ function sale_view(sno){
         type:"GET",
         data:{"sno":sno},
         success:(resp)=>{
-            console.log(resp);
             let temp=$(resp).find(".saleview");
             $('.big').html(temp);
-            ViewEvent(sno);
+            ViewEvents(sno);
         }
     })
 }
 
-function ViewEvent(sno){
+function ViewEvents(sno){
     let btnModify=document.querySelector(".btnModify");
     let btnDelete=document.querySelector(".btnDelete");
     let btnList=document.querySelector(".btnList");

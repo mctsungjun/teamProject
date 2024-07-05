@@ -1,16 +1,23 @@
 package com.team.project.krh;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 import com.team.project.ojw.ProductVo;
 
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class krhSalePageController {
     @Autowired
     SalePageDao salepageDao;
+    SaleDao saleDao;
+
     //페이징 처리...^^
     @RequestMapping(path="/salepage")
     public ModelAndView salepage(Page page){
@@ -55,5 +62,16 @@ public class krhSalePageController {
         mv.addObject("vo",vo);
         mv.setViewName("krh/salepage_view");
         return mv;
+    }
+
+    @PostMapping ("/submit")
+    @ResponseBody
+    public Map<String,Object> submitForm(@ModelAttribute ProductVo vo, HttpSession session){
+        Map<String, Object> map=new HashMap<>();
+        String id = (String) session.getAttribute("id");
+        //Sale vo=salepageDao.gumae(vo);
+        map.put("id",id);
+        map.put("vo",vo);
+        return map;
     }
 }

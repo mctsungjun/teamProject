@@ -2,7 +2,6 @@ package com.team.project.krh;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
-
 import com.team.project.mybatis.MyFactory;
 import com.team.project.ojw.ProductVo;
 import com.team.project.ojw.ojw_PhotoVo;
@@ -62,5 +61,18 @@ public class SalePageDao {
         vo.setPhotos(photos);
         session.close();
         return vo;
+    }
+
+    public Map<String,Object> gumae(){
+        Map<String,Object>map=new HashMap<>();
+        session=new MyFactory().getSession();
+        int cnt = session.insert("salestock.gumae",map);
+        if(cnt>0){
+            session.commit();
+        }else{
+            session.rollback();
+        }
+        session.close();
+        return map;
     }
 }

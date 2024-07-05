@@ -71,8 +71,7 @@ document.querySelector("#navBtnToShopping").onclick = () => {
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
-            salepagesearch();
-            loadItem();
+            salepage();
         }
     })
 }

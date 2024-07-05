@@ -93,4 +93,9 @@
         where productCode=#{productCode}
     </select>
     
+    <!-- 구매 버튼-->
+    <insert id="gumae" parameterType="ProductVo">
+        insert into sale(id,ProductCode, ea, price,ProductName) 
+        values(#{id},#{productCode},#{ea},#{price},#{productName})
+    </insert>
 </mapper>

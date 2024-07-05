@@ -14,10 +14,12 @@ function salepage(){
         }
     })
 }
-
 salepage();
+
 export function salepagesearch(){
     let btnSearch = document.querySelector(".btnSearch");
+    let findStr="";
+    loadItem(findStr,nowPage);
     btnSearch.addEventListener('click',()=>{
         let findStr=$(".findStr").val();
         sessionStorage.setItem("findStr",findStr);
@@ -33,13 +35,14 @@ export function salepagesearch(){
                 console.log(resp);
                 let temp=$(resp).find(".salepage_view")
                 $(".salepagelist").html(temp);
+                getnumber();
+                gumae();
             }
         })
     }
     return {salepage_view}
-
 }
-
+salepagesearch();
 
 function loadItem(findStr,nowPage){
     console.log("loadItem.....", findStr, nowPage)
@@ -72,4 +75,47 @@ function loadItem(findStr,nowPage){
             })
         }
     })
+}
+
+function getnumber(){
+    document.getElementById('getNumberButton').onclick = function() {
+        console.log("바보");
+        var inputElement = document.getElementById('quantity');
+        var inputValue = inputElement.value;
+        var numberValue = parseFloat(inputValue);
+        var voPrice = parseFloat(document.getElementById('voPrice').textContent);
+        if (!isNaN(numberValue)) {
+            var totalPrice = numberValue * voPrice;
+            document.getElementById('pricecolor').textContent = totalPrice;
+        } else {
+            document.getElementById('pricecolor').textContent = "유효한 숫자를 입력하세요.";
+        }
+    };
+}
+
+function gumae(){
+    const sessionId=/*[[${session.getId()}]]*/'';
+
+    document.getElementById('submitFormButton').addEventListener('click', function() {
+        console.log("바보");
+        var formData = new FormData(document.getElementById('gumaeForm'));
+        forData.append('sessionId',sessionId);
+        
+        fetch('/submit', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('상품이 성공적으로 등록되었습니다.');
+            } else {
+                alert('상품 등록에 실패했습니다.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('오류가 발생했습니다.');
+        });
+    });
 }
