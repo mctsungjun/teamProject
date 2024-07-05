@@ -32,7 +32,7 @@ export function salepagesearch(){
             success:(resp)=>{
                 console.log(resp);
                 let temp=$(resp).find(".salepage_view")
-                $(".salepage").html(temp);
+                $(".salepagelist").html(temp);
             }
         })
     }
