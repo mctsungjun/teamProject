@@ -14,7 +14,6 @@ function product(){
         }
     })
 }
-product();
 function product_search(){
     let btnRegister = document.querySelector(".abcabc");
     let btnSearch = document.querySelector(".btnSearch");
@@ -56,30 +55,26 @@ function product_register(){
     let btnList=document.querySelector(".btnList");
 
     btnRegisterR.addEventListener('click',()=>{
-        product_registerR();
+        let frm = document.frm;
+        let frmData = new FormData(frm);
+
+        $.ajax({
+            url : "/product_registerR",
+            type : "POST",
+            data : frmData,
+            contentType : false,
+            processData : false,
+            success : (resp) =>{
+                product();
+            }
+        })
     })
     btnList.addEventListener('click',()=>{
         product();
     })
 }
 
-let product_registerR=()=>{
-    let frm = document.frm;
-
-    let frmData = new FormData(frm);
-    $.ajax({
-        url : "/product_registerR",
-        type : "POST",
-        data : frmData,
-        contentType : false,
-        processData : false,
-        success : (resp) =>{
-            product();
-        }
-    })
-}
-
-let fileChange = (tag)=>{
+function fileChange(tag){
     let repre=document.querySelector('.repre');
     repre.innerHTML = '';
     let legend = document.createElement("legend");

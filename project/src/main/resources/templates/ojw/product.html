@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제품관리 페이지</title>
-    <link rel="stylesheet" href="css/ojw/ojw.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script defer src="js/ojw_product.js"></script>
 </head>
 <body>
     <div class="products">
         <div class="product">
-        <h2>제품관리 메인페이지</h2>
+            <link rel="stylesheet" href="css/ojw/ojw.css">
+            <h2>제품관리 메인페이지</h2>
             <form name="frm" class="frm" method="GET">
                 <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
                 <button type="button" class="btnSearch">검색</button>
@@ -31,6 +29,8 @@
                     </li>
                 </ul>
             </div>
+            <script defer src="js/ojw_product.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         </div>
     </div>
 </body>

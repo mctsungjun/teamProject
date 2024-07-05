@@ -97,6 +97,7 @@ hr{
     width: 500px;
     text-align: center;
     padding-bottom: 30px;
+    margin: 0 auto;
     margin-bottom: 10px;
 }
 table{
@@ -128,15 +129,15 @@ h3{
     text-align: left;
     margin: 0 auto;
 }
-.frm{
+.product_register .frm{
     margin: 20px;
     text-align: left;
 }
-.product_input{
+.product_register .product_input{
     text-align: left;
     margin-left: 30px;
 }
-.button{
+.productRegisterButton{
     text-align: right;
     margin-bottom: 0;
 }

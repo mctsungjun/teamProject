@@ -46,7 +46,7 @@ document.querySelector("#navBtnToBuyInfo").onclick = () => {
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.content').html(temp);
-            search();
+            purchase_search();
         }
     })
 }
@@ -65,15 +65,20 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
 }
 
 
-// * 쇼핑몰
-document.querySelector("#navBtnToShopping").onclick = () => {
+// * 판매정보관리
+document.querySelector("#navBtnToSellInfo").onclick = () => { 
     $.ajax({
-        url:"/salepage",
+        url:"/sale",
         type:"GET",
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
             salepage();
+
+            // * GITHUB CONFLICT: 이 부분이 최신이라면 주석 처리 해제하셔도 됩니다.
+            // let temp=$(resp).find(".big");
+            // $('.content').html(temp);
+            // search();
         }
     })
 }

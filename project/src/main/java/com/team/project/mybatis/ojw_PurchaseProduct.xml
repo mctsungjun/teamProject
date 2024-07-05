@@ -55,4 +55,21 @@
             </foreach>
         </if>
     </insert>
+
+    <update id="product_modify" parameterType="ProductVo">
+        update product set productName=#{productName}, productCode=#{productCode}, price=#{price},
+                            comment=#{comment}, explanation=#{explanation}
+        where productCode=#{productCode}
+    </update>
+
+    <delete id="product_delete" parameterType="java.util.List">
+        delete from photos where photo in
+        <foreach collection="list" item="file" open"(" close=")" separator=",">
+            #{file}
+        </foreach>
+    </delete>
+    
+    <update id="change_productPhoto" parameterType="Map">
+        update product set photo=#{photo} where productCode=#{productCode}
+    </update>
 </mapper>
