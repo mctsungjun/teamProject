@@ -18,7 +18,7 @@ public class PurchaseController {
     @RequestMapping(path="/purchase")
     public ModelAndView purchase(String findStr){
         ModelAndView mv = new ModelAndView();
-        List<PurchaseVo> list = PurchaseDao.search(findStr);
+        List<PurchaseVo> list = PurchaseDao.purchase_search(findStr);
         mv.addObject("purchase",list);
         mv.setViewName("ojw/purchase");
         return mv;

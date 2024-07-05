@@ -44,15 +44,15 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
 }
 
 
-// * 쇼핑몰
-document.querySelector("#navBtnToShopping").onclick = () => {
+// * 판매정보관리
+document.querySelector("#navBtnToSellInfo").onclick = () => { 
     $.ajax({
-        url:"/salepage",
+        url:"/sale",
         type:"GET",
         success:(resp)=>{
-            let temp=$(resp).find(".salepage")
-            $(".content").html(temp);
-            salepage_search();
+            let temp=$(resp).find(".big");
+            $('.content').html(temp);
+            search();
         }
     })
 }

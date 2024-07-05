@@ -10,12 +10,12 @@ function purchase(){
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.purchase').html(temp);
-            search();
+            purchase_search();
         }
     })
 }
 
-function search(){
+function purchase_search(){
     let btnSearch = document.querySelector(".btnSearch")
     let findStr = sessionStorage.getItem(".findStr");
     if(findStr != null){
@@ -37,7 +37,7 @@ function search(){
         })
     })
 }
-search();
+purchase_search();
 
 function purchase_view(no){
     $.ajax({
@@ -54,6 +54,7 @@ function purchase_view(no){
 }
 
 function purchase_list(no){
+    let btnPurchaseList = document.getElementById(".btnPurchaseList")
     $.ajax({
         url : "/purchase_list",
         type : "GET",
@@ -61,10 +62,18 @@ function purchase_list(no){
         success:(resp)=>{
             let temp=$(resp).find(".purchase_list");
             $('.purchase').html(temp);
+            purchaseListEvent(no);
         }
     })
 }
 
+function purchaseListEvent(no){
+    let btnList = document.querySelector(".btnList");
+
+    btnList.addEventListener('click',()=>{
+        purchase();
+    })
+}
 
 
 function viewEvent(no){
@@ -95,7 +104,7 @@ let purchase_modify=(no)=>{
     btnList = document.querySelector('.btnList');
 
     btnList.addEventListener('click',()=>{
-        purchase_list();
+        purchase();
     })
 
     btnModifyR.addEventListener("click",()=>{
@@ -115,7 +124,7 @@ let purchase_modify=(no)=>{
         })
     })
     btnList.addEventListener('click',()=>{
-        purchase_view();
+        purchase();
     })
 }
 
