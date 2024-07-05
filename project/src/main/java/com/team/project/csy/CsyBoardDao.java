@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CsyBoardDao {
 
-    public SqlSession getSession() {
+    public SqlSession getCsySession() {
         SqlSession session = null;
         try{
             Reader reader = Resources.getResourceAsReader("com/team/project/mybatis/config.xml");
@@ -27,7 +27,7 @@ public class CsyBoardDao {
         return session;
     }
 
-    SqlSession session = getSession();
+    SqlSession session = getCsySession();
     
 
 

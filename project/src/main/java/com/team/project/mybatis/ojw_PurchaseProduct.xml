@@ -64,7 +64,7 @@
 
     <delete id="product_delete" parameterType="java.util.List">
         delete from photos where photo in
-        <foreach collection="list" item="file" open"(" close=")" separator=",">
+        <foreach collection="list" item="file" open="(" close=")" separator=",">
             #{file}
         </foreach>
     </delete>
