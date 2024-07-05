@@ -237,28 +237,10 @@ h3{
     background-color: rgb(211, 211, 211);
     padding:10px;
 }
-.viewright .number .suchi{
-    text-align: right;
-    margin-right: 10px;
-}
-.product_view_right .amt{
-    font-weight: bold;
-    font-size:30px;
-    padding:12px;
-}
-.product_view_right .won{
-    font-weight: normal;
-    color:black;
-    font-size:15px;
-}
-.product_view_left .main-image{
-    float: left;
-}
-.product_view_left .detailimage img{
-    margin-left:12px;
-    margin-bottom:12px;
-}
 .product_view_right hr{
     margin:0px;
     padding:0px;
+}
+.btnProductModify{
+    
 }
