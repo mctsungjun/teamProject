@@ -64,14 +64,18 @@ public class krhSalePageController {
         return mv;
     }
 
-    @PostMapping ("/submit")
-    @ResponseBody
-    public Map<String,Object> submitForm(@ModelAttribute ProductVo vo, HttpSession session){
+    /* @PostMapping ("/submit")
+    @ResponseBody*/
+
+    @RequestMapping("/submit")
+    public String submitForm(SaleVo vo, HttpSession session){
+        System.out.println("여기까지 오나요");
         Map<String, Object> map=new HashMap<>();
         String id = (String) session.getAttribute("id");
-        //Sale vo=salepageDao.gumae(vo);
-        map.put("id",id);
-        map.put("vo",vo);
-        return map;
+
+        boolean isSuccess = salepageDao.gumae(vo);
+        /* map.put("id",id);
+        map.put("vo",vo); */
+        return isSuccess ? "등록에 성공하였습니다." : "등록에 실패하였습니다.";
     }
 }

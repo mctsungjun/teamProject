@@ -63,16 +63,17 @@ public class SalePageDao {
         return vo;
     }
 
-    public Map<String,Object> gumae(){
-        Map<String,Object>map=new HashMap<>();
-        session=new MyFactory().getSession();
-        int cnt = session.insert("salestock.gumae",map);
+    public boolean gumae(SaleVo vo){
+        boolean isSuccess = false;
+        session = new MyFactory().getSession();
+        int cnt = session.insert("salestock.gumae", vo);
         if(cnt>0){
             session.commit();
+            isSuccess = true;
         }else{
             session.rollback();
         }
         session.close();
-        return map;
+        return isSuccess;
     }
 }

@@ -27,13 +27,18 @@
                     <div class="spec">[[${vo.spec}]]</div>
                     <div class="number">
                         <span class="numbercolor">[ [[${vo.productName}]] ] / [ [[${vo.price}]] 원 ]</span>&nbsp;
-                        <span class="ea"><input type="number" min="1" max="50" id="quantity" class="eacolor"></span>
+                        <span class="ea"><input type="number" min="1" max="50" id="quantity" name="ea" class="eacolor"></span>
                         <button type="button" id="getNumberButton" style="color: black;">갯수 설정</button>
                         <p id="voPrice" style="display: none;">[[${vo.price}]]</p>
                     </div>
                     <div class="amt">합계 : <span id="pricecolor"></span><span class="won">원</span></div>  
+                        <input type="hidden" name="productCode" th:value="${vo.productCode}">
+                        <input type="hidden" name="productName" th:value="${vo.productName}">
+                        <input type="hidden" name="price" th:value='${vo.price}'>
+                        <input type="hidden" name="spec" th:value="${vo.spec}">    
                         <div class="buy">
-                            <input type="submit" class="btnBuy" value="바로 구매" id="submitFormButton"/>
+                            <button type="button" class="btnBuy" value="바로 구매" id="submitFormButton"></button>
+                            <!--<input type="submit" class="btnBuy" value="바로 구매" id="submitFormButton"/>-->
                         </div>
                     </div>
                         <!-- 갯수 설정 input의 name 속성 추가 -->

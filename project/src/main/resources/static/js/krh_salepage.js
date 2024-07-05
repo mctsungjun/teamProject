@@ -95,27 +95,21 @@ function getnumber(){
 
 function gumae(){
     const sessionId=/*[[${session.getId()}]]*/'';
-
     document.getElementById('submitFormButton').addEventListener('click', function() {
         console.log("바보");
         var formData = new FormData(document.getElementById('gumaeForm'));
-        forData.append('sessionId',sessionId);
-        
-        fetch('/submit', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('상품이 성공적으로 등록되었습니다.');
-            } else {
-                alert('상품 등록에 실패했습니다.');
+        formData.set('sessionId',sessionId);
+    
+        $.ajax ({
+            url : "/submit",
+            type: 'POST',
+            contentType:false,
+            processData:false,
+            data: formData,
+            success: (resp) => {
+                console.log(formData);
+                alert(resp);
             }
         })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('오류가 발생했습니다.');
-        });
     });
 }

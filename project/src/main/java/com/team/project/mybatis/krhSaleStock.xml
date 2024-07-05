@@ -94,7 +94,7 @@
     </select>
     
     <!-- 구매 버튼-->
-    <insert id="gumae" parameterType="ProductVo">
+    <insert id="gumae" parameterType="SaleVo">
         insert into sale(id,ProductCode, ea, price,ProductName) 
         values(#{id},#{productCode},#{ea},#{price},#{productName})
     </insert>
