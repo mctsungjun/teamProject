@@ -75,3 +75,27 @@
     width: 420px; */
     filter: none;
 }
+
+.mypage-table {
+    font-size: 18px;
+    display: flex;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 테이블 부분 */
+.mypage-table:first-child {
+    border-top: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.mypage-table-left {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px 0px 25px 0px;
+    width: 300px;
+    text-align: center;
+}
+
+.mypage-table-right {
+    padding: 25px 0px 25px 30px;
+    width: 1fr;
+    text-align: center;
+}
