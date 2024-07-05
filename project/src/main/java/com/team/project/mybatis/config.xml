@@ -13,6 +13,10 @@
 		<typeAlias type="com.team.project.krh.SaleWithUsersVo" alias="SaleWithUsersVo" />
 		<typeAlias type="com.team.project.krh.StockVo" alias="StockVo" />
 		<typeAlias type="com.team.project.krh.ProductPhotoVo" alias="ProductPhotoVo" />
+		<typeAlias type="com.team.project.bjm.NoticeVo" alias="NoticeVo" />
+		<typeAlias type="com.team.project.bjm.NoticeAtt" alias="NoticeAtt" />
+		<typeAlias type="com.team.project.bjm.NoticePage" alias="NoticePage" />
+		<typeAlias type="com.team.project.krh.Page" alias="Page"/>
 		<typeAlias type="com.team.project.ojw.PurchaseVo" alias="PurchaseVo" />
 		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo" />
 		<typeAlias type="com.team.project.ojw.ojw_PhotoVo" alias="ojw_PhotoVo" />
@@ -32,5 +36,6 @@
 		<mapper resource="com/team/project/mybatis/csy_board.xml" />
 		<mapper resource="com/team/project/mybatis/krhSaleStock.xml" />
 		<mapper resource="com/team/project/mybatis/ojw_PurchaseProduct.xml" />
+		<mapper resource="com/team/project/mybatis/bjm_notice.xml" />
 	</mappers>
 </configuration>

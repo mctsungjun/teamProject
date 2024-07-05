@@ -11,12 +11,12 @@ import com.team.project.ojw.ProductVo;
 public class krhSalePageController {
     @Autowired
     SalePageDao salepageDao;
-
+    //페이징 처리...^^
     @RequestMapping(path="/salepage")
-    public ModelAndView salepagesearch(String findStr){
+    public ModelAndView salepage(Page page){
         ModelAndView mv = new ModelAndView();
-        List<ProductVo> list = salepageDao.salepagesearch(findStr);
-        mv.addObject("salepage",list);
+        Map<String, Object>map = salepageDao.salepagesearch(page);
+        mv.addObject("map",map);
         mv.setViewName("krh/salepage");
         return mv;
     }
@@ -26,7 +26,34 @@ public class krhSalePageController {
         ModelAndView mv = new ModelAndView();
         List<ProductVo> list=salepageDao.salepage_cheap(vo);
         mv.addObject("salepage_cheap",list);
-        mv.setViewName("krh/salepage");
+        mv.setViewName("krh/salepagecheap");
+        return mv;
+    }
+
+    @RequestMapping(path="/salepage_expensive")
+    public ModelAndView salepage_expensive(ProductVo vo){
+        ModelAndView mv= new ModelAndView();
+        List<ProductVo> list=salepageDao.salepage_expensive(vo);
+        mv.addObject("salepage_expesive", list);
+        mv.setViewName("krh/salepageexpensive");
+        return mv;
+    }
+
+    @RequestMapping(path="/salepage_new")
+    public ModelAndView salepage_new(ProductVo vo){
+        ModelAndView mv=new ModelAndView();
+        List<ProductVo> list=salepageDao.salepage_new(vo);
+        mv.addObject("salepage_new", list);
+        mv.setViewName("krh/salepagenew");
+        return mv;
+    }
+
+    @RequestMapping(path="salepage_view")
+    public ModelAndView salepage_view(String productCode){
+        ModelAndView mv = new ModelAndView();
+        ProductVo vo=salepageDao.salepage_view(productCode);
+        mv.addObject("vo",vo);
+        mv.setViewName("krh/salepage_view");
         return mv;
     }
 }

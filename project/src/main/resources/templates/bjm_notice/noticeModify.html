@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Notice</title>
+    <!-- Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+</head>
+</head>
+<body>
+    <div>
+        <div class="noticeModify">
+            <form method="post" name="frmModify" enctype="multipart/form-data" action="/notice/bjmModifyR">
+                <div>
+                    <input type="hidden" name="sno" th:value="${vo.sno}" />
+                    <label for="title">제목</label>
+                    <input type="text" id="title" name="title" th:value="${vo.title}" required/>
+                </div>
+                <div id="post-form">
+                    <label for="content">내용</label>
+                    <textarea id="summernote" name="content" aria-multiline="true">[[${vo.content}]]</textarea>
+                    <script>
+                        // 수정페이지에서 원시 코드 보존을 통한 코드 깨짐 방지
+                        window.onload = function () {
+                            $('#summernote').summernote('code', document.getElementById('temp').innerHTML)
+                        }
+                    
+                        $(document).ready(function () {
+                            $('#summernote').summernote({
+                                // 썸머노트 옵션 설정
+                                codeviewFilter: false,
+                                codeviewIframeFilter: false,
+                                disableXSSProtection: true,
+                                height: 500,
+                                minHeight: null,
+                                maxHeight: null,
+                                focus: true,
+                                lang: 'ko-KR',
+                                toolbar: [
+                                    // 스타일 관련 기능
+                                    ['style', ['style']],
+                                    // 글자 크기 설정
+                                    ['fontsize', ['fontsize']],
+                                    // 글꼴 스타일
+                                    ['font', ['bold', 'underline', 'clear']],
+                                    // 글자 색상
+                                    ['color', ['color']],
+                                    // 테이블 삽입
+                                    ['table', ['table']],
+                                    // 문단 스타일
+                                    ['para', ['paragraph']],
+                                    // 에디터 높이 설정
+                                    ['height', ['height']],
+                                    // 이미지, 링크, 동영상 삽입
+                                    ['insert', ['picture', 'link', 'video']],
+                                    // 코드 보기, 전체화면, 도움말
+                                    ['view', ['codeview', 'fullscreen', 'help']],
+                                ],
+                                fontSizes: [
+                                    // 글자 크기 선택 옵션
+                                    '8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72'
+                                ],
+                                styleTags: [
+                                    // 스타일 태그 옵션
+                                    'p',
+                                    { title: 'Blockquote', tag: 'blockquote', className: 'blockquote', value: 'blockquote' },
+                                    'pre',
+                                    { title: 'code_light', tag: 'pre', className: 'code_light', value: 'pre' },
+                                    { title: 'code_dark', tag: 'pre', className: 'code_dark', value: 'pre' },
+                                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+                                ],
+                            })
+                        })
+                    </script>
+                </div>
+                <div class="registerButton">
+                    <button type="button" class="bjmBtnModifyR">저장</button>
+                    <button type="button" class="bjmBtnCancelR">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
