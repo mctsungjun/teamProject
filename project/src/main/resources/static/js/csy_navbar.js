@@ -24,7 +24,18 @@ document.querySelector("#navBtnToProduct").onclick = () => {
 }
 
 // * 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { }
+document.querySelector("#navBtnToStock").onclick = () => { 
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        success:(resp)=>{
+            console.log(resp);
+            let temp=$(resp).find(".stockpage");
+            $(".content").html(temp);
+            search();
+        }
+    })
+}
 
 
 // * 구매 정보 관리
@@ -62,7 +73,7 @@ document.querySelector("#navBtnToShopping").onclick = () => {
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
-            salepage_search();
+            salepage();
         }
     })
 }

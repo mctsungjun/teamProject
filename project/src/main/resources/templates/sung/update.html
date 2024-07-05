@@ -32,19 +32,19 @@
                     obj.sample4_execDaumPostcode();
                 }
 
-                async function myProfileModifySubmit() {
+                async function myProfileModifySubmit(frm) {
                     let obj = await import ('/js/sungIndex.js');
-                    obj.myProfileModifySubmit();
+                    obj.myProfileModifySubmit(frm);
                 }
             </script>
     
-            <h1 class="no-drag" style='letter-spacing: 7px; margin-bottom: 0px; font-weight: 300; text-align: right;'>회원정보 수정</h1>
-                <form name="form" method="post" class="" enctype="multipart/form-data">
+            <h1 class="no-drag" style="letter-spacing: 7px; margin-bottom: 0px; font-weight: 300; text-align: right;">회원정보 수정</h1>
+                <form name="MyProfileModifyFrm" method="post" enctype="multipart/form-data">
                     
                     <!-- * 아이디 * -->
                     <div style="margin-top: 5px; margin-bottom: 47px;">
                         <label for="id" class="form-label" style="font-weight:400; font-size: 16px;">아이디</label>
-                        <input type="text" class="form-control login-text-input" style="width: 380px; margin-bottom: 0; color: var(--dark-gray);" id="id" readonly th:value="${vo.id}" />
+                        <input type="text" class="form-control login-text-input" id="id" name="id" style="width: 380px; margin-bottom: 0; color: var(--dark-gray);" readonly th:value="${vo.id}" />
                     </div>
 
                     <!-- * 비밀번호 * -->
@@ -69,13 +69,13 @@
                     <div style="display: flex; justify-content: space-between; margin-bottom: 47px;">
                         <!-- * 성명 * -->
                         <div style="width: 48%;">
-                            <label for="id" class="form-label" style="font-weight:400; font-size: 16px;">성명</label>
+                            <label for="name" class="form-label" style="font-weight:400; font-size: 16px;">성명</label>
                             <input type="text" class="form-control login-text-input" style="width: 100%; margin-bottom: 0; color: var(--dark-gray);" id="name" th:value="${vo.name}" readonly />
                         </div>
                         <!-- * 생년월일 * -->
                         <div style="width: 48%;">
-                            <label for="id" class="form-label" style="font-weight:400; font-size: 16px;">생년월일</label>
-                            <input type="text" class="form-control login-text-input" style="width: 100%; margin-bottom: 0; color: var(--dark-gray); "name="birthday" id="birth" th:value="${vo.birthday}" readonly />
+                            <label for="birthday" class="form-label" style="font-weight:400; font-size: 16px;">생년월일</label>
+                            <input type="text" class="form-control login-text-input" style="width: 100%; margin-bottom: 0; color: var(--dark-gray);" name="birthday" id="birth" th:value="${vo.birthday}" readonly />
                         </div>
                     </div>
 
@@ -100,7 +100,7 @@
                     <label for="postcode" class="form-label" style="font-weight:400; font-size: 16px;">주소</label>
                     <div style="display: flex; margin-bottom: 18px;">
                         <!--th:value="${vo.postcode}-->
-                        <input type="text" class="form-control login-text-input" id="postcode"
+                        <input type="text" class="form-control login-text-input" id="postcode" name="postcode"
                         placeholder="우편번호" readonly style="font-weight: 400; width: 250px; margin-bottom: 0; background-color:var(--white); color:var(--dark-gray);" onclick="sample4_execDaumPostcode()"/>
                         <input type="button" class="purple-text-button" style="margin-left:20px; width:150px; height: 50px; letter-spacing: 3px;" onclick="sample4_execDaumPostcode()" value="우편번호 검색"> <!-- class=   btn btn-outline-info form-control -->
                     </div>
@@ -113,7 +113,7 @@
                     </div>
                     <div style="display: flex; justify-content: right;">
                         <button type="button" class="purple-text-button" style="width:150px; height: 50px; letter-spacing: 3px;" onclick="myProfileModifyCancled();">취소</button>  
-                        <button type="button" class="purple-text-button btnUpdate" style="margin-left:20px; width:150px; height: 50px; letter-spacing: 3px;" onclick="myProfileodifySubmit();">수정</button>
+                        <button type="button" class="purple-text-button btnUpdate" style="margin-left:20px; width:150px; height: 50px; letter-spacing: 3px;" th:onclick="myProfileModifySubmit(this.form);">수정</button>
                     </div>
 
 

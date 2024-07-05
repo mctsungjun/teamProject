@@ -260,37 +260,46 @@ public ModelAndView updateFrom(HttpSession session){
 
 // 수정정보받아서 
 @RequestMapping(path="/sung/updateR")
-public String updateR(@RequestParam("files") List<MultipartFile> photo ,String[] delFiles, @ModelAttribute MemberVo vo ){
-    List<PhotoVo> photos = new ArrayList<>();
+public String updateR(
+    // @RequestParam("files") List<MultipartFile> photo,
+    // String[] delFiles,
+    // @ModelAttribute 
+    MemberVo vo){
+    // List<PhotoVo> photos = new ArrayList<>();
+    vo.setPassword(PasswordHash.hashPassword(vo.getPassword()));
+    System.out.println(vo.getPassword());
+    String[] delFiles = null;
+    System.out.println(vo);
 
-    UUID uuid = null;
-    String sysFile = null;
-    if(photo !=null && photo.size()>0){
-        for(MultipartFile f : photo){
-            if(f.getOriginalFilename().equals("")){
-                continue;
-            }
-            PhotoVo v = new PhotoVo();
-            uuid = UUID.randomUUID();
-            sysFile = String.format("%s-%s", uuid,f.getOriginalFilename());
+    // UUID uuid = null;
+    // String sysFile = null;
+    // if(photo !=null && photo.size()>0){
+    //     for(MultipartFile f : photo){
+    //         if(f.getOriginalFilename().equals("")){
+    //             continue;
+    //         }
+    //         PhotoVo v = new PhotoVo();
+    //         uuid = UUID.randomUUID();
+    //         sysFile = String.format("%s-%s", uuid,f.getOriginalFilename());
 
-            File saveFile = new File(uploadPath+sysFile);
-            try{
-                f.transferTo(saveFile);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+    //         File saveFile = new File(uploadPath+sysFile);
+    //         try{
+    //             f.transferTo(saveFile);
+    //         }catch(Exception e){
+    //             e.printStackTrace();
+    //         }
 
-            v.setPhoto(sysFile);
-            v.setOriPhoto(f.getOriginalFilename());
-            photos.add(v);
-        }
-        if (photos.size()> 0){
-            vo.setPhotos(photos);
-        }
-    }
+    //         v.setPhoto(sysFile);
+    //         v.setOriPhoto(f.getOriginalFilename());
+    //         photos.add(v);
+    //     }
+    //     if (photos.size()> 0){
+    //         vo.setPhotos(photos);
+    //     }
+    // }
+    
         String msg = dao.modify(vo, delFiles);
-     return msg;
+        return msg;
     }
 
 

@@ -121,7 +121,6 @@ export function csyBoard() {
     }
 }
 
-
 export function csyPostComment(frm) {
     var user_id = "SampleID";
     frm.id.value = user_id;

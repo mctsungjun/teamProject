@@ -256,15 +256,17 @@ export function modifyFrom(){
 
 
 // 수정 버튼 클릭시 수정
-export function myProfileModifySubmit() {
-	let frm = document.form;
-	let frmdata = new FormData(frm);
+export function myProfileModifySubmit(frm) {
+	// let frmdata = new FormData(frm);
+	let form = $(frm).serialize();
+	console.log(form);
 	$.ajax({
 		url:"/sung/updateR",
 		type:"POST",
-		data:frmdata,
-		processData:false,
-		contentType:false,
+		// data:frmdata,
+		data: form,
+		// processData:false,
+		// contentType:false,
 		success:(resp)=>{
 			console.log(resp);
 			alert("회원 정보가 정상적으로 수정되었습니다.");
