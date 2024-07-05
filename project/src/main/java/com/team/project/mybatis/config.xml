@@ -12,7 +12,7 @@
 		<typeAlias type="com.team.project.krh.SaleVo" alias="SaleVo" />
 		<typeAlias type="com.team.project.krh.SaleWithUsersVo" alias="SaleWithUsersVo" />
 		<typeAlias type="com.team.project.krh.StockVo" alias="StockVo" />
-		<typeAlias type="com.team.project.krh.ProductPhotoVo" alias="ProductPhotoVo" />
+		<typeAlias type="com.team.project.krh.Page" alias="Page"/>
 		<typeAlias type="com.team.project.ojw.PurchaseVo" alias="PurchaseVo" />
 		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo" />
 		<typeAlias type="com.team.project.ojw.ojw_PhotoVo" alias="ojw_PhotoVo" />
