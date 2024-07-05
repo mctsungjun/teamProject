@@ -11,10 +11,22 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 }
 
 // * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToProduct").onclick = () => { }
+document.querySelector("#navBtnToProduct").onclick = () => {
+}
 
 // * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { }
+document.querySelector("#navBtnToStock").onclick = () => {
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        success:(resp)=>{
+            console.log(resp);
+            let temp=$(resp).find(".stockpage");
+            $(".content").html(temp);
+            search();
+        }
+    })
+ }
 
 
 // * 구매 정보 관리
@@ -25,7 +37,7 @@ document.querySelector("#navBtnToBuyInfo").onclick = () => {
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.content').html(temp);
-            search();
+            //search();
         }
     })
 }
@@ -43,7 +55,6 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
     })
 }
 
-
 // * 쇼핑몰
 document.querySelector("#navBtnToShopping").onclick = () => {
     $.ajax({
@@ -52,7 +63,8 @@ document.querySelector("#navBtnToShopping").onclick = () => {
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
-            salepage_search();
+            salepagesearch();
+            loadItem();
         }
     })
 }

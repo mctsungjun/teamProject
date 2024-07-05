@@ -7,7 +7,7 @@ function stock(){
         url:"/stock",
         type:"/GET",
         success:(resp)=>{
-            let temp=$(resp).find(".stock");
+            let temp=$(resp).find(".stockpage");
             $(".stock").html(temp);
             search();
         }
@@ -85,6 +85,7 @@ function graph(){
                     title: {
                         display: true,
                         text: '제품별 재고 현황'
+                        
                     },
                     scales: {
                         yAxes: [{

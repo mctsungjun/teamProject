@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>판매 내역 수정</title>
-    <link rel="stylesheet" href="css/krh/krh.css">
-    <script defer src="js/krh_sale_stock.js"></script>
-    <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-
+    
 </head>
 <body>
     <div class="sale">
         <div class="saleviewmodify">
+            <link rel="stylesheet" href="css/krh/krh.css">
+            <script defer src="js/krh_sale_stock.js"></script>
+            <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
             <h2>판매 내역 수정</h2>
             <!--사진..-->
+            <!--controller에서 연결받기..-->
+            <input type="text" name="sno" style="display:none;" th:value="${vo.sno}">
+            <img src="[[${vo.photo}]]" width="200px" height="200px">
             <form name="viewfrm" method="post" enctype="multipart/form-data">
-                <!--controller에서 연결받기..-->
-                <input type="text" name="sno" style="display:none;" th:value="${vo.sno}">
-                <img src="[[${vo.photo}]]" width="200px" height="200px">
                 <table class="saleviewtable">
                     <tr>
                         <th>고객 아이디</th>
@@ -46,15 +46,13 @@
                     <tr>
                         <th>판매 일자</th>
                         <td><input type="text" name="nal" readonly th:value="${vo.nal}"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <!--수량을 수정하고 저장하면 판매 금액도 변경되게..-->
-                            <button type="button" class="btnModifyR">저장</button>
-                            <button type="button" class="btnList">취소</button>
-                        </td>
-                    </tr>
+                    </tr>    
                 </table>
+                <div class="saleviewmodifybutton">
+                    <!--수량을 수정하고 저장하면 판매 금액도 변경되게..-->
+                    <button type="button" class="btnModifyR">저장</button>
+                    <button type="button" class="btnList">취소</button>
+                </div>
             </form>
         </div>
     </div>
