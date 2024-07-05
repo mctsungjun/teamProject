@@ -1,4 +1,8 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
+<<<<<<< HEAD
     "java.debug.settings.onBuildFailureProceed": true
+=======
+    "liveServer.settings.port": 5501
+>>>>>>> 84a1ea6c2f545da9678f94d2410311a7ec579ea7
 }

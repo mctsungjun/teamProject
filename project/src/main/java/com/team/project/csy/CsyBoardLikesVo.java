@@ -1,4 +1,4 @@
-package com.team.project;
+package com.team.project.csy;
 
 import lombok.Data;
 

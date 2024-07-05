@@ -54,4 +54,11 @@
         delete from board_likes where post_sno=#{post_sno} and user_id=#{user_id};
         UPDATE board SET likes=likes-1 WHERE sno=#{post_sno}
     </delete>
+
+    <select id="detailLikedByMe" parameterType="CsyBoardVo" resultType="int">
+        select count(post_sno) from board_likes where post_sno=#{sno} and user_id=#{viewersId}
+    </select>
+    <!-- <select id="detailLikes" parameterType="String" resultType="String">
+        select likes from board where sno=#{_parameter}
+    </select> -->
 </mapper>

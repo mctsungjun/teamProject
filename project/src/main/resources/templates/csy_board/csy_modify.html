@@ -10,7 +10,6 @@
         <div id="boardModify">
             <script type="module" th:inline="javascript">
                 import { summernote } from "/js/csy_summernote.js";
-                // TODO: 여기로 전달하는 법
                 summernote([[${vo.content}]]);
             </script>
             <script>

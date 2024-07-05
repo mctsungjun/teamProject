@@ -27,7 +27,7 @@ document.querySelector("#navBtnToSellInfo").onclick = () => { }
 
 // * 거래처 관리
 document.querySelector("#navBtnToPartners").onclick = () => { }
-
+    
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
     $.ajax ({
@@ -61,7 +61,7 @@ document.querySelector("#navBtnToProfileEdit").onclick = () => { }
 // * 로그아웃
 document.querySelector("#navBtnToLogout").onclick = () => { }
 
-// * 프로필 관리
+// * 임시
 document.querySelector("#navBtnToPwgIndex").onclick = () => {
     $.ajax ({
         url : "/pwg_index",
