@@ -13,6 +13,7 @@
         or ea like '%${findStr}%'
         or price like '%${findStr}%'
     </select>
+    
     <select id="view" parameterType="Integer" resultType="SaleVo">
         select id, ProductCode, ProductName, price, ea, nal from sale
         where sno=#{_parameter}
@@ -37,12 +38,16 @@
         where nal=#{nal}
     </update>
 
-    <select id="stocksearch" parameterType="String" resultType="StockVo">
+    <select id="stocksearch" parameterType="StockPage" resultType="StockVo">
         select * from stock
         where ProductCode like '%${findStr}%'
-        or ProductName like '%${findStr}%'
+        limit #{startNo}, #{listSize}
     </select>
 
+    <select id="StocktotSize" parameterType="String" resultType="Integer">
+        select count(ProductCode) from stock
+        where ProductCode = #{_parameter}
+    </select>
     <!--재고 그래프-->
     <select id="stockgraph" parameterType="map" resultType="StockVo">
         select * from stock

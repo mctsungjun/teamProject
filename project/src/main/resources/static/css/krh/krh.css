@@ -264,6 +264,29 @@
     border-color: white;
 }
 
+/*재고 관리 페이징*/
+.stockbottom .stockitems .btnZone{
+    margin-top:30px;
+    text-align: center;
+    word-spacing: 10px;
+}
+.stockbottom .btnPrev, .stockbottom .btnZone .btnNext{
+    pointer-events: none;
+    background-color: #bbbbbb;
+    border: 0px;
+    padding:5px;
+    border-radius: 10px;
+    
+}
+.stockbottom .btnPrevEnable, .stockbottom .btnNextEnable{
+    pointer-events: all;
+    border: 0px;
+    cursor: pointer;
+    background-color:#8753fb;
+    padding:5px;
+    border-radius: 10px;
+}
+
 
 .salepage h1{
     text-align: center;

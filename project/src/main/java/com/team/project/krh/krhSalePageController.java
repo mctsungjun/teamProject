@@ -1,10 +1,6 @@
 package com.team.project.krh;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
@@ -72,7 +68,6 @@ public class krhSalePageController {
         System.out.println("여기까지 오나요");
         Map<String, Object> map=new HashMap<>();
         String id = (String) session.getAttribute("id");
-
         boolean isSuccess = salepageDao.gumae(vo);
         /* map.put("id",id);
         map.put("vo",vo); */

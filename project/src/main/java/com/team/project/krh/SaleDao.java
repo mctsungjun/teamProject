@@ -1,9 +1,7 @@
 package com.team.project.krh;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import com.team.project.mybatis.MyFactory;

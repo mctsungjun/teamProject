@@ -14,10 +14,10 @@ public class krhStockController {
     StockVo stockVo;
 
     @RequestMapping(path="/stock")
-    public ModelAndView search(String findStr){
+    public ModelAndView stocksearch(StockPage stockpage){
         ModelAndView mv= new ModelAndView();
-        List<StockVo>list=stockDao.search(findStr);
-        mv.addObject("stock",list);
+        Map<String,Object> map=stockDao.stocksearch(stockpage);
+        mv.addObject("map",map);
         mv.setViewName("krh/stock");
         return mv;
     }

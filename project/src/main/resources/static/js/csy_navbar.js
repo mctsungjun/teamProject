@@ -16,10 +16,9 @@ document.querySelector("#navBtnToStock").onclick = () => {
         url:"/stock",
         type:"GET",
         success:(resp)=>{
-            console.log(resp);
             let temp=$(resp).find(".stockpage");
             $(".content").html(temp);
-            search();
+            stocksearch();
         }
     })
  }

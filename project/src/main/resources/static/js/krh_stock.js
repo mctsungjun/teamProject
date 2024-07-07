@@ -1,33 +1,32 @@
+let nowPage=1;
+
 function stock(){
     let findStr="";
-    if(sessionStorage.getItem("findStr")!=null){
-        findStr = sessionStorage.getItem("findStr");
-    }
     $.ajax({
         url:"/stock",
-        type:"/GET",
+        type:"GET",
+        data:{"findStr":findStr,"nowPage":nowPage},
         success:(resp)=>{
             let temp=$(resp).find(".stockpage");
-            $(".stock").html(temp);
-            search();
+            $(".stockpage").html(temp);
+            stocksearch();
+            stockloadItem(findStr,nowPage);
         }
     })
 }
+stock();
 
-function search(){
+function stocksearch(){
     let btnSearch = document.querySelector(".btnSearch");
-    let findStr=sessionStorage.getItem(".findStr");
-    if(findStr != null){
-        $(".findStr").val(findStr);
-    }
+    let findStr="";
+    stockloadItem(findStr,nowPage);
     btnSearch.addEventListener('click',()=>{
         findStr=$(".findStr").val();
         sessionStorage.setItem("findStr",findStr);
-
         $.ajax({
-            url:'/stock',
+            url:"/stock",
             type:'GET',
-            data:{"findStr":findStr},
+            data:{"findStr":findStr, "nowPage":nowPage},
             success:(resp)=>{
                 let temp=$(resp).find(".stockitems");
                 $(".stockitems").html(temp);
@@ -35,11 +34,38 @@ function search(){
         })
     })
 }
-search();
+stocksearch();
 
-$(document).ready(function(){
+//페이징
+function stockloadItem(findStr,nowPage){
     graph();
-});
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        data:{"findStr":findStr,"nowPage":nowPage},
+        success:(resp)=>{
+            let temp=$(resp).find(".stocklist");
+            $(".stocklist").html(temp);
+            sessionStorage.setItem("stockNowPage",nowPage);
+            $(".btnPrevEnable").on("click",()=>{
+                let findStr=$(".findStr").val();
+                if(sessionStorage.getItem("stockNowPage")!=null){
+                    nowPage=sessionStorage.getItem("stockNowPage");
+                    if(nowPage>1) nowPage--;
+                }
+                stockloadItem(findStr,nowPage);
+            })
+            $(".btnNextEnable").on("click", ()=>{
+                let findStr = $(".findStr").val();
+                if(sessionStorage.getItem("stockNowPage") != null){
+                    nowPage = sessionStorage.getItem("stockNowPage");
+                    nowPage++;               
+                }
+                stockloadItem(findStr, nowPage);
+            })
+        }
+    })
+}
 
 $.ajax({
     url: "/stockgraph",
