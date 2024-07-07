@@ -91,14 +91,14 @@ public class ProductController {
         return msg;
     }
 
-    @RequestMapping(path="/product_modify")
-    public ModelAndView product_modify(String productCode){
-        ModelAndView mv = new ModelAndView();
-        ProductVo vo = ProductDao.product_view(productCode);
-        mv.addObject("vo",vo);
-        mv.setViewName("ojw/product_modify");
-        return mv;
-    }
+    // @RequestMapping(path="/product_modify")
+    // public ModelAndView product_modify(String productCode){
+    //     ModelAndView mv = new ModelAndView();
+    //     ProductVo vo = ProductDao.product_view(productCode);
+    //     mv.addObject("vo",vo);
+    //     mv.setViewName("ojw/product_modify");
+    //     return mv;
+    // }
 
     @RequestMapping(path="/product_modifyR")
     public ModelAndView product_modifyR(

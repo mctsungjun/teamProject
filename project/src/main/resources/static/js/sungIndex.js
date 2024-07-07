@@ -67,12 +67,14 @@ var change=(tag,photo)=>{
 
 
 export function btnChangePhoto() {
+	alert("HELLO");
 		$.ajax({
 			url:"/sung/repreChangeForm",
 			type:"GET",
 			success:(resp)=>{
+				// let temp = $(resp).find(".photoSection");
 				let temp = $(resp).find(".photoSection");
-				$(".photoSection").html(temp);
+				$(".myprofile-main").html(temp);
 				// 대표이미지수정
 				let btnRepreChange = document.querySelector(".btnRepreChange");
 				btnRepreChange.onclick=()=>{

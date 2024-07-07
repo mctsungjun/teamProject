@@ -13,6 +13,8 @@ import com.team.project.sungVo.MemberManagerVo;
 import com.team.project.sungVo.MemberVo;
 import com.team.project.sungVo.PhotoVo;
 
+import jakarta.servlet.http.HttpSession;
+
 @Component
 public class MemberDao {
     SqlSession session;
@@ -99,16 +101,12 @@ public String getMemberName(String id){
     return name;
 }
 //상세페이지 정보요청
-    public MemberVo detail(String id, String name){
+    public MemberVo detail(String id) {
         session = new MyFactory().getSession();
-        
-        Map<String,String> map = new HashMap<>();
-        map.put("id",id);
-        map.put("name",name);
         // PhotoVo 받기 위해 리스트 객체 준비
         List<PhotoVo> list = null;
-        MemberVo vo = session.selectOne("member.login", map);
-        list = session.selectList("member.photos", map);
+        MemberVo vo = session.selectOne("member.login", id);
+        list = session.selectList("member.photos", id);
         // MemberVo의 포토리스트 필드에 세팅
         vo.setPhotos(list);
         session.close();

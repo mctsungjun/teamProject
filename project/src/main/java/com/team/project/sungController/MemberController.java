@@ -117,11 +117,10 @@ public ModelAndView login(){
         // dao로 전달
         
         String id = (String)session.getAttribute("id");
-        String name = (String)session.getAttribute("name");
         // System.out.println("id:"  +id);
         if( id != null && !id.equals("")){
-
-            vo = dao.detail(id,name);
+            // vo = dao.detail(id,name);
+            vo = dao.detail(id);
             if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
                 for(PhotoVo pv:vo.getPhotos()){
                     if(pv.photo.contains(vo.getPhoto())){
@@ -159,7 +158,7 @@ public ModelAndView login(){
         // System.out.println("id:"  +id);
         if( id != null && !id.equals("")){
 
-            vo = dao.detail(id,name);
+            vo = dao.detail(id);
             if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
                 for(PhotoVo pv:vo.getPhotos()){
                     if(pv.photo.contains(vo.getPhoto())){
@@ -186,11 +185,12 @@ public ModelAndView login(){
     }
       // 리스트 목록에서 클릭 상세페이지
       @RequestMapping(path="/sung/view")
-      public ModelAndView view(String id){
+      public ModelAndView view(HttpSession session){
+        String id = (String)session.getAttribute("id");
         ModelAndView mv = new ModelAndView();
         String name = dao.getMemberName(id);
         System.out.println(name);
-        MemberVo vo = dao.detail(id,name);
+        MemberVo vo = dao.detail(id);
         if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
           for(PhotoVo pv:vo.getPhotos()){
               if(pv.photo.contains(vo.getPhoto())){
@@ -308,11 +308,11 @@ public String updateR(
 @RequestMapping(path="/sung/repreChangeForm")
 public ModelAndView repreChangForm(HttpSession session){
     ModelAndView mv = new ModelAndView();
+
     String id = (String)session.getAttribute("id");
-   
     String name = (String)session.getAttribute("name");
     
-    MemberVo vo =dao.detail(id,name);
+    MemberVo vo =dao.detail(id);
     mv.addObject("vo", vo);
     mv.setViewName("sung/reprePhoto");
     return mv;

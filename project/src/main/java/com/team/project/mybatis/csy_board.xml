@@ -104,4 +104,9 @@
             update board_comments SET content=#{content} WHERE sno=#{sno}
         </if>
     </update>
+
+    <select id="userProfilePhoto" parameterType="String" resultType="PhotoVo">
+        select * from 
+    </select>
+
 </mapper>
