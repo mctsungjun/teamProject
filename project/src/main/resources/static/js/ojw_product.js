@@ -86,7 +86,7 @@ function fileChange(tag){
         let label=document.createElement("label");
         let br=document.createElement("br");
 
-        chkbox.type="radio";
+        chkbox.type="checkbox";
         chkbox.name="photo";
         chkbox.value=f.name;
 
@@ -95,101 +95,5 @@ function fileChange(tag){
 
         repre.appendChild(label);
         repre.appendChild(br)
-    }
-}
-
-
-function product_view(productCode){
-    $.ajax({
-        url : "/product_view",
-        type : "GET",
-        data : {"productCode" : productCode},
-        success : (resp)=>{
-            let temp = $(resp).find(".product_view");
-            $(".product").html(temp);
-            productViewEvent(productCode);
-        }
-    })
-}
-
-function productViewEvent(productCode){
-    let btnModify = document.querySelector(".btnModify");
-    let btnDelete = document.querySelector(".btnDelete");
-    let btnList = document.querySelector(".btnList");
-    let btnChangePhoto = document.querySelector(".btnChangePhoto");
-
-    btnModify.addEventListener("click",()=>{
-        console.log("")
-        $.ajax({
-            url : "/product_modify",
-            type : "GET",
-            data : {"productCode" : productCode},
-            success : (resp)=>{
-                let temp = $(resp).find(".product_modify")
-                $(".product").html(temp);
-                product_modify(productCode);
-            }
-        })
-    })
-    btnChangePhoto.addEventListener('click',()=>{
-        $.ajax({
-            url : "/changeProductPhoto",
-            type : "GET",
-            data : {"productCode" : productCode, "photo" : repreProductImage},
-            success : (resp)=>{
-                alert(resp)
-            }
-        })
-    })
-    btnList.addEventListener('click',()=>{
-        product(productCode);
-    })
-    btnDelete.addEventListener('click',()=>{
-        let yn = confirm(productName+"를 삭제하시겠습니까?");
-        if(!yn) return;
-
-        $.ajax({
-            url : "/product_deleteR",
-            type : "GET",
-            data : {"productCode" : productCode},
-            success : (resp)=>{
-                product("");
-            }
-        })
-    })
-}
-
-let repreProductImage="";
-
-function product_modify(productCode){
-    btnModifyR = document.querySelector('.btnModifyR');
-    btnList = document.querySelector('.btnList');
-
-    btnList.addEventListener('click',()=>{
-        product();
-    })
-
-    btnModifyR.addEventListener("click",()=>{
-        $.ajax({
-            url : "product_modifyR",
-            type : "POST",
-            contentType : false,
-            processData : false,
-            data : frmData,
-            success : (resp)=>{
-                product();
-            }
-        })
-    })
-}
-
-function checkUp(box){
-    let p = box.parentNode;
-    if(box.checked){
-        p.style.textDecoration = "line-through";
-        p.style.color = "#f00";
-    }else{
-        p.style.textDecoration = "none";
-        p.style.color = "";
     }
 }

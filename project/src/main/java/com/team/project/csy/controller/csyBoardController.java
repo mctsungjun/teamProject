@@ -17,6 +17,8 @@ import com.team.project.csy.CsyBoardLikesVo;
 import com.team.project.csy.CsyBoardListPageVo;
 import com.team.project.csy.CsyBoardVo;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 public class csyBoardController {
     @Autowired
@@ -49,10 +51,11 @@ public class csyBoardController {
     }
 
     @RequestMapping(path="/board/modify")
-    public ModelAndView modifyPost(String sno) {
+    public ModelAndView modifyPost(String sno, HttpSession session) {
         ModelAndView mv = new ModelAndView();
+        String id = (String) session.getAttribute("id");
         
-        Map<String, Object> map = BoardDao.detail(sno);
+        Map<String, Object> map = BoardDao.detail(sno, id);
         mv.addObject("vo", map.get("boardVo"));
         mv.addObject("commentList", map.get("commentList"));
 
@@ -61,37 +64,41 @@ public class csyBoardController {
     }
 
     @RequestMapping(path="/board/delete")
-    public String postDelete(String sno) {
-        String msg = BoardDao.delete(sno);
+    public String postDelete(String sno, HttpSession session) {
+        String id = (String) session.getAttribute("id");
+        String msg = BoardDao.delete(sno, id);
         return msg;
     }
 
     @RequestMapping(path="/board/detail")
-    public ModelAndView postDetail(String sno) {
+    public ModelAndView postDetail(String sno, HttpSession session) {
         ModelAndView mv = new ModelAndView();
-        Map<String, Object> map = BoardDao.detail(sno);
+        String id = (String) session.getAttribute("id");
+        Map<String, Object> map = BoardDao.detail(sno, id);
 
         CsyBoardVo boardVo = (CsyBoardVo) map.get("boardVo");
         List<CsyBoardCommentVo> commentList = (List<CsyBoardCommentVo>) map.get("commentList");
 
         mv.addObject("vo", boardVo);
         mv.addObject("commentList", commentList);
+        mv.addObject("currentUserProfilePic", BoardDao.userProfilePic(id));
         mv.setViewName("csy_board/csy_detail");
         return mv;
     }
 
     @RequestMapping(path="/board/detail/likePressed", method = RequestMethod.POST)
-    public String postDetailLikes(@RequestBody HashMap<String, Object> json) {
+    public String postDetailLikes(@RequestBody HashMap<String, Object> json, HttpSession session) {
         CsyBoardLikesVo vo = new CsyBoardLikesVo();
         vo.setChecked((boolean) json.get("is_checked"));
         vo.setPost_sno((int) json.get("post_sno"));
-        vo.setUser_id((String) json.get("user_id"));
+        vo.setUser_id((String) session.getAttribute("id"));
         
         return BoardDao.likePressed(vo);
     }
 
     @RequestMapping("/board/detail/comments/post")
-    public boolean boardDetailCommentPost(CsyBoardCommentVo vo) {
+    public boolean boardDetailCommentPost(CsyBoardCommentVo vo, HttpSession session) {
+        vo.setId((String) session.getAttribute("id"));
         return BoardDao.commentPost(vo);
     }
 

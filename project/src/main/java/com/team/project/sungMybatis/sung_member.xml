@@ -21,8 +21,9 @@ insert into users(id, name, password, email,email2 ,roadAddress,jibunAddress, ph
     </if>   
 </update>
 <!--일반로그인-->
-<select id="login" parameterType="map" resultType="MemberVo">
-select * from users where id like '%${id}%' or name like '%${name}%' 
+<select id="login" parameterType="String" resultType="MemberVo">
+    <!-- select * from users where id like '%${id}%' or name like '%${name}%'  -->
+    select * from users where id=#{_parameter}
 </select>
 <!-- 아이디 중복확인 -->
 <select id="userIdchk" parameterType="String" resultType="MemberVo">
@@ -35,8 +36,8 @@ select * from users where id like '%${id}%' or name like '%${name}%'
 <select id="takeInfo" parameterType="MemberVo" resultType="MemberVo">
     select * from users where birthday = #{birthday} and name = #{name}
 </select>
-<select id="photos" parameterType="map" resultType="PhotoVo">
-    select sno, photo, oriPhoto, flag, nal from photos where id like '%${id}%'  
+<select id="photos" parameterType="String" resultType="PhotoVo">
+    select sno, photo, oriPhoto, flag, nal from photos where id=#{_parameter}
 </select>
 <!--이름가져오기-->
 <select id="getName" parameterType="String" resultType="String">
@@ -92,5 +93,4 @@ select id , password from users where name=#{name} and email = #{email1} and ema
     delete from users where id = #{_parameter};
     delete from photos where id = #{_parameter};
 </delete> 
-
 </mapper>

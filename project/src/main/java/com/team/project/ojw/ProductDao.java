@@ -28,11 +28,11 @@ public class ProductDao {
         return list;
     }
 
-    
-    public ProductVo product_view(String productCode){
+    public ProductVo product_view(Integer no){
+        ProductVo vo = null;
         session = new MyFactory().getSession();
-        ProductVo vo = session.selectOne("project.product_view",productCode);
-        List<ojw_PhotoVo> photos = session.selectList("project.photos",productCode);
+        vo = session.selectOne("project.product_view",no);
+        List<ojw_PhotoVo> photos = session.selectList("project.photos",no);
         vo.setPhotos(photos);
         session.close();
         return vo;

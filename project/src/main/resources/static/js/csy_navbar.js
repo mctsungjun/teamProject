@@ -24,7 +24,18 @@ document.querySelector("#navBtnToProduct").onclick = () => {
 }
 
 // * 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { }
+document.querySelector("#navBtnToStock").onclick = () => { 
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        success:(resp)=>{
+            console.log(resp);
+            let temp=$(resp).find(".stockpage");
+            $(".content").html(temp);
+            search();
+        }
+    })
+}
 
 
 // * 구매 정보 관리
@@ -60,9 +71,14 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
         url:"/sale",
         type:"GET",
         success:(resp)=>{
-            let temp=$(resp).find(".big");
-            $('.content').html(temp);
-            search();
+            let temp=$(resp).find(".salepage")
+            $(".content").html(temp);
+            salepage();
+
+            // * GITHUB CONFLICT: 이 부분이 최신이라면 주석 처리 해제하셔도 됩니다.
+            // let temp=$(resp).find(".big");
+            // $('.content').html(temp);
+            // search();
         }
     })
 }
@@ -100,13 +116,21 @@ document.querySelector("#navBtnToCS").onclick = () => {
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => {
     $.ajax({
-		url:"/sung/detail",
-		type:"GET",
-		success:(resp)=>{
-			let temp = $(resp).find(".myProfilePage");
-			$(".content").html(temp);
-		}
-	})
+        url:"/sung/detail",
+        type:"GET",
+        success:(resp)=>{
+            let temp = $(resp).find(".myProfilePage");
+            $(".content").html(temp);
+            $.ajax({
+                url: "/sung/detail_main",
+                type: "GET",
+                success:(resp) => {
+                    let temp = $(resp).find(".myprofile-main");
+                    $(".myprofile-detail-content").html(temp);
+                }
+            })
+        }
+    })
 }
 
 // * 로그아웃
