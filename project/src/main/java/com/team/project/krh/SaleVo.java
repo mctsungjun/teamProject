@@ -17,6 +17,7 @@ public class SaleVo {
     int price;
     int amt;
     String sessionId;
+    String photo;
 
     //amt 계산용
     public void compute(){

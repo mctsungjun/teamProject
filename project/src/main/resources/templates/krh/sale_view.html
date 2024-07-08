@@ -21,7 +21,7 @@
             <h2>판매 내역 상세 보기</h2>
             <!--지언니가 등록한..사진..대표사진..-->
             
-            <img src="[[${p.photo}]]" width="200px" height="200px">
+            <img th:src="${vo.photo}" width="200px" height="200px">
             <!--controller에서 연결받기..-->
             <table class="saleviewtable">
                 <tr>

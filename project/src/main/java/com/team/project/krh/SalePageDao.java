@@ -6,8 +6,6 @@ import com.team.project.mybatis.MyFactory;
 import com.team.project.ojw.ProductVo;
 import com.team.project.ojw.ojw_PhotoVo;
 
-import jakarta.servlet.http.HttpSession;
-
 import java.util.*;
 
 @Component
