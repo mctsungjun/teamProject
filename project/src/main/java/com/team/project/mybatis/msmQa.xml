@@ -11,21 +11,38 @@
         order by qusNum desc
     </select>
 
-    <select id="view" parameterType="Integer" resultType="com.team.project.msm.msmQaVo">
+    <select id="view" parameterType="String" resultType="com.team.project.msm.msmQaVo">
         select * from qa
         where qusNum = #{qusNum}
     </select>
 
-    <select id="qaFiles" parameterType="Integer" resultType="com.team.project.msm.msmQaVo">
-        select qusId, qusCon, qusDate, qusTitle, ansId, ansCon, ansDate
+    <select id="qaFiles" parameterType="String" resultType="com.team.project.msm.msmQaVo">
+        select qusId, qusCon, qusDate, qusTitle, ansId, ansCon, ansDate, qusNum
         from qa
     </select>
 
-    <select id="detail" resultType="com.team.project.msm.msmQaVo">
-        select qusId, qusCon, qusDate, qusTitle, ansId, ansCon, ansDate
-        from qa
+    <select id="detail" parameterType="String" resultType="com.team.project.msm.msmQaVo">
+        select qusId, qusCon, qusDate, qusTitle, ansId, ansCon, ansDate, qusNum
+        from qa 
+        where qusNum = #{qusNum}
     </select>
+
+    <select id="search" parameterType="String" resultType="com.team.project.msm.msmQaVo">
+        select qusNum, qusId, qusTitle, qusDate, qusView
+        from qa
+        where qusTitle like concat('%', #{findStr}, '%')
+        order by qusNum desc
+    </select>
+
+    <insert id="saveAnswer" parameterType="msmQavo">
+        insert into qa (ansCon, ansDate, ansId)
+        values (#{ansCon}, now(), #{ansId})
+    </insert>
+
+    <insert id="saveQuestion" parameterType="msmQaVo">
+        insert into qa(qusCon, qusTitle, qusDate)
+        values (#{qusCon}, #{qusTitle}, now())
+    </insert>
+
+   
 </mapper>
-
-
-

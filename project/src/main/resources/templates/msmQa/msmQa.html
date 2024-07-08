@@ -1,62 +1,54 @@
-<!DOCTYPE html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
-    
-    
+    <title>게시물 목록</title>
+    <link rel="stylesheet" href="css/msm/msmQa.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
-<body id="qa-container">  
-    
-    <!--06.26 추가-->
+<body>
     <div id="index">
         <div class="navbar"></div>
-    
-        <!--msm 기존 코드-->
-<div>
-    <div id="qaBoard">
-        <script src="js/msmQa.js"></script>
-        <link rel="stylesheet" href="css/msm/msmQa.css">
-        <div class="topContainer">
-            <label for="search" class="topTitle">고객센터</label>
-            <form id="searchFrm" class="search" action="#" method="GET">
-                <div class="search-wrap">
-                    <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
-                    <button type="submit" class="btnSearch">검색</button>
+    <div class="TopContainer">
+        <label for="search" class="topTitle">고객센터</label>
+        <form id="searchFrm" class="search" action="/qa" method="GET">
+            <div class="search-wrap">
+                <input id="search" type="search" name="findStr" placeholder="검색어를 입력해주세요." value="">
+                <button type="submit" class="btnSearch">검색</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="board-list">
+        <div class="Container">
+            <div class="board-table">
+                <div class="qaTitle">
+                    <span class="num">NO</span>
+                    <span class="writer">작성자</span>
+                    <span class="title">제목</span>
+                    <span class="date">작성일</span>
+                    <span class="view">조회수</span>
                 </div>
-            </form>
-        </div>
-    
-    
-        <div id="board-list">
-            <div class="container">
-                <div class="board-table">
-                    <div class="qaTitle">
-                        <span class="num">NO</span>
-                        <span class="writer">작성자</span>
-                        <span class="title">제목</span>
-                        <span class="date">작성일</span>
-                        <span class="view">조회수</span>
-                    </div>
-                    <!--데이터베이스 반영 예정-->
-                    <div class="qaItems" th:each="q : ${list}">
-                        <div class="qaItem">
-                                <span class="num">[[${q.qusNum}]]</span>
-                                <span class="writer">[[${q.qusId}]]</span>
-                                <span class="title"><a href="${path}/board/detail?no=${list.qusNum}">[[${q.qusTitle}]]</span>
-                                <span class="date">[[${q.qusDate}]]</span>
-                                <span class="view">[[${q.qusView}]]</span>
-                            </form>
-                        </div>
+
+                <div class="qaItems" th:each="q : ${list}">
+                    <div class="qaItem" th:onclick="qusnum([[${q.qusNum}]])">
+                        <span class="num">[[${q.qusNum}]]</span>
+                        <span class="writer">[[${q.qusId}]]</span>
+                        <span class="title">
+                            <span class="link">
+                                [[${q.qusTitle}]]
+                            </span>
+                        </span>
+                        <span class="date" >[[${q.qusDate}]]</span>
+                        <span class="view" >[[${q.qusView}]]</span>
                     </div>
                 </div>
-            <button type="button" class="btnAdd" id="btnAdd" >작성</button>
-            <button type="button" class="btnMain" id="btnMain">메인화면</button>
+                <button type="button" class="btnAdd" onclick="goAdd()">작성</button>
+                <button type="button" class="btnMain">메인화면</button>
+            </div>
         </div>
     </div>
-</div>
-</div>
+    <script src="js/msmQa.js"></script>
 </body>
 </html>

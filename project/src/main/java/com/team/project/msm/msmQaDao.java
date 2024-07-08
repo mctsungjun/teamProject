@@ -1,6 +1,6 @@
 package com.team.project.msm;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,34 +11,31 @@ import com.team.project.mybatis.MyFactory;
 
 @Component
 public class msmQaDao {
-    
-    SqlSession session;
+
+    SqlSession sqlSession;
 
     public msmQaDao(){
-        session=new MyFactory().getSession();
+        sqlSession = new MyFactory().getSession();
     }
 
-    public List<msmQaVo> list(String findStr){
-        return session.selectList("msmQa.list", findStr);
+    public List<msmQaVo> list(){
+        return sqlSession.selectList("msmQa.list");
     }
     
-    public List<msmQaVo> search(String findStr){
-        List<msmQaVo> list = null;
-        session = new MyFactory().getSession();
-        list = session.selectList("qa.search", findStr);
-        
-        return list;
+    public List<msmQaVo> search(String findStr) {
+        return sqlSession.selectList("msmQa.search", findStr);
     }
 
-    public Map<String, Object> detail(Integer qusNum) {
-        Map<String, Object> Map = new HashMap<>(); 
-        session = new MyFactory().getSession();
-        msmQaVo vo = session.selectOne("msmQa.view", qusNum);
-        List<msmQaVo> qaFiles = session.selectList("msmQa.qaFiles", qusNum);
-
-        Map.put("vo", vo);
-        Map.put("qaFiles", qaFiles);
+    public List<msmQaVo> detail(Integer qusNum) {
+        return sqlSession.selectList("msmQa.detail", qusNum);
         
-        return Map;
+    }
+
+    public void saveAnswer(msmQaVo vo) {
+        sqlSession.insert("msmQa.saveAnswer", vo);
+    }
+    
+    public void saveQuestion(msmQaVo vo){
+        sqlSession.insert("msmQa.saveQuestion", vo);
     }
 }

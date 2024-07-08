@@ -1,4 +1,7 @@
 /*-------msm css----------*/
+#index{
+    background-color: #1e202b;
+}
 .topTitle{
     font-size:50px;
     color:white;
@@ -48,27 +51,37 @@
     display:inline-block;
     width:8%;
     text-align: center;
+    color:white;
 }
 .title{
     display:inline-block;
     width:50%;
     text-align: center;
-
+    color:white;
+}
+.link{
+    display:inline-block;
+    width:50%;
+    text-align: center;
+    color:white;
 }
 .writer{
     display:inline-block;
     width:10%;
     text-align: center;
+    color:white;
 }
 .date{
     display:inline-block;
     width:17%;
     text-align: center;
+    color:white;
 }
 .view{
     display:inline-block;
     width:10%;
     text-align: center;
+    color:white;
 }
 .qaItems{
     border-bottom:1px solid white;

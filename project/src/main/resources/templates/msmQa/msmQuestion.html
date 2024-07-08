@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>Document</title>
-    
     </head>
     <body class="qa-container">
     <!--06.26추가-->
     <div>
     <div id="index">
         <div class="navbar"></div>
-
-    <div class="question" id="questionId">
+    
+    <div class="question" id="questionId" form="frmQuestion">
         <link rel="stylesheet" href="css/msm/msmQuestion.css">
-        <script defer src="js/msmQuestion.js"></script>
         <h2 class="title">질문 남기기</h2>
         <div class="container">
 
@@ -31,11 +29,12 @@
 
         </div>
         <div class="btns">
+            <button type="button" class="qaWrite" onclick="qusWrite()">작성</button>
             <button type="button" class="qaCancel">취소</button>
-            <button type="button" class="qaWrite" onclick="alert('작성 완료!')">작성</button>
         </div>
     </div>
     </div>
 </div>
+<script src="js/msmQaQuestion.js"></script>
 </body>
 </html>
