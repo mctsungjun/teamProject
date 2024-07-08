@@ -11,7 +11,7 @@ export function stock(){
             let temp=$(resp).find(".stockpage");
             $(".content").html(temp);
             stockloadItem(findStr,nowPage);
-            stocksearch();
+            stocksearch();        
         }
     })
 }
@@ -30,6 +30,7 @@ function stocksearch(){
             success:(resp)=>{
                 let temp=$(resp).find(".stockitems");
                 $(".stockitems").html(temp);
+                stockloadItem(findStr,nowPage);
             }
         })
     })

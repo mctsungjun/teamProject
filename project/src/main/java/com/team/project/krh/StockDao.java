@@ -7,8 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
-import com.team.project.mybatis.MyFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+
+@Service
 @Component
 public class StockDao {
     
@@ -26,11 +29,8 @@ public class StockDao {
 
     SqlSession session = getSession();
     
+    @Transactional
     public Map<String,Object> stocksearch(StockPage stockpage){
-        System.out.println("몇 번 오나요?");
-        System.out.println("몇 번 오나요?");
-        System.out.println("몇 번 오나요?");
-        System.out.println("몇 번 오나요?");
         Map<String,Object> map = new HashMap<>();
         List<StockVo> list=null;
         //session=new MyFactory().getSession();
@@ -40,24 +40,20 @@ public class StockDao {
         // System.out.println("FindStr");
         // System.out.println(stockpage.getFindStr());
         int totSize=session.selectOne("salestock.StocktotSize",stockpage.getFindStr());
-        System.out.println(totSize);
         stockpage.setTotSize(totSize);
         stockpage.compute();
-        System.out.println(stockpage);
         list = session.selectList("salestock.stocksearch", stockpage);
-        System.out.println(stockpage);
         map.put("stockpage",stockpage);
         map.put("list",list);
         //session.close();
-        System.out.println(map);
         return map;
     }
     
+    @Transactional
     public Map<String,Object> graph(String ProductName, Object ea){
         Map<String, Object> map=new HashMap<>();
         List<String> x= new ArrayList<>();
         List<Integer> y = new ArrayList<>();
-
         List<StockVo> list=null;
         //session=new MyFactory().getSession();
         list = session.selectList("salestock.stockgraph", ProductName);
@@ -70,5 +66,9 @@ public class StockDao {
         //session.close();
         return map;
     }
+
+
+    //재고 마이너스
+
 
 }

@@ -11,6 +11,7 @@ function salepage(){
             $(".salepage").html(temp);
             salepagesearch();
             loadItem(findStr,nowPage);
+            
         }
     })
 }
@@ -106,8 +107,7 @@ function gumae(){
             processData:false,
             data: formData,
             success: (resp) => {
-                console.log(formData);
-                alert(resp);
+                alert("구매가 완료되었습니다.");
             }
         })
     });

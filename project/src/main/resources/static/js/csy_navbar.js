@@ -14,17 +14,15 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 document.querySelector("#navBtnToStock").onclick = async () => {
     let obj = await import ("/js/krh_stock.js");
     obj.stock();
-    /*
     $.ajax({
         url:"/stock",
         type:"GET",
         data:{"findStr":findStr,"nowPage":nowPage},
         success:async (resp)=>{
             let temp=$(resp).find(".stockpage");
-            $(".stockpage").html(temp);
-            
+            $(".content").html(temp);
         }
-    }) */
+    })
 }
  
 // * 제품 관리

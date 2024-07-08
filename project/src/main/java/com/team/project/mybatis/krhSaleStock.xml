@@ -51,11 +51,23 @@
             where ProductName like '%${_parameter}%'
             or ProductCode like '%${_parameter}%'
         </if>
-        
     </select>
 
     <!-- 재고 마이너스 -->
+    <select id="selectStockCount" parameterType="String" resultType="Integer">
+        SELECT COUNT(ProductCode)
+        FROM stock
+        WHERE ProductCode = #{productCode}
+    </select>
 
+    <!-- Update stock based on the condition -->
+    <update id="stockminusmodify" parameterType="SaleVo">
+        UPDATE stock
+        SET ea = ea - #{ea}
+        WHERE ProductCode = #{productCode}
+    </update>
+
+    
     <!--재고 그래프-->
     <select id="stockgraph" parameterType="map" resultType="StockVo">
         select * from stock
