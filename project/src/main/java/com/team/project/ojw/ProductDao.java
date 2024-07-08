@@ -69,8 +69,11 @@ public class ProductDao {
                 }
             }
             session.delete("project.product_delete", productCode);
+        }
+        
+        if(cnt>0){
+            msg="삭제됨";
             session.commit();
-            msg = "삭제 완료";
         }else{
             session.rollback();
             msg = "삭제중 오류발생";

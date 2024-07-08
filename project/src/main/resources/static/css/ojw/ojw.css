@@ -1,4 +1,10 @@
 /* ------------------- purchase ------------------ */
+.product button{
+    color: #000;
+}
+.purchase .findStr{
+    color: #000;
+}
 .purchase{
     width: 1200px;
     min-height: 400px;
@@ -112,7 +118,21 @@ td{
     margin-top: 20px;
 }
 
+/* ----------------------- purchase_modify ------------------------- */
+.purchase_input{
+    color: #000;
+}
+.purchase_readonly{
+    color: gray;
+}
+
 /* ----------------------- product_register ------------------------- */
+.product .findStr{
+    color: #000;
+}
+.product_input .input{
+    color: #000;
+}
 *{
     box-sizing: border-box;
 }
@@ -164,6 +184,18 @@ h3{
     display: inline-block;
     margin: 30px;
     text-align: left;
+}
+.product_modify .input{
+    color: #000;
+}
+.modify_button{
+    color: #000;
+}
+.product .btnSearch{
+    color: #000;
+}
+.product .btnRegister{
+    color: #000;
 }
 
 /* ------------- product view -------------*/
@@ -242,6 +274,9 @@ h3{
     bottom: -50px;
     right: -440px;
     float: left;
+}
+.productButton{
+    color: #000;
 }
 
 /* ------------- product modify -------------*/

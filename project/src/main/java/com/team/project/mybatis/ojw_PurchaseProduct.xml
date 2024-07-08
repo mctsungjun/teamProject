@@ -57,14 +57,16 @@
         where productCode=#{productCode}
     </update>
 
-    <delete id="product_delete" parameterType="java.util.List">
-        delete from photos where photo in
-        <foreach collection="list" item="file" open"(" close=")" separator=",">
+    <delete id="delete_files" parameterType="java.util.List">
+        delete from product_photos where photo in
+        <foreach collection="list" item="file" open="(" close=")" separator=",">
             #{file}
         </foreach>
     </delete>
-    
-    <update id="change_productPhoto" parameterType="Map">
-        update product set photo=#{photo} where productCode=#{productCode}
-    </update>
+    <delete id="product_delete" parameterType="String">
+        delete from product where productCode=#{productCode}
+    </delete>
+    <delete id="delete_photos" parameterType="String">
+        delete from product_photos where productCode=#{productCode}
+    </delete>
 </mapper>

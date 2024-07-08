@@ -81,7 +81,6 @@ function purchaseViewEvent(no){
     let btnList = document.querySelector(".btnList");
 
     btnModify.addEventListener("click",()=>{
-
         $.ajax({
             url : "/purchase_modify",
             type : "GET",
@@ -117,7 +116,6 @@ function purchase_modify(no){
             processData : false,
             data : frmData,
             success : (resp)=>{
-                console.log(resp)
                 purchase();
             }
         })

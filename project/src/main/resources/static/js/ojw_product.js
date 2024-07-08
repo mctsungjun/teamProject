@@ -14,8 +14,9 @@ function product(){
         }
     })
 }
+product();
 function product_search(){
-    let btnRegister = document.querySelector(".abcabc");
+    let btnRegister = document.querySelector(".btnRegister");
     let btnSearch = document.querySelector(".btnSearch");
     let findStr=sessionStorage.getItem(".findStr");
     if(findStr != null){
@@ -37,7 +38,7 @@ function product_search(){
         })
     })
 
-    btnRegister.addEventListener('click',()=>{
+    btnRegister.addEventListener("click",()=>{
         $.ajax({
             url : "/product_register",
             type : "GET",
@@ -99,7 +100,7 @@ function fileChange(tag){
 }
 
 
-function product_view(productCode){
+let product_view=(productCode)=>{
     $.ajax({
         url : "/product_view",
         type : "GET",
@@ -117,9 +118,10 @@ function productViewEvent(productCode){
     let btnDelete = document.querySelector(".btnDelete");
     let btnList = document.querySelector(".btnList");
     let btnChangePhoto = document.querySelector(".btnChangePhoto");
+    let repreProductImage="";
 
     btnModify.addEventListener("click",()=>{
-        console.log("")
+        console.log("수정");
         $.ajax({
             url : "/product_modify",
             type : "GET",
@@ -131,21 +133,12 @@ function productViewEvent(productCode){
             }
         })
     })
-    btnChangePhoto.addEventListener('click',()=>{
-        $.ajax({
-            url : "/changeProductPhoto",
-            type : "GET",
-            data : {"productCode" : productCode, "photo" : repreProductImage},
-            success : (resp)=>{
-                alert(resp)
-            }
-        })
-    })
-    btnList.addEventListener('click',()=>{
-        product(productCode);
+
+    btnList.addEventListener("click",()=>{
+        product();
     })
     btnDelete.addEventListener('click',()=>{
-        let yn = confirm(productName+"를 삭제하시겠습니까?");
+        let yn = confirm("삭제하시겠습니까?");
         if(!yn) return;
 
         $.ajax({
@@ -159,17 +152,20 @@ function productViewEvent(productCode){
     })
 }
 
-let repreProductImage="";
 
-function product_modify(productCode){
-    btnModifyR = document.querySelector('.btnModifyR');
-    btnList = document.querySelector('.btnList');
+
+let product_modify=(productCode)=>{
+    let btnModifyR = document.querySelector('.btnModifyR');
+    let btnList = document.querySelector('.btnList');
 
     btnList.addEventListener('click',()=>{
         product();
     })
 
     btnModifyR.addEventListener("click",()=>{
+        let frm = document.productfrm;
+        let frmData = new FormData(frm);
+
         $.ajax({
             url : "product_modifyR",
             type : "POST",
