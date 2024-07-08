@@ -50,6 +50,10 @@ select * from users where id like '%${id}%' or name like '%${name}%'
 <update id="changePhoto" parameterType="map">
     update users set photo=#{photo} where id=#{id}
 </update>
+<!--default이미지 가져오기-->
+<select id="defaultPhoto" resultType="PhotoVo">
+    select * from photos where sno = 5
+</select>
 <!--sns naver 아이디 등록-->
 <update id="snsId" parameterType="MemberVo">
     update users set naverId = #{naverId} where birthday = #{birthday} and name = #{name} 

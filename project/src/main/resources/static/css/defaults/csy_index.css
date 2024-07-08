@@ -6,7 +6,7 @@
     font-family: "Noto Sans KR", sans-serif;
 }
 
-html, body, #index, .authPage {
+html, body, #index, .authPage, .myProfilePage {
     background-color: var(--dark-gray);
     margin: 0;
     height: 100%;

@@ -1,3 +1,4 @@
+/* ------------------- purchase ------------------ */
 *{
     box-sizing: border-box;
 }
@@ -16,14 +17,22 @@
     vertical-align: middle;
 }
 .title{
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
     margin-top: 10px;
     font-weight: bold;
     height: 40px;
+    line-height: 40px;
 }
 .list span{
     display: inline-block;
+}
+.item{
+    border-bottom: 2px solid #eee;
+}
+.items span{
+    height: 40px;
+    line-height: 40px;
 }
 .list .no{width: 120px;}
 .list .productCode{width: 100px;}
@@ -32,7 +41,13 @@
 .list .ea{width: 100px;}
 .list .nal{width: 150px;}
 .list .customer{width: 150px;}
-.list .purchaseCode{width: 100px;}
+.list .purchaselist{
+    width: 100px;
+    text-decoration: underline;
+}
+.list .purchaselist:hover{
+    color: purple;
+}
 .list .item:hover{
     background-color: #eee;
 }
@@ -95,8 +110,11 @@ td{
     width: 50px;
     padding: 10px 5px;
 }
+.btnPrint{
+    margin-top: 20px;
+}
 
-/* ----------------------- purchase_register ------------------------- */
+/* ----------------------- product_register ------------------------- */
 *{
     box-sizing: border-box;
 }
@@ -112,6 +130,7 @@ h3{
 }
 .frm{
     margin: 20px;
+    text-align: left;
 }
 .product_input{
     text-align: left;
@@ -133,6 +152,8 @@ h3{
     width: 1200px;
     margin: 30px auto;
     min-height: 600px;
+    text-align: left;
+    padding-left: 0%;
 }
 .product_each{
     text-align: right;
@@ -143,10 +164,6 @@ h3{
     margin-right: 52px;
     text-align: right;
 }
-.product{
-    text-align: left;
-    padding-left: 0%;
-}
 .product_list li{
     list-style: none;
     width: 200px;
@@ -154,3 +171,5 @@ h3{
     margin: 47px;
     text-align: left;
 }
+
+/* ------------- product view -------------*/

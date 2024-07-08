@@ -17,12 +17,11 @@ import com.team.project.csy.CsyBoardLikesVo;
 import com.team.project.csy.CsyBoardListPageVo;
 import com.team.project.csy.CsyBoardVo;
 
-
 @RestController
 public class csyBoardController {
     @Autowired
     CsyBoardDao BoardDao;
-    
+
     @RequestMapping(path="/board")
     public ModelAndView search(CsyBoardListPageVo pageVo){
         ModelAndView mv = new ModelAndView();
@@ -31,7 +30,7 @@ public class csyBoardController {
 
         Map<String, Object> map = BoardDao.search(pageVo);
         List<CsyBoardVo> postList = (List<CsyBoardVo>) map.get("postList");
-        
+    
         pageVo = (CsyBoardListPageVo) map.get("pageVo");
         mv.addObject("postList", postList);
         mv.addObject("pageVo", pageVo);

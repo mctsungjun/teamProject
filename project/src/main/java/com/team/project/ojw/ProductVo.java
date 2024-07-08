@@ -6,12 +6,14 @@ import lombok.Data;
 
 @Data
 public class ProductVo {
+    int no;
     String productCode;
     String productName;
     int price;
     String spec;
     String comment;
-    String explain;
+    String explanation;
     String photo;
-    List<PhotoVo> photos;
+    String nal;
+    List<ojw_PhotoVo> photos;
 }
