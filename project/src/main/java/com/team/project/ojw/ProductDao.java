@@ -70,7 +70,7 @@ public class ProductDao {
             }
             session.delete("project.product_delete", productCode);
         }
-        
+
         if(cnt>0){
             msg="삭제됨";
             session.commit();
@@ -91,24 +91,6 @@ public class ProductDao {
             session.commit();
         }else{
             msg="수정 실패";
-            session.rollback();
-        }
-        session.close();
-        return msg;
-    }
-
-    public String changeProductPhoto(String productCode, String photo){
-        String msg = "";
-        session = new MyFactory().getSession();
-        Map<String, String> map = new HashMap<>();
-        map.put("productCode", productCode);
-        map.put("photo", photo);
-        int cnt = session.update("project.change_productPhoto", map);
-        if(cnt > 0){
-            msg = "대표이미지 수정 완료";
-            session.commit();
-        }else{
-            msg = "대표이미지 수정중 오류 발생";
             session.rollback();
         }
         session.close();

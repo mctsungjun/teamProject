@@ -19,7 +19,7 @@ public class ProductController {
     ProductDao ProductDao;
 
     public static String ojw_upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
-    
+
     @RequestMapping(path="/product")
     public ModelAndView product(String findStr){
         ModelAndView mv = new ModelAndView();

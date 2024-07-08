@@ -42,6 +42,19 @@ public class PurchaseController {
         return mv;
     }
 
+    @RequestMapping(path="/purchase_register")
+    public ModelAndView purchase_register(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("ojw/purchase_register");
+        return mv;
+    }
+
+    @RequestMapping(path="/purchase_deleteR")
+    public String purchase_delete(Integer no){
+        String msg = PurchaseDao.purchase_delete(no);
+        return msg;
+    }
+
     @RequestMapping(path="/purchase_modify")
     public ModelAndView purchase_update(Integer no){
         ModelAndView mv = new ModelAndView();

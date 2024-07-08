@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+<body>
+    <div class="products">
+        <div class="purchase_register">
+            <link rel="stylesheet" href="css/ojw/ojw.css">
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <script defer src="js/ojw_product.js"></script>
+            <h3>신규 구매 등록</h3>
+            <hr/>
+            <form name="frm" method="post" class="frm" enctype="multipart/form-data">
+                <div class="product_input">
+                    <label class="label">제품 코드</label><br/>
+                    <input type="text" name="productCode" class="input"><br/>
+                    <label class="label">제품명</label><br/>
+                    <input type="text" name="productName" class="input"><br/>
+                    <label class="label">단가</label><br/>
+                    <input type="text" name="price" class="input"><br/>
+                    <label class="label">수량</label><br/>
+                    <input type="text" name="price" class="input"><br/>
+                    <label class="label">거래처</label><br/>
+                    <input type="text" name="customer" class="input"><br/>
+                </div>
+                <div class="productRegisterButton">
+                    <button type="button" class="btnRegisterR">등록</button>
+                    <button type="button" class="btnList">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

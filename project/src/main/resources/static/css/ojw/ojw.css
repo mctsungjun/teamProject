@@ -1,5 +1,5 @@
 /* ------------------- purchase ------------------ */
-.product button{
+.purchase button{
     color: #000;
 }
 .purchase .findStr{
@@ -52,7 +52,7 @@
     color: purple;
 }
 .list .item:hover{
-    background-color: #eee;
+    background-color: #a3a3a3;
 }
 
 /*-------------- purchase_view ---------------*/

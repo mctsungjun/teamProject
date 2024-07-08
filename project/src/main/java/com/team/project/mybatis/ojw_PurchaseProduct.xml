@@ -19,10 +19,17 @@
         select no, productCode, productName, price, ea, nal, customer from purchase
         where no=#{_parameter}
     </select>
+    <insert id="purchase_register" parameterType="PurchaseVo">
+        insert into purchase(productName, productCode, price, ea, customer)
+        values(#{productName}, #{productCode}, #{price}, #{ea}, #{customer});
+    </insert>
     <update id="purchase_modify" parameterType="PurchaseVo">
         update purchase set ea=#{ea}
         where no=#{no}
     </update>
+    <delete id="purchase_delete" parameterType="Integer">
+        delete from purchase where no=#{no}
+    </delete>
 
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">
@@ -53,7 +60,7 @@
 
     <update id="product_modify" parameterType="ProductVo">
         update product set productName=#{productName}, productCode=#{productCode}, price=#{price},
-                            comment=#{comment}, explanation=#{explanation}
+                            comment=#{comment}, spec=#{spec}, explanation=#{explanation}
         where productCode=#{productCode}
     </update>
 

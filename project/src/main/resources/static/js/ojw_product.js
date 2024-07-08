@@ -117,11 +117,9 @@ function productViewEvent(productCode){
     let btnModify = document.querySelector(".btnModify");
     let btnDelete = document.querySelector(".btnDelete");
     let btnList = document.querySelector(".btnList");
-    let btnChangePhoto = document.querySelector(".btnChangePhoto");
-    let repreProductImage="";
 
     btnModify.addEventListener("click",()=>{
-        console.log("수정");
+        console.log("제품 수정");
         $.ajax({
             url : "/product_modify",
             type : "GET",
@@ -159,7 +157,7 @@ let product_modify=(productCode)=>{
     let btnList = document.querySelector('.btnList');
 
     btnList.addEventListener('click',()=>{
-        product();
+        product(productCode);
     })
 
     btnModifyR.addEventListener("click",()=>{
