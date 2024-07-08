@@ -90,5 +90,66 @@ public class ProductController {
         }
         String msg = ProductDao.product_register(vo);
         return msg;
+    }
+
+    @RequestMapping(path="/product_deleteR")
+    public String product_delete(String productCode){
+        String msg = ProductDao.product_delete(productCode);
+        return msg;
+    }
+
+    @RequestMapping(path="/product_modify")
+    public ModelAndView product_modify(String productCode){
+        ModelAndView mv = new ModelAndView();
+        ProductVo vo = ProductDao.product_view(productCode);
+        mv.addObject("vo",vo);
+        mv.setViewName("ojw/product_modify");
+        return mv;
+    }
+
+    @RequestMapping(path="/product_modifyR")
+    public ModelAndView product_modifyR(
+            @RequestParam("files") List<MultipartFile> photo,
+            String[] delFiles,
+            @ModelAttribute ProductVo vo){
+        ModelAndView mv = new ModelAndView();
+        List<ojw_PhotoVo> photos = new ArrayList<>();
+        UUID uuid = null;
+        String sysFile = null;
+
+        if(photo != null){
+            for (MultipartFile f : photo){
+                if(f.getOriginalFilename().equals("")) continue;
+                ojw_PhotoVo v = new ojw_PhotoVo();
+
+                uuid = UUID.randomUUID();
+                sysFile = String.format("%s-%s", uuid, f.getOriginalFilename());
+                File saveFile = new File(ojw_upload+sysFile);
+                try{
+                    f.transferTo(saveFile);
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
+                vo.setPhoto(sysFile);
+                v.setPhoto(sysFile);
+
+                v.setOriPhoto(f.getOriginalFilename());
+                photos.add(v);
+            }
         }
+        if(photos.size() > 0){
+            vo.setPhotos(photos);
+        }
+
+        String msg = ProductDao.product_modify(vo, delFiles);
+        mv = product("");
+        mv.addObject("msg", msg);
+        return mv;
+    }
+
+    @RequestMapping(path="/changeProductPhoto")
+    public String changeProductPhoto(String productCode, String photo){
+        String msg = ProductDao.changeProductPhoto(productCode, photo);
+        return msg;
+    }  
 }

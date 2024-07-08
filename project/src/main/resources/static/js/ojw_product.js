@@ -14,7 +14,6 @@ function product(){
         }
     })
 }
-product();
 function product_search(){
     let btnRegister = document.querySelector(".abcabc");
     let btnSearch = document.querySelector(".btnSearch");
@@ -56,30 +55,26 @@ function product_register(){
     let btnList=document.querySelector(".btnList");
 
     btnRegisterR.addEventListener('click',()=>{
-        product_registerR();
+        let frm = document.frm;
+        let frmData = new FormData(frm);
+
+        $.ajax({
+            url : "/product_registerR",
+            type : "POST",
+            data : frmData,
+            contentType : false,
+            processData : false,
+            success : (resp) =>{
+                product();
+            }
+        })
     })
     btnList.addEventListener('click',()=>{
         product();
     })
 }
 
-let product_registerR=()=>{
-    let frm = document.frm;
-
-    let frmData = new FormData(frm);
-    $.ajax({
-        url : "/product_registerR",
-        type : "POST",
-        data : frmData,
-        contentType : false,
-        processData : false,
-        success : (resp) =>{
-            product();
-        }
-    })
-}
-
-let fileChange = (tag)=>{
+function fileChange(tag){
     let repre=document.querySelector('.repre');
     repre.innerHTML = '';
     let legend = document.createElement("legend");
@@ -103,9 +98,8 @@ let fileChange = (tag)=>{
     }
 }
 
-let repreImage="";
 
-let product_view = (productCode)=>{
+function product_view(productCode){
     $.ajax({
         url : "/product_view",
         type : "GET",
@@ -113,7 +107,89 @@ let product_view = (productCode)=>{
         success : (resp)=>{
             let temp = $(resp).find(".product_view");
             $(".product").html(temp);
-            viewEvent(productCode);
+            productViewEvent(productCode);
         }
     })
+}
+
+function productViewEvent(productCode){
+    let btnModify = document.querySelector(".btnModify");
+    let btnDelete = document.querySelector(".btnDelete");
+    let btnList = document.querySelector(".btnList");
+    let btnChangePhoto = document.querySelector(".btnChangePhoto");
+
+    btnModify.addEventListener("click",()=>{
+        console.log("")
+        $.ajax({
+            url : "/product_modify",
+            type : "GET",
+            data : {"productCode" : productCode},
+            success : (resp)=>{
+                let temp = $(resp).find(".product_modify")
+                $(".product").html(temp);
+                product_modify(productCode);
+            }
+        })
+    })
+    btnChangePhoto.addEventListener('click',()=>{
+        $.ajax({
+            url : "/changeProductPhoto",
+            type : "GET",
+            data : {"productCode" : productCode, "photo" : repreProductImage},
+            success : (resp)=>{
+                alert(resp)
+            }
+        })
+    })
+    btnList.addEventListener('click',()=>{
+        product(productCode);
+    })
+    btnDelete.addEventListener('click',()=>{
+        let yn = confirm(productName+"를 삭제하시겠습니까?");
+        if(!yn) return;
+
+        $.ajax({
+            url : "/product_deleteR",
+            type : "GET",
+            data : {"productCode" : productCode},
+            success : (resp)=>{
+                product("");
+            }
+        })
+    })
+}
+
+let repreProductImage="";
+
+function product_modify(productCode){
+    btnModifyR = document.querySelector('.btnModifyR');
+    btnList = document.querySelector('.btnList');
+
+    btnList.addEventListener('click',()=>{
+        product();
+    })
+
+    btnModifyR.addEventListener("click",()=>{
+        $.ajax({
+            url : "product_modifyR",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            data : frmData,
+            success : (resp)=>{
+                product();
+            }
+        })
+    })
+}
+
+function checkUp(box){
+    let p = box.parentNode;
+    if(box.checked){
+        p.style.textDecoration = "line-through";
+        p.style.color = "#f00";
+    }else{
+        p.style.textDecoration = "none";
+        p.style.color = "";
+    }
 }

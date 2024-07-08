@@ -94,6 +94,7 @@ hr{
     width: 500px;
     text-align: center;
     padding-bottom: 30px;
+    margin: 0 auto;
     margin-bottom: 10px;
 }
 table{
@@ -125,21 +126,21 @@ h3{
     text-align: left;
     margin: 0 auto;
 }
-.frm{
+.product_register .frm{
     margin: 20px;
     text-align: left;
 }
-.product_input{
+.product_register .product_input{
     text-align: left;
     margin-left: 30px;
 }
-.button{
+.productRegisterButton{
     text-align: right;
     margin-bottom: 0;
 }
 
 /* ----------------------- product ------------------------- */
-.products h2{
+.product h2{
     text-align: center;
 }
 .product{
@@ -166,12 +167,7 @@ h3{
 }
 
 /* ------------- product view -------------*/
-.products{
-    width: 1200px;
-    margin: 30px auto;
-    text-align: center;
-    padding-bottom: 20px;
-}
+
 .product_view{
     width: 100%;
     height: 400px;
@@ -237,28 +233,25 @@ h3{
     background-color: rgb(211, 211, 211);
     padding:10px;
 }
-.viewright .number .suchi{
-    text-align: right;
-    margin-right: 10px;
-}
-.product_view_right .amt{
-    font-weight: bold;
-    font-size:30px;
-    padding:12px;
-}
-.product_view_right .won{
-    font-weight: normal;
-    color:black;
-    font-size:15px;
-}
-.product_view_left .main-image{
-    float: left;
-}
-.product_view_left .detailimage img{
-    margin-left:12px;
-    margin-bottom:12px;
-}
 .product_view_right hr{
     margin:0px;
     padding:0px;
+}
+.productButton{
+    position: relative;
+    bottom: -50px;
+    right: -440px;
+    float: left;
+}
+
+/* ------------- product modify -------------*/
+
+.product_modify .frm{
+    text-align: center;
+    width: 450px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+}
+.product_modify .product_input{
+    text-align: center;
 }
