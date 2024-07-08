@@ -9,7 +9,7 @@
 		<typeAlias type="com.team.project.csy.CsyBoardLikesVo" alias="CsyBoardLikesVo" />
 		<typeAlias type="com.team.project.csy.CsyBoardListPageVo" alias="CsyBoardListPageVo" />
 		<typeAlias type="com.team.project.csy.CsyBoardCommentVo" alias="CsyBoardCommentVo" />
-		<typeAlias type="com.team.project.sungVo" alias="PhotoVo" />
+		<typeAlias type="com.team.project.sungVo.PhotoVo" alias="PhotoVo" />
 		<typeAlias type="com.team.project.krh.SaleVo" alias="SaleVo" />
 		<typeAlias type="com.team.project.krh.SaleWithUsersVo" alias="SaleWithUsersVo" />
 		<typeAlias type="com.team.project.krh.StockVo" alias="StockVo" />
@@ -24,7 +24,7 @@
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.cj.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/project?allowMultiQueries=true" />
+				<property name="url" value="jdbc:mysql://192.168.0.6:3306/project?allowMultiQueries=true" />
 				<property name="username" value="hong" />
 				<property name="password" value="1111" />
 			</dataSource>
