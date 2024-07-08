@@ -115,10 +115,4 @@ public class ProductController {
         mv.addObject("msg", msg);
         return mv;
     }
-
-    @RequestMapping(path="/changeProductPhoto")
-    public String changeProductPhoto(String productCode, String photo){
-        String msg = ProductDao.changeProductPhoto(productCode, photo);
-        return msg;
-    }  
 }
