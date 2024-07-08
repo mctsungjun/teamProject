@@ -26,14 +26,14 @@
                         <div class="title">
                             <span class="ProductCode">제품 코드</span>
                             <span class="ProductName">제품 명</span>
-                            <span class="PresentStock">현 재고</span>
+                            <span class="ea">현 재고</span>
                         </div>
                         <!--구매 내역서... -->
                         <div class="stockitems">
                             <div class="stockitem" th:each="f:${map.list}">
                                 <span class="ProductCode">[[${f.ProductCode}]]</span>
                                 <span class="ProductName">[[${f.ProductName}]]</span>
-                                <span class="PresentStock">[[${f.PresentStock}]]</span>
+                                <span class="ea">[[${f.ea}]]</span>
                             </div>
                             <div class="btnZone">
                                 <button type="button" th:class="${(map.stockpage.nowPage > 1) ? 'btnPrevEnable' : 'btnPrev'}">◁ </button>

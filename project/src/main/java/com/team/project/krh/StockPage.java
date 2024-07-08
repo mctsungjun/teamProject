@@ -9,7 +9,7 @@ public class StockPage {
     int listSize=10;
     int totSize;
     String findStr; 
-    
+
     public void compute(){
         endNo=nowPage*listSize;
         startNo=endNo-listSize;

@@ -41,13 +41,21 @@
     <select id="stocksearch" parameterType="StockPage" resultType="StockVo">
         select * from stock
         where ProductCode like '%${findStr}%'
+        or ProductName like '%${findStr}%'
         limit #{startNo}, #{listSize}
     </select>
 
     <select id="StocktotSize" parameterType="String" resultType="Integer">
         select count(ProductCode) from stock
-        where ProductCode = #{_parameter}
+        <if test="_parameter != null">
+            where ProductName like '%${_parameter}%'
+            or ProductCode like '%${_parameter}%'
+        </if>
+        
     </select>
+
+    <!-- 재고 마이너스 -->
+
     <!--재고 그래프-->
     <select id="stockgraph" parameterType="map" resultType="StockVo">
         select * from stock

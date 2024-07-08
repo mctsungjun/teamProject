@@ -1,20 +1,20 @@
 let nowPage=1;
 
-function stock(){
+export function stock(){
     let findStr="";
     $.ajax({
         url:"/stock",
         type:"GET",
-        data:{"findStr":findStr,"nowPage":nowPage},
+        // data:{"findStr":findStr,"nowPage":nowPage},
+        data:{"findStr":findStr},
         success:(resp)=>{
             let temp=$(resp).find(".stockpage");
-            $(".stockpage").html(temp);
-            stocksearch();
+            $(".content").html(temp);
             stockloadItem(findStr,nowPage);
+            stocksearch();
         }
     })
 }
-stock();
 
 function stocksearch(){
     let btnSearch = document.querySelector(".btnSearch");
@@ -34,7 +34,7 @@ function stocksearch(){
         })
     })
 }
-stocksearch();
+// stocksearch();
 
 //페이징
 function stockloadItem(findStr,nowPage){
@@ -101,7 +101,7 @@ function graph(){
                     datasets: [
                         {
                         label: "현 재고",
-                        backgroundColor: ['plum','skyblue','yellow','orange','pink','yellowgreen','purple'],
+                        backgroundColor: "#8753fb",
                         data:resp.y
                         }
                     ]

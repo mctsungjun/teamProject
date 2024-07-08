@@ -99,7 +99,6 @@ function gumae(){
         console.log("바보");
         var formData = new FormData(document.getElementById('gumaeForm'));
         formData.set('sessionId',sessionId);
-    
         $.ajax ({
             url : "/submit",
             type: 'POST',

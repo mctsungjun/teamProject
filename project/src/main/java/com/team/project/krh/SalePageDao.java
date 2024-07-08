@@ -6,6 +6,8 @@ import com.team.project.mybatis.MyFactory;
 import com.team.project.ojw.ProductVo;
 import com.team.project.ojw.ojw_PhotoVo;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.*;
 
 @Component
@@ -63,8 +65,10 @@ public class SalePageDao {
         return vo;
     }
 
-    public boolean gumae(SaleVo vo){
+    public Map<String, Object> gumae(SaleVo vo){
+        Map<String,Object>map=new HashMap<>();
         boolean isSuccess = false;
+        String id=vo.getId();
         session = new MyFactory().getSession();
         int cnt = session.insert("salestock.gumae", vo);
         if(cnt>0){
@@ -74,6 +78,8 @@ public class SalePageDao {
             session.rollback();
         }
         session.close();
-        return isSuccess;
+        map.put("isSuccess",isSuccess);
+        map.put("id",id);
+        return map;
     }
 }

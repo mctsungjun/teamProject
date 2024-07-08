@@ -23,9 +23,9 @@ public class krhStockController {
     }
     
     @RequestMapping(path="/stockgraph")
-    public Map<String,Object> graph(String ProductName, Object PresentStock){
+    public Map<String,Object> graph(String ProductName, Object ea){
         Map<String, Object> map = new HashMap<>();
-        map=stockDao.graph(ProductName, PresentStock);
+        map=stockDao.graph(ProductName, ea);
         return map;
     }
 }
