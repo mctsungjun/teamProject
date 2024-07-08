@@ -1,0 +1,133 @@
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #1e202b;
+    color: white;
+}
+.container{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    font-family: Arial, sans-serif;
+}
+.menu{
+    /* border: 1px solid #fff; */
+    width: 300px;
+    padding: 15px;
+}
+.menu h2, .menu h3, .menu li{
+    margin-bottom: 8px;
+}
+.menu ul{
+    list-style: none;
+    margin-left: 20px;
+}
+.menu a{
+    color: #fff;
+    text-decoration: none;
+}
+.menu .btnImport, .menu .btnExport{
+    margin: 20px 30px 30px 40px;
+}
+.menu button{
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.menu button:hover{
+    background-color: #218838;
+}
+/* 컨텐츠 */
+.contentsList{
+    /* border: 1px solid white; */
+    width: 1000px;
+}
+.mainContent{
+    /* border: 1px solid white; */
+}
+.contentsList ul{
+    clear: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    text-align: center;
+    /* border-top: 1px solid white; */
+}
+.contentsList .contentHeader {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    padding: 8px 0px 8px 0px;
+    letter-spacing: .1rem;
+}
+.contentsList span.sno { width: 70px; }
+.contentsList span.id { width: 90px; }
+.contentsList span.name { width: 80px; }
+.contentsList span.name2 { width: 180px; }
+.contentsList span.phone { width: 100px; }
+.contentsList span.address { flex-grow: 1; }
+.contentsList span.email { width: 100px; }
+.contentsList span.businessNumber { flex-grow: 1; }
+
+/* 목록 */
+.customerList{
+    height: 600px;
+    max-height: 800px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+/* 검색존 */
+.searchZone {
+    display: flex;
+    justify-content: flex-end; /* 우측 정렬 */
+    margin-left: auto; /* 우측으로 밀기 위해 추가 */
+    margin-bottom: 30px;
+}
+
+.searchZone .inputSearch {
+    width: 250px;
+    margin-right: 10px; /* 버튼과 간격 추가 */
+}
+
+.searchZone .btnSearch {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+.searchZone .btnSearch:hover{
+    background-color: #218838;
+}
+
+/* 페이지네이션 */
+.pagination{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+.pagination ul {
+    display: flex;
+    padding: 0;
+}
+.pagination ul li a{
+    float: left;
+    padding: 6px;
+    text-decoration: none;
+}
+.pagination .btnRegister{
+    /* border: 1px solid red; */
+    position: absolute;
+    text-align: right;
+    right: 0;
+}
