@@ -13,6 +13,7 @@
                     let obj = await import ("/js/sungIndex.js");
                     obj.modifyFrom();
                 }
+                // * 이 부분 수정해서 대표 이미지 변경
                 async function btnChangePhoto() {
                     let obj = await import ("/js/sungIndex.js");
                     obj.btnChangePhoto();
@@ -42,7 +43,7 @@
                         <div class="profile-border1 mypage-profile-border1"></div>
                     </div>
                     <div class="profile-border1 mypage-profile-border2"></div>
-                    <img class="repre mypage-profile-image" th:src="@{|upload/${vo.photo}|}" th:onclick="btnChangePhoto()">
+                    <img class="repre mypage-profile-image" th:src="@{|upload/${vo.photo}|}">
                     <!-- <img src="https://picsum.photos/200" class="mypage-profile-image" alt="User Profile Image"> -->
                 </div>
                 <!-- * 페이지 제목 * -->
