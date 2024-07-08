@@ -1,0 +1,97 @@
+/*-------msm css----------*/
+.topTitle{
+    font-size:50px;
+    color:white;
+    margin-left:300px;
+}
+.search-wrap{
+    height:60px;
+    width:1300px;
+    margin-left:1200px;
+}
+.search input{ 
+    width: 350px;
+    height: 40px;
+    border: 1px solid #1e202b;
+    border-bottom: 1px solid #8753fb;
+    background-color: #1e202b;
+    box-shadow: none;
+}
+.btnSearch{
+    width:60px;
+    height:40px;
+    margin-top:10px;
+    border: 1px solid #8753fb;
+    background-color: #8753fb;
+    color: white;
+}
+.board-table {
+    font-size: 14px;
+    width: 100%;
+    margin-top: 30px;
+}
+.qaTitle{
+    padding: 14px 0;
+    color:white;
+    
+    font-size:20px;
+}
+.qaTitle span{
+    text-align: center;
+    color:white;
+}
+.qaTitle{
+    background-color:#8753fb;
+    border-bottom:1px solid white;
+}
+.board-table .num{
+    display:inline-block;
+    width:8%;
+    text-align: center;
+}
+.title{
+    display:inline-block;
+    width:50%;
+    text-align: center;
+
+}
+.writer{
+    display:inline-block;
+    width:10%;
+    text-align: center;
+}
+.date{
+    display:inline-block;
+    width:17%;
+    text-align: center;
+}
+.view{
+    display:inline-block;
+    width:10%;
+    text-align: center;
+}
+.qaItems{
+    border-bottom:1px solid white;
+    font-size: 16px;   
+    height:40px;
+    line-height:40px;
+}
+.btnAdd{
+    margin-top: 10px;
+    border:1px solid #1e202b;
+    background-color: #8753fb;
+    color:white;
+    float:right;
+    width:70px;
+    height:35px;
+}
+.btnMain{
+    margin-right: 5px;
+    margin-top: 10px;
+    border:1px solid #1e202b;
+    background-color: #8753fb;
+    color:white;
+    float:right;
+    width:70px;
+    height:35px;
+}
