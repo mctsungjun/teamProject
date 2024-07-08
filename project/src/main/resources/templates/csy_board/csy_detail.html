@@ -112,10 +112,12 @@
                 </label>
                 </div>
                 </div>
-                <div style="width: 50%; text-align: right; display: inline-block;">
-                    <button type="button" class="purple-text-button" th:onclick="postModify([[${vo.sno}]])" style="margin-right: 15px;">수정</button>
-                    <button type="button" class="purple-text-button" th:onclick="postDelete([[${vo.sno}]])">삭제</button>
-                </div>
+                <th:block th:if="${session.id eq vo.id}">
+                    <div style="width: 50%; text-align: right; display: inline-block;">
+                        <button type="button" class="purple-text-button" th:onclick="postModify([[${vo.sno}]])">수정</button>
+                        <button type="button" class="purple-text-button" th:onclick="postDelete([[${vo.sno}]])" style="margin-left: 15px;">삭제</button>
+                    </div>
+                </th:block>
             </div>
 
 
@@ -127,7 +129,8 @@
             <div th:each="cmtVo:${commentList}">
             <div class="board-detail-comment">
                 <div class="board-detail-img-div">
-                    <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image">
+                    <!-- <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image"> -->
+                    <img th:src="@{|upload/${cmtVo.photo}|}" class="board-detail-img" alt="User Profile Image">
                 </div>
                 <!-- * 커멘트 보이는 부분 * -->
                 <div class="board-detail-text-div">
@@ -135,8 +138,10 @@
                         <span class="board-detail-comment-nickname">[[${cmtVo.id}]]</span>
                         <div th:if="${cmtVo.id != 'DELETED COMMENT'}" class="board-detail-comment-buttons">
                             <span class="board-detail-comment-button" th:onclick="showReplyEdit(this);"><i class="fa-solid fa-reply"></i></span>
-                            <span class="board-detail-comment-button" th:onclick="showCommentEdit(this);"><i class="fa-solid fa-pencil"></i></span>
-                            <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
+                            <th:block th:if="${session.id eq cmtVo.id}">
+                                <span class="board-detail-comment-button" th:onclick="showCommentEdit(this);"><i class="fa-solid fa-pencil"></i></span>
+                                <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
+                            </th:block>
                         </div>
                     </div>
                     <span class="board-detail-comment-comment">[[${cmtVo.content}]]</span>
@@ -177,10 +182,12 @@
                     <div class="board-detail-text-div">
                         <div class="board-detail-comment-specials">
                             <span class="board-detail-comment-nickname">[[${cmtReplyVo.id}]]</span>
-                            <div class="board-detail-comment-buttons">
-                                <span class="board-detail-comment-button" th:onclick="showReplyCommentModify(this);"><i class="fa-solid fa-pencil"></i></span>
-                                <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtReplyVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
-                            </div>
+                            <th:block th:if="${session.id eq cmtReplyVo.id}">
+                                <div class="board-detail-comment-buttons">
+                                    <span class="board-detail-comment-button" th:onclick="showReplyCommentModify(this);"><i class="fa-solid fa-pencil"></i></span>
+                                    <span class="board-detail-comment-button" th:onclick="commentDelete([[${cmtReplyVo.sno}]], [[${vo.sno}]])"><i class="fa-regular fa-trash-can"></i></span>
+                                </div>
+                            </th:block>
                         </div>
                         <span class="board-detail-comment-reply">[[${cmtReplyVo.content}]]</span>
                         <!-- * 덧글의 답글 수정 부분 * -->
@@ -203,7 +210,7 @@
                 <input type="text" style="display: none" name="post_sno" th:value="${vo.sno}"/>
                 <input type="text" name="id" style="display: none" />
                 <div class="board-detail-img-div">
-                    <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image">
+                    <img th:src="@{|upload/${currentUserProfilePic}|}"  class="board-detail-img" alt="User Profile Image">
                 </div>
                 <textarea name="content" class="board-comment-textarea"></textarea>
                 <div style="flex-grow: 1; margin-left: 15px; display: flex;">

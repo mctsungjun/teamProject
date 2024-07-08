@@ -50,9 +50,13 @@
         where sno=#{_parameter}
     </select>
 
-    <select id="delete" parameterType="String">
+    <delete id="delete" parameterType="String">
         delete from board where sno=#{_parameter};
         delete from board_likes where post_sno=#{_parameter};
+    </delete>
+
+    <select id="getPostAuthor" parameterType="int" resultType="String">
+        select id from board where sno=#{_parameter}
     </select>
 
     <select id="postLikeCounter" parameterType="String" resultType="String">
@@ -105,8 +109,16 @@
         </if>
     </update>
 
-    <select id="userProfilePhoto" parameterType="String" resultType="PhotoVo">
-        select * from 
+
+    <select id="userProfilePic" parameterType="String" resultType="String">
+        select photo from users where id=#{_parameter}
     </select>
+    <select id="defaultPhoto" resultType="String">
+        select photo from photos where id='default'
+    </select>
+
+    <!-- <select id="userProfilePhoto" parameterType="String" resultType="PhotoVo">
+        select * from 
+    </select> -->
 
 </mapper>
