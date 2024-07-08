@@ -11,17 +11,21 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
 }
 
 // * 제품관리 + 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => {
+document.querySelector("#navBtnToStock").onclick = async () => {
+    let obj = await import ("/js/krh_stock.js");
+    obj.stock();
+    /*
     $.ajax({
         url:"/stock",
         type:"GET",
-        success:(resp)=>{
+        data:{"findStr":findStr,"nowPage":nowPage},
+        success:async (resp)=>{
             let temp=$(resp).find(".stockpage");
-            $(".content").html(temp);
-            stocksearch();
+            $(".stockpage").html(temp);
+            
         }
-    })
- }
+    }) */
+}
  
 // * 제품 관리
 document.querySelector("#navBtnToProduct").onclick = () => { 
