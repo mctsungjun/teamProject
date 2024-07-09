@@ -19,6 +19,11 @@
         where sno=#{_parameter}
     </select>
 
+    <select id="viewphoto" parameterType="ProductVo" resultType="SaleVo">
+        select photo, productCode from product
+        where ProductCode=#{productCode}
+    </select>
+
     <select id="list" parameterType="Integer" resultType="SaleWithUsersVo">
         SELECT s.id as s_id, s.ProductName as s_ProductName, s.nal as s_nal, s.ea as s_ea, s.price as s_price,
             u.name AS userName, u.email AS userEmail, u.email2 AS userEmail2,
@@ -119,8 +124,8 @@
     
     <!-- 구매 버튼-->
     <insert id="gumae" parameterType="SaleVo">
-        insert into sale(id,ProductCode, ea, price,ProductName) 
-        values(#{id},#{productCode},#{ea},#{price},#{productName})
+        insert into sale(id,ProductCode, ea, price,ProductName,photo) 
+        values(#{id},#{productCode},#{ea},#{price},#{productName}, #{photo})
     </insert>
 
     <!--재고-->

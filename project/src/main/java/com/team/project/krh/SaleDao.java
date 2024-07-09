@@ -65,7 +65,6 @@ public class SaleDao {
 
     public String delete(Integer sno){
         session=new MyFactory().getSession();
-
         int cnt=session.delete("salestock.deletesale", sno);
         String msg="";
         if(cnt>0){
