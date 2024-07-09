@@ -10,6 +10,21 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
     })
 }
 
+// * 제품관리 + 재고 정보 관리
+document.querySelector("#navBtnToStock").onclick = async () => {
+    let obj = await import ("/js/krh_stock.js");
+    obj.stock();
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        data:{"findStr":findStr,"nowPage":nowPage},
+        success:async (resp)=>{
+            let temp=$(resp).find(".stockpage");
+            $(".content").html(temp);
+        }
+    })
+}
+ 
 // * 제품 관리
 document.querySelector("#navBtnToProduct").onclick = () => { 
     $.ajax({
@@ -23,19 +38,6 @@ document.querySelector("#navBtnToProduct").onclick = () => {
     })
 }
 
-// * 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { 
-    $.ajax({
-        url:"/stock",
-        type:"GET",
-        success:(resp)=>{
-            console.log(resp);
-            let temp=$(resp).find(".stockpage");
-            $(".content").html(temp);
-            search();
-        }
-    })
-}
 
 
 // * 구매 정보 관리
@@ -64,21 +66,15 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
     })
 }
 
-
-// * 판매정보관리
-document.querySelector("#navBtnToSellInfo").onclick = () => { 
+// * 쇼핑몰
+document.querySelector("#navBtnToShopping").onclick = () => {
     $.ajax({
-        url:"/sale",
+        url:"/salepage",
         type:"GET",
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
             salepage();
-
-            // * GITHUB CONFLICT: 이 부분이 최신이라면 주석 처리 해제하셔도 됩니다.
-            // let temp=$(resp).find(".big");
-            // $('.content').html(temp);
-            // search();
         }
     })
 }

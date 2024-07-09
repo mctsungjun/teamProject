@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>판매 상세보기</title>
-    <link rel="stylesheet" href="css/krh/krh.css">
-    <script defer src="js/krh_sale_stock.js"></script>
-    <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <style>
         .saleviewlist:hover{
             cursor: pointer;
             text-decoration: underline;
             color:blue;
         }
-    </style>
+        </style>
 </head>
 <body>
     <div class="sale">
         <div class="saleview">
+            <link rel="stylesheet" href="css/krh/krh.css">
+            <script defer src="js/krh_sale_stock.js"></script>
+            <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
             <h2>판매 내역 상세 보기</h2>
             <!--지언니가 등록한..사진..대표사진..-->
             
-            <img src="[[${p.photo}]]" width="200px" height="200px">
+            <img th:src="${vo.photo}" width="200px" height="200px">
             <!--controller에서 연결받기..-->
             <table class="saleviewtable">
                 <tr>
@@ -52,14 +52,13 @@
                     <th>판매 일자</th>
                     <td>[[${vo.nal}]]</td>
                 </tr>
-                <tr>
-                    <td colspan="2">
-                        <button type="button" class="btnModify">수정</button> <!--sale_view_modify.html로 연결-->
-                        <button type="button" class="btnDelete">삭제</button> 
-                        <button type="button" class="btnList">취소</button>
-                    </td>
-                </tr>
             </table>
+            <br/>
+            <div class="saleviewbutton">
+                <button type="button" class="btnModify">수정</button> <!--sale_view_modify.html로 연결-->
+                <button type="button" class="btnDelete">삭제</button> 
+                <button type="button" class="btnList">취소</button>
+            </div>
         </div>
     </div>
 </body>
