@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customer">
+
+    <insert id="register" parameterType="CustomerVo">
+        insert into customer(
+            businessNumber, clientCode, clientCodeType, representativeName,
+            clientContact, clientId, clientName, contactNumber, address,
+            email, registrationDate, discountRate
+            )
+        values(
+            #{businessNumber}, #{clientCode}, #{clientCodeType}, #{representativeName},
+            #{clientContact}, #{clientId}, #{clientName}, #{contactNumber}, #{address},
+            #{email}, #{registrationDate}, #{discountRate}
+        )
+    </insert>
+
+    <select id="search" parameterType="String" resultType="CustomerVo">
+        select * from customer
+        where businessNumber = #{_parameter}
+        or clientCode like '%${_parameter}%'
+        or representativeName like '%${_parameter}%'
+        or clientId like '%${_parameter}%'
+        or clientName like '%${_parameter}%'
+    </select>
+
+    <select id="view" parameterType="String" resultType="CustomerVo">
+        select * from customer
+        where businessNumber = #{_parameter}
+    </select>
+
+    <delete id="delete" parameterType="String">
+        delete from customer where businessNumber = #{_parameter}
+    </delete>
+
+    <update id="modify" parameterType="CustomerVo">
+        update customer set
+        clientCode = #{clientCode},
+        clientCodeType = #{clientCodeType},
+        representativeName = #{representativeName},
+        clientContact = #{clientContact},
+        clientName = #{clientName},
+        contactNumber = #{contactNumber},
+        address = #{address},
+        email = #{email},
+        discountRate = #{discountRate}
+        where businessNumber = #{businessNumber}
+    </update>
+    
+</mapper>

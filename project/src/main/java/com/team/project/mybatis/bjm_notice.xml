@@ -65,8 +65,14 @@
          where sno=#{sno}
     </update>
 
-
-
+    <select id ="next" parameterType="Integer" resultType="Integer">
+        select min(sno) from notice
+        where sno &gt; #{sno}
+    </select>
+    <select id="prev" parameterType="Integer" resultType="Integer">
+        select max(sno) from notice
+        where sno &lt; #{sno}
+    </select>
 
 
 
