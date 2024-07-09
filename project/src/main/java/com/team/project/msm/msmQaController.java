@@ -1,17 +1,11 @@
 package com.team.project.msm;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-
-
 
 @RestController
 public class msmQaController {
@@ -19,6 +13,7 @@ public class msmQaController {
     @Autowired
     msmQaDao dao;
 
+    //qa 페이지
     @RequestMapping(path="/qa")
     public ModelAndView qa(String findStr) {
         ModelAndView mv = new ModelAndView();
@@ -37,16 +32,15 @@ public class msmQaController {
         return mv;
     }
 
+    //qa 페이지에서 특정 부분을 클릭하면 자세한 데이터를 표기
     @RequestMapping(path="/qaview")
-    public ModelAndView detail(@RequestParam("qusNum") Integer qusNum) {
+    public ModelAndView qaview(Integer qusNum) {
         ModelAndView mv = new ModelAndView();
-        List<msmQaVo> list;
-        list = dao.detail(qusNum);
-
-        mv.addObject("list", list);
+        msmQaVo vo = dao.qaview(qusNum);
+        mv.addObject("q", vo);
         mv.setViewName("msmQa/msmQaView");
-        
         return mv;
+
     }
     
     @RequestMapping(path="/answer")
@@ -56,6 +50,12 @@ public class msmQaController {
         return mv;
     }
     
+    @RequestMapping(path="/answerR")
+    public String answerR(msmQaVo qusNum){
+        String msg = dao.ansWrite(qusNum);
+        return msg;
+    }
+    
 
     @RequestMapping(path="/question")
     public ModelAndView question(){
@@ -63,18 +63,12 @@ public class msmQaController {
         mv.setViewName("msmQa/msmQuestion");
         return mv;
     }
-
     
-    
-
-    //----------데이터 저장 관련 컨트롤러
-
-    public String saveQuestion(@RequestParam("qusCon") String qusCon,
-                               @RequestParam("qusTitle") String qusTitle) {
-        msmQaVo vo = new msmQaVo();
-        vo.setQusCon(qusCon);
-        vo.setQusTitle(qusTitle);
-        dao.saveQuestion(vo);
-        return "success";
+    @RequestMapping(path="/questionR")
+    public String questionR(msmQaVo qusNum){
+        String msg = dao.qusWrite(qusNum);
+        return msg;
     }
+
+    
 }

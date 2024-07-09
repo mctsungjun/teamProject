@@ -1,108 +1,132 @@
-//----------------qa 부분-------------------------------------
-function goAdd(){
-let goAdd = document.querySelector('.btnAdd');
-    goAdd.addEventListener('click', function(){
+//qa 페이지로 되돌리기
+function qa(){
     $.ajax({
-        url: "/question",
-        type: "GET",
-        success: (resp) => {
-            console.log("123121")
-            let temp = $(resp).find("#questionId").html();
-            $("body").html(temp);
-            //일단 body 사이드바의 여부는 모름
-            }
-        })
-    });
+        url     : "/qa",
+        type    : "GET",
+        success : (resp) =>{
+            let temp = $(resp).find(".topContainer");
+            $(".topContainer").html(temp);
+        }
+    })
 }
-//---------제목을 클릭했을때 상세보기 (DOMcontent 보류중)
+function alert(){
+    if(!confirm("그만 두시겠습니까?")){
+        
+    }else{
+        window.location.href="/qa";
+    }
+}
+//----------------qa 부분-------------------------------------
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     let links = document.querySelectorAll(".link");
-//     links.forEach(link => {
-//         link.addEventListener("click", function() {
-//             let url = this.innerText.trim();
-//             window.location.href = url;
-//         });
-//     });
-// });
-
-function qusnum(qusnum){
-    alert(qusnum);
-    $.ajax({
-        url: '/qaview',
-        type: 'POST',
-        data: { qusNum: qusnum },
-            success: (resp) => {
-                console.log("123123")
-                $(".qaview-container").html(resp);
+// 질문 작성하기 버튼을 눌렀을때 question 페이지로 이동
+function addQuestion(){
+    let addQa = document.querySelector(".addQuestion");
+    addQa.addEventListener('click', ()=>{
+        console.log("123123123123");
+        $.ajax({
+            url     : "/question",
+            type    : "GET",
+            success : (resp) => {
+                let temp = $(resp).find("#questionId");
+                $(".topContainer").html(temp);
             }
         })
-    }
+    })
+}
+//---------상세보기-------------------- 근데 onclick이 들어가서 
+function qaView(qusNum){
+    console.log("!23123")
+    $.ajax({
+        url     : "/qaview",
+        type    : "GET",
+        data    : {"qusNum" : qusNum},
+        success : (resp)=>{
+            let temp = $(resp).find(".qaview-container");
+            $('.topContainer').html(temp);
+        }
+    })
+}
 
-        
-// });
+
+//------------qaview 부분---------------------------
+
+//답변 작성하기 버튼을 눌렀을때 answer페이지로 이동
+function qaBack(){
+    let qaGo = document.querySelector(".goAns");
+    let qaBack = document.querySelector(".qaBack");
+    qaGo.addEventListener('click', ()=>{
+        console.log("123123123123");
+        $.ajax({
+            url     : "/qaview",
+            type    : "GET",
+            success : (resp)=> {
+                window.location.href="/answer";
+            }
+        })
+    })
+    qaBack.addEventListener('click', ()=>{
+        console.log("!23123");
+        window.location.href="/qa";
+    })
+}
+
 //------------question 부분--------------------------
 
 //질문글 저장
-function qusWrite(){
+function qaWrite(){
     let btnQaWrite = document.querySelector('.qaWrite');
-    let content = document.querySelector('.input-question').value; 
-    let title = document.querySelector('.input-title').value;
+    let btnQaCancel = document.querySelector('.qaCancel');
 
-        btnQaWrite.addEventListener('click', function() {
+    btnQaWrite.addEventListener('click', ()=> {
+        let frm = document.frm;
+        let frmData = new FormData(frm);
+        console.log("!@31231223123")   
         $.ajax({
-            url: '/question', // 저장할 경로 아직 모름
+            url: '/questionR',
             type: 'POST',
-            data: { qusCon: content, qusTitle: title },
+            data: frmData,
+            contentType: false,
+            processData: false,
             success: (resp)=>{
-                alert('작성이 완료 되었습니다');     
+                //작성이 완료되면 qa의 메인페이지로 이동
+                alert('작성이 완료 되었습니다');
+                window.location.href="/qa";
             }
         });
     });
 }
-// let btnQaCancel = document.querySelector('.qaCancel');
-
-// btnQaCancel.addEventListener('click', function(){
-//     window.location.href= "/qa.html";
-// });
-
-// 위 코드는 html 이동 밑 코드는 html 부분 변경 적용 안될시 window.location.href 는 이런식으로 변경할것
-// document.querySelector(".qaCancel").onclick = () => {
-//     $.ajax({
-//         url : "/qa",
-//         type: "GET",
-//         success: (resp) => {
-//             console.log("index")
-//             let temp = $(resp).find("#qaBoard");
-//             $("#questionId").html(temp)            
-//         }
-//     });
-// }
-    
-
+function qusBack(){
+    let btnQaCancel = document.querySelector(".qaCancel");
+        btnQaCancel.addEventListener('click', () => {
+        console.log("goqa")
+        window.location.href="/qa";
+    })
+}
 
 //-------------answer 부분---------------------------------
+
 //답변글 저장
-/*let btnAnsWrite = document.querySelector('.ansWrite');
+function ansWrite(){
+    let btnQaWrite = document.querySelector('.ansWrite');
+    let btnAnsCancel = document.querySelector('.ansCancel');
 
-    btnAnsWrite.addEventListener('click', function() {
-    let con = document.querySelector('.input-answer').value; 
-    
-    $.ajax({
-        url: 'msmAnswer', // 저장할 경로 아직 모름
-        type: 'POST',
-        data: { ansCon: con },
-        success: (resp)=>{
-            alert('답변이 완료 되었습니다');
-            window.location.href= "/qa.html";
-        }
+    btnQaWrite.addEventListener('click', ()=> {
+        let frm = document.frm;
+        let frmData = new FormData(frm);
+            
+        $.ajax({
+            url: '/answerR',
+            type: 'POST',
+            data: frmData,
+            contentType: false,
+            processData: false,
+            success: (resp)=>{
+                //작성이 완료되면 qa의 메인페이지로 이동
+                alert('답변 작성이 완료 되었습니다');
+            }
+        });
     });
-});
-
-// 취소 버튼 클릭 이벤트
-$('.ansCancel').click(function() {
-    window.location.href = '/qa'; // 이동할 페이지 경로
-});
+}
 
 
 
@@ -111,13 +135,15 @@ $('.ansCancel').click(function() {
 
 
 
-let btnAnsCancel = document.querySelector('.ansCancel');
-btnAnsCancel.addEventListener('click', function(){
-    window.location.href= "/qa.html";
-});
 
-//------------qaview 부분---------------------------
-let btnBack = document.querySelector('.qaback');
-btnBack.addEventListener('click', function(){
+
+
+
+
+
+function backMain(){
+    let btnBack = document.querySelector('.qaback');
+    btnBack.addEventListener('click', function(){
     window.localStorage.href="/qa.html"
-}); */
+    }
+)};

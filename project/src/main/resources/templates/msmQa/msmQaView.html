@@ -6,43 +6,60 @@
     <title>게시물 상세보기</title>
     <link rel="stylesheet" href="css/msm/msmQaView.css">
     <script defer src="js/msmQa.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="qa-container">
-    <div id="index">
-        <div class="navbar"></div>
+<body>
+    <div>
         <div class="qaview-container">
+            <link rel="stylesheet" href="css/msm/msmQaView.css">
             <div class="left-container">
-                <div class="qTitle">
-                    <p>게시물 제목</p>
-                    <span id="qTitle">[[${detail.qusTitle}]]</span>
-                </div>
 
-                <div class="qContent">
-                    <p>질문 내용</p>
-                    <span id="qContent">[[${detail.qusCon}]]</span>
+                <div class="qTitle">
+                    <span class="allTitle">게시물 제목</span>
+                    <div class="contentBox">
+                    <span id="qTitle">[[${q.qusTitle}]]</span>
+                    </div>
                 </div>
 
                 <div class="qWriter">
-                    <p>작성자</p>
-                    <span id="qWriter">[[${detail.qusId}]]</span>
+                    <span class="allTitle">작성자</span>
+                    <div class="contentBox">
+                    <span id="qWriter">[[${q.qusId}]]</span>
+                    </div>
                 </div>
 
                 <div class="qDate">
-                    <p>게시 시간</p>
-                    <span id="qDate">[[${detail.qusDate}]]</span>
+                    <span class="allTitle">게시 시간</span>
+                    <div class="contentBox">
+                    <span id="qDate">[[${q.qusDate}]]</span>
+                    </div>
                 </div>
-                
+
+
             </div>
+
             <div class="right-container">
+                <div class="qContent">
+                    <span class="allTitle">질문 내용</span>
+                    <div class="qusContentBox">
+                    <span id="qContent">[[${q.qusCon}]]</span>
+                    </div>
+                </div>
                 <div class="ansContent">
-                    <h3 class="pContent">답변 내용</h3>
-                    <span th:if="${qaFiles.ansCon == null}">답변이 없습니다.</span>
-                    <input type="text" id="ansContentInput" th:value="${qaFiles.ansCon}">
-                    <!--qaFiles가 아니라면 q로 바꿀것-->
+                    <span class="allTitle">답변 내용</span>
+                    <div class="ansContentBox">
+                    <span class="qAnswer" th:if="${q.ansCon == null}">답변이 없습니다.</span>
+                    <input type="text" id="ansContentInput" th:value="${q.ansCon}"
+                    placeholder="답변 작성하기 버튼을 눌러 답변을 작성해주세요." readonly>
                 </div>
             </div>
         </div>
-        <button class="qaBack">뒤로가기</button>
+        <div class="btns">
+        <button class="goAns" onclick="qaBack()">답변 작성하기</button>
+        <button class="qaBack" onclick="qaBack()">뒤로가기</button>
+    </div> 
     </div>
+</div>
 </body>
 </html>
+

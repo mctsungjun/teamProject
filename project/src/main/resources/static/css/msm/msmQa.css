@@ -1,16 +1,23 @@
 /*-------msm css----------*/
-#index{
+body{
     background-color: #1e202b;
+}
+.topContainer{
+    background-color: #1e202b;
+    color:white;  
+}
+.title{
+    width:100%;
 }
 .topTitle{
     font-size:50px;
     color:white;
-    margin-left:300px;
+    float:right;
 }
 .search-wrap{
-    height:60px;
-    width:1300px;
-    margin-left:1200px;
+    height:30px;
+    width:100%;
+    margin-left:1210px;
 }
 .search input{ 
     width: 350px;
@@ -19,6 +26,7 @@
     border-bottom: 1px solid #8753fb;
     background-color: #1e202b;
     box-shadow: none;
+    color:white;
 }
 .btnSearch{
     width:60px;
@@ -31,17 +39,15 @@
 .board-table {
     font-size: 14px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 30px;   
 }
 .qaTitle{
     padding: 14px 0;
-    color:white;
-    
+    color:white;  
     font-size:20px;
 }
 .qaTitle span{
     text-align: center;
-    color:white;
 }
 .qaTitle{
     background-color:#8753fb;
@@ -49,39 +55,33 @@
 }
 .board-table .num{
     display:inline-block;
-    width:8%;
+    width:10%;
     text-align: center;
-    color:white;
 }
 .title{
     display:inline-block;
     width:50%;
     text-align: center;
-    color:white;
 }
 .link{
     display:inline-block;
     width:50%;
     text-align: center;
-    color:white;
 }
 .writer{
     display:inline-block;
-    width:10%;
+    width:15%;
     text-align: center;
-    color:white;
 }
 .date{
     display:inline-block;
     width:17%;
     text-align: center;
-    color:white;
 }
 .view{
     display:inline-block;
     width:10%;
     text-align: center;
-    color:white;
 }
 .qaItems{
     border-bottom:1px solid white;
@@ -107,4 +107,15 @@
     float:right;
     width:70px;
     height:35px;
+}
+.addQuestion{
+    border:1px solid #1e202b;
+    background-color: #8753fb;
+    color:white;
+    float:right;
+    font-size:14px;
+    width:130px;
+    height:40px;
+    margin-right:100px;
+    margin-top:50px;
 }

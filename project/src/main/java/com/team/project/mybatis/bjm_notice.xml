@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+    <!-- Post-Register -->
+    <insert id="post" parameterType="NoticeVo">
+          insert into notice(id, title, content) values(#{id}, #{title}, #{content})
+    </insert>
+    <!-- Post-AttRegister -->
+    <insert id="postAtt" parameterType="Map">
+        insert into noticeAtt(sno, oriFile, sysFile) values
+        <!-- attFiles로 저장 -->
+        <foreach collection="attFiles" item="f" separator=",">
+            (#{pSno}, #{f.oriFile}, #{f.sysFile})
+        </foreach>
+    </insert>
+    <!-- 첨부파일 조회 -->
+    <select id="attFiles" parameterType="Integer" resultType="NoticeAtt">
+        select * from noticeAtt
+        where sno = #{sno}
+    </select>
+
+    <!-- Post-hit -->
+    <update id="postHit" parameterType="Integer">
+        update notice set hit=hit + 1 
+        where sno=#{_parameter}
+    </update>
+    <!-- search -->
+    <select id="search" parameterType="NoticePage" resultType="NoticeVo">
+        select sno, id, title, hit, content, date_format(nal, "%Y-%m-%d") nal,
+        title from notice
+        <where>
+            <if test="findStr != ''">
+                id like '%${findStr}%'
+                or title like '%${findStr}%'
+            </if>
+        </where>
+        order by sno desc
+        limit #{startNo}, #{listSize}
+    </select>
+    <!-- pagingSize -->
+    <select id="totSize" parameterType="String" resultType="Integer">
+        select count(sno) from notice
+        <where>
+            <if test="findStr != ''">
+                id like '%${findStr}%'
+                or title like '%${findStr}%'
+            </if>
+        </where>
+    </select>
+    <!-- view -->
+    <select id="view" parameterType="Integer" resultType="NoticeVo">
+        select sno, title, content, id, hit, nal from notice
+        where sno=#{_parameter}
+    </select>
+    <!-- delete -->
+    <delete id="delete" parameterType="Integer">
+        delete from notice where sno=#{_parameter}
+    </delete>
+    <!-- Post-Modify -->
+    <update id="modify" parameterType="NoticeVo">
+         update notice set title=#{title}, content=#{content}
+         where sno=#{sno}
+    </update>
+
+
+
+
+
+
+    <!-- 여기서부터 -->
+    <select id="delFiles" parameterType="Integer" resultType="String">
+        select sysFile from noticeAtt
+        where sno = #{_parameter}
+    </select>
+    <select id="deleteFiles" parameterType="Integer" resultType="String">
+        select sysFile from noticeAtt
+        where sno = #{_parameter}
+    </select>
+    <delete id="delete_boardAtt" parameterType="Integer">
+        delete from notice
+        where sno=#{_parameter}
+    </delete>
+    <!-- 여기까지가 의미가없는 쿼리 -->
+</mapper>

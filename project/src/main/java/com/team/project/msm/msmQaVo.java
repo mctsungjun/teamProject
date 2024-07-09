@@ -9,7 +9,6 @@ public class msmQaVo {
     String qusDate;
     String qusTitle;
     int qusNum;
-    int qusView;
     String ansId;
     String ansCon;
     String ansDate;

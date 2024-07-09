@@ -3,38 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="js/msmQa.js"></script>
     <title>Document</title>
+    
     </head>
     <body class="qa-container">
     <!--06.26추가-->
     <div>
-    <div id="index">
-        <div class="navbar"></div>
-    
-    <div class="question" id="questionId" form="frmQuestion">
+
+    <div class="question" id="questionId">
         <link rel="stylesheet" href="css/msm/msmQuestion.css">
+        <script defer src="js/msmQa.js"></script>
         <h2 class="title">질문 남기기</h2>
         <div class="container">
+            <form name="frm" method="post" class="frm" enctype="multipart/form-data">
+                <div class="titleDiv">
+                    <p class="pTitle">제목</p>
+                    <input type="text" class="input-title" name="qusTitle">
+                </div>
 
-            <div class="titleDiv">
-                <p class="pTitle">제목</p>
-                <input type="text" class="input-title">
-            </div>
-
-            <div class="contentDiv">
-                <p class="pContent">내용</p>
-                <input type="text" class="input-question" placeholder="내용을 입력해주세요">
-            </div>
-
+                <div class="contentDiv">
+                    <p class="pContent">내용</p>
+                    <input type="text" class="input-question" name="qusCon">
+                </div>
+                </div>
+                <div class="btns">
+                    <button type="button" class="qaCancel" onclick="qusBack()">취소</button>
+                    <button type="button" class="qaWrite" onclick="qaWrite()">작성</button>
+                </div>
+            </form>
         </div>
-        <div class="btns">
-            <button type="button" class="qaWrite" onclick="qusWrite()">작성</button>
-            <button type="button" class="qaCancel">취소</button>
-        </div>
-    </div>
     </div>
 </div>
-<script src="js/msmQaQuestion.js"></script>
 </body>
 </html>
