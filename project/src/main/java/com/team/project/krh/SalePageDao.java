@@ -69,6 +69,7 @@ public class SalePageDao {
         String id=vo.getId();
         session = new MyFactory().getSession();
         int cnt = session.insert("salestock.gumae", vo);
+        
         if(cnt>0){
             session.commit();
             isSuccess = true;

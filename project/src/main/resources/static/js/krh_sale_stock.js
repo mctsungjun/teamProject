@@ -91,6 +91,17 @@ function ViewEvents(sno){
     btnDelete.addEventListener('click',()=>{
         let yn=confirm("판매 내역을 삭제하시겠습니까?");
         if(!yn) return;
+        $.ajax({
+            url:"/deleteR",
+            type:"GET",
+            data:{"sno":sno},
+            success:(resp)=>{
+                sale("");
+                setTimeout(()=>{
+                    alert(resp) 
+                },200);
+            }
+        })
     })
 
     btnList.addEventListener('click',()=>{
