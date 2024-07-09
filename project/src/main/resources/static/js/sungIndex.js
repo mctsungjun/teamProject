@@ -42,8 +42,8 @@ var detail = ()=>{
 		// data:{"id":id,"name":name},
 		success:(resp)=>{
 			
-			let temp = $(resp).find(".change");
-			$(".content").html(temp);
+			let temp = $(resp).find(".myprofile-main");
+			$(".myProfilePage").html(temp);
 			if(resp==="logout"){
 				console.log(resp);
 				
@@ -66,34 +66,88 @@ var change=(tag,photo)=>{
 //대표 이미지 수정폼
 
 
-var	btnChangePhoto=()=>{
-		$.ajax({
-			url:"/sung/repreChangeForm",
-			type:"GET",
-			success:(resp)=>{
-				let temp = $(resp).find(".photoSection");
-				$(".photoSection").html(temp);
-				// 대표이미지수정
-				let btnRepreChange = document.querySelector(".btnRepreChange");
-				btnRepreChange.onclick=()=>{
-					// var id = sessionStorage.getItem("id");
-					// alert(id);
+export function btnChangePhoto() {
+	// alert("HELLO");
+	// 	$.ajax({
+	// 		url:"/sung/repreChangeForm",
+	// 		type:"GET",
+	// 		success:(resp)=>{
+	// 			// let temp = $(resp).find(".photoSection");
+	// 			let temp = $(resp).find(".photoSection");
+	// 			$(".myprofile-main").html(temp);
+	// 			// 대표이미지수정
+	// 			let btnRepreChange = document.querySelector(".btnRepreChange");
+	// 			btnRepreChange.onclick=()=>{
+	// 				// var id = sessionStorage.getItem("id");
+	// 				// alert(id);
 				
+	// 				$.ajax({
+	// 					url:"/sung/changePhoto",
+	// 					type:"GET",
+	// 					data:{"photo":repreImage},
+	// 					success:(resp)=>{
+	// 						detail();
+	// 					}
+	// 				})
+	// 			}
+	// 		}
+	// 	})
+
+	//새창열기
+	var fileInput = window.open('../filepicker.html', '파일 선택', 'width=300,height=150');
+
+    // // 파일 선택 후 처리할 콜백 함수
+	// function handleFileSelection(file) {
+	// 	var formData = new FormData();
+	// 	formData.append('file', file);
+	
+	// 	$.ajax({
+	// 		url: '/sung/upload',
+	// 		type: 'POST',
+	// 		data: formData,
+	// 		processData: false,
+	// 		contentType: false,
+	// 		success: function(response) {
+	// 			console.log('파일 업로드 성공:', response);
+	// 		},
+	// 		error: function(xhr, status, error) {
+	// 			console.error('파일 업로드 실패:', error);
+	// 		}
+	// 	});
+	var checkFilePickerClosed = setInterval(function() {
+		if (fileInput.closed) {
+			clearInterval(checkFilePickerClosed); // 폴링 종료
+			console.log('새로운 창이 닫혔습니다.');
+	
+			// 파일 선택이 완료된 후 실행할 코드 작성
+			console.log('파일 선택이 완료되었습니다. 추가 작업을 수행합니다.');
+			//location.reload();
+			//window.location.href = '/sung/detail_main';
+			$.ajax({
+				url:"/sung/detail",
+				type:"GET",
+				success:(resp)=>{
+					let temp = $(resp).find(".myProfilePage");
+					$(".content").html(temp);
 					$.ajax({
-						url:"/sung/changePhoto",
-						type:"GET",
-						data:{"photo":repreImage},
-						success:(resp)=>{
-							detail();
-						
+						url: "/sung/detail_main",
+						type: "GET",
+						success:(resp) => {
+							let temp = $(resp).find(".myprofile-main");
+							$(".myprofile-detail-content").html(temp);
 						}
 					})
 				}
-			}
-		})
+			})
+		}
+	}, 300); // 1초 간격으로 상태 확인
+	
+		
+ 
 	}
+	
 // 홈으로 이동---------------------------------------------
-var btnGoHome = ()=>{
+export function btnGoHome() {
 	$.ajax ({
         url : "/design_guide",
         type: "GET",
@@ -106,7 +160,7 @@ var btnGoHome = ()=>{
 }
 
 // 목록으로 이동 (관리자만)
-var btnListForm = ()=>{
+export function btnListForm() {
 	let managerCode = prompt("관리코드를 입력하세요");
 	if( managerCode !=null && managerCode !=""){
 		$.ajax({
@@ -143,7 +197,6 @@ function view(id){
 	
 var search=()=>{
 	let finStr = document.querySelector(".findStr").value;
-    	        
 		
 		$.ajax({
 			url:"/sung/search",
@@ -170,7 +223,7 @@ export function registerForm() {
     })
 }
 //이미지등록버튼 클릭됨-------------------------------------------------
-function regiPhoto() {
+export function regiPhoto() {
 	// photoSection의 내용을 새로운 내용으로 변경
 	var photoSection = document.querySelector('.photoSection');
 	photoSection.innerHTML = `
@@ -239,8 +292,7 @@ function uploadFiles(){
 }
 
 // 수정버튼 클릭됨-------------------------------------------
-
-var modifyFrom=()=>{
+export function modifyFrom(){
 	// let id = sessionStorage.getItem("id");
 	// alert(id);
 	$.ajax({
@@ -248,42 +300,54 @@ var modifyFrom=()=>{
 		type:"GET",
 		// data:{"id":id},
 		success:(resp)=>{
-			let temp =$(resp).find(".change");
-			$(".change").html(temp);
+			let temp =$(resp).find(".myprofile-modify");
+			$(".myprofile-detail-content").html(temp);
 			
-			let btnCancel = document.querySelector(".btnCancel");
-			let btnUpdate = document.querySelector(".btnUpdate");
 			// 취소버튼 클릭시 다시 상세페이지로 이동
-			btnCancel.onclick = ()=>{
-				detail();
-			}
-			//수정 버튼 클릭시 수정
-			btnUpdate.onclick = () =>{
-				let frm = document.form;
-				let frmdata = new FormData(frm);
-				$.ajax({
-					url:"/sung/updateR",
-					type:"POST",
-					data:frmdata,
-					processData:false,
-					contentType:false,
-					success:(resp)=>{
-						console.log(resp)
-						detail();
-					}
-				})
-
-
-			}
-
-
 		}
-
-
 	})
 }
+
+
+
+// 수정 버튼 클릭시 수정
+export function myProfileModifySubmit(frm) {
+	// let frmdata = new FormData(frm);
+	let form = $(frm).serialize();
+	console.log(form);
+	$.ajax({
+		url:"/sung/updateR",
+		type:"POST",
+		// data:frmdata,
+		data: form,
+		// processData:false,
+		// contentType:false,
+		success:(resp)=>{
+			console.log(resp);
+			alert("회원 정보가 정상적으로 수정되었습니다.");
+			// cancel은 아닌데, 회원 정보 메인으로 돌아가는 코드가 같아서 이걸로 대체
+			myProfileModifyCancled();
+		}
+	})
+}
+
+// 취소 버튼: 상세 페이지 이동
+export function myProfileModifyCancled() {
+	$.ajax({
+		url: "/sung/detail_main",
+		type: "GET",
+		success:(resp) => {
+			let temp = $(resp).find(".myprofile-main");
+			$(".myprofile-detail-content").html(temp);
+		}
+	})
+}
+
+
+
+
 //회원탈퇴
-function btnMemberOff(){
+export function btnMemberOff(){
 	var yn = confirm("정말로 탈퇴하시겠습니까?");
 	if (yn){
 		
@@ -291,16 +355,25 @@ function btnMemberOff(){
 			url:"/sung/memberOff",
 			type:"GET",
 			success:(resp)=>{
+				// * 로그아웃
+				$.ajax({
+					url:"/sung/logout",
+					type:"GET",
+					success:(resp)=>{
+						location.reload(true);
+					}
+				})
 				alert(resp);
 				
-                $.ajax ({
-                    url : "/login",
-                    type: "GET",
-                    success: (resp) => {
-                        let temp = $(resp).find(".change");  
-                        $(".authPage").html(temp);                
-                    }
-                })
+                // $.ajax ({
+                //     url : "/login",
+                //     type: "GET",
+                //     success: (resp) => {
+
+                //         let temp = $(resp).find(".change");  
+                //         $(".authPage").html(temp);                
+                //     }
+                // })
 				
 			}
 		})
@@ -381,7 +454,7 @@ function goAndStay(){
 }
 
 //비밀번호----------------------------------------------------------
-function text_chkpw(){
+export function text_chkpw() {
 	var form = document.querySelector("#pwd").value;
     var pattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,20}$/;
 	if(form.length < 6 || pattern.test(form) == false){
@@ -395,7 +468,8 @@ function text_chkpw(){
 	$('#no_multipw').hide();
 	$('#ok_multipw').hide();
 }
-function multi_chkpw(){
+
+export function multi_chkpw(){
 	var formchk = document.querySelector("#pwdchk").value;
     var form = document.querySelector("#pwd").value;
 	if(form != formchk) {
@@ -408,12 +482,8 @@ function multi_chkpw(){
 }
 // 체크박스 선택시 필요한 양식 표시-------------------------------------------
 
-function joinform_chk(event)     
-{
- 
+export function joinform_chk() {
 	var form = document.joinForm;
-	var checked = $("input[name='chked']:checkbox:checked").val();
-	
 
 			if(form.id.value==""){
 				alert('아이디를 입력해주세요.');
@@ -427,14 +497,8 @@ function joinform_chk(event)
 				return false;
 				
 			}
-			// else if(form.id.value.length < 3 || form.id.value.length > 16) {
-			// 	alert("아이디는 3~15자로 입력 주세요.");
-			// 	form.id.focus();
-            //     event.preventDefault();
-			// 	return;
-			// }
-			
-			 if(form.pwd.value=="") {
+
+			if(form.pwd.value=="") {
 				alert("비밀번호를 입력해 주세요.");
 				form.pwd.focus();
                 return false;
@@ -447,18 +511,14 @@ function joinform_chk(event)
                 return false;
 				
 			}
-			// if(form.pwd.value != form.pwdchk.value) {
-			// 	alert("비밀번호가 정확하지 않습니다. 정확히 입력해 주세요.");
-			// 	form.pwdchk.focus();
-            //     return false;
-				
-			// }
+
 			if(form.name.value=="") {
 				alert("이름을 입력해 주세요.");
 				form.name.focus();
                 return false;
 				
 			}
+
 			if(form.birthday.value=="") {
 				alert("생년월일을 입력해 주세요.");
 				form.birth.focus();
@@ -466,9 +526,6 @@ function joinform_chk(event)
 				
 			}
 
-
-			
-			
 			if(form.roadAddress.value=="") {
 				alert("주소를 입력해 주세요.");
 				form.roadAddress.focus();
@@ -487,67 +544,54 @@ function joinform_chk(event)
 				return false;
 				
 			}
-			if(form.phone1.value=="") {
+			if(form.phone1.value=="" || form.phone2.value=="" || form.phone3.value=="") {
 				alert("회원님의 휴대폰 번호를 입력해 주세요.");
 				form.phone1.focus();
 				return false;
 				
 			}
-			if(form.phone2.value=="") {
-				alert("회원님의 휴대폰 번호를 입력해 주세요.");
-				form.phone2.focus();
-                return false;
+			// if(form.phone2.value=="") {
+			// 	alert("회원님의 휴대폰 번호를 입력해 주세요.");
+			// 	form.phone2.focus();
+            //     return false;
 				
-			}
-			if(form.phone3.value=="") {
-				alert("회원님의 휴대폰 번호를 입력해 주세요.");
-				form.phone3.focus();
-                return false;
-				
-			
-			}
-		else{
-		 	return "ok";
-			
-		 }
+			// }
+			// if(form.phone3.value=="") {
+			// 	alert("회원님의 휴대폰 번호를 입력해 주세요.");
+			// 	form.phone3.focus();
+            //     return false;
+			// }
+		return true;
 	}
 //--------------------------------------------------------주소----------------------------
          //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-         var sample4_execDaumPostcode=()=> {
-            var postcodePopup = new daum.Postcode({
-                oncomplete: function(data) {
-                  
-                    var roadAddr = data.roadAddress; // 도로명 주소 변수
-                    var extraRoadAddr = ''; // 참고 항목 변수
-        
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraRoadAddr += data.bname;
-                    }
-                   
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                       extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                 
-                    if(extraRoadAddr !== ''){
-                        extraRoadAddr = ' (' + extraRoadAddr + ')';
-                    }
-        
-                  
-                    document.getElementById('postcode').value = data.zonecode;
-                    document.getElementById("roadAddress").value = roadAddr;
-                    document.getElementById("jibunAddress").value = data.jibunAddress;
-       
-                
-                }
-                
-            }).open();
 
-        }
+export function sample4_execDaumPostcode() {
+	var postcodePopup = new daum.Postcode({
+		oncomplete: function(data) {
+			
+			var roadAddr = data.roadAddress; // 도로명 주소 변수
+			var extraRoadAddr = ''; // 참고 항목 변수
+
+			if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+				extraRoadAddr += data.bname; }
+
+			if(data.buildingName !== '' && data.apartment === 'Y'){
+				extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName); }
+			
+			if(extraRoadAddr !== ''){
+				extraRoadAddr = ' (' + extraRoadAddr + ')'; }
+			
+			document.getElementById('postcode').value = data.zonecode;
+			document.getElementById("roadAddress").value = roadAddr;
+			document.getElementById("jibunAddress").value = data.jibunAddress;
+		}
+	}).open();
+}
 
 
  // 아이디체크----------------------------------------------------
-function userChk()
-{
+export function userChk() {
 
     var userId = document.querySelector("#id");
     var pattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{3,16}$/;
@@ -591,7 +635,7 @@ function userChk()
     
 }
 //이메일 option값 input에 넣기-------------------------------------------
-function updateEmailInput(){
+export function updateEmailInput(){
     var select = document.getElementById("email_sel");
     var selectedValue = select.value;
     var email2 = document.getElementById("email2");
@@ -608,10 +652,3 @@ export function returnToLoginPage() {
         }
     })
 }
-
-       
-
-
-
-    
-  

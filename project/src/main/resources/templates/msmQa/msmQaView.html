@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 상세보기</title>
+    <link rel="stylesheet" href="css/msm/msmQaView.css">
+    <script defer src="js/msmQaView.js"></script>
+</head>
+<body class="qa-container">
+    <div id="index">
+        <div class="navbar"></div>
+        <div class="qaview-container" th:each="q : ${qaFiles}">
+            <div class="left-container"  th:each="q : ${qaFiles}">
+                <div class="qTitle" >
+                    <p>게시물 제목</p>
+                    <span id="qTitle">[[${q.qusTitle}]]</span>
+                </div>
+
+                <div class="qContent">
+                    <p>질문 내용</p>
+                    <span id="qContent">[[${q.qusCon}]]</span>
+                </div>
+
+                <div class="qWriter">
+                    <p>작성자</p>
+                    <span id="qWriter">[[${q.qusId}]]</span>
+                </div>
+
+                <div class="qDate">
+                    <p>게시 시간</p>
+                    <span id="qDate">[[${q.qusDate}]]</span>
+                </div>
+                
+            </div>
+            <div class="right-container">
+                <div class="ansContent">
+                    <h3 class="pContent">답변 내용</h3>
+                    <span th:if="${q.ansCon == null}">답변이 없습니다.</span>
+                    <input type="text" id="ansContentInput" th:value="${q.ansCon}">
+                </div>
+            </div>
+        </div>
+        <button class="qaBack">뒤로가기</button>
+    </div>
+</body>
+</html>

@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,10 +31,7 @@ import com.team.project.sung_service.KakaoApi;
 import com.team.project.sung_service.NaverAPI;
 
 import jakarta.servlet.http.HttpServletRequest;
-
 import jakarta.servlet.http.HttpSession;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 @RestController
@@ -51,7 +48,7 @@ public class MemberController {
    @Autowired
    KakaoApi kakaoApi;
    String id;
-   public static String uploadPath= "C:\\Users\\i\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
+   public static String uploadPath= "C:\\Users\\i\\teamProject\\teamProject-csy\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
     
     // 메인화면 보이기
     // @RequestMapping(path="/index")
@@ -83,6 +80,7 @@ public ModelAndView login(){
         Map<String, Object> response = new HashMap<>();
         if (password.length()>=20){
             vo = dao.loginForgot(id,password);
+            
            
         }else{
 
@@ -108,52 +106,91 @@ public ModelAndView login(){
         System.out.println("로그아웃");
         session.setAttribute("id", null);
         session.setAttribute("name", null);
-
     }
-      //상세페이지로
-      @RequestMapping(path="/sung/detail")
-      public ModelAndView detail(HttpSession session){
-          ModelAndView mv = new ModelAndView();
-          MemberVo vo = new MemberVo();
+
+    // CSY ADDED:
+    @RequestMapping(path="/sung/detail_main")
+    public ModelAndView detailMain(HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        MemberVo vo = new MemberVo();
         //서버 세션에서 id값 받아오기
         // dao로 전달
+        
         String id = (String)session.getAttribute("id");
-        String name = (String)session.getAttribute("name");
-        System.out.println("상세페이지입니다.-----");
-        System.out.println(name);
-     
-        System.out.println("id:"  +id);
+        // System.out.println("id:"  +id);
         if( id != null && !id.equals("")){
-
-              vo = dao.detail(id,name);
-              if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
-                  for(PhotoVo pv:vo.getPhotos()){
-                      if(pv.photo.contains(vo.getPhoto())){
-                          vo.setPhoto(pv.photo);;
-                        }
+            // vo = dao.detail(id,name);
+            vo = dao.detail(id);
+            if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+                for(PhotoVo pv:vo.getPhotos()){
+                    if(pv.photo.contains(vo.getPhoto())){
+                            vo.setPhoto(pv.photo);;
                     }
                 }
+            }else{
+                PhotoVo defaultPhoto = dao.defaultPhot();
+                vo.setPhoto(defaultPhoto.getPhoto());
+            }
+            
+                
                 System.out.println(vo);
-                  mv.addObject("vo", vo);
-                  
-                  mv.setViewName("/sung/detail");
-                 
+                mv.addObject("vo", vo);
+                mv.setViewName("/sung/detail/detail_main");
                 
             }
              // id 값이 null 이거나 공백인 경우 예외 처리합니다.
-       else if( id == null || id.trim().isEmpty()){
+        else if( id == null || id.trim().isEmpty()){
             mv.addObject("logout", "logout");
             mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
         }
         return mv;
+    }
+      //상세페이지로
+    @RequestMapping(path="/sung/detail")
+    public ModelAndView detail(HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        MemberVo vo = new MemberVo();
+        //서버 세션에서 id값 받아오기
+        // dao로 전달
+        
+        String id = (String)session.getAttribute("id");
+        String name = (String)session.getAttribute("name");
+        // System.out.println("id:"  +id);
+        if( id != null && !id.equals("")){
+
+            vo = dao.detail(id);
+            if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+                for(PhotoVo pv:vo.getPhotos()){
+                    if(pv.photo.contains(vo.getPhoto())){
+                            vo.setPhoto(pv.photo);;
+                    }
+                }
+            }else{
+                PhotoVo defaultPhoto = dao.defaultPhot();
+                vo.setPhoto(defaultPhoto.getPhoto());
+            }
+            
+                
+                System.out.println(vo);
+                mv.addObject("vo", vo);
+                mv.setViewName("/sung/detail/detail");
+                
+            }
+             // id 값이 null 이거나 공백인 경우 예외 처리합니다.
+        else if( id == null || id.trim().isEmpty()){
+            mv.addObject("logout", "logout");
+            mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
         }
+        return mv;
+    }
       // 리스트 목록에서 클릭 상세페이지
       @RequestMapping(path="/sung/view")
-      public ModelAndView view(String id){
+      public ModelAndView view(HttpSession session){
+        String id = (String)session.getAttribute("id");
         ModelAndView mv = new ModelAndView();
         String name = dao.getMemberName(id);
         System.out.println(name);
-        MemberVo vo = dao.detail(id,name);
+        MemberVo vo = dao.detail(id);
         if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
           for(PhotoVo pv:vo.getPhotos()){
               if(pv.photo.contains(vo.getPhoto())){
@@ -168,11 +205,17 @@ public ModelAndView login(){
         return mv;
       }
 
-      
+      //대표이미지폼
+      @RequestMapping(path="/sung/changeFrom")
+      public ModelAndView changeFrom(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("filepicker");
+        return mv;
+      }
       //이미지/파일 업로드
       @RequestMapping(path="/sung/upload")
-      public String fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session, @RequestParam("reprePhoto") String reprePhoto){
-        //ModelAndView mv = new ModelAndView();
+      public ModelAndView fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session ){
+       ModelAndView mv = new ModelAndView();
         List<PhotoVo> photos = new ArrayList<>();
         MemberVo vo = new MemberVo();
         if (photo != null){
@@ -196,18 +239,20 @@ public ModelAndView login(){
                 pv.setOriPhoto(f.getOriginalFilename());
                 pv.setPhoto(sysFile);
                 photos.add(pv);
+                mv.addObject("sysFile", sysFile);
                 System.out.println(f.getOriginalFilename());
 
             }
             if(photos.size()>0){
                 vo.setPhotos(photos);
-                vo.setPhoto(reprePhoto);
+                vo.setPhoto(sysFile);
                 vo.setId((String)session.getAttribute("id"));
+                mv.addObject("vo",vo);
                 System.out.println("vo: " +vo.getPhoto());
             }
         }
         String msg = dao.fileUpload(vo);
-        return msg;
+        return mv;
       }
 // 수정폼/정보가져오기
 @RequestMapping(path="/sung/modify" )
@@ -223,50 +268,75 @@ public ModelAndView updateFrom(HttpSession session){
 
 // 수정정보받아서 
 @RequestMapping(path="/sung/updateR")
-public String updateR(@RequestParam("files") List<MultipartFile> photo ,String[] delFiles, @ModelAttribute MemberVo vo ){
-    List<PhotoVo> photos = new ArrayList<>();
+public String updateR(HttpSession session,
+    // @RequestParam("files") List<MultipartFile> photo,
+    // String[] delFiles,
+    // @ModelAttribute 
+    MemberVo vo){
+        String msg = "";
+        String id = (String)session.getAttribute("id");
+       
+        
+    // List<PhotoVo> photos = new ArrayList<>();
+    vo.setId(id);
+    if(!vo.getPassword().equals("") || vo.getPassword()!=null){
 
-    UUID uuid = null;
-    String sysFile = null;
-    if(photo !=null && photo.size()>0){
-        for(MultipartFile f : photo){
-            if(f.getOriginalFilename().equals("")){
-                continue;
-            }
-            PhotoVo v = new PhotoVo();
-            uuid = UUID.randomUUID();
-            sysFile = String.format("%s-%s", uuid,f.getOriginalFilename());
-
-            File saveFile = new File(uploadPath+sysFile);
-            try{
-                f.transferTo(saveFile);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-            v.setPhoto(sysFile);
-            v.setOriPhoto(f.getOriginalFilename());
-            photos.add(v);
-        }
-        if (photos.size()> 0){
-            vo.setPhotos(photos);
-        }
+        vo.setPassword(PasswordHash.hashPassword(vo.getPassword()));
+        msg = dao.modifyWithPassword(vo);
+        System.out.println(vo);
+    }else{
+        msg = dao.modify(vo);
+        System.out.println(vo);
+        
+        
     }
-        String msg = dao.modify(vo, delFiles);
-     return msg;
+    return msg;
     }
+  
+    
+   // String[] delFiles = null;
+
+    // UUID uuid = null;
+    // String sysFile = null;
+    // if(photo !=null && photo.size()>0){
+    //     for(MultipartFile f : photo){
+    //         if(f.getOriginalFilename().equals("")){
+    //             continue;
+    //         }
+    //         PhotoVo v = new PhotoVo();
+    //         uuid = UUID.randomUUID();
+    //         sysFile = String.format("%s-%s", uuid,f.getOriginalFilename());
+
+    //         File saveFile = new File(uploadPath+sysFile);
+    //         try{
+    //             f.transferTo(saveFile);
+    //         }catch(Exception e){
+    //             e.printStackTrace();
+    //         }
+
+    //         v.setPhoto(sysFile);
+    //         v.setOriPhoto(f.getOriginalFilename());
+    //         photos.add(v);
+    //     }
+    //     if (photos.size()> 0){
+    //         vo.setPhotos(photos);
+    //     }
+    // }
+    
+       
 
 
+    
 
 //대표이미지 수정폼
 @RequestMapping(path="/sung/repreChangeForm")
 public ModelAndView repreChangForm(HttpSession session){
     ModelAndView mv = new ModelAndView();
+
     String id = (String)session.getAttribute("id");
-   
     String name = (String)session.getAttribute("name");
     
-    MemberVo vo =dao.detail(id,name);
+    MemberVo vo =dao.detail(id);
     mv.addObject("vo", vo);
     mv.setViewName("sung/reprePhoto");
     return mv;
@@ -329,7 +399,7 @@ public ModelAndView repreChangForm(HttpSession session){
 
             return "fail";
         }
-        //다시 인덱스로감 아무설정도 없으니
+       
        
     }
     //아이디중복확인

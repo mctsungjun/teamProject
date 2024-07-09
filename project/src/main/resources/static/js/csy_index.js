@@ -1,20 +1,8 @@
 $(function(){
     loadAuthPage();
-    // loadMain();
-    // loadNav();
+    loadMain();
+    loadNav();
 })
-
-// let loadLoginPage = () => {
-//     $.ajax ({
-//         url : "/nav",
-//         type: "GET",
-//         // data: {"findStr" : findStr},       // * 이거 selected icon 넘겨줘야함
-//         success: (resp) => {
-//             let temp = $(resp).find("#loginPage");  // * nav    : nav.htm
-//             $("#loginPage").html(temp);          // * navbar : index.html
-//         }
-//     })
-// }
 
 let loadNav = () => {
     $.ajax ({
@@ -27,7 +15,18 @@ let loadNav = () => {
     })
 }
 
+// * 본인 페이지 메인에 보고 싶으시면 이 부분 수정
+// * GIT에는 업로드 X
 let loadMain = (findStr) => {
+    // $.ajax({
+	// 	url:"/sung/detail",
+	// 	type:"GET",
+	// 	success:(resp)=>{
+	// 		let temp = $(resp).find(".myProfilePage");
+	// 		$(".content").html(temp);
+	// 	}
+	// })
+    
     $.ajax ({
         url : "/design_guide",
         type: "GET",

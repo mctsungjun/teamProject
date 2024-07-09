@@ -1,0 +1,101 @@
+.myProfilePage {
+    padding-left: 18%;
+    padding-right: 18%;
+}
+
+
+.mypage-profile-block {
+    height: 320px;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.mypage-profile-block:hover {
+    height: 320px;
+    width: 320px;
+}
+
+.mypage-profile-border {
+    height: 320px;
+    width: 320px;
+    background-image: linear-gradient(var(--purple) 35%, rgba(255, 255, 255, 0.3));
+    animation: spinning82341 5s linear infinite;
+    text-align: center;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0px -5px 8px 0px transparent, 0px 5px 8px 0px var(--white);
+}
+
+.mypage-profile-border {
+    animation: spinning82341 5s linear infinite;
+}
+
+.mypage-profile-border1 {
+    height: 320px;
+    width: 320px;
+}
+
+.mypage-profile-border2 {
+    margin-top: -26px;
+    height: 330px;
+    width: 330px;
+    animation: spinning82341 7s linear infinite;
+    box-shadow: 0px 2px 5px 0px transparent, 0px 2px 5px 0px var(--white);
+}
+
+.mypage-profile-border3 {
+    margin-top: -26px;
+    height: 300px;
+    width: 300px;
+    animation: spinning82341 10s linear infinite;
+    box-shadow: 0px 4px -10px 0px transparent, 0px 4px -10px 0px var(--white);
+}
+
+.mypage-profile-image, .mypage-profile-border3 {
+    position: absolute;
+    padding-left: 11px;
+    padding-bottom: 6px;
+    border-radius: 50%;
+    object-fit: cover;
+    height: 280px;
+    width: 280px;
+    filter: blur(2px);
+}
+
+
+.mypage-profile-border {
+    border: 3px solid var(--white);
+    filter: blur(2px);
+}
+
+.mypage-profile-image:hover {
+    /* height: 420px;
+    width: 420px; */
+    filter: none;
+}
+
+.mypage-table {
+    font-size: 18px;
+    display: flex;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 테이블 부분 */
+.mypage-table:first-child {
+    border-top: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.mypage-table-left {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px 0px 25px 0px;
+    width: 300px;
+    text-align: center;
+}
+
+.mypage-table-right {
+    padding: 25px 0px 25px 30px;
+    width: 1fr;
+    text-align: center;
+}

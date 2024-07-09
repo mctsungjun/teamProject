@@ -60,7 +60,7 @@ input[type=radio]:checked+label h4, input[type=radio]:checked+label i { color: v
     position: relative;
 }
 
-.nav .profile-boarder {
+.profile-border {
     position: absolute;
     bottom: 15px;
     left: 6px;
@@ -75,7 +75,7 @@ input[type=radio]:checked+label h4, input[type=radio]:checked+label i { color: v
     box-shadow: 0px -3px 8px 0px rgb(186, 66, 255), 0px 3px 8px 0px var(--dark-grey);
 }
 
-.nav .profile-boarder1 {
+.profile-border1 {
     /* background-color: rgb(36, 36, 36); */
     width: 48px;
     height: 48px;
@@ -90,7 +90,7 @@ input[type=radio]:checked+label h4, input[type=radio]:checked+label i { color: v
 }
 
 
-.nav .user-profile-image {
+.user-profile-image {
     position: absolute;
     bottom: 17px;
     left: 8px;
@@ -104,7 +104,7 @@ input[type=radio]:checked+label h4, input[type=radio]:checked+label i { color: v
     /* filter: drop-shadow(2px 2px 1px #1e202b); */
 }
 
-.nav .user-profile-block:hover .user-profile-image {
+.user-profile-block:hover .user-profile-image {
     width: 45px;
     height: 45px;
     position: absolute;
@@ -129,7 +129,7 @@ input[type=radio]:checked+label h4, input[type=radio]:checked+label i { color: v
     -moz-box-shadow: 3px -2px 5px 4px rgba(0, 0, 0, 0.2);
 }
 
-.nav .user-profile-block:hover .profile-menu {
+.user-profile-block:hover .profile-menu {
     transform: scale(1);
     display: block;
 }

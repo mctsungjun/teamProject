@@ -4,78 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제품관리 페이지</title>
-    <link rel="stylesheet" href="css/product.css">
-    <script defer src="js/index.js"></script>
+    <link rel="stylesheet" href="css/ojw/ojw.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="js/ojw_product.js"></script>
 </head>
 <body>
     <div class="products">
-        <h2>제품관리 메인페이지</h2>
         <div class="product">
-            <div class="product_button">
-                <form name="frm" class="frm" method="GET">
-                    <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
-                    <button type="button" class="btnSearch">검색</button>
-                    <button type="button" class="btnRegister">신규 등록</button>
-                </form>
-            </div>
+        <h2>제품관리 메인페이지</h2>
+            <form name="frm" class="frm" method="GET">
+                <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
+                <button type="button" class="btnSearch">검색</button>
+                <button type="button" class="abcabc">신규 등록</button>
+            </form>
             <div class="product_list">
-                <ul class="product">
-                    <li class="product_each">
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
+                <ul class="product_ul">
+                    <li class="product_each" th:each="j:${product}" th:onClick="product_view([[${j.productCode}]])">
+                        <span class="product_image"><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
                         <br/>
-                        [[${vo.ProductName}]]
+                        <span class="name">[[${j.productName}]]</span>
                         <br/>
-                        [[${vo.ProductExplanation}]]
+                        <span class="comment">[[${j.comment}]]</span>
                         <br/>
-                        [[${vo.price}]]
+                        <span class="price">[[${j.price}]]</span>
                     </li>
-                    <li class="product_each">
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
-                        <br/>
-                        [[${vo.ProductName}]]
-                        <br/>
-                        [[${vo.ProductExplanation}]]
-                        <br/>
-                        [[${vo.price}]]
-                    </li>
-                    <li class="product_each">
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
-                        <br/>
-                        [[${vo.ProductName}]]
-                        <br/>
-                        [[${vo.ProductExplanation}]]
-                        <br/>
-                        [[${vo.price}]]
-                    </li>
-                    <li class="product_each">
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
-                        <br/>
-                        [[${vo.ProductName}]]
-                        <br/>
-                        [[${vo.ProductExplanation}]]
-                        <br/>
-                        [[${vo.price}]]
-                    </li>
-                    <li class="product_each">
-                        <th:block th:each="j:${vo.photos}">
-                            <img src="[[${j.photo}]]" width="200px" height="200px">
-                        </th:block>
-                        <br/>
-                        [[${vo.ProductName}]]
-                        <br/>
-                        [[${vo.ProductExplanation}]]
-                        <br/>
-                        [[${vo.price}]]
-                    </li>
-
                 </ul>
             </div>
         </div>

@@ -8,11 +8,13 @@
 .frmRegister label {
     display: block;
     margin-bottom: 5px;
+    color: black;
 }
 .frmRegister input, .frmRegister #post-form #summernote {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    color : var(--purple);
 }
 .frmRegister input[type="checkbox"] {
     width: auto;

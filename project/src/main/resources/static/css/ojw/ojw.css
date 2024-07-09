@@ -1,6 +1,4 @@
-*{
-    box-sizing: border-box;
-}
+/* ------------------- purchase ------------------ */
 .purchase{
     width: 1200px;
     min-height: 400px;
@@ -16,14 +14,22 @@
     vertical-align: middle;
 }
 .title{
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
     margin-top: 10px;
     font-weight: bold;
     height: 40px;
+    line-height: 40px;
 }
 .list span{
     display: inline-block;
+}
+.item{
+    border-bottom: 2px solid #eee;
+}
+.items span{
+    height: 40px;
+    line-height: 40px;
 }
 .list .no{width: 120px;}
 .list .productCode{width: 100px;}
@@ -32,7 +38,13 @@
 .list .ea{width: 100px;}
 .list .nal{width: 150px;}
 .list .customer{width: 150px;}
-.list .purchaseCode{width: 100px;}
+.list .purchaselist{
+    width: 100px;
+    text-decoration: underline;
+}
+.list .purchaselist:hover{
+    color: purple;
+}
 .list .item:hover{
     background-color: #eee;
 }
@@ -95,8 +107,11 @@ td{
     width: 50px;
     padding: 10px 5px;
 }
+.btnPrint{
+    margin-top: 20px;
+}
 
-/* ----------------------- purchase_register ------------------------- */
+/* ----------------------- product_register ------------------------- */
 *{
     box-sizing: border-box;
 }
@@ -112,6 +127,7 @@ h3{
 }
 .frm{
     margin: 20px;
+    text-align: left;
 }
 .product_input{
     text-align: left;
@@ -123,16 +139,14 @@ h3{
 }
 
 /* ----------------------- product ------------------------- */
-*{
-    box-sizing: border-box;
-}
 .products h2{
     text-align: center;
 }
 .product{
     width: 1200px;
     margin: 30px auto;
-    min-height: 600px;
+    min-height: 400px;
+    text-align: left;
 }
 .product_each{
     text-align: right;
@@ -143,14 +157,108 @@ h3{
     margin-right: 52px;
     text-align: right;
 }
-.product{
-    text-align: left;
-    padding-left: 0%;
-}
-.product_list li{
+.product_each{
     list-style: none;
     width: 200px;
     display: inline-block;
-    margin: 47px;
+    margin: 30px;
     text-align: left;
+}
+
+/* ------------- product view -------------*/
+.products{
+    width: 1200px;
+    margin: 30px auto;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.product_view{
+    width: 100%;
+    height: 400px;
+    margin-bottom: 40px;
+}
+.product_view_left{
+    width: 380px;
+    text-align: left;
+    float: left;
+
+    margin-top: 48px;
+    margin-left: 50px;
+    height: 350px;
+    max-height: 350px;
+}
+.product_image_sub{
+    display: flex;
+    width: 150px;
+    height: 400px;
+    flex-direction: column;
+    margin-top: 48px;
+    float: left;
+}
+.product_image_sub_each{
+    margin-bottom: 20px;
+}
+.product_view_right{
+    width: 500px;
+    height: 350px;
+    text-align: right;
+    float: right;
+    margin-top: 48px;
+    margin-right: 50px;
+    max-height: 350px;
+    padding: 0;
+}
+.product_view_right .explanation{
+    width: 100%;
+    min-height: 150px;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid lightgray;
+
+}
+.product_view_right .name{
+    padding:10px;
+    font-weight:500;
+    font-size:20px;
+}
+.product_view_right .price{
+    font-weight: bold;
+    font-size:30px;
+    padding:10px;
+}
+.product_view_right .spec{
+    vertical-align: center;
+    font-size:15px;
+    color:gray;
+    padding:10px;
+}
+.product_view_right .number{
+    text-align: left;
+    background-color: rgb(211, 211, 211);
+    padding:10px;
+}
+.viewright .number .suchi{
+    text-align: right;
+    margin-right: 10px;
+}
+.product_view_right .amt{
+    font-weight: bold;
+    font-size:30px;
+    padding:12px;
+}
+.product_view_right .won{
+    font-weight: normal;
+    color:black;
+    font-size:15px;
+}
+.product_view_left .main-image{
+    float: left;
+}
+.product_view_left .detailimage img{
+    margin-left:12px;
+    margin-bottom:12px;
+}
+.product_view_right hr{
+    margin:0px;
+    padding:0px;
 }

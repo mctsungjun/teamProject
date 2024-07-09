@@ -18,7 +18,43 @@
 <body>
     <div>
         <div class="designGuide">
+            <h1 style="margin-bottom: 25px;">MySQL 설치</h1>
+            <div style="font-size: 17px; font-weight: 300;">
+            <span style="color: var(--skyblue); margin-bottom: 5px;">* mysql의 데이터파일은 프로젝트 폴더의 아래 경로(static 내부)에 있습니다.</span>
+            <br>project\src\main\resources\static\20240705_project.sql<br><br>
+
+            1. MySQL 설치는 알아서 하시고, mysqld로 서버 돌려서 <br>
+            2. MySQL 내부 들어가셔서: mysql -uroot<br>
+            <span style="color: var(--purple)">- 기본 암호는 없을 확률이 높음(= -p 필요 없을 수도 있음)<br></span>
+            3. DB 생성: CREATE DATABASE project;<br>
+            4. mysql 나오기: exit; <br>
+            5. 이 명령어로 mysql에 기존 쓰던 sql 파일 넣기: mysql -uroot project < [파일경로]/[파일명].sql<br>
+            - 예를 들어 mysql root 유저에 비밀번호가 없고, 올려드린 "20240705_project.sql" 파일을 C드라이브에 복사해두었다면..<br>
+            mysql -uroot < C:\20240705_project.sql<br>
+            6. config.xml 파일에서 아래 부분 수정<br>
+            <property name="url" value="jdbc:mysql://192.168.0.6:3306/project?allowMultiQueries=true" /><br>
+            여기서 value 부분을 jdbc:mysql://localhost:3306/project?allowMultiQueries=true 이런 식으로 수정해야함.<br>
+            localhost: 자신의 컴퓨터<br>
+            3306: 포트명인데, mysql 기본 포트가 3306이지만, 달라질 수 있음.<br><br>
+            <span style="font-size: 20px; color: var(--skyblue); font-weight: 400;">** 안되면 손놓고 계시지 말고, 단톡에 도움 요청하기</span>
+            </div><br><br><br><br>
+
+
+            <h1>서버 SESSION에서 ID 가져오는 법<span style="font-size: 20px; color: var(--purple); margin-left: 15px;">FROM 성준님</span></h1>
+            <div style="font-size: 17px; font-weight: 300;">
+            <!-- 서버 session에서 id 가져오는 방법-->
+            public ModelAndView repreChangForm(HttpSession session){<br><br>
+
+            String id = (String)session.getAttribute("id");<br><br>
+        
+            String name = (String)session.getAttribute("name");<br>
+            위에서 만들고 싶은 메서드에서 HttpSession session를 매개변수해주고<br>
+            String id = (String)session.getAttribute("id"); 이런식으로<br>
+            불러온다. "id" 는 키값임<br>
+            </div>
+            <br><br>
             <!-- Color Code Section Start -->
+            <br><br>
             <h1>Color Code</h1>
                     <ul>
                         <li><div class="colorCode" style="background-color: var(--white); color: var(--dark-gray)">white</div></li>

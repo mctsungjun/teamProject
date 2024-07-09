@@ -17,31 +17,28 @@
     border-top:2px solid black;
     border-bottom: 2px solid black;
     text-align: center;
-    font-weight: bold;
     padding:5px;
+    background-color:#8753fb;
+    font-size:15px;
 }
 .item{
     border-bottom: 1px solid rgb(130, 130, 130);
     text-align: center;
     padding:5px;
 }
-.item .items{
-    border-bottom: 1px solid rgb(130, 130, 130);
-    text-align: center;
-    padding:5px;
+.item:hover{
+    background-color: rgb(93, 93, 93);
 }
-
 .list span{
     display:inline-block;
     text-align: center;
     padding:4px;
 }
-.list span :hover{
-    font-weight: bold;
-}
+
 .list .sno{
     width:60px;
 }
+
 .list .CustomerId{
     width:160px;
 }
@@ -63,15 +60,34 @@
 .list .nal{
     width:200px;
 }
-.list .SaleList{
+.list .saleList{
     width:100px;
 }
-
+.list .item:hover{
+    cursor:pointer;
+}
+.list .item .saleList{
+    text-decoration: underline;
+}
+.list .saleList:hover{
+    font-weight: bold;
+}
+.big .change .findStr{
+    color: black;
+    border-radius: 10px;
+    padding:5px;
+}
+.big .change .btnSearch{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
+}
 .salelist{
-    border: 3px solid black;
+    border: 3px solid rgb(255, 255, 255);
     width:500px;
     text-align: center;
     padding:30px;
+    margin:0 auto;
 }
 .salelist h2{
     margin-top:0;
@@ -79,33 +95,43 @@
 .salelist .salelisttable{
     display:inline-block;
     text-align: center;
-    border: 1px solid black;
     border-collapse: collapse;
 }
 .salelisttable *{
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     border-collapse: collapse;
+    text-align: center;
 }
 .salelisttable th,td{
     padding:10px;
 }
- 
+.salelist .btnList{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
+}
+.salelist .btnPrint{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;  
+}
 /*상세보기*/
 .saleview{
     text-align: center;
     padding:30px;
-    border:3px solid rgb(0, 0, 0);
+    border:3px solid rgb(255, 255, 255);
     width:500px;
+    margin:0 auto;
 }
 .saleview .saleviewtable{
     display:inline-block;
     text-align: center;
-    border: 1px solid black;
     border-collapse: collapse;
 }
-.saleviewtable *{
-    border: 1px solid black;
+.saleview .saleviewtable *{
     border-collapse: collapse;
+    border: 1px solid rgb(255, 255, 255);
+    text-align: center;
 }
 .saleviewtable th,td{
     padding:10px;
@@ -118,6 +144,24 @@
 }
 .saleviewlist{
     text-decoration: underline;
+}
+.saleviewbutton{
+    margin-top:20px;
+}
+.saleviewbutton .btnModify{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
+}
+.saleviewbutton .btnDelete{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
+}
+.saleviewbutton .btnList{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
 }
 
 /*월별년도별그래프*/
@@ -136,46 +180,115 @@
 }
 
 /*재고관리*/
+.stockpage{
+    width:1200px;
+    margin:30px auto;
+    min-height: 400px;
+}
+.stockbottom{
+    width:1200px;
+    margin:50px auto;
+}
 .stockleft{
-    width:550px;
+    width:450px;
     text-align: left;
     margin-top: 48px;
     float: left;
+    margin-right:100px;
+    
 }
 .stockright{
-    width:500px;
+    width:450px;
     text-align: left;
     margin-top: 100px;
     border: 1px solid black;
-    min-height: 100px;
+    min-height: 400px;
     float: right;
+    margin-left:100px;
 }
 .stock h1{
     margin-top:50px;
     text-align: center;
     margin-bottom:30px;
 }
-.stocklisttable{
+.stocklist .title{
     border-collapse: collapse;
     text-align: center;
     width:100%;
     table-layout: fixed;
 }
-.stocklisttable th,td{
-    padding:10px;
-    border: 1px solid black;
+
+.stocklist .stockitems{
+    border-collapse: collapse;
     text-align: center;
+    width:100%;
+    table-layout: fixed;
 }
-.stock{
-    width:1200px;
-    margin:30px auto;
-    min-height: 400px;
+.stocklist .stockitems span{
+    padding:8px;
 }
+
+.stocklist span{
+    display:inline-block;
+    text-align: center;
+    padding: 4px;
+}
+.stocklist .ProductCode{
+    width:140px;
+}
+.stocklist .ProductName{
+    width:140px;
+}
+.stocklist .ea{
+    width:140px;
+}
+
 .stockleft .change{
     text-align: right;
     margin-bottom:20px;
 }
-.sale h1{
+
+.stockleft .change .btnSearch{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
+}
+
+.stockleft .change .findStr{
+    color:black;
+    border-radius: 10px;
+    padding:5px;
+}
+/*재고 그래프 */
+.stockright #bar-chart {
+    border-color: white;
+}
+
+/*재고 관리 페이징*/
+.stockbottom .stockitems .btnZone{
+    margin-top:30px;
+    text-align: center;
+    word-spacing: 10px;
+}
+.stockbottom .btnPrev, .stockbottom .btnZone .btnNext{
+    pointer-events: none;
+    background-color: #bbbbbb;
+    border: 0px;
+    padding:5px;
+    border-radius: 10px;
+    
+}
+.stockbottom .btnPrevEnable, .stockbottom .btnNextEnable{
+    pointer-events: all;
+    border: 0px;
+    cursor: pointer;
+    background-color:#8753fb;
+    padding:5px;
+    border-radius: 10px;
+}
+
+
+.salepage h1{
     text-align: center;
 }
 .salepage{
@@ -183,10 +296,20 @@
     margin:30px auto;
     min-height: 600px;
 }
-.salepagesearch{
+.salepage .salepagesearch{
     text-align: right;
     margin-top:50px;
     height:35px;
+}
+.salepage .salepagesearch .findStr{
+    color: black;
+    border-radius: 10px;
+    padding:5px;
+}
+.salepage .salepagesearch .btnSearch{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
 }
 .salepage .sort{
     margin-left:52px;
@@ -220,11 +343,14 @@
 }
 .salepagelist .price{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
 }
 .salepagelist .name{
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
+}
+.salepagelist .comment{
+    color:rgb(214, 176, 255);
 }
 .salepagelist .explanation{
     color:gray;
@@ -237,23 +363,75 @@
     width:1100px;
     color:black;
 }
-.salepageview{
-    width:1200px;
-    margin:30px auto;
+
+.salepage .sort .btnCheap,.btnEx,.btnNew{
+    border:none;
+    font-size: 15px;
+    color:#8753fb;
+    background-color:var(--dark-gray);
+}
+
+.salepage .sort .btnCheap:hover,.btnEx:hover,.btnNew:hover{
+    border:none;
+    background-color: #8753fb;
+    color:white;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius:8px;
+}
+
+.salepage .btnZone{
+    text-align: center;
+    word-spacing: 10px;
+}
+.salepage .btnPrev, .salepage .btnZone .btnNext{
+    pointer-events: none;
+    background-color: #bbbbbb;
+    border: 0px;
+    padding:5px;
+    border-radius: 10px;
+}
+.salepage .btnPrevEnable, .salepage .btnNextEnable{
+    pointer-events: all;
+    border: 0px;
+    cursor: pointer;
+    background-color:#8753fb;
+    padding:5px;
+    border-radius: 10px;
+}
+.salepage .salepagelist .salepageproducteach:hover{
+    cursor: pointer;
+}
+/*판매 페잉지 상세보기 */
+.salepage_view{
+    margin-bottom:40px;
     min-height: 1000px;
     text-align: center;
 }
-.salepageview .viewleft{
-    width:500px;
+.salepage_view .viewleft{
+    width: 350px;
     text-align: left;
     float: left;
-
     margin-top: 48px;
-    margin-left:50px;
-    height:350px;
+    margin-left: 50px;
+    height: 350px;
     max-height: 350px;
 }
-.salepageview .viewright{
+.salepage_view .product_image_sub{
+    display: flex;
+    width: 100px;
+    height: 100px;
+    flex-direction: column;
+    margin-top: 48px;
+    float: left;
+}
+.product_image_sub_each{
+    margin-bottom: 20px;
+    margin-left:20px;
+}
+
+.salepage_view .viewright{
     width:500px;
     height:350px;
     text-align: right;
@@ -263,7 +441,19 @@
     max-height: 350px;
     padding:0;
 }
-.salepageview .viewbottom{
+.salepage_view .viewright .pricecolor{
+    color:#8753fb;
+    font-size: 50px;
+}
+
+.salepage_view .viewright .numbercolor{
+    color:#000000;
+}
+.salepage_view .viewright .eacolor{
+    color:#000000;
+}
+
+.salepage_view .viewbottom{
     width:1100px;
     position: relative;
     border: 1px solid rgb(227, 227, 227);
@@ -274,13 +464,14 @@
     display: inline-block;
     vertical-align: top;
     min-height: 200px;
+    margin-top:50px;
 }
 .viewright .name{
     padding:10px;
 }
 .viewright .price{
     font-weight: bold;
-    font-size:30px;
+    font-size:45px;
     padding:10px;
 }
 .viewright .spec{
@@ -291,8 +482,10 @@
 }
 .viewright .number{
     text-align: left;
-    background-color: rgb(211, 211, 211);
+    background-color:#dddddd;
     padding:10px;
+    border:none;
+    border-radius: 3px;
 }
 .viewright .number #quantity{
     text-align: right;
@@ -305,7 +498,7 @@
 }
 .viewright .won{
     font-weight: normal;
-    color:black;
+    color:rgb(255, 255, 255);
     font-size:15px;
 }
 .viewright .name{
@@ -319,9 +512,10 @@
 .viewleft .detailimage img{
     margin-left:12px;
     margin-bottom:12px;
-    border:1px solid black;
+    border:1px solid rgb(255, 255, 255);
 }
 .viewright .btnBuy{
+    background-color:#8753fb;
     margin-top:25px;
     padding-top:18px;
     padding-bottom: 18px;
@@ -337,19 +531,42 @@
     margin:0px;
     padding:0px;
 }
+.saleviewmodify{
+    border: 3px solid rgb(255, 255, 255);
+    width:500px;
+    text-align: center;
+    padding:30px;
+    margin:0 auto;
+}
 .saleviewmodify .saleviewtable{
     display:inline-block;
     text-align: center;
-    border: 1px solid black;
     border-collapse: collapse;
 }
-.saleviewtable *{
-    border: 1px solid black;
+.saleviewmodify .saleviewtable *{
+    border: 1px solid rgb(255, 255, 255);
     border-collapse: collapse;
+    text-align: center;
 }
 .saleviewtable th,td{
     padding:10px;
 }
+.saleviewmodify .saleviewtable td{
+    color:black;
+}
 .saleview h2{
     margin-top:0;
+}
+.saleviewmodify .saleviewmodifybutton{
+    margin-top:20px;
+}
+.saleviewmodify .saleviewmodifybutton .btnModifyR{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
+}
+.saleviewmodify .saleviewmodifybutton .btnList{
+    background-color:#8753fb;
+    border-radius: 10px;
+    padding:5px;
 }

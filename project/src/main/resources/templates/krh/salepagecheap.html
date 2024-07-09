@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 페이지</title>
+    <link rel="stylesheet" href="css/krh/krh.css">
+    <script defer src="js/krh_salepage.js"></script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <div class="sale">
+        <h1>판매 페이지</h1>
+        <div class="salepage">
+            <div class="change">
+                <!--검색 기준-->
+                <div class="salepagesearch">
+                    <form name="frm" class="frm" method="GET">
+                        <div class="sort">
+                            <button type="button" class="btnCheap">가격 낮은 순</button> |
+                            <button type="button" class="btnEx">가격 높은 순</button> |
+                            <button type="button" class="btnNew">신상품 순</button> | 
+                        </div>
+                        <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
+                        <button type="button" class="btnSearch">검색</button>
+                    </form>
+                </div>
+            </div>
+            <hr/>
+            <div class="salepagelist">
+                <ul class="salepageproduct">
+                    <li class="salepageproducteach" th:each="j:${salepage_cheap}">
+                        <span><img th:src="|ojw_upload/${j.photo}" width="200px" height="200px"></span>
+                        <br/>
+                        <span class="name">[[${j.productName}]]</span>
+                        <br/>
+                        <span class="comment">[[${j.comment}]]</span>
+                        <br/>
+                        <span class="price">[[${j.price}]]<span class="won">원</span></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
