@@ -42,11 +42,23 @@ public class PurchaseDao {
     public String purchase_register(PurchaseVo vo){
         String msg="";
         session = new MyFactory().getSession();
-
         int cnt = session.insert("project.purchase_register", vo);
+        //륜하 재고 +
+        int count=session.selectOne("salestock.checkStock",vo);
+        int stockcnt;
         if(cnt>0){
             session.commit();
             msg = "정상적으로 입력됨";
+            if(count>0){
+                stockcnt=session.update("salestock.stockplusmodify",vo);
+            }else{
+                stockcnt=session.insert("salestock.stockplusnew",vo);
+            }
+            if(stockcnt>0){
+                session.commit();
+            }else{
+                session.rollback();
+            }
         }else{
             session.rollback();
             msg="저장중 오류발생";

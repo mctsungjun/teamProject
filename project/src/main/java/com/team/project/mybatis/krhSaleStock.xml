@@ -137,11 +137,16 @@
 
     <update id="stockplusmodify" parameterType="PurchaseVo">
         update stock set ea = ea + #{ea}
-        where ProductCode = #{ProductCode}
+        where ProductCode = #{productCode}
     </update> 
 
     <insert id="stockplusnew" parameterType="PurchaseVo">
         insert into stock(ProductCode,ProductName,ea)
-        values(productCode,productName,ea);
+        values(#{productCode}, #{productName}, #{ea})
     </insert>
+    
+     <select id="checkStock" parameterType="PurchaseVo" resultType="Integer">
+        SELECT COUNT(*) FROM stock WHERE ProductCode = #{productCode}
+    </select>
+
 </mapper>
