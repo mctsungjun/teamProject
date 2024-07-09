@@ -67,32 +67,85 @@ var change=(tag,photo)=>{
 
 
 export function btnChangePhoto() {
-	alert("HELLO");
-		$.ajax({
-			url:"/sung/repreChangeForm",
-			type:"GET",
-			success:(resp)=>{
-				// let temp = $(resp).find(".photoSection");
-				let temp = $(resp).find(".photoSection");
-				$(".myprofile-main").html(temp);
-				// 대표이미지수정
-				let btnRepreChange = document.querySelector(".btnRepreChange");
-				btnRepreChange.onclick=()=>{
-					// var id = sessionStorage.getItem("id");
-					// alert(id);
+	// alert("HELLO");
+	// 	$.ajax({
+	// 		url:"/sung/repreChangeForm",
+	// 		type:"GET",
+	// 		success:(resp)=>{
+	// 			// let temp = $(resp).find(".photoSection");
+	// 			let temp = $(resp).find(".photoSection");
+	// 			$(".myprofile-main").html(temp);
+	// 			// 대표이미지수정
+	// 			let btnRepreChange = document.querySelector(".btnRepreChange");
+	// 			btnRepreChange.onclick=()=>{
+	// 				// var id = sessionStorage.getItem("id");
+	// 				// alert(id);
 				
+	// 				$.ajax({
+	// 					url:"/sung/changePhoto",
+	// 					type:"GET",
+	// 					data:{"photo":repreImage},
+	// 					success:(resp)=>{
+	// 						detail();
+	// 					}
+	// 				})
+	// 			}
+	// 		}
+	// 	})
+
+	//새창열기
+	var fileInput = window.open('../filepicker.html', '파일 선택', 'width=300,height=150');
+
+    // // 파일 선택 후 처리할 콜백 함수
+	// function handleFileSelection(file) {
+	// 	var formData = new FormData();
+	// 	formData.append('file', file);
+	
+	// 	$.ajax({
+	// 		url: '/sung/upload',
+	// 		type: 'POST',
+	// 		data: formData,
+	// 		processData: false,
+	// 		contentType: false,
+	// 		success: function(response) {
+	// 			console.log('파일 업로드 성공:', response);
+	// 		},
+	// 		error: function(xhr, status, error) {
+	// 			console.error('파일 업로드 실패:', error);
+	// 		}
+	// 	});
+	var checkFilePickerClosed = setInterval(function() {
+		if (fileInput.closed) {
+			clearInterval(checkFilePickerClosed); // 폴링 종료
+			console.log('새로운 창이 닫혔습니다.');
+	
+			// 파일 선택이 완료된 후 실행할 코드 작성
+			console.log('파일 선택이 완료되었습니다. 추가 작업을 수행합니다.');
+			//location.reload();
+			//window.location.href = '/sung/detail_main';
+			$.ajax({
+				url:"/sung/detail",
+				type:"GET",
+				success:(resp)=>{
+					let temp = $(resp).find(".myProfilePage");
+					$(".content").html(temp);
 					$.ajax({
-						url:"/sung/changePhoto",
-						type:"GET",
-						data:{"photo":repreImage},
-						success:(resp)=>{
-							detail();
+						url: "/sung/detail_main",
+						type: "GET",
+						success:(resp) => {
+							let temp = $(resp).find(".myprofile-main");
+							$(".myprofile-detail-content").html(temp);
 						}
 					})
 				}
-			}
-		})
+			})
+		}
+	}, 300); // 1초 간격으로 상태 확인
+	
+		
+ 
 	}
+	
 // 홈으로 이동---------------------------------------------
 export function btnGoHome() {
 	$.ajax ({

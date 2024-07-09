@@ -108,8 +108,9 @@ public class CsyBoardDao {
         return msg;
     }
 
-    public String delete(String sno, String id) { 
-        String boardAuthorId = session.selectOne("csyBoard.getPostAuthor", sno);
+    public String delete(String sno, String id) {
+        int sno_int = Integer.parseInt(sno);
+        String boardAuthorId = session.selectOne("csyBoard.getPostAuthor", sno_int);
         String msg = "게시물 삭제에 실패했습니다.";
 
         if (boardAuthorId.equals(id) ) {

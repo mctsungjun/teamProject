@@ -48,7 +48,7 @@ public class MemberController {
    @Autowired
    KakaoApi kakaoApi;
    String id;
-   public static String uploadPath= "C:\\Users\\i\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
+   public static String uploadPath= "C:\\Users\\i\\teamProject\\teamProject-csy\\teamProject-csy\\project\\src\\main\\resources\\static\\upload\\";
     
     // 메인화면 보이기
     // @RequestMapping(path="/index")
@@ -205,11 +205,17 @@ public ModelAndView login(){
         return mv;
       }
 
-      
+      //대표이미지폼
+      @RequestMapping(path="/sung/changeFrom")
+      public ModelAndView changeFrom(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("filepicker");
+        return mv;
+      }
       //이미지/파일 업로드
       @RequestMapping(path="/sung/upload")
-      public String fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session, @RequestParam("reprePhoto") String reprePhoto){
-        //ModelAndView mv = new ModelAndView();
+      public ModelAndView fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session ){
+       ModelAndView mv = new ModelAndView();
         List<PhotoVo> photos = new ArrayList<>();
         MemberVo vo = new MemberVo();
         if (photo != null){
@@ -233,18 +239,20 @@ public ModelAndView login(){
                 pv.setOriPhoto(f.getOriginalFilename());
                 pv.setPhoto(sysFile);
                 photos.add(pv);
+                mv.addObject("sysFile", sysFile);
                 System.out.println(f.getOriginalFilename());
 
             }
             if(photos.size()>0){
                 vo.setPhotos(photos);
-                vo.setPhoto(reprePhoto);
+                vo.setPhoto(sysFile);
                 vo.setId((String)session.getAttribute("id"));
+                mv.addObject("vo",vo);
                 System.out.println("vo: " +vo.getPhoto());
             }
         }
         String msg = dao.fileUpload(vo);
-        return msg;
+        return mv;
       }
 // 수정폼/정보가져오기
 @RequestMapping(path="/sung/modify" )
@@ -260,16 +268,33 @@ public ModelAndView updateFrom(HttpSession session){
 
 // 수정정보받아서 
 @RequestMapping(path="/sung/updateR")
-public String updateR(
+public String updateR(HttpSession session,
     // @RequestParam("files") List<MultipartFile> photo,
     // String[] delFiles,
     // @ModelAttribute 
     MemberVo vo){
+        String msg = "";
+        String id = (String)session.getAttribute("id");
+       
+        
     // List<PhotoVo> photos = new ArrayList<>();
-    vo.setPassword(PasswordHash.hashPassword(vo.getPassword()));
-    System.out.println(vo.getPassword());
-    String[] delFiles = null;
-    System.out.println(vo);
+    vo.setId(id);
+    if(!vo.getPassword().equals("") || vo.getPassword()!=null){
+
+        vo.setPassword(PasswordHash.hashPassword(vo.getPassword()));
+        msg = dao.modifyWithPassword(vo);
+        System.out.println(vo);
+    }else{
+        msg = dao.modify(vo);
+        System.out.println(vo);
+        
+        
+    }
+    return msg;
+    }
+  
+    
+   // String[] delFiles = null;
 
     // UUID uuid = null;
     // String sysFile = null;
@@ -298,11 +323,10 @@ public String updateR(
     //     }
     // }
     
-        String msg = dao.modify(vo, delFiles);
-        return msg;
-    }
+       
 
 
+    
 
 //대표이미지 수정폼
 @RequestMapping(path="/sung/repreChangeForm")

@@ -130,7 +130,12 @@
             <div class="board-detail-comment">
                 <div class="board-detail-img-div">
                     <!-- <img src="https://picsum.photos/200"  class="board-detail-img" alt="User Profile Image"> -->
-                    <img th:src="@{|upload/${cmtVo.photo}|}" class="board-detail-img" alt="User Profile Image">
+                    <th:block th:if="${cmtVo.id != 'DELETED COMMENT'}">
+                        <img th:src="@{|upload/${cmtVo.photo}|}" class="board-detail-img" alt="User Profile Image">
+                    </th:block>
+                    <th:block th:if="${cmtVo.id == 'DELETED COMMENT'}">
+                        <img src="upload/delete_comment.png" class="board-detail-img" alt="User Profile Image">
+                    </th:block>
                 </div>
                 <!-- * 커멘트 보이는 부분 * -->
                 <div class="board-detail-text-div">
