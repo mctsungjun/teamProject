@@ -8,17 +8,18 @@
 <body>
     <div>
         <div class="noticeView">
+            <link rel="stylesheet" href="css/bjmnotice/bjm_view.css">
             <div class="header">
                 <div>
-                    <h1 class="title">title</h1>
+                    <h1 class="title" th:text="${vo.title}"></h1>
                 </div>
                 <div>
-                    <span class="id">id</span>
-                    <span class="nal">nal</span>
+                    <span class="id" th:text="${vo.id}"></span>
+                    <span class="nal" th:text="${vo.nal}"></span>
                 </div>
             </div>
             <div class="content">
-                <p>내용</p>
+                <div th:utext="${vo.content}"></div>
             </div>
             <div class="navi">
                 <div>
