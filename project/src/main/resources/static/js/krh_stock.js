@@ -12,6 +12,7 @@ export function stock(){
             $(".content").html(temp);
             stockloadItem(findStr,nowPage);
             stocksearch();        
+            graph();
         }
     })
 }
@@ -39,7 +40,7 @@ function stocksearch(){
 
 //페이징
 function stockloadItem(findStr,nowPage){
-    graph();
+    
     $.ajax({
         url:"/stock",
         type:"GET",
@@ -125,7 +126,7 @@ function graph(){
             })
         },
         error:function(){
-            alert("실패");
+            
         }
     });
 }
