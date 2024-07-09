@@ -109,18 +109,7 @@ public class NoticeDao {
         session.close();
         return msg;
     }
-    // public Map<String, Object> noticeModify(Integer sno){
-    //     session = new MyFactory().getSession();
-    //     Map<String,Object> map = new HashMap<>();
-    //     int cnt = session.update("notice.modify",sno);
-    //     if(cnt>0){
-    //         session.commit();
-    //     }else{
-    //         session.rollback();
-    //     }
-    //     session.close();
-    //     return map;
-    // }
+    
     public String noticeModifyR(NoticeVo vo, List<NoticeAtt> attFiles) {
         session = new MyFactory().getSession();
         String msg = "";
@@ -137,6 +126,20 @@ public class NoticeDao {
             msg = "ERROR";
         }
     
+        session.close();
+        return msg;
+    }
+    public String nextNotice(Integer sno){
+        session = new MyFactory().getSession();
+        String msg = "";
+        msg = session.selectOne("notice.next",sno);
+        session.close();
+        return msg;
+    }
+    public String prevNotice(Integer sno){
+        session = new MyFactory().getSession();
+        String msg = "";
+        msg = session.selectOne("notice.prev",sno);
         session.close();
         return msg;
     }

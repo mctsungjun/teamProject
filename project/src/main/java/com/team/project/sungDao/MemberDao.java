@@ -92,6 +92,13 @@ public String userIdchk(String id){
         return message;
     }
 }
+// 개인정보 가져오기
+public MemberVo personInfo(String id){
+    session = new MyFactory().getSession();
+    MemberVo vo = new MemberVo();
+    vo = session.selectOne("member.userId",id);
+    return vo;
+}
 
 
 //멤버이름 가져오기
@@ -189,8 +196,8 @@ public String getMemberName(String id){
         List<MemberVo> list = session.selectList("member.search", findStr);
         return list;
     }
-    //수정
-    public String modify(MemberVo vo, String[] delFiles){
+    //수정 비밀번호 없이
+    public String modify(MemberVo vo){
         String msg="";
         session = new MyFactory().getSession();
         int cnt = session.update("member.update",vo);
@@ -216,6 +223,20 @@ public String getMemberName(String id){
             //     session.rollback();
             //     session.close();
             // }
+            session.commit();
+            session.close();
+        }
+        return msg;
+    }
+    //수정 비밀번호 포함
+    public String modifyWithPassword(MemberVo vo){
+        String msg="";
+        session = new MyFactory().getSession();
+        int cnt = session.update("member.updateWithPassword",vo);
+        
+        if(cnt>0){
+            msg="정상 수정됨";
+       
             session.commit();
             session.close();
         }

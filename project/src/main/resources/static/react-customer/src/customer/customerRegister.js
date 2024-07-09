@@ -1,9 +1,39 @@
 import '../css/customerView.css';
 import React from 'react'
 import {useEffect, useState} from 'react'
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 function CustomerRegister(){
+    const navigate = useNavigate()
 
+    const handleCancelRClick = () =>{
+        navigate(-1);
+    }
+    const handleRegisterRClick = () =>{
+        const temp = document.getElementById('clientForm');
+        const frmRegister = new FormData(temp)
+        const data = {};
+        frmRegister.forEach((value,key) => {
+            data[key] = value;
+        })
+        axios({
+            method : "POST",
+            url : "/customerRegister",
+            data : frmRegister,
+            responseType : "text"
+        }).then(resp=>{
+            if(resp.data == "") {
+                console.log("Success");
+                navigate('/bjmCustomerList');
+            }else{
+                alert(resp.data)
+
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+    }
     return(
         <>
             <div className='contentsView'>
@@ -17,7 +47,7 @@ function CustomerRegister(){
                         placeholder='사업자번호'
                         required
                     />
-                    <label htmlfor='clientCode'>거래처 코드</label>
+                    <label htmlFor='clientCode'>거래처 코드</label>
                     <input
                         type='text'
                         id='clientCode'
@@ -25,71 +55,70 @@ function CustomerRegister(){
                         placeholder='거래처 코드'
                         required
                     />
-                    <label htmlfor='clientCodeType'>거래처 코드 구분</label>
+                    <label htmlFor='clientCodeType'>거래처 코드 구분</label>
                     <input
                         type='text'
                         id='clientCodeType'
                         name='clientCodeType'
                         required
                     />
-                    <label htmlfor='representativeName'>대표자명</label>
+                    <label htmlFor='representativeName'>대표자명</label>
                     <input
                         type='text'
-                        id='representtativeName'
-                        name='representtativeName'
+                        id='representativeName'
+                        name='representativeName'
                         required
                     />
-                    <label htmlfor='clientContact'>거래처 담당자</label>
+                    <label htmlFor='clientContact'>거래처 담당자</label>
                     <input
                         type='text'
                         id='clientContact'
                         name='clientContact'
                         required
                     />
-                    <label htmlfor='clientId'>거래처 ID</label>
+                    <label htmlFor='clientId'>거래처 ID</label>
                     <input
                         type='text'
                         id='clientId'
                         name='clientId'
                         required
                     />
-                    <label htmlfor='clientName'>거래처 이름</label>
+                    <label htmlFor='clientName'>거래처 이름</label>
                     <input
                         type='text'
                         id='clientName'
                         name='clientName'
                         required
                     />
-                    <label htmlfor='contactNumber'>연락처</label>
+                    <label htmlFor='contactNumber'>연락처</label>
                     <input
                         type='text'
-                        id='clientNumber'
-                        name='clientNumber'
+                        id='contactNumber'
+                        name='contactNumber'
                         required
                     />
-                    <label htmlfor='address'>주소</label>
+                    <label htmlFor='address'>주소</label>
                     <input
                         type='text'
                         id='address'
                         name='address'
                         required
                     />
-                    <label htmlfor='email'>이메일</label>
+                    <label htmlFor='email'>이메일</label>
                     <input
                         type='email'
                         id='email'
                         name='email'
-                        readOnly
                         required
                     />
-                    <label htmlfor='registrationDate'>등록일</label>
+                    {/* <label htmlfor='registrationDate'>등록일</label>
                     <input
                         type='date'
                         id='registrationDate'
                         name='registrationDate'
                         required
-                    />
-                    <label htmlfor='discountRate'>할인율</label>
+                    /> */}
+                    <label htmlFor='discountRate'>할인율</label>
                     <input
                         type='number'
                         id='discountRate'
@@ -98,8 +127,8 @@ function CustomerRegister(){
                     />
                 </form>
                 <div className='btnZone'>
-                    <button type='button'>취소</button>
-                    <button type='button'>등록</button>
+                    <button type='button' className='btnCancelR' onClick={handleCancelRClick}>취소</button>
+                    <button type='button' className='btnRegisterR' onClick={handleRegisterRClick}>등록</button>
                 </div>
             </div>
         </>
