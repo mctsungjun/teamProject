@@ -17,7 +17,7 @@ public class PurchaseDao {
         session= new MyFactory().getSession();
     }
 
-    public List<PurchaseVo> search(String findStr){
+    public List<PurchaseVo> purchase_search(String findStr){
         List<PurchaseVo> list = null;
         session = new MyFactory().getSession();
         list = session.selectList("project.purchase_search",findStr);

@@ -1,4 +1,7 @@
 /* ------------------- purchase ------------------ */
+*{
+    box-sizing: border-box;
+}
 .purchase{
     width: 1200px;
     min-height: 400px;
@@ -94,6 +97,7 @@ hr{
     width: 500px;
     text-align: center;
     padding-bottom: 30px;
+    margin: 0 auto;
     margin-bottom: 10px;
 }
 table{
@@ -125,28 +129,32 @@ h3{
     text-align: left;
     margin: 0 auto;
 }
-.frm{
+.product_register .frm{
     margin: 20px;
     text-align: left;
 }
-.product_input{
+.product_register .product_input{
     text-align: left;
     margin-left: 30px;
 }
-.button{
+.productRegisterButton{
     text-align: right;
     margin-bottom: 0;
 }
 
 /* ----------------------- product ------------------------- */
+*{
+    box-sizing: border-box;
+}
 .products h2{
     text-align: center;
 }
 .product{
     width: 1200px;
     margin: 30px auto;
-    min-height: 400px;
+    min-height: 600px;
     text-align: left;
+    padding-left: 0%;
 }
 .product_each{
     text-align: right;
@@ -157,108 +165,12 @@ h3{
     margin-right: 52px;
     text-align: right;
 }
-.product_each{
+.product_list li{
     list-style: none;
     width: 200px;
     display: inline-block;
-    margin: 30px;
+    margin: 47px;
     text-align: left;
 }
 
 /* ------------- product view -------------*/
-.products{
-    width: 1200px;
-    margin: 30px auto;
-    text-align: center;
-    padding-bottom: 20px;
-}
-.product_view{
-    width: 100%;
-    height: 400px;
-    margin-bottom: 40px;
-}
-.product_view_left{
-    width: 380px;
-    text-align: left;
-    float: left;
-
-    margin-top: 48px;
-    margin-left: 50px;
-    height: 350px;
-    max-height: 350px;
-}
-.product_image_sub{
-    display: flex;
-    width: 150px;
-    height: 400px;
-    flex-direction: column;
-    margin-top: 48px;
-    float: left;
-}
-.product_image_sub_each{
-    margin-bottom: 20px;
-}
-.product_view_right{
-    width: 500px;
-    height: 350px;
-    text-align: right;
-    float: right;
-    margin-top: 48px;
-    margin-right: 50px;
-    max-height: 350px;
-    padding: 0;
-}
-.product_view_right .explanation{
-    width: 100%;
-    min-height: 150px;
-    margin-top: 30px;
-    padding: 10px;
-    border: 1px solid lightgray;
-
-}
-.product_view_right .name{
-    padding:10px;
-    font-weight:500;
-    font-size:20px;
-}
-.product_view_right .price{
-    font-weight: bold;
-    font-size:30px;
-    padding:10px;
-}
-.product_view_right .spec{
-    vertical-align: center;
-    font-size:15px;
-    color:gray;
-    padding:10px;
-}
-.product_view_right .number{
-    text-align: left;
-    background-color: rgb(211, 211, 211);
-    padding:10px;
-}
-.viewright .number .suchi{
-    text-align: right;
-    margin-right: 10px;
-}
-.product_view_right .amt{
-    font-weight: bold;
-    font-size:30px;
-    padding:12px;
-}
-.product_view_right .won{
-    font-weight: normal;
-    color:black;
-    font-size:15px;
-}
-.product_view_left .main-image{
-    float: left;
-}
-.product_view_left .detailimage img{
-    margin-left:12px;
-    margin-bottom:12px;
-}
-.product_view_right hr{
-    margin:0px;
-    padding:0px;
-}

@@ -171,4 +171,22 @@ public class NoticeController {
         // 여기서 필요한 데이터를 처리하고 데이터베이스에 저장
         return "저장 성공";
     }
+
+    @RequestMapping(path = "/notice/nextNotice")
+    public String nextNotice(Integer sno) {
+        String msg = "";
+        msg = dao.nextNotice(sno);
+        return msg;
+    }
+
+    @RequestMapping(path = "/notice/prevNotice")
+    public String prevNotice(Integer sno) {
+        String msg = "";
+        msg = dao.prevNotice(sno);
+        return msg;
+    }
+    // public ModelAndView repreChangForm(HttpSession session){
+    //     String id = (String)session.getAttribute("id");
+    //     String name = (String)session.getAttribute("name");
+    // }
 }

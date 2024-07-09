@@ -18,7 +18,8 @@ public class ProductController {
     @Autowired
     ProductDao ProductDao;
 
-    public static String ojw_upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
+    //upload 경로 (류나가 추가..)
+    public static String ojw_upload = "C:\\gitwork\\final_project\\project\\src\\main\\resources\\static\\ojw_upload\\";
     
     @RequestMapping(path="/product")
     public ModelAndView product(String findStr){
@@ -26,15 +27,6 @@ public class ProductController {
         List<ProductVo> list = ProductDao.product(findStr);
         mv.addObject("product", list);
         mv.setViewName("ojw/product");
-        return mv;
-    }
-
-    @RequestMapping(path="/product_view")
-    public ModelAndView product_view(String productCode){
-        ModelAndView mv = new ModelAndView();
-        ProductVo vo = ProductDao.product_view(productCode);
-        mv.addObject("vo", vo);
-        mv.setViewName("ojw/product_view");
         return mv;
     }
 
@@ -51,10 +43,12 @@ public class ProductController {
             @ModelAttribute ProductVo vo){
         List<ojw_PhotoVo> photos = new ArrayList<>();
         
+        //륜하
         File directory = new File(ojw_upload);
         if (!directory.exists()) {
             directory.mkdirs();
         }
+        //가 추가함
 
         if (photo != null){
             UUID uuid = null;
@@ -72,23 +66,83 @@ public class ProductController {
                     f.transferTo(saveFile);
                 }catch(Exception ex){
                     ex.printStackTrace();
+                    //류나가 70번째만 추가
                     return "error";
                 }
 
                 ojw_PhotoVo v = new ojw_PhotoVo();
-                // get.Photo : 라디오버튼에서 선택된 파일 / getOriginalFilename : 업로드되는 파일명
-                if(vo.getPhoto().equals(f.getOriginalFilename())){
-                    vo.setPhoto(sysFile);
-                }
+                vo.setPhoto(sysFile);
                 v.setPhoto(sysFile);
                 v.setOriPhoto(f.getOriginalFilename());
                 photos.add(v);
             }
-        }
-        if(photos.size()>0){
-            vo.setPhotos(photos);
+            // get.Photo : 라디오버튼에서 선택된 파일 / getOriginalFilename : 업로드되는 파일명
+            if(photos.size()>0){
+                vo.setPhotos(photos);
+            }
         }
         String msg = ProductDao.product_register(vo);
         return msg;
+    }
+
+    @RequestMapping(path="/product_deleteR")
+    public String product_delete(String productCode){
+        String msg = ProductDao.product_delete(productCode);
+        return msg;
+    }
+
+    // @RequestMapping(path="/product_modify")
+    // public ModelAndView product_modify(String productCode){
+    //     ModelAndView mv = new ModelAndView();
+    //     ProductVo vo = ProductDao.product_view(productCode);
+    //     mv.addObject("vo",vo);
+    //     mv.setViewName("ojw/product_modify");
+    //     return mv;
+    // }
+
+    @RequestMapping(path="/product_modifyR")
+    public ModelAndView product_modifyR(
+            @RequestParam("files") List<MultipartFile> photo,
+            String[] delFiles,
+            @ModelAttribute ProductVo vo){
+        ModelAndView mv = new ModelAndView();
+        List<ojw_PhotoVo> photos = new ArrayList<>();
+        UUID uuid = null;
+        String sysFile = null;
+
+        if(photo != null){
+            for (MultipartFile f : photo){
+                if(f.getOriginalFilename().equals("")) continue;
+                ojw_PhotoVo v = new ojw_PhotoVo();
+
+                uuid = UUID.randomUUID();
+                sysFile = String.format("%s-%s", uuid, f.getOriginalFilename());
+                File saveFile = new File(ojw_upload+sysFile);
+                try{
+                    f.transferTo(saveFile);
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
+                vo.setPhoto(sysFile);
+                v.setPhoto(sysFile);
+
+                v.setOriPhoto(f.getOriginalFilename());
+                photos.add(v);
+            }
         }
+        if(photos.size() > 0){
+            vo.setPhotos(photos);
+        }
+
+        String msg = ProductDao.product_modify(vo, delFiles);
+        mv = product("");
+        mv.addObject("msg", msg);
+        return mv;
+    }
+
+    @RequestMapping(path="/changeProductPhoto")
+    public String changeProductPhoto(String productCode, String photo){
+        String msg = ProductDao.changeProductPhoto(productCode, photo);
+        return msg;
+    }  
 }

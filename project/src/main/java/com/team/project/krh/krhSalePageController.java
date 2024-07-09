@@ -6,11 +6,14 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 import com.team.project.ojw.ProductVo;
 
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class krhSalePageController {
     @Autowired
     SalePageDao salepageDao;
+    SaleDao saleDao;
+
     //페이징 처리...^^
     @RequestMapping(path="/salepage")
     public ModelAndView salepage(Page page){
@@ -55,5 +58,21 @@ public class krhSalePageController {
         mv.addObject("vo",vo);
         mv.setViewName("krh/salepage_view");
         return mv;
+    }
+
+    /* @PostMapping ("/submit")
+    @ResponseBody*/
+
+    @RequestMapping("/submit")
+    public Map<String,Object> submitForm(SaleVo vo, HttpSession session){
+        System.out.println("여기까지 오나요");
+        Map<String, Object> map=new HashMap<>();
+        String id = (String) session.getAttribute("id");
+        vo.setId(id);
+        map=salepageDao.gumae(vo);
+        boolean isSuccess = (boolean)map.get("isSuccess");
+        map.put("id",id);
+        map.put("isSuccess",isSuccess);
+        return map;
     }
 }

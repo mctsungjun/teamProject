@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+    <div class="myprofile-main">
+        <script>
+            async function modifyFrom() {
+                let obj = await import ("/js/sungIndex.js");
+                obj.modifyFrom();
+            }
+            async function btnGoHome() {
+                let obj = await import ("/js/sungIndex.js");
+                obj.btnGoHome();
+            }
+            async function btnListForm() {
+                let obj = await import ("/js/sungIndex.js");
+                obj.btnListForm();
+            }
+            async function btnMemberOff() {
+                let obj = await import ("/js/sungIndex.js");
+                obj.btnMemberOff();
+            }
+        </script>
+        <div>
+            <div class="mypage-table">
+                <div class="mypage-table-left">아이디</div>
+                <div class="mypage-table-right">[[${vo.id}]]</div>
+            </div>
+            <div class="mypage-table">
+                <div class="mypage-table-left">이름</div>
+                <div class="mypage-table-right">[[${vo.name}]]</div>
+            </div>
+            <div class="mypage-table">
+                <div class="mypage-table-left">연락처</div>
+                <div class="mypage-table-right">[[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</div>
+            </div>
+            <div class="mypage-table">
+                <div class="mypage-table-left">주소</div>
+                <div class="mypage-table-right">[[${vo.roadAddress}]] [[${vo.addressDetail}]]</div>
+            </div>
+            <div class="mypage-table">
+                <div class="mypage-table-left">이메일</div>
+                <div class="mypage-table-right">[[${vo.email}]]@[[${vo.email2}]]</div>
+            </div>
+            <div class="mypage-table">
+                <div class="mypage-table-left">생년월일</div>
+                <div class="mypage-table-right">[[${vo.birthday}]]</div>
+            </div>
+        </div>
+        <div style="margin-top: 30px; display: flex; justify-content: right;">
+            <button type="button" class="purple-text-button-rev text-button-caution" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;" onClick="btnMemberOff();">회원탈퇴</button>
+            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;" onClick="modifyFrom();">프로필 수정</button>
+        </div>
+    </div>
+    <!-- <div class="photoSection">
+        <div class="container mt-5 "> -->
+        
+        <!-- <div class="photo_list row d-flex justify-content-center">
+            <div class="col-md-2 mb-3">
+                <div class="d-flex justify-content-center">
+                    <div class="img-container">
+                        <img class="repre" th:src="@{|upload/${vo.photo}|}">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    <!-- </div>
+    </div> -->
+<!--             
+    <style>
+        .img-container{
+            width: 150px;
+            height: 150px;
+        }
+        .img-container img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+        .photo_list {
+            gap: 5px; /* 이미지 간격을 5px로 설정 */
+        } -->
+    <!-- </style> -->
+    <!-- * 아직 안 쓴 버튼들 * -->
+    <!-- <button type="button" class="btn btn-outline-primary " onClick="btnChangePhoto()" >대표이미지 수정</button>
+    <button type="button" class="btn btn-outline-primary" title="이미지파일을 등록하세요" onClick="regiPhoto()" >이미지등록</button>
+    <button type="button" class="btn btn-outline-primary" onClick="btnGoHome()" >홈</button>
+    <button type="button" class="btn btn-outline-primary" onClick="btnListForm()">목록</button> -->
+    </div>
+</body>
+</html>

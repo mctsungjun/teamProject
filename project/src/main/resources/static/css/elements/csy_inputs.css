@@ -5,6 +5,11 @@
     border-radius: 2px;
     letter-spacing: .1em;
     border: none;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .purple-text-button:hover {
@@ -15,7 +20,7 @@
 
 .purple-text-button-rev { background-color: var(--white); color: var(--purple); }
 .purple-text-button-rev:hover { background-color: var(--purple); color: var(--white); }
-
+.text-button-caution:hover { background-color: red;}
 #loginBtn {
     width:100%;
     margin-bottom: 15px;

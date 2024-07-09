@@ -157,13 +157,35 @@ function noticeView(sno){
     
     let noticeNext = document.querySelector(".noticeNext")
     noticeNext.addEventListener("click",()=>{
-        console.log("다음")
-        noticelist(1,""); // 추후에 이후 공지글로이동
+        $.ajax({
+            url : "/notice/nextNotice",
+            type : "GET",
+            data : {"sno" : sno},
+            success : (resp) => {
+                if(resp){
+                    noticeViewer(sno);
+                }else{
+                    alert("다음 공지사항 글이 없습니다.");
+                }
+            }
+        })
+        // noticelist(1,""); // 추후에 이후 공지글로이동
     })
     let noticePrev = document.querySelector(".noticePrev")
     noticePrev.addEventListener("click",()=>{
-        console.log("이전")
-        noticelist(); // 추후에 이전 공지글로이동
+        $.ajax({
+            url : "/notice/nextNotice",
+            type : "GET",
+            data : {"sno" : sno},
+            success : (resp) => {
+                if(resp){
+                    noticeViewer(sno);
+                }else{
+                    alert("이전 공지사항 글이 없습니다.");
+                }
+            }
+        })
+        // noticelist(); // 추후에 이전 공지글로이동
     })
 }
 // NoticeModify페이지 버튼 관리
