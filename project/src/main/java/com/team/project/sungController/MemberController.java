@@ -38,17 +38,17 @@ import jakarta.servlet.http.HttpSession;
 
 public class MemberController {
     
-   @Autowired
-    private JavaMailSender javaMailSender; 
-   @Autowired
-   MemberDao dao; 
-   @Autowired
-   NaverAPI nApi;
+    @Autowired
+        private JavaMailSender javaMailSender; 
+    @Autowired
+    MemberDao dao; 
+    @Autowired
+    NaverAPI nApi;
 
-   @Autowired
-   KakaoApi kakaoApi;
-   String id;
-   public static String uploadPath= "C:\\Users\\i\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
+    @Autowired
+    KakaoApi kakaoApi;
+    String id;
+    public static String uploadPath= "C:\\Users\\i\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
     
     // 메인화면 보이기
     // @RequestMapping(path="/index")
@@ -58,11 +58,11 @@ public class MemberController {
     //     return mv;
     // }
     @RequestMapping(path="/login")
-public ModelAndView login(){
-    ModelAndView mv = new ModelAndView();
-    mv.setViewName("sung/login");
-    return mv;
-}
+    public ModelAndView login(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("sung/login");
+        return mv;
+    }
 
    // 로그인폼
     @RequestMapping(path="/sung/loginF")
@@ -72,7 +72,7 @@ public ModelAndView login(){
         return mv;
     }
 
-   
+
     //자바스크립트로 받은 로그인정보로 데이타베이스 회원정보확인
     @RequestMapping(path="/sung/login")
     public ResponseEntity<Map<String, Object>> login(@RequestParam("id") String id,@RequestParam("password") String password, HttpSession session){
@@ -80,8 +80,6 @@ public ModelAndView login(){
         Map<String, Object> response = new HashMap<>();
         if (password.length()>=20){
             vo = dao.loginForgot(id,password);
-            
-           
         }else{
 
             vo = dao.login(id,password);
@@ -176,39 +174,71 @@ public ModelAndView login(){
                 mv.setViewName("/sung/detail/detail");
                 
             }
-             // id 값이 null 이거나 공백인 경우 예외 처리합니다.
-        else if( id == null || id.trim().isEmpty()){
-            mv.addObject("logout", "logout");
-            mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
-        }
+            // id 값이 null 이거나 공백인 경우 예외 처리합니다.
+            else if (id == null || id.trim().isEmpty()) {
+                mv.addObject("logout", "logout");
+                mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
+            }
         return mv;
     }
       // 리스트 목록에서 클릭 상세페이지
-      @RequestMapping(path="/sung/view")
-      public ModelAndView view(HttpSession session){
-        String id = (String)session.getAttribute("id");
-        ModelAndView mv = new ModelAndView();
-        String name = dao.getMemberName(id);
-        System.out.println(name);
-        MemberVo vo = dao.detail(id);
-        if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
-          for(PhotoVo pv:vo.getPhotos()){
-              if(pv.photo.contains(vo.getPhoto())){
-                  vo.setPhoto(pv.photo);;
-              }
-          }
-        }
-      System.out.println(vo);
-        mv.addObject("vo", vo);
+    @RequestMapping(path="/sung/view")
+    public ModelAndView view(String id){
+    //     String id = (String)session.getAttribute("id");
+    //     ModelAndView mv = new ModelAndView();
+    //     String name = dao.getMemberName(id);
+    //     System.out.println(name);
+    //     MemberVo vo = dao.detail(id);
+    //     if(vo.getPhoto() != null && !vo.getPhoto().equals(" ")){
+    //         for(PhotoVo pv:vo.getPhotos()){
+    //             if(pv.photo.contains(vo.getPhoto())){
+    //                 vo.setPhoto(pv.photo);
+    //             }
+    //         }
+    //     }
+    // System.out.println(vo);
+    // mv.addObject("vo", vo);
         
-        mv.setViewName("sung/detail");
-        return mv;
-      }
+    // mv.setViewName("sung/list_detail");
+    // return mv;
 
-      
-      //이미지/파일 업로드
-      @RequestMapping(path="/sung/upload")
-      public String fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session, @RequestParam("reprePhoto") String reprePhoto){
+    ModelAndView mv = new ModelAndView();
+    MemberVo vo = new MemberVo();
+    //서버 세션에서 id값 받아오기
+    // dao로 전달
+    
+    // String id = (String)session.getAttribute("id");
+    // System.out.println("id:"  +id);
+    if (id != null && !id.equals("")){
+        // vo = dao.detail(id,name);
+        vo = dao.detail(id);
+        if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+            for(PhotoVo pv:vo.getPhotos()){
+                if(pv.photo.contains(vo.getPhoto())){
+                        vo.setPhoto(pv.photo);;
+                }
+            }
+        }else{
+            PhotoVo defaultPhoto = dao.defaultPhot();
+            vo.setPhoto(defaultPhoto.getPhoto());
+        }
+            System.out.println(vo);
+            mv.addObject("vo", vo);
+            mv.setViewName("sung/list_detail");
+            
+        }
+         // id 값이 null 이거나 공백인 경우 예외 처리합니다.
+    else if( id == null || id.trim().isEmpty()){
+        mv.addObject("logout", "logout");
+        mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
+    }
+    return mv;
+    }
+
+
+    //이미지/파일 업로드
+    @RequestMapping(path="/sung/upload")
+    public String fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session, @RequestParam("reprePhoto") String reprePhoto){
         //ModelAndView mv = new ModelAndView();
         List<PhotoVo> photos = new ArrayList<>();
         MemberVo vo = new MemberVo();
@@ -229,7 +259,7 @@ public ModelAndView login(){
                     e.printStackTrace();
                 }
                 PhotoVo pv = new PhotoVo();
-               
+                
                 pv.setOriPhoto(f.getOriginalFilename());
                 pv.setPhoto(sysFile);
                 photos.add(pv);
@@ -245,7 +275,8 @@ public ModelAndView login(){
         }
         String msg = dao.fileUpload(vo);
         return msg;
-      }
+    }
+    
 // 수정폼/정보가져오기
 @RequestMapping(path="/sung/modify" )
 public ModelAndView updateFrom(HttpSession session){
@@ -339,11 +370,10 @@ public ModelAndView repreChangForm(HttpSession session){
 // 리스트 목록에서 검색
     @RequestMapping(path="/sung/search")
     public ModelAndView search(String findStr){
-        System.out.println("검색어  "+findStr);
+        System.out.println("검색어  " + findStr);
         ModelAndView mv = new ModelAndView();
         List<MemberVo> list = new ArrayList<>();
         list = dao.search(findStr);
-       
         mv.addObject("list", list);
         mv.setViewName("sung/list");
         return mv;

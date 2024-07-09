@@ -107,24 +107,20 @@ export function btnGoHome() {
 }
 
 // 목록으로 이동 (관리자만)
-export function btnListForm() {
-	let managerCode = prompt("관리코드를 입력하세요");
-	if( managerCode !=null && managerCode !=""){
-		$.ajax({
-			url:"/sung/list",
-			type:"GET",
-			data:{"code":managerCode},
-			success:(resp)=>{
-				let temp =$(resp).find(".change");
-				$(".change").html(temp);
-				
-				
-			
-				
-			}
-		})
-	}
-}
+// export function btnListForm() {
+// 	let managerCode = prompt("관리코드를 입력하세요");
+// 	if( managerCode !=null && managerCode !=""){
+// 		$.ajax({
+// 			url:"/sung/list",
+// 			type:"GET",
+// 			data:{"code":managerCode},
+// 			success:(resp)=>{
+// 				let temp =$(resp).find(".change");
+// 				$(".change").html(temp);
+// 			}
+// 		})
+// 	}
+// }
 
 
 				
@@ -135,28 +131,25 @@ export function view(id){
 		type:"POST",
 		data:{"id":id},
 		success:(resp)=>{
-			let temp = $(resp).find(".change");
+			let temp = $(resp).find(".adminDetail");
 			$(".content").html(temp);
 		}
 	})
 }
 // 리스트에서 검색하기
-	
-var search=()=>{
-	let finStr = document.querySelector(".findStr").value;
-		
-		$.ajax({
-			url:"/sung/search",
-			type:"GET",
-			data:{"findStr":finStr},
-			success:(resp)=>{
-				console.log(resp)
-
-				let temp =$(resp).find(".change");
-				$(".change").html(temp);
-			}
-		})
-	}				
+export function admin_search(findStr) {
+	// let finStr = document.querySelector(".findStr").value;
+	$.ajax({
+		url:"/sung/search",
+		type:"GET",
+		data:{"findStr":findStr},
+		success:(resp)=>{
+			console.log(resp)
+			let temp =$(resp).find(".adminPage");
+			$(".content").html(temp);
+		}
+	})
+}				
 
 //회원가입 버튼 클릭됨-----------------------------------------
 export function registerForm() {

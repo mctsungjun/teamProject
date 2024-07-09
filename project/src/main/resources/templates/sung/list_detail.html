@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+</head>
+<body>
+    <div>
+        <div class="adminDetail" style="margin-top:80px;">
+            <script>
+                function toAdminList() {
+                    $.ajax({
+                        url:"/sung/list",
+                        type:"GET",
+                        data:{"code": 'a001'},
+                        success:(resp)=>{
+                            let temp = $(resp).find(".adminPage");
+                            $(".content").html(temp);
+                        }
+                    })
+                }
+            </script>
+            <div style="display:flex; justify-content: space-between; margin-bottom: 40px;">
+                <!-- * 프로필 대표 이미지 부분 * -->
+                <div class="user-profile-block mypage-profile-block no-drag" style="margin-right: 25px;">
+                    <div class="profile-border mypage-profile-border">
+                        <div class="profile-border1 mypage-profile-border3"></div>
+                        <div class="profile-border1 mypage-profile-border1"></div>
+                    </div>
+                    <div class="profile-border1 mypage-profile-border2"></div>
+                    <img class="repre mypage-profile-image" th:src="@{|upload/${vo.photo}|}">
+                    <!-- <img src="https://picsum.photos/200" class="mypage-profile-image" alt="User Profile Image"> -->
+                </div>
+                <!-- * 페이지 제목 * -->
+                <div style="margin-top: 130px; width: 95%; flex-direction: column; display: flex; justify-content: end;">
+                    <h1 class="myPageTitle"
+                        style="width: 100%; margin-bottom: 28px; text-align: right; letter-spacing: 7px; font-size: 50px;">[[${vo.name}]]님의 프로필</h1>
+                        <!-- <div style="display: flex; justify-content: right; margin-top: 56px; margin-right: 10px;">
+                            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;">게시물 조회</button>
+                            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px;">프로필 수정</button>
+                        </div> -->
+                        <div style="width: 100%; display: flex; justify-content: right;">
+                            <div style="width: 90%; text-align: right; margin-top:6px;">
+                                <hr style="border: 0.2px solid var(--purple); filter: blur(6px); margin-bottom: 8px;">
+                            </div>
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: right;">
+                            <div style="width: 100%; text-align: right; margin-top:0px;">
+                                <hr style="border: 1.8px solid var(--purple); filter: blur(6px);">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">아이디</div>
+                    <div class="mypage-table-right">[[${vo.id}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">이름</div>
+                    <div class="mypage-table-right">[[${vo.name}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">연락처</div>
+                    <div class="mypage-table-right">[[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">주소</div>
+                    <div class="mypage-table-right">[[${vo.roadAddress}]] [[${vo.addressDetail}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">이메일</div>
+                    <div class="mypage-table-right">[[${vo.email}]]@[[${vo.email2}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">생년월일</div>
+                    <div class="mypage-table-right">[[${vo.birthday}]]</div>
+                </div>
+            </div>
+            <div style="margin-top: 30px; display: flex; justify-content: right;">
+                <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;" onClick="toAdminList();">목록으로</button>
+            </div>
+        <div style="height: 100px;"></div>
+        </div>
+    </div>
+</body>
+</html>

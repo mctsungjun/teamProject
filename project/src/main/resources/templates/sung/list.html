@@ -15,8 +15,7 @@
             }
 
             async function admin_search(e) {
-                var findStr = e.parentElement.querySelector(".findStr").innerText;
-                alert(findStr);
+                var findStr = e.parentElement.querySelector(".findStr").value;
                 let obj = await import ("/js/sungIndex.js");
                 obj.admin_search(findStr);
             }
