@@ -13,6 +13,7 @@
         or ea like '%${findStr}%'
         or price like '%${findStr}%'
     </select>
+    
     <select id="view" parameterType="Integer" resultType="SaleVo">
         select id, ProductCode, ProductName, price, ea, nal from sale
         where sno=#{_parameter}
@@ -37,11 +38,32 @@
         where nal=#{nal}
     </update>
 
-    <select id="stocksearch" parameterType="String" resultType="StockVo">
+    <select id="stocksearch" parameterType="StockPage" resultType="StockVo">
         select * from stock
         where ProductCode like '%${findStr}%'
         or ProductName like '%${findStr}%'
+        limit #{startNo}, #{listSize}
     </select>
+
+    <select id="StocktotSize" parameterType="String" resultType="Integer">
+        select count(ProductCode) from stock
+        <if test="_parameter != null">
+            where ProductName like '%${_parameter}%'
+            or ProductCode like '%${_parameter}%'
+        </if>
+    </select>
+
+    <!-- 재고 마이너스 -->
+    <select id="selectStockCount" parameterType="String" resultType="Integer">
+        SELECT COUNT(ProductCode)
+        FROM stock
+        WHERE ProductCode = #{productCode}
+    </select>
+
+    <!--판매 내역 삭제-->
+    <delete id="deletesale" parameterType="SaleVo">
+        delete from sale where sno=#{sno}
+    </delete>
 
     <!--재고 그래프-->
     <select id="stockgraph" parameterType="map" resultType="StockVo">
@@ -52,10 +74,12 @@
         select * from product
         order by price asc
     </select>
+
     <select id="salepage_expensive" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by price desc
     </select>
+
     <select id="salepage_new" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by nal desc
@@ -93,4 +117,25 @@
         where productCode=#{productCode}
     </select>
     
+    <!-- 구매 버튼-->
+    <insert id="gumae" parameterType="SaleVo">
+        insert into sale(id,ProductCode, ea, price,ProductName) 
+        values(#{id},#{productCode},#{ea},#{price},#{productName})
+    </insert>
+
+    <!--재고-->
+    <update id="stockminusmodify" parameterType="SaleVo">
+        update stock set ea = ea - #{ea}
+        where ProductCode = #{ProductCode}
+    </update>
+
+    <update id="stockplusmodify" parameterType="PurchaseVo">
+        update stock set ea = ea + #{ea}
+        where ProductCode = #{ProductCode}
+    </update> 
+
+    <insert id="stockplusnew" parameterType="PurchaseVo">
+        insert into stock(ProductCode,ProductName,ea)
+        values(productCode,productName,ea);
+    </insert>
 </mapper>

@@ -213,7 +213,7 @@ h3{
     margin-right: 52px;
     text-align: right;
 }
-.product_each{
+.product_list li{
     list-style: none;
     width: 200px;
     display: inline-block;

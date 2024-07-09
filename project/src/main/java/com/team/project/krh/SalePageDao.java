@@ -2,7 +2,6 @@ package com.team.project.krh;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
-
 import com.team.project.mybatis.MyFactory;
 import com.team.project.ojw.ProductVo;
 import com.team.project.ojw.ojw_PhotoVo;
@@ -62,5 +61,28 @@ public class SalePageDao {
         vo.setPhotos(photos);
         session.close();
         return vo;
+    }
+
+    public Map<String, Object> gumae(SaleVo vo){
+        Map<String,Object>map=new HashMap<>();
+        boolean isSuccess = false;
+        String id=vo.getId();
+        session = new MyFactory().getSession();
+        int cnt = session.insert("salestock.gumae", vo);
+        if(cnt>0){
+            int cnt2 = session.update("salestock.stockminusmodify",vo);
+            if(cnt2>0){
+                session.commit();
+                isSuccess = true;
+            }else{
+                session.rollback();
+            }
+        }else{
+            session.rollback();
+        }
+        session.close();
+        map.put("isSuccess",isSuccess);
+        map.put("id",id);
+        return map;
     }
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+</head>
+<body>
+    <div>
+        <div class="myProfilePage" style="margin-top:80px;">
+            <script>
+                async function modifyFrom() {
+                    let obj = await import ("/js/sungIndex.js");
+                    obj.modifyFrom();
+                }
+                // * 이 부분 수정해서 대표 이미지 변경
+                async function btnChangePhoto() {
+                    let obj = await import ("/js/sungIndex.js");
+                    obj.btnChangePhoto();
+                }
+                async function regiPhoto() {
+                    let obj = await import ("/js/sungIndex.js");
+                    obj.regiPhoto();
+                }
+                async function btnGoHome() {
+                    let obj = await import ("/js/sungIndex.js");
+                    obj.btnGoHome();
+                }
+                async function btnListForm() {
+                    let obj = await import ("/js/sungIndex.js");
+                    obj.btnListForm();
+                }
+                async function btnMemberOff() {
+                    let obj = await import ("/js/sungIndex.js");
+                    obj.btnMemberOff();
+                }
+            </script>
+            <div style="display:flex; justify-content: space-between; margin-bottom: 40px;">
+                <!-- * 프로필 대표 이미지 부분 * -->
+                <div class="user-profile-block mypage-profile-block no-drag" style="margin-right: 25px;" onclick="btnChangePhoto();">
+                    <div class="profile-border mypage-profile-border">
+                        <div class="profile-border1 mypage-profile-border3"></div>
+                        <div class="profile-border1 mypage-profile-border1"></div>
+                    </div>
+                    <div class="profile-border1 mypage-profile-border2"></div>
+                    <img class="repre mypage-profile-image" th:src="@{|upload/${vo.photo}|}">
+                    <!-- <img src="https://picsum.photos/200" class="mypage-profile-image" alt="User Profile Image"> -->
+                </div>
+                <!-- * 페이지 제목 * -->
+                <div style="margin-top: 130px; width: 95%; flex-direction: column; display: flex; justify-content: end;">
+                    <h1 class="myPageTitle"
+                        style="width: 100%; margin-bottom: 28px; text-align: right; letter-spacing: 7px; font-size: 50px;">환영합니다, [[${vo.name}]]님!</h1>
+                        <!-- <div style="display: flex; justify-content: right; margin-top: 56px; margin-right: 10px;">
+                            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px; margin-right: 20px;">게시물 조회</button>
+                            <button type="button" class="purple-text-button" style="letter-spacing: 4px; width: 140px; height: 40px;">프로필 수정</button>
+                        </div> -->
+                        <div style="width: 100%; display: flex; justify-content: right;">
+                            <div style="width: 90%; text-align: right; margin-top:6px;">
+                                <hr style="border: 0.2px solid var(--purple); filter: blur(6px); margin-bottom: 8px;">
+                            </div>
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: right;">
+                            <div style="width: 100%; text-align: right; margin-top:0px;">
+                                <hr style="border: 1.8px solid var(--purple); filter: blur(6px);">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        <div class="myprofile-detail-content"></div>
+        <div style="height: 100px;"></div>
+        </div>
+    </div>
+</body>
+</html>

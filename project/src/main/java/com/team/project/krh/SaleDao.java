@@ -62,4 +62,21 @@ public class SaleDao {
         session.close();
         return msg;
     }
+
+    public String delete(Integer sno){
+        session=new MyFactory().getSession();
+
+        int cnt=session.delete("salestock.deletesale", sno);
+        String msg="";
+        if(cnt>0){
+            msg="삭제가 완료됐습니다.";
+            session.commit();
+        }else{
+            msg="삭제 중 오류가 발생하였습니다.";
+            session.rollback();
+        }
+        System.out.println(msg);
+        session.close();
+        return msg;
+    }
 }

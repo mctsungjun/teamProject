@@ -10,6 +10,21 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
     })
 }
 
+// * 제품관리 + 재고 정보 관리
+document.querySelector("#navBtnToStock").onclick = async () => {
+    let obj = await import ("/js/krh_stock.js");
+    obj.stock();
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        data:{"findStr":findStr,"nowPage":nowPage},
+        success:async (resp)=>{
+            let temp=$(resp).find(".stockpage");
+            $(".content").html(temp);
+        }
+    })
+}
+ 
 // * 제품 관리
 document.querySelector("#navBtnToProduct").onclick = () => { 
     $.ajax({
@@ -23,8 +38,6 @@ document.querySelector("#navBtnToProduct").onclick = () => {
     })
 }
 
-// * 재고 정보 관리
-document.querySelector("#navBtnToStock").onclick = () => { }
 
 
 // * 구매 정보 관리
@@ -53,16 +66,15 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
     })
 }
 
-
-// * 판매정보관리
-document.querySelector("#navBtnToSellInfo").onclick = () => { 
+// * 쇼핑몰
+document.querySelector("#navBtnToShopping").onclick = () => {
     $.ajax({
-        url:"/sale",
+        url:"/salepage",
         type:"GET",
         success:(resp)=>{
-            let temp=$(resp).find(".big");
-            $('.content').html(temp);
-            search();
+            let temp=$(resp).find(".salepage")
+            $(".content").html(temp);
+            salepage();
         }
     })
 }
@@ -83,7 +95,17 @@ document.querySelector("#navBtnToBoard").onclick = () => {
 }
 
 // * ADMIN 페이지, 회원 관리
-document.querySelector("#navBtnToAdmin").onclick = () => { }
+document.querySelector("#navBtnToAdmin").onclick = () => { 
+    $.ajax({
+        url:"/sung/list",
+        type:"GET",
+        data:{"code": 'a001'},
+        success:(resp)=>{
+            let temp = $(resp).find(".adminPage");
+            $(".content").html(temp);
+        }
+    })
+}
 
 // * 고객센터: Q & A
 document.querySelector("#navBtnToCS").onclick = () => {
@@ -100,13 +122,21 @@ document.querySelector("#navBtnToCS").onclick = () => {
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => {
     $.ajax({
-		url:"/sung/detail",
-		type:"GET",
-		success:(resp)=>{
-			let temp = $(resp).find(".myProfilePage");
-			$(".content").html(temp);
-		}
-	})
+        url:"/sung/detail",
+        type:"GET",
+        success:(resp)=>{
+            let temp = $(resp).find(".myProfilePage");
+            $(".content").html(temp);
+            $.ajax({
+                url: "/sung/detail_main",
+                type: "GET",
+                success:(resp) => {
+                    let temp = $(resp).find(".myprofile-main");
+                    $(".myprofile-detail-content").html(temp);
+                }
+            })
+        }
+    })
 }
 
 // * 로그아웃
@@ -126,6 +156,7 @@ document.querySelector("#navBtnToAnnouncement").onclick = () => {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
+        data : {"nowPage": 1, "findStr": ""},
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
             $(".content").html(temp)

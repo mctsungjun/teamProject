@@ -9,15 +9,18 @@ function salepage(){
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".salepage").html(temp);
-            console.log(temp);
             salepagesearch();
             loadItem(findStr,nowPage);
+            
         }
     })
 }
 salepage();
+
 export function salepagesearch(){
     let btnSearch = document.querySelector(".btnSearch");
+    let findStr="";
+    loadItem(findStr,nowPage);
     btnSearch.addEventListener('click',()=>{
         let findStr=$(".findStr").val();
         sessionStorage.setItem("findStr",findStr);
@@ -33,13 +36,14 @@ export function salepagesearch(){
                 console.log(resp);
                 let temp=$(resp).find(".salepage_view")
                 $(".salepagelist").html(temp);
+                getnumber();
+                gumae();
             }
         })
     }
     return {salepage_view}
-
 }
-
+salepagesearch();
 
 function loadItem(findStr,nowPage){
     console.log("loadItem.....", findStr, nowPage)
@@ -72,4 +76,40 @@ function loadItem(findStr,nowPage){
             })
         }
     })
+}
+
+function getnumber(){
+    document.getElementById('getNumberButton').onclick = function() {
+        console.log("바보");
+        var inputElement = document.getElementById('quantity');
+        var inputValue = inputElement.value;
+        var numberValue = parseFloat(inputValue);
+        var voPrice = parseFloat(document.getElementById('voPrice').textContent);
+        if (!isNaN(numberValue)) {
+            var totalPrice = numberValue * voPrice;
+            document.getElementById('pricecolor').textContent = totalPrice;
+        } else {
+            document.getElementById('pricecolor').textContent = "유효한 숫자를 입력하세요.";
+        }
+    };
+}
+
+function gumae(){
+    const sessionId=/*[[${session.getId()}]]*/'';
+    document.getElementById('submitFormButton').addEventListener('click', function() {
+        console.log("바보");
+        var formData = new FormData(document.getElementById('gumaeForm'));
+        formData.set('sessionId',sessionId);
+        $.ajax ({
+            url : "/submit",
+            type: 'POST',
+            contentType:false,
+            processData:false,
+            data: formData,
+            success: (resp) => {
+                alert("구매가 완료되었습니다.");
+                $(".stockitems").reload();
+            }
+        })
+    });
 }
