@@ -47,11 +47,7 @@ function purchase_view(no){
         success:(resp)=>{
             let temp=$(resp).find(".purchase_view");
             $('.purchase').html(temp);
-<<<<<<< HEAD:project/src/main/resources/static/js/ojw_purchase.js
             purchaseViewEvent(no);
-=======
-            viewEvent(no);
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/resources/static/js/ojw_index.js
         }
     })
     
@@ -65,10 +61,7 @@ function purchase_list(no){
         success:(resp)=>{
             let temp=$(resp).find(".purchase_list");
             $('.purchase').html(temp);
-<<<<<<< HEAD:project/src/main/resources/static/js/ojw_purchase.js
             purchaseListEvent(no);
-=======
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/resources/static/js/ojw_index.js
         }
     })
 }
@@ -76,7 +69,6 @@ function purchase_list(no){
 function purchaseListEvent(no){
     let btnList = document.querySelector(".btnList");
 
-<<<<<<< HEAD:project/src/main/resources/static/js/ojw_purchase.js
     btnList.addEventListener('click',()=>{
         purchase();
     })
@@ -84,10 +76,6 @@ function purchaseListEvent(no){
 
 
 function purchaseViewEvent(no){
-=======
-
-function viewEvent(no){
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/resources/static/js/ojw_index.js
     let btnModify = document.querySelector(".btnModify");
     let btnDelete = document.querySelector(".btnDelete");
     let btnList = document.querySelector(".btnList");
@@ -110,20 +98,12 @@ function viewEvent(no){
     })
 }
 
-<<<<<<< HEAD:project/src/main/resources/static/js/ojw_purchase.js
 function purchase_modify(no){
-=======
-let purchase_modify=(no)=>{
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/resources/static/js/ojw_index.js
     btnModifyR = document.querySelector('.btnModifyR');
     btnList = document.querySelector('.btnList');
 
     btnList.addEventListener('click',()=>{
-<<<<<<< HEAD:project/src/main/resources/static/js/ojw_purchase.js
         purchase();
-=======
-        purchase_list();
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/resources/static/js/ojw_index.js
     })
 
     btnModifyR.addEventListener("click",()=>{
@@ -131,11 +111,7 @@ let purchase_modify=(no)=>{
 
         let frmData = new FormData(frm);
         $.ajax({
-<<<<<<< HEAD:project/src/main/resources/static/js/ojw_purchase.js
             url : "/purchase_modifyR", //Controller의 path
-=======
-            url : "/purchase_modifyR", //Controll의 path
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/resources/static/js/ojw_index.js
             type : "POST",
             contentType : false,
             processData : false,
@@ -145,9 +121,6 @@ let purchase_modify=(no)=>{
                 purchase();
             }
         })
-    })
-    btnList.addEventListener('click',()=>{
-        purchase_view();
     })
 }
 

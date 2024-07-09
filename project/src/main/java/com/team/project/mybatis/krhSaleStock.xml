@@ -13,7 +13,6 @@
         or ea like '%${findStr}%'
         or price like '%${findStr}%'
     </select>
-    
     <select id="view" parameterType="Integer" resultType="SaleVo">
         select id, ProductCode, ProductName, price, ea, nal from sale
         where sno=#{_parameter}
@@ -27,23 +26,19 @@
         FROM sale s
         INNER JOIN users u ON s.id = u.id
         where s.sno=#{_parameter};
-<<<<<<< HEAD
     </select>
 
     <!--지언언니가 테이블 만들면 만들기!-->
     <select id="saleviewphotos" parameterType="Integer" resultType="ProductPhotoVo">
         select no,productCode, productName, photo, oriPhoto, flag, nal from photo
         where no=#{_parameter}
-=======
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     </select>
-
+    
     <select id="select" parameterType="Integer" resultType="SaleVo">
         select * from sale where sno=#{_parameter}
     </select>
     
     <update id="update" parameterType="SaleVo">
-<<<<<<< HEAD
         update sale set ea=#{ea}, amt=#{ea}*#{price}
         where nal=#{nal}
     </update>
@@ -54,65 +49,21 @@
         or ProductName like '%${findStr}%'
     </select>
 
-=======
-        update sale set ea=#{ea}
-        where nal=#{nal}
-    </update>
-
-    <select id="stocksearch" parameterType="StockPage" resultType="StockVo">
-        select * from stock
-        where ProductCode like '%${findStr}%'
-        or ProductName like '%${findStr}%'
-        limit #{startNo}, #{listSize}
-    </select>
-
-    <select id="StocktotSize" parameterType="String" resultType="Integer">
-        select count(ProductCode) from stock
-        <if test="_parameter != null">
-            where ProductName like '%${_parameter}%'
-            or ProductCode like '%${_parameter}%'
-        </if>
-    </select>
-
-    <!-- 재고 마이너스 -->
-    <select id="selectStockCount" parameterType="String" resultType="Integer">
-        SELECT COUNT(ProductCode)
-        FROM stock
-        WHERE ProductCode = #{productCode}
-    </select>
-
-    <!-- Update stock based on the condition -->
-    <update id="stockminusmodify" parameterType="SaleVo">
-        UPDATE stock
-        SET ea = ea - #{ea}
-        WHERE ProductCode = #{productCode}
-    </update>
-
-    <!--판매 내역 삭제-->
-    <delete id="deletesale" parameterType="SaleVo">
-        delete from sale where sno=#{sno}
-    </delete>
-
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     <!--재고 그래프-->
     <select id="stockgraph" parameterType="map" resultType="StockVo">
         select * from stock
     </select>
 
-<<<<<<< HEAD
     <!--판매 페이지 정렬 검색-->
     <select id="salepagesearch" parameterType="String" resultType="ProductVo">
         select * from product
         where productName like '%${findStr}'
         or spec like '%${findStr}'
     </select>
-=======
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     <select id="salepage_cheap" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by price asc
     </select>
-<<<<<<< HEAD
     <select id="salepage_expensive" resultType="ProductVo">
         select * from product
         order by price desc
@@ -121,52 +72,4 @@
         select * from product
         order by nal desc
     </select>
-=======
-    <select id="salepage_expensive" parameterType="ProductVo" resultType="ProductVo">
-        select * from product
-        order by price desc
-    </select>
-    <select id="salepage_new" parameterType="ProductVo" resultType="ProductVo">
-        select * from product
-        order by nal desc
-    </select>
-
-    <!--판매 페이지 리스트 (페이징 처리)-->
-    <select id="totSize" parameterType="String" resultType="Integer">
-        select count(no) from product
-        where productName   like '%${_parameter}%'
-        or    spec    like '%${_parameter}%'
-    </select>
-
-    <select id="salepagesearch" parameterType="Page" resultType="ProductVo">
-        select * from product
-        where productName like '%${findStr}%'
-        or spec like '%${findStr}%'
-        limit #{startNo}, #{listSize}
-    </select>
-
-    <select id="salepagelist" parameterType="Page" resultType="ProductVo">
-        select * from product
-        where productName   like '%${findStr}%'
-        or    spec       like '%${findStr}%'
-        order by nal desc
-        limit #{startNo}, #{listSize}
-    </select>
-
-    <!--판매 상세보기-->
-    <select id="salepage_view" parameterType="String" resultType="ProductVo">
-        select * from product
-        where productCode=#{productCode}
-    </select>
-    <select id="salepage_photos" parameterType="String" resultType="ojw_PhotoVo">
-        select photo, oriPhoto from product_photos
-        where productCode=#{productCode}
-    </select>
-    
-    <!-- 구매 버튼-->
-    <insert id="gumae" parameterType="SaleVo">
-        insert into sale(id,ProductCode, ea, price,ProductName) 
-        values(#{id},#{productCode},#{ea},#{price},#{productName})
-    </insert>
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 </mapper>

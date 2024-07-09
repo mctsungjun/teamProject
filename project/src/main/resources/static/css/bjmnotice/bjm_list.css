@@ -21,9 +21,6 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
 }
-.findStr {
-    color : black;
-}
 .frmSearch {
     display: flex;
     justify-content: center;
@@ -78,12 +75,16 @@ body {
     justify-content: center;
     margin-top: 20px;
 }
-.footer th:block {
+.footer ul {
     display: flex;
     padding: 0;
 }
-.footer span {
+.footer ul li {
+    list-style: none;
     margin: 0 5px;
+}
+.footer ul li a {
+    text-decoration: none;
     color: #007BFF;
 }
 button {

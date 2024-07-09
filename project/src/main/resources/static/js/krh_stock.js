@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function stock(){
     let findStr="";
     if(sessionStorage.getItem("findStr")!=null){
@@ -11,27 +10,10 @@ function stock(){
             let temp=$(resp).find(".stock");
             $(".stock").html(temp);
             search();
-=======
-let nowPage=1;
-
-export function stock(){
-    let findStr="";
-    $.ajax({
-        url:"/stock",
-        type:"GET",
-        // data:{"findStr":findStr,"nowPage":nowPage},
-        data:{"findStr":findStr},
-        success:(resp)=>{
-            let temp=$(resp).find(".stockpage");
-            $(".content").html(temp);
-            stockloadItem(findStr,nowPage);
-            stocksearch();        
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         }
     })
 }
 
-<<<<<<< HEAD
 function search(){
     let btnSearch = document.querySelector(".btnSearch");
     let findStr=sessionStorage.getItem(".findStr");
@@ -49,67 +31,15 @@ function search(){
             success:(resp)=>{
                 let temp=$(resp).find(".stockitems");
                 $(".stockitems").html(temp);
-=======
-function stocksearch(){
-    let btnSearch = document.querySelector(".btnSearch");
-    let findStr="";
-    stockloadItem(findStr,nowPage);
-    btnSearch.addEventListener('click',()=>{
-        findStr=$(".findStr").val();
-        sessionStorage.setItem("findStr",findStr);
-        $.ajax({
-            url:"/stock",
-            type:'GET',
-            data:{"findStr":findStr, "nowPage":nowPage},
-            success:(resp)=>{
-                let temp=$(resp).find(".stockitems");
-                $(".stockitems").html(temp);
-                stockloadItem(findStr,nowPage);
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
             }
         })
     })
 }
-<<<<<<< HEAD
 search();
 
 $(document).ready(function(){
     graph();
 });
-=======
-// stocksearch();
-
-//페이징
-function stockloadItem(findStr,nowPage){
-    graph();
-    $.ajax({
-        url:"/stock",
-        type:"GET",
-        data:{"findStr":findStr,"nowPage":nowPage},
-        success:(resp)=>{
-            let temp=$(resp).find(".stocklist");
-            $(".stocklist").html(temp);
-            sessionStorage.setItem("stockNowPage",nowPage);
-            $(".btnPrevEnable").on("click",()=>{
-                let findStr=$(".findStr").val();
-                if(sessionStorage.getItem("stockNowPage")!=null){
-                    nowPage=sessionStorage.getItem("stockNowPage");
-                    if(nowPage>1) nowPage--;
-                }
-                stockloadItem(findStr,nowPage);
-            })
-            $(".btnNextEnable").on("click", ()=>{
-                let findStr = $(".findStr").val();
-                if(sessionStorage.getItem("stockNowPage") != null){
-                    nowPage = sessionStorage.getItem("stockNowPage");
-                    nowPage++;               
-                }
-                stockloadItem(findStr, nowPage);
-            })
-        }
-    })
-}
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 
 $.ajax({
     url: "/stockgraph",
@@ -145,11 +75,7 @@ function graph(){
                     datasets: [
                         {
                         label: "현 재고",
-<<<<<<< HEAD
                         backgroundColor: ['plum','skyblue','yellow','orange','pink','yellowgreen','purple'],
-=======
-                        backgroundColor: "#8753fb",
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
                         data:resp.y
                         }
                     ]
@@ -159,10 +85,6 @@ function graph(){
                     title: {
                         display: true,
                         text: '제품별 재고 현황'
-<<<<<<< HEAD
-=======
-                        
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
                     },
                     scales: {
                         yAxes: [{

@@ -7,10 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 public class MyFactory {
     public SqlSession session;
     

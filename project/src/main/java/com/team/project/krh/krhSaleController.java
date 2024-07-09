@@ -68,13 +68,4 @@ public class krhSaleController {
         mv.setViewName("krh/sale_list");
         return mv;
     }
-<<<<<<< HEAD:project/src/main/java/com/team/project/krh/krhSaleController.java
-=======
-
-    @RequestMapping(path="deleteR")
-    public String delete(Integer sno){
-        String msg=saleDao.delete(sno);
-        return msg;
-    }
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac:project/src/main/java/com/team/project/krh/krhSaleStockController.java
 }

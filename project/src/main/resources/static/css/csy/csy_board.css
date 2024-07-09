@@ -144,10 +144,10 @@
     margin-bottom: 5px;
 }
 
-/* .board-detail-text-div .board-detail-comment-nickname:hover {
+.board-detail-text-div .board-detail-comment-nickname:hover {
     color: var(--purple);
     cursor: pointer;
-} */
+}
 
 .board-detail-comment-buttons {
     display: inline-block;

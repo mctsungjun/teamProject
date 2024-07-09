@@ -38,19 +38,6 @@ import jakarta.servlet.http.HttpSession;
 
 public class MemberController {
     
-<<<<<<< HEAD
-    @Autowired
-        private JavaMailSender javaMailSender; 
-    @Autowired
-    MemberDao dao; 
-    @Autowired
-    NaverAPI nApi;
-
-    @Autowired
-    KakaoApi kakaoApi;
-    String id;
-    public static String uploadPath= "C:\\Users\\i\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
-=======
    @Autowired
     private JavaMailSender javaMailSender; 
    @Autowired
@@ -61,8 +48,7 @@ public class MemberController {
    @Autowired
    KakaoApi kakaoApi;
    String id;
-   public static String uploadPath= "C:\\Users\\i\\teamProject\\teamProject-csy\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
+   public static String uploadPath= "C:\\Users\\i\\teamProject\\teamProject-csy\\teamProject-csy\\project\\src\\main\\resources\\static\\upload\\";
     
     // 메인화면 보이기
     // @RequestMapping(path="/index")
@@ -72,11 +58,11 @@ public class MemberController {
     //     return mv;
     // }
     @RequestMapping(path="/login")
-    public ModelAndView login(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("sung/login");
-        return mv;
-    }
+public ModelAndView login(){
+    ModelAndView mv = new ModelAndView();
+    mv.setViewName("sung/login");
+    return mv;
+}
 
    // 로그인폼
     @RequestMapping(path="/sung/loginF")
@@ -86,7 +72,7 @@ public class MemberController {
         return mv;
     }
 
-
+   
     //자바스크립트로 받은 로그인정보로 데이타베이스 회원정보확인
     @RequestMapping(path="/sung/login")
     public ResponseEntity<Map<String, Object>> login(@RequestParam("id") String id,@RequestParam("password") String password, HttpSession session){
@@ -94,11 +80,8 @@ public class MemberController {
         Map<String, Object> response = new HashMap<>();
         if (password.length()>=20){
             vo = dao.loginForgot(id,password);
-<<<<<<< HEAD
-=======
             
            
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         }else{
 
             vo = dao.login(id,password);
@@ -123,13 +106,6 @@ public class MemberController {
         System.out.println("로그아웃");
         session.setAttribute("id", null);
         session.setAttribute("name", null);
-<<<<<<< HEAD
-    }
-
-    // CSY ADDED:
-    @RequestMapping(path="/sung/detail_main")
-    public ModelAndView detailMain(HttpSession session) {
-=======
     }
 
     // CSY ADDED:
@@ -172,23 +148,16 @@ public class MemberController {
       //상세페이지로
     @RequestMapping(path="/sung/detail")
     public ModelAndView detail(HttpSession session){
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         ModelAndView mv = new ModelAndView();
         MemberVo vo = new MemberVo();
         //서버 세션에서 id값 받아오기
         // dao로 전달
         
         String id = (String)session.getAttribute("id");
-<<<<<<< HEAD
-        // System.out.println("id:"  +id);
-        if( id != null && !id.equals("")){
-            // vo = dao.detail(id,name);
-=======
         String name = (String)session.getAttribute("name");
         // System.out.println("id:"  +id);
         if( id != null && !id.equals("")){
 
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
             vo = dao.detail(id);
             if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
                 for(PhotoVo pv:vo.getPhotos()){
@@ -204,11 +173,7 @@ public class MemberController {
                 
                 System.out.println(vo);
                 mv.addObject("vo", vo);
-<<<<<<< HEAD
-                mv.setViewName("/sung/detail/detail_main");
-=======
                 mv.setViewName("/sung/detail/detail");
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
                 
             }
              // id 값이 null 이거나 공백인 경우 예외 처리합니다.
@@ -218,15 +183,6 @@ public class MemberController {
         }
         return mv;
     }
-<<<<<<< HEAD
-      //상세페이지로
-    @RequestMapping(path="/sung/detail")
-    public ModelAndView detail(HttpSession session){
-        ModelAndView mv = new ModelAndView();
-        MemberVo vo = new MemberVo();
-        //서버 세션에서 id값 받아오기
-        // dao로 전달
-=======
       // 리스트 목록에서 클릭 상세페이지
       @RequestMapping(path="/sung/view")
       public ModelAndView view(HttpSession session){
@@ -244,99 +200,11 @@ public class MemberController {
         }
       System.out.println(vo);
         mv.addObject("vo", vo);
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         
-        String id = (String)session.getAttribute("id");
-        String name = (String)session.getAttribute("name");
-        // System.out.println("id:"  +id);
-        if( id != null && !id.equals("")){
-
-            vo = dao.detail(id);
-            if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
-                for(PhotoVo pv:vo.getPhotos()){
-                    if(pv.photo.contains(vo.getPhoto())){
-                            vo.setPhoto(pv.photo);;
-                    }
-                }
-            }else{
-                PhotoVo defaultPhoto = dao.defaultPhot();
-                vo.setPhoto(defaultPhoto.getPhoto());
-            }
-            
-                
-                System.out.println(vo);
-                mv.addObject("vo", vo);
-                mv.setViewName("/sung/detail/detail");
-                
-            }
-            // id 값이 null 이거나 공백인 경우 예외 처리합니다.
-            else if (id == null || id.trim().isEmpty()) {
-                mv.addObject("logout", "logout");
-                mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
-            }
+        mv.setViewName("sung/detail");
         return mv;
-    }
-      // 리스트 목록에서 클릭 상세페이지
-    @RequestMapping(path="/sung/view")
-    public ModelAndView view(String id){
-    //     String id = (String)session.getAttribute("id");
-    //     ModelAndView mv = new ModelAndView();
-    //     String name = dao.getMemberName(id);
-    //     System.out.println(name);
-    //     MemberVo vo = dao.detail(id);
-    //     if(vo.getPhoto() != null && !vo.getPhoto().equals(" ")){
-    //         for(PhotoVo pv:vo.getPhotos()){
-    //             if(pv.photo.contains(vo.getPhoto())){
-    //                 vo.setPhoto(pv.photo);
-    //             }
-    //         }
-    //     }
-    // System.out.println(vo);
-    // mv.addObject("vo", vo);
-        
-    // mv.setViewName("sung/list_detail");
-    // return mv;
+      }
 
-<<<<<<< HEAD
-    ModelAndView mv = new ModelAndView();
-    MemberVo vo = new MemberVo();
-    //서버 세션에서 id값 받아오기
-    // dao로 전달
-    
-    // String id = (String)session.getAttribute("id");
-    // System.out.println("id:"  +id);
-    if (id != null && !id.equals("")){
-        // vo = dao.detail(id,name);
-        vo = dao.detail(id);
-        if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
-            for(PhotoVo pv:vo.getPhotos()){
-                if(pv.photo.contains(vo.getPhoto())){
-                        vo.setPhoto(pv.photo);;
-                }
-            }
-        }else{
-            PhotoVo defaultPhoto = dao.defaultPhot();
-            vo.setPhoto(defaultPhoto.getPhoto());
-        }
-            System.out.println(vo);
-            mv.addObject("vo", vo);
-            mv.setViewName("sung/list_detail");
-            
-        }
-         // id 값이 null 이거나 공백인 경우 예외 처리합니다.
-    else if( id == null || id.trim().isEmpty()){
-        mv.addObject("logout", "logout");
-        mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
-    }
-    return mv;
-    }
-
-
-    //이미지/파일 업로드
-    @RequestMapping(path="/sung/upload")
-    public String fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session, @RequestParam("reprePhoto") String reprePhoto){
-        //ModelAndView mv = new ModelAndView();
-=======
       //대표이미지폼
       @RequestMapping(path="/sung/changeFrom")
       public ModelAndView changeFrom(){
@@ -348,7 +216,6 @@ public class MemberController {
       @RequestMapping(path="/sung/upload")
       public ModelAndView fileUpload(@RequestParam("files") MultipartFile[] photo, HttpSession session ){
        ModelAndView mv = new ModelAndView();
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         List<PhotoVo> photos = new ArrayList<>();
         MemberVo vo = new MemberVo();
         if (photo != null){
@@ -368,7 +235,7 @@ public class MemberController {
                     e.printStackTrace();
                 }
                 PhotoVo pv = new PhotoVo();
-                
+               
                 pv.setOriPhoto(f.getOriginalFilename());
                 pv.setPhoto(sysFile);
                 photos.add(pv);
@@ -385,14 +252,8 @@ public class MemberController {
             }
         }
         String msg = dao.fileUpload(vo);
-<<<<<<< HEAD
-        return msg;
-    }
-    
-=======
         return mv;
       }
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 // 수정폼/정보가져오기
 @RequestMapping(path="/sung/modify" )
 public ModelAndView updateFrom(HttpSession session){
@@ -407,52 +268,11 @@ public ModelAndView updateFrom(HttpSession session){
 
 // 수정정보받아서 
 @RequestMapping(path="/sung/updateR")
-<<<<<<< HEAD
-public String updateR(
-=======
 public String updateR(HttpSession session,
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     // @RequestParam("files") List<MultipartFile> photo,
     // String[] delFiles,
     // @ModelAttribute 
     MemberVo vo){
-<<<<<<< HEAD
-    // List<PhotoVo> photos = new ArrayList<>();
-    vo.setPassword(PasswordHash.hashPassword(vo.getPassword()));
-    System.out.println(vo.getPassword());
-    String[] delFiles = null;
-    System.out.println(vo);
-
-    // UUID uuid = null;
-    // String sysFile = null;
-    // if(photo !=null && photo.size()>0){
-    //     for(MultipartFile f : photo){
-    //         if(f.getOriginalFilename().equals("")){
-    //             continue;
-    //         }
-    //         PhotoVo v = new PhotoVo();
-    //         uuid = UUID.randomUUID();
-    //         sysFile = String.format("%s-%s", uuid,f.getOriginalFilename());
-
-    //         File saveFile = new File(uploadPath+sysFile);
-    //         try{
-    //             f.transferTo(saveFile);
-    //         }catch(Exception e){
-    //             e.printStackTrace();
-    //         }
-
-    //         v.setPhoto(sysFile);
-    //         v.setOriPhoto(f.getOriginalFilename());
-    //         photos.add(v);
-    //     }
-    //     if (photos.size()> 0){
-    //         vo.setPhotos(photos);
-    //     }
-    // }
-    
-        String msg = dao.modify(vo, delFiles);
-        return msg;
-=======
         String msg = "";
         String id = (String)session.getAttribute("id");
        
@@ -471,7 +291,6 @@ public String updateR(HttpSession session,
         
     }
     return msg;
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     }
   
     
@@ -544,10 +363,11 @@ public ModelAndView repreChangForm(HttpSession session){
 // 리스트 목록에서 검색
     @RequestMapping(path="/sung/search")
     public ModelAndView search(String findStr){
-        System.out.println("검색어  " + findStr);
+        System.out.println("검색어  "+findStr);
         ModelAndView mv = new ModelAndView();
         List<MemberVo> list = new ArrayList<>();
         list = dao.search(findStr);
+       
         mv.addObject("list", list);
         mv.setViewName("sung/list");
         return mv;

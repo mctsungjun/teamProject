@@ -225,8 +225,6 @@ public String getMemberName(String id){
             // }
             session.commit();
             session.close();
-<<<<<<< HEAD
-=======
         }
         return msg;
     }
@@ -241,7 +239,6 @@ public String getMemberName(String id){
        
             session.commit();
             session.close();
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         }
         return msg;
     }

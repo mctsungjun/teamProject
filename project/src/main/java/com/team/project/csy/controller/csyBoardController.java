@@ -17,11 +17,6 @@ import com.team.project.csy.CsyBoardLikesVo;
 import com.team.project.csy.CsyBoardListPageVo;
 import com.team.project.csy.CsyBoardVo;
 
-<<<<<<< HEAD
-import jakarta.servlet.http.HttpSession;
-
-=======
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 @RestController
 public class csyBoardController {
     @Autowired
@@ -54,11 +49,10 @@ public class csyBoardController {
     }
 
     @RequestMapping(path="/board/modify")
-    public ModelAndView modifyPost(String sno, HttpSession session) {
+    public ModelAndView modifyPost(String sno) {
         ModelAndView mv = new ModelAndView();
-        String id = (String) session.getAttribute("id");
         
-        Map<String, Object> map = BoardDao.detail(sno, id);
+        Map<String, Object> map = BoardDao.detail(sno);
         mv.addObject("vo", map.get("boardVo"));
         mv.addObject("commentList", map.get("commentList"));
 
@@ -67,41 +61,37 @@ public class csyBoardController {
     }
 
     @RequestMapping(path="/board/delete")
-    public String postDelete(String sno, HttpSession session) {
-        String id = (String) session.getAttribute("id");
-        String msg = BoardDao.delete(sno, id);
+    public String postDelete(String sno) {
+        String msg = BoardDao.delete(sno);
         return msg;
     }
 
     @RequestMapping(path="/board/detail")
-    public ModelAndView postDetail(String sno, HttpSession session) {
+    public ModelAndView postDetail(String sno) {
         ModelAndView mv = new ModelAndView();
-        String id = (String) session.getAttribute("id");
-        Map<String, Object> map = BoardDao.detail(sno, id);
+        Map<String, Object> map = BoardDao.detail(sno);
 
         CsyBoardVo boardVo = (CsyBoardVo) map.get("boardVo");
         List<CsyBoardCommentVo> commentList = (List<CsyBoardCommentVo>) map.get("commentList");
 
         mv.addObject("vo", boardVo);
         mv.addObject("commentList", commentList);
-        mv.addObject("currentUserProfilePic", BoardDao.userProfilePic(id));
         mv.setViewName("csy_board/csy_detail");
         return mv;
     }
 
     @RequestMapping(path="/board/detail/likePressed", method = RequestMethod.POST)
-    public String postDetailLikes(@RequestBody HashMap<String, Object> json, HttpSession session) {
+    public String postDetailLikes(@RequestBody HashMap<String, Object> json) {
         CsyBoardLikesVo vo = new CsyBoardLikesVo();
         vo.setChecked((boolean) json.get("is_checked"));
         vo.setPost_sno((int) json.get("post_sno"));
-        vo.setUser_id((String) session.getAttribute("id"));
+        vo.setUser_id((String) json.get("user_id"));
         
         return BoardDao.likePressed(vo);
     }
 
     @RequestMapping("/board/detail/comments/post")
-    public boolean boardDetailCommentPost(CsyBoardCommentVo vo, HttpSession session) {
-        vo.setId((String) session.getAttribute("id"));
+    public boolean boardDetailCommentPost(CsyBoardCommentVo vo) {
         return BoardDao.commentPost(vo);
     }
 

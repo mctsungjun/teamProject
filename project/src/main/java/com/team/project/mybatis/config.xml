@@ -13,22 +13,11 @@
 		<typeAlias type="com.team.project.krh.SaleVo" alias="SaleVo" />
 		<typeAlias type="com.team.project.krh.SaleWithUsersVo" alias="SaleWithUsersVo" />
 		<typeAlias type="com.team.project.krh.StockVo" alias="StockVo" />
-		<typeAlias type="com.team.project.krh.StockPage" alias="StockPage" />
-		<typeAlias type="com.team.project.krh.Page" alias="Page"/>
+		<typeAlias type="com.team.project.krh.ProductPhotoVo" alias="ProductPhotoVo" />
 		<typeAlias type="com.team.project.ojw.PurchaseVo" alias="PurchaseVo" />
 		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo" />
-<<<<<<< HEAD
 		<typeAlias type="com.team.project.ojw.ojw_PhotoVo" alias="ojw_PhotoVo" />
 		<typeAlias type="com.team.project.msm.msmQaVo" alias="msmQaVo" />
-		<typeAlias type="com.team.project.bjm.NoticeVo" alias="NoticeVo" />
-		<typeAlias type="com.team.project.bjm.NoticeAtt" alias="NoticeAtt" />
-		<typeAlias type="com.team.project.bjm.NoticePage" alias="NoticePage" />
-=======
-		<typeAlias type="com.team.project.bjm.NoticeVo" alias="NoticeVo" />
-		<typeAlias type="com.team.project.bjm.NoticeAtt" alias="NoticeAtt" />
-		<typeAlias type="com.team.project.bjm.NoticePage" alias="NoticePage" />
-		<typeAlias type="com.team.project.ojw.ojw_PhotoVo" alias="ojw_PhotoVo" />
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -45,10 +34,6 @@
 		<mapper resource="com/team/project/mybatis/csy_board.xml" />
 		<mapper resource="com/team/project/mybatis/krhSaleStock.xml" />
 		<mapper resource="com/team/project/mybatis/ojw_PurchaseProduct.xml" />
-<<<<<<< HEAD
 		<mapper resource="com/team/project/mybatis/msmQa.xml"/>
-=======
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
-		<mapper resource="com/team/project/mybatis/bjm_notice.xml" />
 	</mappers>
 </configuration>

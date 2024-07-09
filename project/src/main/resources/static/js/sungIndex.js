@@ -67,21 +67,6 @@ var change=(tag,photo)=>{
 
 
 export function btnChangePhoto() {
-<<<<<<< HEAD
-	alert("HELLO");
-		$.ajax({
-			url:"/sung/repreChangeForm",
-			type:"GET",
-			success:(resp)=>{
-				// let temp = $(resp).find(".photoSection");
-				let temp = $(resp).find(".photoSection");
-				$(".myprofile-main").html(temp);
-				// 대표이미지수정
-				let btnRepreChange = document.querySelector(".btnRepreChange");
-				btnRepreChange.onclick=()=>{
-					// var id = sessionStorage.getItem("id");
-					// alert(id);
-=======
 	// alert("HELLO");
 	// 	$.ajax({
 	// 		url:"/sung/repreChangeForm",
@@ -95,7 +80,6 @@ export function btnChangePhoto() {
 	// 			btnRepreChange.onclick=()=>{
 	// 				// var id = sessionStorage.getItem("id");
 	// 				// alert(id);
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 				
 	// 				$.ajax({
 	// 					url:"/sung/changePhoto",
@@ -146,19 +130,11 @@ export function btnChangePhoto() {
 					let temp = $(resp).find(".myProfilePage");
 					$(".content").html(temp);
 					$.ajax({
-<<<<<<< HEAD
-						url:"/sung/changePhoto",
-						type:"GET",
-						data:{"photo":repreImage},
-						success:(resp)=>{
-							detail();
-=======
 						url: "/sung/detail_main",
 						type: "GET",
 						success:(resp) => {
 							let temp = $(resp).find(".myprofile-main");
 							$(".myprofile-detail-content").html(temp);
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 						}
 					})
 				}
@@ -184,22 +160,6 @@ export function btnGoHome() {
 }
 
 // 목록으로 이동 (관리자만)
-<<<<<<< HEAD
-// export function btnListForm() {
-// 	let managerCode = prompt("관리코드를 입력하세요");
-// 	if( managerCode !=null && managerCode !=""){
-// 		$.ajax({
-// 			url:"/sung/list",
-// 			type:"GET",
-// 			data:{"code":managerCode},
-// 			success:(resp)=>{
-// 				let temp =$(resp).find(".change");
-// 				$(".change").html(temp);
-// 			}
-// 		})
-// 	}
-// }
-=======
 export function btnListForm() {
 	let managerCode = prompt("관리코드를 입력하세요");
 	if( managerCode !=null && managerCode !=""){
@@ -218,38 +178,22 @@ export function btnListForm() {
 		})
 	}
 }
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 
 
 				
 //리스트 목록에서 클릭하면 상세페이지로
-export function view(id){
+function view(id){
 	$.ajax({
 		url:"/sung/view",
 		type:"POST",
 		data:{"id":id},
 		success:(resp)=>{
-			let temp = $(resp).find(".adminDetail");
+			let temp = $(resp).find(".change");
 			$(".content").html(temp);
 		}
 	})
 }
 // 리스트에서 검색하기
-<<<<<<< HEAD
-export function admin_search(findStr) {
-	// let finStr = document.querySelector(".findStr").value;
-	$.ajax({
-		url:"/sung/search",
-		type:"GET",
-		data:{"findStr":findStr},
-		success:(resp)=>{
-			console.log(resp)
-			let temp =$(resp).find(".adminPage");
-			$(".content").html(temp);
-		}
-	})
-}				
-=======
 	
 var search=()=>{
 	let finStr = document.querySelector(".findStr").value;
@@ -266,7 +210,6 @@ var search=()=>{
 			}
 		})
 	}				
->>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 
 //회원가입 버튼 클릭됨-----------------------------------------
 export function registerForm() {

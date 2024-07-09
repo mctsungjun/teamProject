@@ -63,14 +63,15 @@ function sale_view(sno){
         type:"GET",
         data:{"sno":sno},
         success:(resp)=>{
+            console.log(resp);
             let temp=$(resp).find(".saleview");
             $('.big').html(temp);
-            ViewEvents(sno);
+            ViewEvent(sno);
         }
     })
 }
 
-function ViewEvents(sno){
+function ViewEvent(sno){
     let btnModify=document.querySelector(".btnModify");
     let btnDelete=document.querySelector(".btnDelete");
     let btnList=document.querySelector(".btnList");
@@ -91,17 +92,6 @@ function ViewEvents(sno){
     btnDelete.addEventListener('click',()=>{
         let yn=confirm("판매 내역을 삭제하시겠습니까?");
         if(!yn) return;
-        $.ajax({
-            url:"/deleteR",
-            type:"GET",
-            data:{"sno":sno},
-            success:(resp)=>{
-                sale("");
-                setTimeout(()=>{
-                    alert(resp) 
-                },200);
-            }
-        })
     })
 
     btnList.addEventListener('click',()=>{
