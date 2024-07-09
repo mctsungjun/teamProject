@@ -24,7 +24,7 @@ document.querySelector("#navBtnToStock").onclick = async () => {
         }
     })
 }
- 
+
 // * 제품 관리
 document.querySelector("#navBtnToProduct").onclick = () => { 
     $.ajax({
