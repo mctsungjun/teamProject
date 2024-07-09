@@ -6,7 +6,7 @@
 <mapper namespace="notice">
     <!-- Post-Register -->
     <insert id="post" parameterType="NoticeVo">
-          insert into notice(id, title, content) values(#{id}, #{title}, #{content})
+        insert into notice(id, title, content) values(#{id}, #{title}, #{content})
     </insert>
     <!-- Post-AttRegister -->
     <insert id="postAtt" parameterType="Map">
@@ -61,14 +61,8 @@
     </delete>
     <!-- Post-Modify -->
     <update id="modify" parameterType="NoticeVo">
-         update notice set title=#{title}, content=#{content}
-         where sno=#{sno}
+        update notice set title=#{title}, content=#{content}
     </update>
-
-
-
-
-
 
     <!-- 여기서부터 -->
     <select id="delFiles" parameterType="Integer" resultType="String">
