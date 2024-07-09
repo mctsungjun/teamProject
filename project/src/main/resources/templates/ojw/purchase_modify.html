@@ -9,7 +9,8 @@
     <div class="products">
         <div class="purchase_modify">
             <link rel="stylesheet" href="css/ojw/ojw.css">
-            
+            <script src="https:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <script defer src="js/ojw_purchase.js"></script>
             <h2>구매 내역 수정</h2>
             <hr>
             <form name="purchasefrm" method="post" enctype="multipart/form-data">
@@ -17,23 +18,23 @@
                 <table class="list_modify">
                     <tr>
                         <td>거래처</td>
-                        <td><input type="text" name="customer" readonly th:value="${vo.customer}"></td>
+                        <td><input type="text" name="customer" class="purchase_readonly" readonly th:value="${vo.customer}"></td>
                     </tr>
                     <tr>
                         <td>제품 코드</td>
-                        <td><input type="text" name="productCode" readonly th:value="${vo.productCode}"></td>
+                        <td><input type="text" name="productCode" class="purchase_readonly" readonly th:value="${vo.productCode}"></td>
                     </tr>
                     <tr>
                         <td>제품명</td>
-                        <td><input type="text" name="productName" readonly th:value="${vo.productName}"></td>
+                        <td><input type="text" name="productName" class="purchase_readonly" readonly th:value="${vo.productName}"></td>
                     </tr>
                     <tr>
                         <td>단가</td>
-                        <td><input type="text" name="price" readonly th:value="${vo.price}"></td>
+                        <td><input type="text" name="price" class="purchase_readonly" readonly th:value="${vo.price}"></td>
                     </tr>
                     <tr>
                         <td>수량</td>
-                        <td><input type="text" name="ea" th:value="${vo.ea}"></td>
+                        <td><input type="text" name="ea" class="purchase_input" th:value="${vo.ea}"></td>
                     </tr>
                     <tr>
                     <td>총액</td>
@@ -41,16 +42,17 @@
                 </tr>
                 <tr>
                     <td>날짜</td>
-                    <td><input type="text" name="nal" readonly th:value="${vo.nal}"></td>
+                    <td><input type="text" name="nal" class="purchase_readonly" readonly th:value="${vo.nal}"></td>
                 </tr>
             </table>
         </form>
             <br/>
-            <button type="button" class="btnModifyR">저장</button>
-            <button type="button" class="btnList">취소</button>
+            <div class="modify_button">
+                <button type="button" class="btnModifyR">저장</button>
+                <button type="button" class="btnList">취소</button>
+            </div>
         </div>
-        <script src="https:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-        <script defer src="js/ojw_purchase.js"></script>
     </div>
+
 </body>
 </html>

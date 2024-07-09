@@ -16,7 +16,8 @@ function purchase(){
 }
 purchase();
 function purchase_search(){
-    let btnSearch = document.querySelector(".btnSearch")
+    let btnSearch = document.querySelector(".btnSearch");
+    let btnRegister = document.querySelector(".btnRegister");
     let findStr = sessionStorage.getItem(".findStr");
     if(findStr != null){
         $(".findStr").val(findStr);
@@ -36,10 +37,44 @@ function purchase_search(){
             }
         })
     })
+    btnRegister.addEventListener("click",()=>{
+        $.ajax({
+            url : "/purchase_register",
+            type : "GET",
+            success : (resp)=>{
+                let temp = $(resp).find('.purchase_register');
+                $('.purchase').html(temp);
+                purchase_register();
+            }
+        })
+    })
 }
-purchase_search();
 
-function purchase_view(no){
+function purchase_register(){
+    let btnRegisterR=document.querySelector(".btnRegisterR");
+    let btnList=document.querySelector(".btnList");
+
+    btnRegisterR.addEventListener("click",()=>{
+        let frm = document.frm;
+        let frmData = new FormData(frm);
+
+        $.ajax({
+            url : "/purchase_registerR",
+            type : "POST",
+            data : frmData,
+            contentType : false,
+            processData : false,
+            success : (resp)=>{
+                purchase();
+            }
+        })
+    })
+    btnList.addEventListener("click",()=>{
+        purchase();
+    })
+}
+
+let purchase_view=(no)=>{
     $.ajax({
         url : "/purchase_view",
         type : "GET",
@@ -81,7 +116,7 @@ function purchaseViewEvent(no){
     let btnList = document.querySelector(".btnList");
 
     btnModify.addEventListener("click",()=>{
-
+        console.log("구매 수정");
         $.ajax({
             url : "/purchase_modify",
             type : "GET",
@@ -93,23 +128,38 @@ function purchaseViewEvent(no){
             }
         })
     })
-    btnList.addEventListener('click',()=>{
+    btnList.addEventListener("click",()=>{
         purchase();
+    })
+    btnDelete.addEventListener("click",()=>{
+        let yn = confirm("삭제하시겠습니까?");
+        if(!yn) return;
+
+        $.ajax({
+            url : "/purchase_deleteR",
+            type : "GET",
+            data : {"no" : no},
+            success : (resp)=>{
+                purchase("");
+            }
+        })
     })
 }
 
-function purchase_modify(no){
+let purchase_modify=(no)=>{
     btnModifyR = document.querySelector('.btnModifyR');
     btnList = document.querySelector('.btnList');
 
     btnList.addEventListener('click',()=>{
-        purchase();
+        console.log("리스트");
+        purchase(no);
     })
 
     btnModifyR.addEventListener("click",()=>{
         let frm = document.purchasefrm;
-
         let frmData = new FormData(frm);
+
+        console.log("저장");
         $.ajax({
             url : "/purchase_modifyR", //Controller의 path
             type : "POST",
@@ -117,7 +167,6 @@ function purchase_modify(no){
             processData : false,
             data : frmData,
             success : (resp)=>{
-                console.log(resp)
                 purchase();
             }
         })
