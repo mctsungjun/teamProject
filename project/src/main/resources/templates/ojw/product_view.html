@@ -4,31 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>product_view</title>
-    <link rel="stylesheet" href="css/ojw/ojw.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script defer src="js/ojw_product.js"></script>
+    <link rel="stylesheet" href="css/product_view.css">
+    <script src="https:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="js/index.js"></script>
 </head>
 <body>
     <div class="products">
-        <div class="product_view">
         <h2>제품관리 상세페이지</h2>
-            <div class="product_view_left" th:src="|ojw_upload/${vo.photo}">
-                <img th:src="|ojw_upload/${vo.photo}" width="350px" height="350px">
-            </div>
-            <div class="product_image_sub">
-                <span th:each="p:${vo.photos}" class="product_image_sub_each">
-                    <img th:src="|ojw_upload/${p.photo}" width="100px" height="100px">
-                </span>
+        <div class="product">
+            <div class="product_view_left">
+                <th:block th:each="k:${vo.photos}">
+                    <img src="[[${vo.photo}]]" width="350px" height="350px">
+                </th:block>
             </div>
             <div class="product_view_right">
-                <h2>[[${vo.productCode}]] / [[${vo.productName}]]</h2>
+                <h2>[[${vo.productId}]] / [[${vo.productName}]]</h2>
                 <hr/>
                 <span class="price">[[${vo.price}]]</span>
                 <span class="spec">[[${vo.spec}]]</span>
-                <div class="explanation">
-                    [[${vo.explanation}]]
+                <div>
+                    [[${vo.productName}]] / [[${vo.price}]]
+                    <form action="#" method="post">
+                        <p><input type="number" min="1" max="50"></p>
+                    </form>
                 </div>
+                <span>[[${vo.amt}]]</span>
             </div>
+            <div class="productButton">
+                <button type="button" class="btnModify">수정</button>
+                <button type="button" class="btnDelete">삭제</button>
+                <button type="button" class="btntList">목록</button>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <script defer src="js/ojw_product.js"></script>
+        </div>
+        <div class="product_view_bottom">
+            제품 설명
         </div>
     </div>
 </body>

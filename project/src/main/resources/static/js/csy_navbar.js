@@ -38,6 +38,8 @@ document.querySelector("#navBtnToProduct").onclick = () => {
     })
 }
 
+
+
 // * 구매 정보 관리
 document.querySelector("#navBtnToBuyInfo").onclick = () => { 
     $.ajax({
@@ -46,7 +48,7 @@ document.querySelector("#navBtnToBuyInfo").onclick = () => {
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.content').html(temp);
-            //search();
+            purchase_search();
         }
     })
 }
@@ -154,6 +156,7 @@ document.querySelector("#navBtnToAnnouncement").onclick = () => {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
+        data : {"nowPage": 1, "findStr": ""},
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
             $(".content").html(temp)

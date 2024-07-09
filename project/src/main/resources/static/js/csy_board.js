@@ -19,7 +19,9 @@ export function csyPostDelete(sno) {
         type: "GET",
         data: {"sno" : sno},
         success: (resp) => {
-            boardList();
+            if (resp == "게시물 삭제를 완료했습니다.") {
+                boardList();
+            }
             setTimeout(() => {
                 alert(resp)
             }, 200);
@@ -68,13 +70,11 @@ export function csyNumPaging(pageToGo) {
 
 export function csyBoardLikePressed(like_checked, post_sno) {
     // var id = '<%=(String)session.getAttribute("id")%>';
-    var user_id = "SampleID";
-
     $.ajax({
         url : "/board/detail/likePressed",
         type: "POST",
         async: false,
-        data:  JSON.stringify({post_sno: post_sno, user_id: user_id, is_checked: like_checked }),
+        data:  JSON.stringify({post_sno: post_sno, is_checked: like_checked }),
         dataType: "text",
         contentType: "application/json; charset=utf-8",
         cache: false,
@@ -121,10 +121,9 @@ export function csyBoard() {
     }
 }
 
-
 export function csyPostComment(frm) {
-    var user_id = "SampleID";
-    frm.id.value = user_id;
+    // var user_id = "SampleID";
+    // frm.id.value = user_id;
     let form = $(frm).serialize();
     console.log(form);
     $.ajax({

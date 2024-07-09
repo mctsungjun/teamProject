@@ -10,12 +10,12 @@ function purchase(){
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.purchase').html(temp);
-            search();
+            purchase_search();
         }
     })
 }
-
-function search(){
+purchase();
+function purchase_search(){
     let btnSearch = document.querySelector(".btnSearch")
     let findStr = sessionStorage.getItem(".findStr");
     if(findStr != null){
@@ -37,7 +37,7 @@ function search(){
         })
     })
 }
-search();
+purchase_search();
 
 function purchase_view(no){
     $.ajax({
@@ -47,7 +47,7 @@ function purchase_view(no){
         success:(resp)=>{
             let temp=$(resp).find(".purchase_view");
             $('.purchase').html(temp);
-            viewEvent(no);
+            purchaseViewEvent(no);
         }
     })
     
@@ -61,13 +61,21 @@ function purchase_list(no){
         success:(resp)=>{
             let temp=$(resp).find(".purchase_list");
             $('.purchase').html(temp);
+            purchaseListEvent(no);
         }
     })
 }
 
+function purchaseListEvent(no){
+    let btnList = document.querySelector(".btnList");
+
+    btnList.addEventListener('click',()=>{
+        purchase();
+    })
+}
 
 
-function viewEvent(no){
+function purchaseViewEvent(no){
     let btnModify = document.querySelector(".btnModify");
     let btnDelete = document.querySelector(".btnDelete");
     let btnList = document.querySelector(".btnList");
@@ -90,12 +98,12 @@ function viewEvent(no){
     })
 }
 
-let purchase_modify=(no)=>{
+function purchase_modify(no){
     btnModifyR = document.querySelector('.btnModifyR');
     btnList = document.querySelector('.btnList');
 
     btnList.addEventListener('click',()=>{
-        purchase_list();
+        purchase();
     })
 
     btnModifyR.addEventListener("click",()=>{
@@ -103,7 +111,7 @@ let purchase_modify=(no)=>{
 
         let frmData = new FormData(frm);
         $.ajax({
-            url : "/purchase_modifyR", //Controll의 path
+            url : "/purchase_modifyR", //Controller의 path
             type : "POST",
             contentType : false,
             processData : false,
@@ -113,9 +121,6 @@ let purchase_modify=(no)=>{
                 purchase();
             }
         })
-    })
-    btnList.addEventListener('click',()=>{
-        purchase_view();
     })
 }
 

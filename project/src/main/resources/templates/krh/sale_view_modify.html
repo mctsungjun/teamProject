@@ -23,7 +23,7 @@
                 <table class="saleviewtable">
                     <tr>
                         <th>고객 아이디</th>
-                        <td><input type="text" name="customerid" readonly th:value="${vo.id}"></td>
+                        <td><input type="text" name="customerid" readonly th:value="${vo.CustomerId}"></td>
                     </tr>
                     <tr>
                         <th>제품 코드</th>
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <th>판매 금액</th>
-                        <td><input type="text" name="amt" readonly th:value="${vo.ea*vo.price}"></td>
+                        <td><input type="text" name="amt" readonly th:value="${vo.amt}"></td>
                     </tr>
                     <tr>
                         <th>판매 일자</th>

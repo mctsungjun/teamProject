@@ -24,9 +24,16 @@ let loadMain = (findStr) => {
 	// 	success:(resp)=>{
 	// 		let temp = $(resp).find(".myProfilePage");
 	// 		$(".content").html(temp);
+    //         $.ajax({
+    //             url: "/sung/detail_main",
+    //             type: "GET",
+    //             success:(resp) => {
+    //                 let temp = $(resp).find(".myprofile-main");
+	// 		        $(".myprofile-detail-content").html(temp);
+    //             }
+    //         })
 	// 	}
 	// })
-    
     $.ajax ({
         url : "/design_guide",
         type: "GET",
