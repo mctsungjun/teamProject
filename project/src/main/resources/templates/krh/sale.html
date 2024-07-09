@@ -20,7 +20,7 @@
             </div>
             <div class="list">
                 <div class="title">
-                    <span class="sno">순번</span>
+                    <!--<span class="sno">순번</span>-->
                     <span class="CustomerId">고객 아이디</span>
                     <span class="ProductCode">제품 코드</span>
                     <span class="ProductName">제품 명</span>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="items"> 
                     <div class="item" th:each="d:${sale}">
-                        <span class="sno" th:onClick="sale_view([[${d.sno}]])">[[${d.sno}]]</span>
+                        <!--<span class="sno" th:onClick="sale_view([[${d.sno}]])">[[${d.sno}]]</span>-->
                         <span class="CustomerId" th:onClick="sale_view([[${d.sno}]])">[[${d.id}]]</span>
                         <span class="ProductCode" th:onClick="sale_view([[${d.sno}]])">[[${d.ProductCode}]]</span>
                         <span class="ProductName" th:onClick="sale_view([[${d.sno}]])">[[${d.ProductName}]]</span>

@@ -12,6 +12,7 @@
         or nal like '%${findStr}%'
         or ea like '%${findStr}%'
         or price like '%${findStr}%'
+        order by nal desc
     </select>
     
     <select id="view" parameterType="Integer" resultType="SaleVo">
