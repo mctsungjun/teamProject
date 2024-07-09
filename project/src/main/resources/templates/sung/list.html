@@ -4,41 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>list</title>
-
 </head>
 <body>
-
 <div>
-    <div class="change">
-        <div class="container list">
-            <form name="frm" class="frm" method="post">
-                <div class="input-group justify-content-end mb-3">
-                    <label ><input type="text" class="form-control findStr" name="findStr"></label>
-                    <button class="btn btn-outline-secondary btnSearch " type="button" onClick="search()" >검색</button>
-                </div>
-            </form>
-            <div class="container title">
-                <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item col-1  bg-secondary-subtle text-center id">아이디</li>
-                    <li class="list-group-item col-1 bg-tertiary-subtle text-center name">성명</li>
-                    <li class="list-group-item col-4 bg-danger-subtle text-center address1">주소</li>
-                    <li class="list-group-item col-3 bg-warning-subtle text-center phone">연락처</li>
-                    <li class="list-group-item col-3 bg-danger-subtle text-center email">email</li>
-                </ul>
+    <div class="adminPage">
+        <script th:inline="javascript">
+            async function admin_view(id) {
+                let obj = await import ("/js/sungIndex.js");
+                obj.view(id);
+            }
+
+            async function admin_search(e) {
+                var findStr = e.parentElement.querySelector(".findStr").innerText;
+                alert(findStr);
+                let obj = await import ("/js/sungIndex.js");
+                obj.admin_search(findStr);
+            }
+        </script>
+
+        <h1 class="boardListTitle-admin">회원 관리</h1>
+        <form name="frm" class="frm" method="post">
+            <div class="search">
+                <input type="text" class="underline-textbox findStr" style="margin-right: 10px;" name="findStr" placeholder="검색 내용을 입력하세요.">
+                <button type="button" class="btnSearch purple-text-button" onClick="admin_search(this)">검색</button>
             </div>
-            <div class="container items">
-                <div class="item" >
-                    <ul class="list-group list-group-horizontal " th:each="vo:${list}" th:onClick="view([[${vo.id}]])">
-                        <li class="list-group-item col-1  text-center id" name="id">[[${vo.id}]]</li>
-                        <li class="list-group-item col-1  text-center name" name="name">[[${vo.name}]]</li>
-                        <li class="list-group-item col-4  text-center address1" name="roadAddress"> [[${vo.roadAddress}]] [[${vo.addressDetail}]]</li>
-                        <li class="list-group-item col-3  text-center phone" >[[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</li>
-                        <li class="list-group-item col-3  text-center phone">[[${vo.email}]]@[[${vo.email2}]]</li>
-                    </ul>
-                </div>
+        </form>
+        <div class="item_list">
+            <div class="item_title">
+                <span class="id">아이디</span>
+                <span class="name">성명</span>
+                <span class="address">주소</span>
+                <span class="phone">연락처</span>
+                <span class="email">이메일</span>
+            </div>
+            <div class="item" th:each="vo:${list}" th:onClick="admin_view([[${vo.id}]])">
+                <span class="id" name="id">[[${vo.id}]]</span>
+                <span class="name" name="name">[[${vo.name}]]</span>
+                <span class="address" name="roadAddress"> [[${vo.roadAddress}]] [[${vo.addressDetail}]]</span>
+                <span class="phone" >[[${vo.phone1}]]-[[${vo.phone2}]]-[[${vo.phone3}]]</span>
+                <span class="email">[[${vo.email}]]@[[${vo.email2}]]</span>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
