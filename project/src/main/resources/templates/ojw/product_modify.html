@@ -9,14 +9,16 @@
     <div class="products">
         <div class="product_modify">
             <link rel="stylesheet" href="css/ojw/ojw.css">
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <script defer src="js/ojw_product.js"></script>
             <h3>제품 수정</h3>
             <hr/>
-            <form name="frm" method="post" class="frm" enctype="multipart/form-data">
+            <form name="productfrm" method="post" class="frm" enctype="multipart/form-data">
                 <div class="product_input">
                     <label class="label">제품명</label><br/>
-                    <input type="text" name="productName" class="input" th:value="${vo.productName}"><br/>
+                    <input type="text" name="productName" class="input" readonly th:value="${vo.productName}"><br/>
                     <label class="label">제품 코드</label><br/>
-                    <input type="text" name="productCode" class="input" th:value="${vo.productCode}"><br/>
+                    <input type="text" name="productCode" class="input" readonly th:value="${vo.productCode}"><br/>
                     <label class="label">단가</label><br/>
                     <input type="text" name="price" class="input" th:value="${vo.price}"><br/>
                     <label class="label">스펙</label><br/>
@@ -27,23 +29,11 @@
                     <input type="text" name="explanation" class="input" th:value="${vo.explanation}"><br/>
                 </div>
                 <br/>
-                <label>
-                    파일 첨부
-                    <input type="file" name="files" multiple="multipart">
-                </label>
-                <br/>
-                <fieldset>
-                    <legend>이미 첨부된 파일</legend>
-                    
-                </fieldset>
-                <br/>
-                <div class="button">
-                    <button type="button" class="btnRegisterR">등록</button>
+                <div class="modify_button">
+                    <button type="button" class="btnModifyR">등록</button>
                     <button type="button" class="btnList">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
                 </div>
             </form>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-            <script defer src="js/ojw_product.js"></script>
         </div>
     </div>
 </body>

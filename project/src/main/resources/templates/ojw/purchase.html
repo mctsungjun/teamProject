@@ -9,26 +9,26 @@
     <div class="products">
         <div class="purchase">
             <link rel="stylesheet" href="css/ojw/ojw.css">
-            
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <script defer src="js/ojw_purchase.js"></script>
             <h1>구매정보</h1>
             <div class="list">
                 <form name="frm" class="frm" method="post">
-                    <input type="text" name="findStr" class="findStr">
+                    <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
                     <button type="button" class="btnSearch">검색</button>
+                    <button type="button" class="btnRegister">신규 등록</button>
                 </form>
                 <div class="title">
-                    <span class="no">NO</span>
                     <span class="productCode">제품 코드</span>
                     <span class="productName">제품명</span>
                     <span class="price">단가</span>
                     <span class="ea">수량</span>
                     <span class="nal">날짜</span>
                     <span class="customer">거래처</span>
-                    <span class="purchaseCode">구매 내역서</span>
+                    <span class="purchaselist">구매 내역서</span>
                 </div>
                 <div class="items">
                     <div class="item" th:each="d : ${purchase}">
-                        <span class="no" th:onclick="purchase_view([[${d.no}]])">[[${d.no}]]</span>
                         <span class="productCode" th:onclick="purchase_view([[${d.no}]])">[[${d.productCode}]]</span>
                         <span class="productName" th:onclick="purchase_view([[${d.no}]])">[[${d.productName}]]</span>
                         <span class="price" th:onclick="purchase_view([[${d.no}]])">[[${d.price}]]</span>
@@ -39,9 +39,8 @@
                     </div>
                 </div>
             </div>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-            <script defer src="js/ojw_purchase.js"></script>
         </div>
     </div>
+
 </body>
 </html>

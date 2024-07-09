@@ -14,8 +14,9 @@ function product(){
         }
     })
 }
+product();
 function product_search(){
-    let btnRegister = document.querySelector(".abcabc");
+    let btnRegister = document.querySelector(".btnRegister");
     let btnSearch = document.querySelector(".btnSearch");
     let findStr=sessionStorage.getItem(".findStr");
     if(findStr != null){
@@ -37,7 +38,7 @@ function product_search(){
         })
     })
 
-    btnRegister.addEventListener('click',()=>{
+    btnRegister.addEventListener("click",()=>{
         $.ajax({
             url : "/product_register",
             type : "GET",
@@ -86,7 +87,7 @@ function fileChange(tag){
         let label=document.createElement("label");
         let br=document.createElement("br");
 
-        chkbox.type="checkbox";
+        chkbox.type="radio";
         chkbox.name="photo";
         chkbox.value=f.name;
 
@@ -95,5 +96,94 @@ function fileChange(tag){
 
         repre.appendChild(label);
         repre.appendChild(br)
+    }
+}
+
+
+let product_view=(productCode)=>{
+    $.ajax({
+        url : "/product_view",
+        type : "GET",
+        data : {"productCode" : productCode},
+        success : (resp)=>{
+            let temp = $(resp).find(".product_view");
+            $(".product").html(temp);
+            productViewEvent(productCode);
+        }
+    })
+}
+
+function productViewEvent(productCode){
+    let btnModify = document.querySelector(".btnModify");
+    let btnDelete = document.querySelector(".btnDelete");
+    let btnList = document.querySelector(".btnList");
+
+    btnModify.addEventListener("click",()=>{
+        console.log("제품 수정");
+        $.ajax({
+            url : "/product_modify",
+            type : "GET",
+            data : {"productCode" : productCode},
+            success : (resp)=>{
+                let temp = $(resp).find(".product_modify")
+                $(".product").html(temp);
+                product_modify(productCode);
+            }
+        })
+    })
+
+    btnList.addEventListener("click",()=>{
+        product();
+    })
+    btnDelete.addEventListener('click',()=>{
+        let yn = confirm("삭제하시겠습니까?");
+        if(!yn) return;
+
+        $.ajax({
+            url : "/product_deleteR",
+            type : "GET",
+            data : {"productCode" : productCode},
+            success : (resp)=>{
+                product("");
+            }
+        })
+    })
+}
+
+
+
+let product_modify=(productCode)=>{
+    let btnModifyR = document.querySelector('.btnModifyR');
+    let btnList = document.querySelector('.btnList');
+
+    btnList.addEventListener('click',()=>{
+        product(productCode);
+    })
+
+    btnModifyR.addEventListener("click",()=>{
+        let frm = document.productfrm;
+        let frmData = new FormData(frm);
+
+        $.ajax({
+            url : "product_modifyR",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            data : frmData,
+            success : (resp)=>{
+                product();
+            }
+        })
+    })
+}
+
+function checkUp(box){
+    let p = box.parentNode;
+    if(box.checked){
+        p.style.textDecoration = "line-through";
+        p.style.color = "#f00";
+    }else{
+        p.style.textDecoration = "none";
+        p.style.color = "";
     }
 }
