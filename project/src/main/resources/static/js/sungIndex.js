@@ -129,7 +129,7 @@ export function btnListForm() {
 
 				
 //리스트 목록에서 클릭하면 상세페이지로
-function view(id){
+export function view(id){
 	$.ajax({
 		url:"/sung/view",
 		type:"POST",
