@@ -10,6 +10,7 @@
         or productName like '%${findStr}%'
         or price like '%${findStr}%'
         or nal like '%${findStr}%'
+        or customer like '%${findStr}%'
     </select>
     <select id="purchase_view" parameterType="Integer" resultType="PurchaseVo">
         select * from purchase

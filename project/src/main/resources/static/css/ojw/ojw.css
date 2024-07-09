@@ -27,6 +27,19 @@
     height: 40px;
     line-height: 40px;
 }
+.title span{
+    position: relative;
+    left: 5px;
+}
+.title .productCode{width: 100px;}
+.title .productName{width: 150px;}
+.title .price{width: 100px;}
+.title .ea{width: 100px;}
+.title .nal{width: 150px;}
+.title .customer{width: 150px;}
+.title .purchaselist{
+    width: 100px;
+}
 .list span{
     display: inline-block;
 }
@@ -36,15 +49,18 @@
 .items span{
     height: 40px;
     line-height: 40px;
+    position: relative;
+    left: 5px;
 }
-.list .no{width: 120px;}
-.list .productCode{width: 100px;}
-.list .productName{width: 150px;}
-.list .price{width: 100px;}
-.list .ea{width: 100px;}
-.list .nal{width: 150px;}
-.list .customer{width: 150px;}
-.list .purchaselist{
+.items .productCode{width: 100px;}
+.items .productName{width: 150px;}
+.items .price{width: 100px;}
+.items .ea{width: 100px;}
+.items .nal{width: 150px;}
+.items .customer{width: 150px;}
+.items .purchaselist{
+    position: relative;
+    left: 5px;
     width: 100px;
     text-decoration: underline;
 }
@@ -53,6 +69,19 @@
 }
 .list .item:hover{
     background-color: #a3a3a3;
+}
+
+/* ------------- purchase register -------------*/
+
+.purchase_register{
+    border: 1px solid #000;
+    width: 400px;
+    text-align: left;
+    margin: 0 auto;
+}
+.purchase_register .frm{
+    margin: 20px;
+    text-align: left;
 }
 
 /*-------------- purchase_view ---------------*/
@@ -114,8 +143,8 @@ td{
     width: 50px;
     padding: 10px 5px;
 }
-.btnPrint{
-    margin-top: 20px;
+.btnList{
+    margin-top: 25px;
 }
 
 /* ----------------------- purchase_modify ------------------------- */
@@ -160,6 +189,12 @@ h3{
 }
 
 /* ----------------------- product ------------------------- */
+.products button{
+    color: #000;
+}
+.productRegisterButton{
+    color: #000;
+}
 .product h2{
     text-align: center;
 }
@@ -290,3 +325,4 @@ h3{
 .product_modify .product_input{
     text-align: center;
 }
+

@@ -40,8 +40,8 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2">[[${vo.productName}]]</td>
+                        <td>[[${vo.ea}]]</td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -75,15 +75,13 @@
                     </tr>
                     <tr>
                         <td>총액</td>
-                        <td colspan="2"></td>
+                        <td colspan="2">[[${vo.price*vo.ea}]]</td>
                         <td></td>
                     </tr>
                 </table>
             </div>
             <button type="button" class="btnList">목록</button>
-            
         </div>
     </div>
-
 </body>
 </html>

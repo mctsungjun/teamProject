@@ -16,7 +16,8 @@ function purchase(){
 }
 purchase();
 function purchase_search(){
-    let btnSearch = document.querySelector(".btnSearch")
+    let btnSearch = document.querySelector(".btnSearch");
+    let btnRegister = document.querySelector(".btnRegister");
     let findStr = sessionStorage.getItem(".findStr");
     if(findStr != null){
         $(".findStr").val(findStr);
@@ -33,6 +34,17 @@ function purchase_search(){
             success : (resp)=>{
                 let temp = $(resp).find(".items");
                 $(".items").html(temp);
+            }
+        })
+    })
+    btnRegister.addEventListener("click",()=>{
+        $.ajax({
+            url : "/purchase_register",
+            type : "GET",
+            success : (resp)=>{
+                let temp = $(resp).find('.purchase_register');
+                $('.purchase').html(temp);
+                purchase_register();
             }
         })
     })

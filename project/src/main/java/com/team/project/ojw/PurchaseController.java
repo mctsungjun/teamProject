@@ -49,6 +49,12 @@ public class PurchaseController {
         return mv;
     }
 
+    @RequestMapping(path="/purchase_registerR")
+    public String purchase_registerR(PurchaseVo vo){
+        String msg = PurchaseDao.purchase_register(vo);
+        return msg;
+    }
+
     @RequestMapping(path="/purchase_deleteR")
     public String purchase_delete(Integer no){
         String msg = PurchaseDao.purchase_delete(no);

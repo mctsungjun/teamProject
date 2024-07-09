@@ -19,18 +19,16 @@
                     <button type="button" class="btnRegister">신규 등록</button>
                 </form>
                 <div class="title">
-                    <span class="no">NO</span>
                     <span class="productCode">제품 코드</span>
                     <span class="productName">제품명</span>
                     <span class="price">단가</span>
                     <span class="ea">수량</span>
                     <span class="nal">날짜</span>
                     <span class="customer">거래처</span>
-                    <span class="purchaseCode">구매 내역서</span>
+                    <span class="purchaselist">구매 내역서</span>
                 </div>
                 <div class="items">
                     <div class="item" th:each="d : ${purchase}">
-                        <span class="no" th:onclick="purchase_view([[${d.no}]])">[[${d.no}]]</span>
                         <span class="productCode" th:onclick="purchase_view([[${d.no}]])">[[${d.productCode}]]</span>
                         <span class="productName" th:onclick="purchase_view([[${d.no}]])">[[${d.productName}]]</span>
                         <span class="price" th:onclick="purchase_view([[${d.no}]])">[[${d.price}]]</span>
