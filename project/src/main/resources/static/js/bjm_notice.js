@@ -6,13 +6,13 @@
             noticelist(1,findStr);
         })
         // 작성 버트 이벤트
-        let bjmBtnRegister = document.querySelector(".bjmBtnRegister")
-        bjmBtnRegister.addEventListener("click",()=>{
-            noticeRegister();
-        })
+        // let bjmBtnRegister = document.querySelector(".bjmBtnRegister")
+        // bjmBtnRegister.addEventListener("click",()=>{
+        //     noticeRegister();
+        // })
 })()
 
-function noticelist(nowPage,findStr){
+export function noticelist(nowPage,findStr) {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
@@ -20,10 +20,10 @@ function noticelist(nowPage,findStr){
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
             $(".content").html(temp);
-            let bjmBtnRegister = document.querySelector(".bjmBtnRegister")
-            bjmBtnRegister.addEventListener("click",()=>{
-                noticeRegister();
-            })
+            // let bjmBtnRegister = document.querySelector(".bjmBtnRegister")
+            // bjmBtnRegister.addEventListener("click",()=>{
+            //     noticeRegister();
+            // })
 
             $(".bjmBtnSearch").on("click", ()=>{
                 let findStr = $(".findStr").val();
@@ -32,9 +32,9 @@ function noticelist(nowPage,findStr){
         }
     })
 }
-// NoticeList페이지에서 작성 버튼
-function noticeRegister(){
 
+// NoticeList페이지에서 작성 버튼
+export function noticeRegister(){
     $.ajax({
         url : "/notice/bjmRegister",
         type : "GET",
@@ -75,33 +75,62 @@ function noticeRegister(){
             })
         }
     })
-
 }
-// NoticeRegister 페이지 버튼 관리
-// function noticeRegisterR(){
-  
-    
 
-//     function uploadImage(file) {
-//         var data = new FormData();
-//         data.append("file", file);
-//         $.ajax({
-//           url: '/uploadImage', // 서버에서 이미지 업로드를 처리할 URL
-//           method: 'POST',
-//           data: data,
-//           processData: false,
-//           contentType: false,
-//           success: function(response) {
-//             $('#summernote').summernote('insertImage', response.url);
-//           },
-//           error: function(jqXHR, textStatus, errorThrown) {
-//             console.log(textStatus + " " + errorThrown);
-//           }
-//         });
-//     }
-// }
+export function bjmRegister(frm) {
+    let form = new FormData(frm);
+    $.ajax({
+        url : "/notice/bjmRegisterR",
+        type : "POST",
+        data : form,
+        processData : false,
+        contentType : false,
+        success : (resp) => {
+            console.log(resp)
+            noticelist(1,"");
+        }
+    })
+}
+
+// 취소 버튼 클릭 시
+export function bjmRegisterCancel() {
+    $.ajax({
+        url : "/bjmNoticeList",
+        type : "GET",
+        data : {"nowPage" : 1,"findStr":""},
+        success : (resp) =>{
+            let temp = $(resp).find(".noticeList");
+            $(".content").html(temp);
+            noticelist(1,"")
+        }
+    })
+}
+
+
+
+
+// NoticeRegister 페이지 버튼 관리
+function noticeRegisterR(){
+    function uploadImage(file) {
+        var data = new FormData();
+        data.append("file", file);
+        $.ajax({
+          url: '/uploadImage', // 서버에서 이미지 업로드를 처리할 URL
+          method: 'POST',
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            $('#summernote').summernote('insertImage', response.url);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus + " " + errorThrown);
+          }
+        });
+    }
+}
 // NoticeView페이지로 이동
-function noticeViewer (sno) {
+export function noticeViewer(sno) {
     $.ajax({
         url : "/notice/hit",
         type : "POST",
@@ -120,54 +149,69 @@ function noticeViewer (sno) {
         }
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // noticeView 페이지 버튼 관리
-function noticeView(sno){
-    let bjmBtnList = document.querySelector(".bjmBtnList")
-    bjmBtnList.addEventListener("click",() => {
-        console.log("목록으로 이동")
-        noticelist(1,"");
-    })
-    let bjmBtnDel = document.querySelector(".bjmBtnDel")
-    bjmBtnDel.addEventListener("click",() => {
-        let del = confirm("Delete");
-        if(!del) return;
-        $.ajax({
-            url : "/notice/bjmDelete",
-            type : "GET",
-            data : {"sno" : sno},
-            success : (resp) => {
-                noticelist(1,"");
-            }
-        })
-    })
-    let bjmBtnModify = document.querySelector(".bjmBtnModify")
-    bjmBtnModify.addEventListener("click",()=>{
-        $.ajax({
-            url: "/notice/bjmModify",
-            type: "GET",
-            data: {"sno": sno},
-            success: (resp) => {
-                let temp = $(resp).find(".noticeModify");
-                alert($(temp).html())
-                $(".content").html(temp);
-               //noticeModifyR(sno);
-            }
-        });
-    })
+// function noticeView(sno){
+//     let bjmBtnList = document.querySelector(".bjmBtnList")
+//     bjmBtnList.addEventListener("click",() => {
+//         console.log("목록으로 이동")
+//         noticelist(1,"");
+//     })
+//     let bjmBtnDel = document.querySelector(".bjmBtnDel")
+//     bjmBtnDel.addEventListener("click",() => {
+//         let del = confirm("Delete");
+//         if(!del) return;
+//         $.ajax({
+//             url : "/notice/bjmDelete",
+//             type : "GET",
+//             data : {"sno" : sno},
+//             success : (resp) => {
+//                 noticelist(1,"");
+//             }
+//         })
+//     })
+//     let bjmBtnModify = document.querySelector(".bjmBtnModify")
+//     bjmBtnModify.addEventListener("click",()=>{
+//         $.ajax({
+//             url: "/notice/bjmModify",
+//             type: "GET",
+//             data: {"sno": sno},
+//             success: (resp) => {
+//                 let temp = $(resp).find(".noticeModify");
+//                 alert($(temp).html())
+//                 $(".content").html(temp);
+//                //noticeModifyR(sno);
+//             }
+//         });
+//     })
     
-    let noticeNext = document.querySelector(".noticeNext")
-    noticeNext.addEventListener("click",()=>{
-        console.log("다음")
-        noticelist(1,""); // 추후에 이후 공지글로이동
-    })
-    let noticePrev = document.querySelector(".noticePrev")
-    noticePrev.addEventListener("click",()=>{
-        console.log("이전")
-        noticelist(); // 추후에 이전 공지글로이동
-    })
-}
+//     let noticeNext = document.querySelector(".noticeNext")
+//     noticeNext.addEventListener("click",()=>{
+//         console.log("다음")
+//         noticelist(1,""); // 추후에 이후 공지글로이동
+//     })
+//     let noticePrev = document.querySelector(".noticePrev")
+//     noticePrev.addEventListener("click",()=>{
+//         console.log("이전")
+//         noticelist(); // 추후에 이전 공지글로이동
+//     })
+// }
 // NoticeModify페이지 버튼 관리
-function noticeModifyR(sno){
+export function noticeModifyR(sno){
     let bjmBtnModifyR = document.querySelector(".bjmBtnModifyR")
     bjmBtnModifyR.addEventListener("click",() => {
         alert("ModifyR버튼")

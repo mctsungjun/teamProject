@@ -10,41 +10,13 @@
 <body>
     <div>
         <div class="noticeModify">
-
+            <!-- <script type="module" th:inline="javascript">
+                async function noticeModifyR(sno) {
+                    let obj = await import ("/bjm_notice.js");
+                    obj.noticeModifyR(sno);
+                }
+            </script> -->
             <script>
-                console.log("chk....")
-            </script>    
-            <!-- Summernote CSS -->
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
-            <!-- jQuery -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <!-- Summernote JS -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
-            <link rel="stylesheet" href="css/bjmnotice/bjm_register.css">
-            <form method="post" name="frmModify" enctype="multipart/form-data" action="/notice/bjmModifyR">
-                <div>
-                    <input type="hidden" name="sno" th:value="${vo.sno}" />
-                    <label for="title">제목</label>
-                    <input type="text" id="title" name="title" th:value="${vo.title}" required/>
-                </div>
-                <div id="post-form">
-                    <label for="content">내용</label>
-                    <textarea id="summernote" name="content" aria-multiline="true">[[${vo.content}]]</textarea>
-                   
-                </div>
-                <div class="registerButton">
-                    <button type="button" class="bjmBtnModifyR">저장</button>
-                    <button type="button" class="bjmBtnCancelR">취소</button>
-                </div>
-            </form>
-
-              
-
-
-            <script>
-                // 수정페이지에서 원시 코드 보존을 통한 코드 깨짐 방지
-                // $('#summernote').summernote('code', document.getElementById('temp').innerHTML)
-                alert("1")
                 $(document).ready(function () {
                     $('#summernote').summernote({
                         // 썸머노트 옵션 설정
@@ -90,9 +62,21 @@
                             'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
                         ],
                     })
-                    
                 })
             </script>
+
+            <h1 class="summernote-page-title">공지사항 수정</h1><br/>
+            <form method="post" name="frmModify" enctype="multipart/form-data" action="/notice/bjmModifyR">
+                <input type="hidden" name="sno" th:value="${vo.sno}" />
+                <input type="text"  class="post-title"  id="title" name="title" th:value="${vo.title}"  placeholder="제목을 입력해주세요" required/>
+                <!-- display:none으로 해둬야 summernote 로딩 이전 기본 textarea 글박스가 뜨지 않음 -->
+                <textarea id="summernote" class="note-editable" name="content" aria-multiline="true" style="display:none">[[${vo.content}]]</textarea>
+                <div style="text-align: right;">
+                    <!-- TODO: boardList가 아니라 디테일 페이지로 돌아가기 -->
+                    <button type="button" class="purple-text-button" style="margin-right: 15px;">취소</button>
+                    <button type="button" class="purple-text-button" th:onclick="noticeModifyR([[${vo.sno}]])">수정</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>

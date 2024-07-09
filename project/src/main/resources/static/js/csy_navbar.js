@@ -17,8 +17,8 @@ document.querySelector("#navBtnToStock").onclick = async () => {
     $.ajax({
         url:"/stock",
         type:"GET",
-        data:{"findStr":findStr,"nowPage":nowPage},
-        success:async (resp)=>{
+        data:{"findStr": findStr,"nowPage": nowPage},
+        success: async (resp) => {
             let temp=$(resp).find(".stockpage");
             $(".content").html(temp);
         }
