@@ -21,7 +21,7 @@
                             data: {"sno": sno},
                             success: (resp) => {
                                 let temp = $(resp).find(".noticeModify");
-                                alert($(temp).html())
+                                // alert($(temp).html())
                                 $(".content").html(temp);
                             //noticeModifyR(sno);
                             }

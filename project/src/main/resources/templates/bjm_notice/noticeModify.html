@@ -10,12 +10,28 @@
 <body>
     <div>
         <div class="noticeModify">
-            <!-- <script type="module" th:inline="javascript">
-                async function noticeModifyR(sno) {
-                    let obj = await import ("/bjm_notice.js");
-                    obj.noticeModifyR(sno);
+            <script th:inline="javascript">
+                async function noticeViewer(sno) {
+                    var obj = await import ("/js/bjm_notice.js");
+                    obj.noticeViewer(sno);
                 }
-            </script> -->
+
+                async function noticeModifyR(temp, sno) {
+                    let frm = new FormData(temp)
+                    $.ajax({
+                        url : "/notice/bjmModifyR",
+                        type : "POST",
+                        data : frm,
+                        processData : false,
+                        contentType : false,
+                        success : async (resp) => {
+                            console.log(resp);
+                            var obj = await import ("/js/bjm_notice.js");
+                            obj.noticeViewer(sno);
+                        }
+                    })
+                }
+            </script>
             <script>
                 $(document).ready(function () {
                     $('#summernote').summernote({
@@ -73,8 +89,8 @@
                 <textarea id="summernote" class="note-editable" name="content" aria-multiline="true" style="display:none">[[${vo.content}]]</textarea>
                 <div style="text-align: right;">
                     <!-- TODO: boardList가 아니라 디테일 페이지로 돌아가기 -->
-                    <button type="button" class="purple-text-button" style="margin-right: 15px;">취소</button>
-                    <button type="button" class="purple-text-button" th:onclick="noticeModifyR([[${vo.sno}]])">수정</button>
+                    <button type="button" class="purple-text-button" style="margin-right: 15px;" th:onclick="noticeViewer([[${vo.sno}]])">취소</button>
+                    <button type="button" class="purple-text-button" th:onclick="noticeModifyR(this.form, [[${vo.sno}]])">수정</button>
                 </div>
             </form>
         </div>

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @RestController
 public class NoticeController {
@@ -75,7 +77,8 @@ public class NoticeController {
     @RequestMapping(path="/notice/bjmRegisterR")
     public String noticeRegisterR(
     @ModelAttribute NoticeVo vo, 
-    @RequestParam("files") List<MultipartFile> files
+    @RequestParam("files") List<MultipartFile> files,
+    HttpSession session
 ){
         String msg = "저장성공";
         List<NoticeAtt> attFiles = new ArrayList<>();
@@ -96,7 +99,10 @@ public class NoticeController {
             att.setSysFile(sysFile);
             attFiles.add(att);
         }
-        vo.setId("12345");
+
+        String id = (String) session.getAttribute("id");
+        vo.setId(id);
+
         System.out.println("여기서 나오나요? " + vo);
         msg = dao.noticeRegisterR(vo, attFiles);
         return msg;
@@ -116,7 +122,8 @@ public class NoticeController {
     @RequestMapping(path="/notice/bjmModifyR")
     public String noticeModifyR(
         @ModelAttribute NoticeVo vo, 
-        @RequestParam("files") List<MultipartFile> files
+        @RequestParam("files") List<MultipartFile> files,
+        HttpSession session
     ){
         String msg ="";
         List<NoticeAtt> attFiles = new ArrayList<>();
@@ -137,7 +144,10 @@ public class NoticeController {
             att.setSysFile(sysFile);
             attFiles.add(att);
         }
-        vo.setId("12345");
+
+        String id = (String) session.getAttribute("id");
+        vo.setId(id);
+        
         msg = dao.noticeModifyR(vo, attFiles);
         return msg;
     }

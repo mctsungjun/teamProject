@@ -60,8 +60,11 @@
                 <th:block th:if="${page.startPage > 1}">
                     <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist(${page.startPage - 1})">&#171;</span>
                 </th:block>
-                <th:block th:each="i : ${#numbers.sequence(page.startPage, page.endPage)}">
+                <th:block th:if="${page.totPage gt 1}" th:each="i : ${#numbers.sequence(page.startPage, page.endPage)}">
                     <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist([[${i}]], [[${page.findStr}]])" th:text="${i}">1</span>
+                </th:block>
+                <th:block th:if="${page.totPage le 1}">
+                    <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist(1, [[${page.findStr}]])">1</span>
                 </th:block>
                 <th:block th:if="${page.totPage > page.endPage}">
                     <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist(${page.endPage + 1})">&#187;</span>

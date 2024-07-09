@@ -8,12 +8,8 @@
 /* .boardListTitle:hover { color: var(--purple); cursor:pointer;} */
 
 .noticeList, .noticeView, .noticeModify, .noticeRegist {
-    padding: 28px 18% 0px 18%;
+    padding: 28px 18% 80px 18%;
     width: 100%;
-}
-
-.noticeView {
-    padding-bottom: 80px;
 }
 
 .noticeList .search {

@@ -42,22 +42,23 @@ export function noticeRegister(){
             let temp = $(resp).find(".noticeRegist");
             $(".content").html(temp);
 
-            let bjmBtnRegisterR = document.querySelector(".bjmBtnRegisterR")
-            bjmBtnRegisterR.addEventListener("click",() =>{
-                let temp = document.frmRegister;
-                let frm = new FormData(temp);
-                $.ajax({
-                    url : "/notice/bjmRegisterR",
-                    type : "POST",
-                    data : frm,
-                    processData : false,
-                    contentType : false,
-                    success : (resp) => {
-                        console.log(resp)
-                        noticelist(1,"");
-                    }
-                })
-            })
+            // let bjmBtnRegisterR = document.querySelector(".bjmBtnRegisterR")
+            // bjmBtnRegisterR.addEventListener("click",() =>{
+            //     let temp = document.frmRegister;
+            //     let frm = new FormData(temp);
+            //     $.ajax({
+            //         url : "/notice/bjmRegisterR",
+            //         type : "POST",
+            //         data : frm,
+            //         processData : false,
+            //         contentType : false,
+            //         success : (resp) => {
+            //             console.log(resp)
+            //             noticelist(1,"");
+            //         }
+                // })
+            // }}
+        // )
 
             // 취소 버튼 클릭 시
             let bjmBtnCancel = document.querySelector(".bjmBtnCancel")
@@ -143,7 +144,7 @@ export function noticeViewer(sno) {
                 success : (resp) =>{
                     let temp = $(resp).find(".noticeView");
                     $(".content").html(temp);
-                    noticeView(sno);
+                    // noticeView(sno);
                 }
             })
         }
@@ -223,9 +224,10 @@ export function noticeModifyR(sno){
             data : frm,
             processData : false,
             contentType : false,
-            success : (resp) => {
+            success : async (resp) => {
                 console.log(resp);
-                noticeViewer(sno);
+                var obj = await import ("/js/bjm_notice.js");
+                obj.noticeViewer(sno);
             }
         })
     })
