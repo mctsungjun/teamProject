@@ -69,10 +69,14 @@ public class SalePageDao {
         String id=vo.getId();
         session = new MyFactory().getSession();
         int cnt = session.insert("salestock.gumae", vo);
-        
         if(cnt>0){
-            session.commit();
-            isSuccess = true;
+            int cnt2 = session.update("salestock.stockminusmodify",vo);
+            if(cnt2>0){
+                session.commit();
+                isSuccess = true;
+            }else{
+                session.rollback();
+            }
         }else{
             session.rollback();
         }

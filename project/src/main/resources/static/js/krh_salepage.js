@@ -108,6 +108,7 @@ function gumae(){
             data: formData,
             success: (resp) => {
                 alert("구매가 완료되었습니다.");
+                $(".stockitems").reload();
             }
         })
     });

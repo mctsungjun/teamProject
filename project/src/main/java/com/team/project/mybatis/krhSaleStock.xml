@@ -60,13 +60,6 @@
         WHERE ProductCode = #{productCode}
     </select>
 
-    <!-- Update stock based on the condition -->
-    <update id="stockminusmodify" parameterType="SaleVo">
-        UPDATE stock
-        SET ea = ea - #{ea}
-        WHERE ProductCode = #{productCode}
-    </update>
-
     <!--판매 내역 삭제-->
     <delete id="deletesale" parameterType="SaleVo">
         delete from sale where sno=#{sno}
@@ -81,10 +74,12 @@
         select * from product
         order by price asc
     </select>
+
     <select id="salepage_expensive" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by price desc
     </select>
+
     <select id="salepage_new" parameterType="ProductVo" resultType="ProductVo">
         select * from product
         order by nal desc
@@ -126,5 +121,21 @@
     <insert id="gumae" parameterType="SaleVo">
         insert into sale(id,ProductCode, ea, price,ProductName) 
         values(#{id},#{productCode},#{ea},#{price},#{productName})
+    </insert>
+
+    <!--재고-->
+    <update id="stockminusmodify" parameterType="SaleVo">
+        update stock set ea = ea - #{ea}
+        where ProductCode = #{ProductCode}
+    </update>
+
+    <update id="stockplusmodify" parameterType="PurchaseVo">
+        update stock set ea = ea + #{ea}
+        where ProductCode = #{ProductCode}
+    </update> 
+
+    <insert id="stockplusnew" parameterType="PurchaseVo">
+        insert into stock(ProductCode,ProductName,ea)
+        values(productCode,productName,ea);
     </insert>
 </mapper>
