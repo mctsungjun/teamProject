@@ -6,7 +6,11 @@
 <mapper namespace="notice">
     <!-- Post-Register -->
     <insert id="post" parameterType="NoticeVo">
+<<<<<<< HEAD
         insert into notice(id, title, content) values(#{id}, #{title}, #{content})
+=======
+          insert into notice(id, title, content) values(#{id}, #{title}, #{content})
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     </insert>
     <!-- Post-AttRegister -->
     <insert id="postAtt" parameterType="Map">
@@ -61,9 +65,21 @@
     </delete>
     <!-- Post-Modify -->
     <update id="modify" parameterType="NoticeVo">
+<<<<<<< HEAD
         update notice set title=#{title}, content=#{content}
     </update>
 
+=======
+         update notice set title=#{title}, content=#{content}
+         where sno=#{sno}
+    </update>
+
+
+
+
+
+
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     <!-- 여기서부터 -->
     <select id="delFiles" parameterType="Integer" resultType="String">
         select sysFile from noticeAtt

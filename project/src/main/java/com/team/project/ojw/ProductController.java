@@ -18,8 +18,12 @@ public class ProductController {
     @Autowired
     ProductDao ProductDao;
 
+<<<<<<< HEAD
     //upload 경로 (류나가 추가..)
     public static String ojw_upload = "C:\\gitwork\\final_project\\project\\src\\main\\resources\\static\\ojw_upload\\";
+=======
+    public static String ojw_upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     
     @RequestMapping(path="/product")
     public ModelAndView product(String findStr){
@@ -30,6 +34,18 @@ public class ProductController {
         return mv;
     }
 
+<<<<<<< HEAD
+=======
+    @RequestMapping(path="/product_view")
+    public ModelAndView product_view(String productCode){
+        ModelAndView mv = new ModelAndView();
+        ProductVo vo = ProductDao.product_view(productCode);
+        mv.addObject("vo", vo);
+        mv.setViewName("ojw/product_view");
+        return mv;
+    }
+
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     @RequestMapping(path="/product_register")
     public ModelAndView product_register(){
         ModelAndView mv = new ModelAndView();
@@ -43,12 +59,18 @@ public class ProductController {
             @ModelAttribute ProductVo vo){
         List<ojw_PhotoVo> photos = new ArrayList<>();
         
+<<<<<<< HEAD
         //륜하
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         File directory = new File(ojw_upload);
         if (!directory.exists()) {
             directory.mkdirs();
         }
+<<<<<<< HEAD
         //가 추가함
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 
         if (photo != null){
             UUID uuid = null;
@@ -66,11 +88,15 @@ public class ProductController {
                     f.transferTo(saveFile);
                 }catch(Exception ex){
                     ex.printStackTrace();
+<<<<<<< HEAD
                     //류나가 70번째만 추가
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
                     return "error";
                 }
 
                 ojw_PhotoVo v = new ojw_PhotoVo();
+<<<<<<< HEAD
                 vo.setPhoto(sysFile);
                 v.setPhoto(sysFile);
                 v.setOriPhoto(f.getOriginalFilename());
@@ -126,10 +152,18 @@ public class ProductController {
                 vo.setPhoto(sysFile);
                 v.setPhoto(sysFile);
 
+=======
+                // get.Photo : 라디오버튼에서 선택된 파일 / getOriginalFilename : 업로드되는 파일명
+                if(vo.getPhoto().equals(f.getOriginalFilename())){
+                    vo.setPhoto(sysFile);
+                }
+                v.setPhoto(sysFile);
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
                 v.setOriPhoto(f.getOriginalFilename());
                 photos.add(v);
             }
         }
+<<<<<<< HEAD
         if(photos.size() > 0){
             vo.setPhotos(photos);
         }
@@ -145,4 +179,12 @@ public class ProductController {
         String msg = ProductDao.changeProductPhoto(productCode, photo);
         return msg;
     }  
+=======
+        if(photos.size()>0){
+            vo.setPhotos(photos);
+        }
+        String msg = ProductDao.product_register(vo);
+        return msg;
+        }
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 }

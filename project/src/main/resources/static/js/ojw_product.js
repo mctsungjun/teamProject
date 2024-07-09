@@ -14,6 +14,10 @@ function product(){
         }
     })
 }
+<<<<<<< HEAD
+=======
+product();
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 function product_search(){
     let btnRegister = document.querySelector(".abcabc");
     let btnSearch = document.querySelector(".btnSearch");
@@ -55,6 +59,7 @@ function product_register(){
     let btnList=document.querySelector(".btnList");
 
     btnRegisterR.addEventListener('click',()=>{
+<<<<<<< HEAD
         let frm = document.frm;
         let frmData = new FormData(frm);
 
@@ -68,13 +73,36 @@ function product_register(){
                 product();
             }
         })
+=======
+        product_registerR();
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     })
     btnList.addEventListener('click',()=>{
         product();
     })
 }
 
+<<<<<<< HEAD
 function fileChange(tag){
+=======
+let product_registerR=()=>{
+    let frm = document.frm;
+
+    let frmData = new FormData(frm);
+    $.ajax({
+        url : "/product_registerR",
+        type : "POST",
+        data : frmData,
+        contentType : false,
+        processData : false,
+        success : (resp) =>{
+            product();
+        }
+    })
+}
+
+let fileChange = (tag)=>{
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
     let repre=document.querySelector('.repre');
     repre.innerHTML = '';
     let legend = document.createElement("legend");
@@ -86,7 +114,11 @@ function fileChange(tag){
         let label=document.createElement("label");
         let br=document.createElement("br");
 
+<<<<<<< HEAD
         chkbox.type="checkbox";
+=======
+        chkbox.type="radio";
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         chkbox.name="photo";
         chkbox.value=f.name;
 
@@ -97,3 +129,21 @@ function fileChange(tag){
         repre.appendChild(br)
     }
 }
+<<<<<<< HEAD
+=======
+
+let repreImage="";
+
+let product_view = (productCode)=>{
+    $.ajax({
+        url : "/product_view",
+        type : "GET",
+        data : {"productCode" : productCode},
+        success : (resp)=>{
+            let temp = $(resp).find(".product_view");
+            $(".product").html(temp);
+            viewEvent(productCode);
+        }
+    })
+}
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac

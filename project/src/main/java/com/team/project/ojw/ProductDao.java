@@ -1,9 +1,13 @@
 package com.team.project.ojw;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+=======
+import java.util.List;
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -28,11 +32,19 @@ public class ProductDao {
         return list;
     }
 
+<<<<<<< HEAD
     public ProductVo product_view(Integer no){
         ProductVo vo = null;
         session = new MyFactory().getSession();
         vo = session.selectOne("project.product_view",no);
         List<ojw_PhotoVo> photos = session.selectList("project.photos",no);
+=======
+    
+    public ProductVo product_view(String productCode){
+        session = new MyFactory().getSession();
+        ProductVo vo = session.selectOne("project.product_view",productCode);
+        List<ojw_PhotoVo> photos = session.selectList("project.photos",productCode);
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         vo.setPhotos(photos);
         session.close();
         return vo;
@@ -54,6 +66,7 @@ public class ProductDao {
         session.close();
         return msg;
     }
+<<<<<<< HEAD
 
     public String product_delete(String productCode){
         session = new MyFactory().getSession();
@@ -116,4 +129,6 @@ public class ProductDao {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'product_modify'");
     }
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 }

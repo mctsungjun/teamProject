@@ -52,6 +52,7 @@ public class SaleDao {
 
         int cnt=session.update("salestock.update", vo);
         String msg="";
+<<<<<<< HEAD
         if(cnt>0){
             msg="정상적으로 수정되었습니다.";
             session.commit();
@@ -59,6 +60,32 @@ public class SaleDao {
             msg="수정에 실패하였습니다.";
             session.rollback();
         }
+=======
+        if(cnt>0){
+            msg="정상적으로 수정되었습니다.";
+            session.commit();
+        }else{
+            msg="수정에 실패하였습니다.";
+            session.rollback();
+        }
+        session.close();
+        return msg;
+    }
+
+    public String delete(Integer sno){
+        session=new MyFactory().getSession();
+
+        int cnt=session.delete("salestock.deletesale", sno);
+        String msg="";
+        if(cnt>0){
+            msg="삭제가 완료됐습니다.";
+            session.commit();
+        }else{
+            msg="삭제 중 오류가 발생하였습니다.";
+            session.rollback();
+        }
+        System.out.println(msg);
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         session.close();
         return msg;
     }

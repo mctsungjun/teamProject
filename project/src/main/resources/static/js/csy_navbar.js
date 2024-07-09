@@ -10,6 +10,24 @@ document.querySelector("#navBtnToDesignGuide").onclick = () => {
     })
 }
 
+<<<<<<< HEAD
+=======
+// * 제품관리 + 재고 정보 관리
+document.querySelector("#navBtnToStock").onclick = async () => {
+    let obj = await import ("/js/krh_stock.js");
+    obj.stock();
+    $.ajax({
+        url:"/stock",
+        type:"GET",
+        data:{"findStr":findStr,"nowPage":nowPage},
+        success:async (resp)=>{
+            let temp=$(resp).find(".stockpage");
+            $(".content").html(temp);
+        }
+    })
+}
+ 
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 // * 제품 관리
 document.querySelector("#navBtnToProduct").onclick = () => { 
     $.ajax({
@@ -21,6 +39,7 @@ document.querySelector("#navBtnToProduct").onclick = () => {
             product_search();
         }
     })
+<<<<<<< HEAD
 }
 
 // * 재고 정보 관리
@@ -35,8 +54,9 @@ document.querySelector("#navBtnToStock").onclick = () => {
             search();
         }
     })
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 }
-
 
 // * 구매 정보 관리
 document.querySelector("#navBtnToBuyInfo").onclick = () => { 
@@ -46,7 +66,11 @@ document.querySelector("#navBtnToBuyInfo").onclick = () => {
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
             $('.content').html(temp);
+<<<<<<< HEAD
             purchase_search();
+=======
+            //search();
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         }
     })
 }
@@ -64,21 +88,31 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
     })
 }
 
+<<<<<<< HEAD
 
 // * 판매정보관리
 document.querySelector("#navBtnToSellInfo").onclick = () => { 
     $.ajax({
         url:"/sale",
+=======
+// * 쇼핑몰
+document.querySelector("#navBtnToShopping").onclick = () => {
+    $.ajax({
+        url:"/salepage",
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         type:"GET",
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
             salepage();
+<<<<<<< HEAD
 
             // * GITHUB CONFLICT: 이 부분이 최신이라면 주석 처리 해제하셔도 됩니다.
             // let temp=$(resp).find(".big");
             // $('.content').html(temp);
             // search();
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         }
     })
 }
@@ -126,6 +160,7 @@ document.querySelector("#navBtnToCS").onclick = () => {
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => {
     $.ajax({
+<<<<<<< HEAD
         url:"/sung/detail",
         type:"GET",
         success:(resp)=>{
@@ -141,6 +176,15 @@ document.querySelector("#navBtnToProfileEdit").onclick = () => {
             })
         }
     })
+=======
+		url:"/sung/detail",
+		type:"GET",
+		success:(resp)=>{
+			let temp = $(resp).find(".myProfilePage");
+			$(".content").html(temp);
+		}
+	})
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
 }
 
 // * 로그아웃
@@ -160,7 +204,10 @@ document.querySelector("#navBtnToAnnouncement").onclick = () => {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
+<<<<<<< HEAD
         data : {"nowPage": 1, "findStr": ""},
+=======
+>>>>>>> 7e5772ac77e19d2e714291a29aaa9f18f01d40ac
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
             $(".content").html(temp)
