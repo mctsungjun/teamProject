@@ -93,7 +93,17 @@ document.querySelector("#navBtnToBoard").onclick = () => {
 }
 
 // * ADMIN 페이지, 회원 관리
-document.querySelector("#navBtnToAdmin").onclick = () => { }
+document.querySelector("#navBtnToAdmin").onclick = () => { 
+    $.ajax({
+        url:"/sung/list",
+        type:"GET",
+        data:{"code": 'a001'},
+        success:(resp)=>{
+            let temp = $(resp).find(".adminPage");
+            $(".content").html(temp);
+        }
+    })
+}
 
 // * 고객센터: Q & A
 document.querySelector("#navBtnToCS").onclick = () => {
@@ -110,13 +120,21 @@ document.querySelector("#navBtnToCS").onclick = () => {
 // * 프로필 관리
 document.querySelector("#navBtnToProfileEdit").onclick = () => {
     $.ajax({
-		url:"/sung/detail",
-		type:"GET",
-		success:(resp)=>{
-			let temp = $(resp).find(".myProfilePage");
-			$(".content").html(temp);
-		}
-	})
+        url:"/sung/detail",
+        type:"GET",
+        success:(resp)=>{
+            let temp = $(resp).find(".myProfilePage");
+            $(".content").html(temp);
+            $.ajax({
+                url: "/sung/detail_main",
+                type: "GET",
+                success:(resp) => {
+                    let temp = $(resp).find(".myprofile-main");
+                    $(".myprofile-detail-content").html(temp);
+                }
+            })
+        }
+    })
 }
 
 // * 로그아웃
