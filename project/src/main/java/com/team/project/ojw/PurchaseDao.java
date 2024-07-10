@@ -39,6 +39,36 @@ public class PurchaseDao {
         return vo;
     }
 
+    public String purchase_register(PurchaseVo vo){
+        String msg="";
+        session = new MyFactory().getSession();
+
+        int cnt = session.insert("project.purchase_register", vo);
+        if(cnt>0){
+            session.commit();
+            msg = "정상적으로 입력됨";
+        }else{
+            session.rollback();
+            msg="저장중 오류발생";
+        }
+        session.close();
+        return msg;
+    }
+
+    public String purchase_delete(Integer no){
+        session = new MyFactory().getSession();
+        String msg = "";
+        int cnt = session.delete("project.purchase_delete", no);
+        if(cnt>0){
+            msg="구매 삭제됨";
+            session.commit();
+        }else{
+            session.rollback();
+            msg="구매 삭제중 오류발생";
+        }
+        session.close();
+        return msg;
+    }
     @Transactional
     public String purchase_modify(PurchaseVo vo){
         session = new MyFactory().getSession();

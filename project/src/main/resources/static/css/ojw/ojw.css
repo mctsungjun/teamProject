@@ -1,6 +1,9 @@
 /* ------------------- purchase ------------------ */
-*{
-    box-sizing: border-box;
+.purchase button{
+    color: #000;
+}
+.purchase .findStr{
+    color: #000;
 }
 .purchase{
     width: 1200px;
@@ -24,6 +27,19 @@
     height: 40px;
     line-height: 40px;
 }
+.title span{
+    position: relative;
+    left: 5px;
+}
+.title .productCode{width: 100px;}
+.title .productName{width: 150px;}
+.title .price{width: 100px;}
+.title .ea{width: 100px;}
+.title .nal{width: 150px;}
+.title .customer{width: 150px;}
+.title .purchaselist{
+    width: 100px;
+}
 .list span{
     display: inline-block;
 }
@@ -33,15 +49,18 @@
 .items span{
     height: 40px;
     line-height: 40px;
+    position: relative;
+    left: 5px;
 }
-.list .no{width: 120px;}
-.list .productCode{width: 100px;}
-.list .productName{width: 150px;}
-.list .price{width: 100px;}
-.list .ea{width: 100px;}
-.list .nal{width: 150px;}
-.list .customer{width: 150px;}
-.list .purchaselist{
+.items .productCode{width: 100px;}
+.items .productName{width: 150px;}
+.items .price{width: 100px;}
+.items .ea{width: 100px;}
+.items .nal{width: 150px;}
+.items .customer{width: 150px;}
+.items .purchaselist{
+    position: relative;
+    left: 5px;
     width: 100px;
     text-decoration: underline;
 }
@@ -49,7 +68,20 @@
     color: purple;
 }
 .list .item:hover{
-    background-color: #eee;
+    background-color: #a3a3a3;
+}
+
+/* ------------- purchase register -------------*/
+
+.purchase_register{
+    border: 1px solid #000;
+    width: 400px;
+    text-align: left;
+    margin: 0 auto;
+}
+.purchase_register .frm{
+    margin: 20px;
+    text-align: left;
 }
 
 /*-------------- purchase_view ---------------*/
@@ -111,11 +143,25 @@ td{
     width: 50px;
     padding: 10px 5px;
 }
-.btnPrint{
-    margin-top: 20px;
+.btnList{
+    margin-top: 25px;
+}
+
+/* ----------------------- purchase_modify ------------------------- */
+.purchase_input{
+    color: #000;
+}
+.purchase_readonly{
+    color: gray;
 }
 
 /* ----------------------- product_register ------------------------- */
+.product .findStr{
+    color: #000;
+}
+.product_input .input{
+    color: #000;
+}
 *{
     box-sizing: border-box;
 }
@@ -143,18 +189,20 @@ h3{
 }
 
 /* ----------------------- product ------------------------- */
-*{
-    box-sizing: border-box;
+.products button{
+    color: #000;
 }
-.products h2{
+.productRegisterButton{
+    color: #000;
+}
+.product h2{
     text-align: center;
 }
 .product{
     width: 1200px;
     margin: 30px auto;
-    min-height: 600px;
+    min-height: 400px;
     text-align: left;
-    padding-left: 0%;
 }
 .product_each{
     text-align: right;
@@ -169,8 +217,112 @@ h3{
     list-style: none;
     width: 200px;
     display: inline-block;
-    margin: 47px;
+    margin: 30px;
     text-align: left;
+}
+.product_modify .input{
+    color: #000;
+}
+.modify_button{
+    color: #000;
+}
+.product .btnSearch{
+    color: #000;
+}
+.product .btnRegister{
+    color: #000;
 }
 
 /* ------------- product view -------------*/
+
+.product_view{
+    width: 100%;
+    height: 400px;
+    margin-bottom: 40px;
+}
+.product_view_left{
+    width: 380px;
+    text-align: left;
+    float: left;
+
+    margin-top: 48px;
+    margin-left: 50px;
+    height: 350px;
+    max-height: 350px;
+}
+.product_image_sub{
+    display: flex;
+    width: 150px;
+    height: 400px;
+    flex-direction: column;
+    margin-top: 48px;
+    float: left;
+}
+.product_image_sub_each{
+    margin-bottom: 20px;
+}
+.product_view_right{
+    width: 500px;
+    height: 350px;
+    text-align: right;
+    float: right;
+    margin-top: 48px;
+    margin-right: 50px;
+    max-height: 350px;
+    padding: 0;
+}
+.product_view_right .explanation{
+    width: 100%;
+    min-height: 150px;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid lightgray;
+
+}
+.product_view_right .name{
+    padding:10px;
+    font-weight:500;
+    font-size:20px;
+}
+.product_view_right .price{
+    font-weight: bold;
+    font-size:30px;
+    padding:10px;
+}
+.product_view_right .spec{
+    vertical-align: center;
+    font-size:15px;
+    color:gray;
+    padding:10px;
+}
+.product_view_right .number{
+    text-align: left;
+    background-color: rgb(211, 211, 211);
+    padding:10px;
+}
+.product_view_right hr{
+    margin:0px;
+    padding:0px;
+}
+.productButton{
+    position: relative;
+    bottom: -50px;
+    right: -440px;
+    float: left;
+}
+.productButton{
+    color: #000;
+}
+
+/* ------------- product modify -------------*/
+
+.product_modify .frm{
+    text-align: center;
+    width: 450px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+}
+.product_modify .product_input{
+    text-align: center;
+}
+

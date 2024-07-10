@@ -10,6 +10,7 @@
         or productName like '%${findStr}%'
         or price like '%${findStr}%'
         or nal like '%${findStr}%'
+        or customer like '%${findStr}%'
     </select>
     <select id="purchase_view" parameterType="Integer" resultType="PurchaseVo">
         select * from purchase
@@ -19,36 +20,38 @@
         select no, productCode, productName, price, ea, nal, customer from purchase
         where no=#{_parameter}
     </select>
+    <insert id="purchase_register" parameterType="PurchaseVo">
+        insert into purchase(productName, productCode, price, ea, customer)
+        values(#{productName}, #{productCode}, #{price}, #{ea}, #{customer});
+    </insert>
     <update id="purchase_modify" parameterType="PurchaseVo">
         update purchase set ea=#{ea}
         where no=#{no}
     </update>
+    <delete id="purchase_delete" parameterType="Integer">
+        delete from purchase where no=#{no}
+    </delete>
 
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">
-        select productName, comment, price, photo from product
+        select productName, comment, price, photo, productCode from product
         where productName like '%${findStr}%'
         or comment like '%${findStr}%'
         or photo like '%${findStr}%'
     </select>
-    <select id="product" parameterType="String" resultType="ProductVo">
-        select productName, explanation, price
-        where productName=#{_parameter}
-    </select>
     <select id="product_view" parameterType="String" resultType="ProductVo">
-        select productName from product
-        where productName=#{_parameter}
+        select * from product
+        where productCode=#{productCode}
     </select>
     <select id="photos" parameterType="String" resultType="ojw_PhotoVo">
-        select no, photo, oriPhoto from product_photos
-        where no=#{_parameter}
+        select photo, oriPhoto from product_photos
+        where productCode=#{productCode}
     </select>
     <insert id="product_register" parameterType="ProductVo">
         insert into product(no, productName, productCode, price, spec, comment, explanation, photo)
         values(#{no},#{productName}, #{productCode}, #{price}, #{spec}, #{comment}, #{explanation}, #{photo});
 
         <if test="photos != null">
-            <!--52번째줄도 좀만... 수정하게뜸다 류나가..-->
             insert into product_photos(no, productCode, productName, oriPhoto, photo) values
             <foreach collection="photos" item="p" separator=",">
                 (#{no}, #{productCode}, #{productName}, #{p.oriPhoto}, #{p.photo})
@@ -58,18 +61,20 @@
 
     <update id="product_modify" parameterType="ProductVo">
         update product set productName=#{productName}, productCode=#{productCode}, price=#{price},
-                            comment=#{comment}, explanation=#{explanation}
+                            comment=#{comment}, spec=#{spec}, explanation=#{explanation}
         where productCode=#{productCode}
     </update>
 
-    <delete id="product_delete" parameterType="java.util.List">
-        delete from photos where photo in
+    <delete id="delete_files" parameterType="java.util.List">
+        delete from product_photos where photo in
         <foreach collection="list" item="file" open="(" close=")" separator=",">
             #{file}
         </foreach>
     </delete>
-    
-    <update id="change_productPhoto" parameterType="Map">
-        update product set photo=#{photo} where productCode=#{productCode}
-    </update>
+    <delete id="product_delete" parameterType="String">
+        delete from product where productCode=#{productCode}
+    </delete>
+    <delete id="delete_photos" parameterType="String">
+        delete from product_photos where productCode=#{productCode}
+    </delete>
 </mapper>
