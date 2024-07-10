@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물 상세보기</title>
-    
-    <script defer src="js/msmQa.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -13,7 +11,14 @@
     <div class="qaview-container">
         <link rel="stylesheet" href="css/msm/msmQaView.css">
         <script th:inline="javascript">
-            
+            async function qaGo(){
+                let obj = await import ("/js/msmQa.js");
+                obj.qaGo();
+            }
+            async function qaBack(){
+                let obj = await import ("/js/msmQa.js");
+                obj.qaBack();
+            }
         </script>
 
         <button type="button" class="white-text-button" onclick="toBoardList();">↶ 목록으로 돌아가기</button>

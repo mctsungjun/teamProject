@@ -181,6 +181,7 @@ export function qusBack(){
 //-------------answer 부분---------------------------------
 
 //답변글 저장
+/*
 export function ansWrite(){
     let btnQaWrite = document.querySelector('.ansWrite');
     let btnAnsCancel = document.querySelector('.ansCancel');
@@ -201,9 +202,7 @@ export function ansWrite(){
             }
         });
     });
-}
-
-/* 답변 추가 관련 js 7.10 추가
+} */
 export function ansWrite(qusNum){
     btnAnsWrite = document.querySelector('.ansWrite');
     btnAnsCancel = document.querySelector('.ansCancel');
@@ -228,7 +227,7 @@ export function ansWrite(qusNum){
         })
     })
 }
-*/
+
 
 
 

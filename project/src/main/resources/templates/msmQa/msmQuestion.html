@@ -12,7 +12,17 @@
     <div>
     <div class="question" id="questionId">
         <link rel="stylesheet" href="css/msm/msmQuestion.css">
-        <script defer src="js/msmQa.js"></script>
+        <script th:inline="javascript">
+            async function qaWrite() {
+                    let obj = await import ("/js/msmQa.js");
+                    obj.qaWrite();
+                }
+            async function qusBack() {
+                let obj = await import ("/js/msmQa.js");
+                obj.qusBack();
+            }
+
+        </script>
         <h1 class="boardListTitle">질문 남기기</h1>
         <!-- <div class="container"> -->
             <form name="frm" method="post" style="width: 100%;" enctype="multipart/form-data"> <!-- class="frm" -->

@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/msm/msmAnswer.css">
-    <script src="js/msmQa.js"></script>
 </head>
 <body>   
     <div class="ansIndex">
+    <link rel="stylesheet" href="css/msm/msmAnswer.css">
+    <script th:inline="javascript">
+        async function ansWrite(qusNum){
+            let obj = await import ("/js/msmQa.js");
+            obj.ansWrite(qusNum);
+        }
+        async function qaBack(){
+            let obj = await import ("/js/msmQa.js");
+            obj.qaBack();
+        }
+    </script>
         <h1>답변</h1>
         <form name="answerfrm" method="post" class="frm"  enctype="multipart/form-data">
             <div class="ansContainer">

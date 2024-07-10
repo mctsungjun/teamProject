@@ -10,7 +10,16 @@
     <div class="topContainer">
         <link rel="stylesheet" href="css/msm/msmQa.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="js/msmQa.js"></script>
+        <script th:inline="javascript">
+            async function addQuestion(){
+                let obj = await import ("/js/msmQa.js");
+                obj.addQuestion();
+                }
+            async function qaSearch(){
+                let obj = await import ("/js/msmQa.js");
+                obj.qaSearch();
+            }
+        </script>
         <h1 for="search" class="boardListTitle-admin">질문과 답변</h1>
             <div style="display: flex; justify-content: right;">
                 <input type="text" class="underline-textbox findStr" style="margin-right: 10px;" placeholder="검색 내용을 입력하세요.">
