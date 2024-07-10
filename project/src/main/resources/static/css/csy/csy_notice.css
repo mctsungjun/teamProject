@@ -7,8 +7,8 @@
 
 /* .boardListTitle:hover { color: var(--purple); cursor:pointer;} */
 
-.noticeList, .adminPagePost, .adminPageDetail, .adminPageModify {
-    padding: 28px 18% 0px 18%;
+.noticeList, .noticeView, .noticeModify, .noticeRegist {
+    padding: 28px 18% 80px 18%;
     width: 100%;
 }
 
@@ -17,8 +17,8 @@
     margin-bottom: 10px;
 }
 
-.adminPage .item_list { width: 100%; }
-.adminPage .item_title, .adminPage .item {
+.noticeList .item_list { width: 100%; }
+.noticeList .item_title, .noticeList .item {
     width: 100%;
     display: flex;
     text-align: center;
@@ -27,12 +27,12 @@
 }
 
 
-.adminPage .item_title{ font-weight: 400; font-size: 17px; background-color:var(--purple); }
-.adminPage span.id { width: 140px; }
-.adminPage span.name { width: 120px; }
-.adminPage span.address { flex-grow: 1; }
-.adminPage span.phone { width: 160px; }
-.adminPage span.email { width: 280px; }
+.noticeList .item_title{ font-weight: 400; font-size: 17px; background-color: var(--purple); }
+.noticeList span.sno { width: 100px; }
+.noticeList span.id { width: 130px; }
+.noticeList span.title { flex-grow: 1; }
+.noticeList span.nal { width: 180px; }
+.noticeList span.hit { width: 100px; }
 
 .item_list .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
 .item_list .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }

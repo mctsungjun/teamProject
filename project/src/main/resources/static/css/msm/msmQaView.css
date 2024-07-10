@@ -1,0 +1,105 @@
+.qaview-container{
+  background-color: #1e202b;  
+  height:100%;  
+}
+.left-container{
+  align-items: center;
+  justify-items: center;
+  display: flex;
+  height:100px;
+  margin-top:50px;
+}
+.right-container{
+  align-items: center;
+  justify-items: center;
+  display: flex;
+  height:800px;
+  margin-top: 50px;
+}
+.allTitle{
+  width:120px;
+  height:30px;
+  padding-right:20px;
+}
+
+span{
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  
+}
+.contentBox{
+  width:80%;
+  border: 1px solid #8753fb;
+}
+.contentBox span{
+  margin-left:10px;
+}
+.qTitle{
+  display: flex;
+  margin : 0 auto;
+  width:20%;
+  position: relative;
+}
+.qWriter{
+  display: flex;
+  margin : 0 auto;
+  width:20%;
+  position: relative;
+}
+.qDate{
+  display: flex;
+  margin : 0 auto;
+  width:20%;
+  position: relative;
+}
+.qusContentBox{
+  width:800px;
+  height:800px;
+  border: 1px solid #8753fb;
+  margin : 0 auto;
+}
+.ansContentBox{
+  width:800px;
+  height:800px;
+  border: 1px solid #8753fb;
+  margin : 0 auto;
+}
+.qContent{
+  display: flex;
+  margin : 0 auto;
+  position: relative;
+}
+.ansContent{
+  display: flex;
+  margin : 0 auto;
+  position: relative;
+}
+#ansContentInput{
+  background-color: #1e202b;
+  border: #1e202b;
+  color:white;
+  font-size:18px;
+  width:500px;
+}
+.qaBack{
+  width: 120px;
+  height:40px;
+}
+.goAns{
+  width:120px;
+  height:40px; 
+}
+.btns{
+  margin-right: 100px;
+  margin-top : 50px;
+}
+button{
+  margin-left:10px;
+  float:right;
+  background-color: #8753fb;
+  color:white;
+  border: 1px solid #8753fb;
+  margin-right:10px;
+}
+

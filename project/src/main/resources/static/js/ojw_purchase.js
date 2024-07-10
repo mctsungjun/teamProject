@@ -94,9 +94,11 @@ function purchase_list(no){
         type : "GET",
         data : {"no":no},
         success:(resp)=>{
+            console.log(resp);
             let temp=$(resp).find(".purchase_list");
             $('.purchase').html(temp);
             purchaseListEvent(no);
+            console.log(temp);
         }
     })
 }

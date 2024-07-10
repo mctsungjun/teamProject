@@ -182,34 +182,33 @@ export function btnListForm() {
 
 				
 //리스트 목록에서 클릭하면 상세페이지로
-function view(id){
+export function view(id){
 	$.ajax({
 		url:"/sung/view",
 		type:"POST",
 		data:{"id":id},
 		success:(resp)=>{
-			let temp = $(resp).find(".change");
+			let temp = $(resp).find(".adminDetail");
 			$(".content").html(temp);
 		}
 	})
 }
+
 // 리스트에서 검색하기
 	
-var search=()=>{
-	let finStr = document.querySelector(".findStr").value;
-		
-		$.ajax({
-			url:"/sung/search",
-			type:"GET",
-			data:{"findStr":finStr},
-			success:(resp)=>{
-				console.log(resp)
-
-				let temp =$(resp).find(".change");
-				$(".change").html(temp);
-			}
-		})
-	}				
+export function admin_search(findStr) {
+	// let finStr = document.querySelector(".findStr").value;
+	$.ajax({
+		url:"/sung/search",
+		type:"GET",
+		data:{"findStr":findStr},
+		success:(resp)=>{
+			console.log(resp)
+			let temp =$(resp).find(".adminPage");
+			$(".content").html(temp);
+		}
+	})
+}
 
 //회원가입 버튼 클릭됨-----------------------------------------
 export function registerForm() {

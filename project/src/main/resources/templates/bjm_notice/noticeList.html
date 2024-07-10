@@ -3,52 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"  crossorigin="anonymous"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <title>공지사항</title>
 </head>
 <body>
-    <div class="container">
+    <div>
         <div class="noticeList">
-            <!-- <link rel="stylesheet" href="css/bjmnotice/bjm_list.css">
-            <link rel="stylesheet" href="css/bjmnotice/bjm_register.css"> -->
-            
-            <script defer src="js/bjm_notice.js"></script>
+            <script th:inline="javascript">
+                async function noticeViewer(sno) {
+                    var obj = await import ("/js/bjm_notice.js");
+                    obj.noticeViewer(sno);
+                }
+
+                async function noticelist(nowPage, findStr) {
+                    var obj = await import ("/js/bjm_notice.js");
+                    obj.noticelist(nowPage, findStr)
+                }
+
+                async function noticeRegister() {
+                    var obj = await import ("/js/bjm_notice.js");
+                    obj.noticeRegister();
+                }
+
+                async function bjmSearch(e) {
+                    let findStr = e.parentElement.querySelector(".findStr").value;
+                    var obj = await import ("/js/bjm_notice.js");
+                    obj.noticelist(1,findStr);
+                }
+            </script>
             <h1 class="boardListTitle-admin">공지사항</h1>
-            <form class="frmSearch" name="frmSearch" method="post">
-                <input type="text" class="findStr" name="findStr" th:value="${page.findStr}"/>
-                <button type="button" class="bjmBtnSearch">검색</button>
-            </form>
-            <div class="contentTitle">
-                <span class="sno">No</span>
-                <span class="id">작성자</span>
-                <span class="title">제목</span>
-                <span class="nal">등록일</span>
-                <span class="hit">조회수</span>
+            <div class="search" >
+                <input type="text" class="underline-textbox findStr" name="findStr" style="margin-right: 10px;" th:value="${page.findStr}"/>
+                <button type="button" class="purple-text-button" th:onclick="bjmSearch(this)">검색</button>
             </div>
-            <div class="contentList" th:each="vo : ${list}" th:onClick="noticeViewer([[${vo.sno}]])">
-                <span class="sno">[[${vo.sno}]]</span>
-                <span class="id">[[${vo.id}]]</span>
-                <span class="title">[[${vo.title}]]</span>
-                <span class="nal">[[${vo.nal}]]</span>
-                <span class="hit">[[${vo.hit}]]</span>
+            <div class="item_list">
+                <div class="item_title">
+                    <span class="sno">No</span>
+                    <span class="id">작성자</span>
+                    <span class="title">제목</span>
+                    <span class="nal">등록일</span>
+                    <span class="hit">조회수</span>
+                </div>
+                <div class="items" th:each="vo : ${list}" th:onClick="noticeViewer([[${vo.sno}]])">
+                    <div class="item">
+                        <span class="sno">[[${vo.sno}]]</span>
+                        <span class="id">[[${vo.id}]]</span>
+                        <span class="title">[[${vo.title}]]</span>
+                        <span class="nal">[[${vo.nal}]]</span>
+                        <span class="hit">[[${vo.hit}]]</span>
+                    </div>
+                </div>
             </div>
-            <div id="btnZone">
-                <button type="button" name="bjmBtnRegister" class="bjmBtnRegister">작성</button>
+            <div style="width:100%; margin-top:15px; text-align:right;">
+                <button type="button" class="purple-text-button" style="width:100px" onclick="noticeRegister()">작성</button>
             </div>
-            <nav class="footer">
+            <nav class="footer" style="display: flex; justify-content: center;">
                 <th:block th:if="${page.startPage > 1}">
-                    <span th:onClick="|noticelist(${page.startPage - 1})|">&#171;</span>
+                    <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist(${page.startPage - 1})">&#171;</span>
                 </th:block>
-                <th:block th:each="i : ${#numbers.sequence(page.startPage, page.endPage)}">
-                    <span th:onClick="noticelist([[${i}]],  [[${page.findStr}]] )" th:text="${i}">1</span>
+                <th:block th:if="${page.totPage gt 1}" th:each="i : ${#numbers.sequence(page.startPage, page.endPage)}">
+                    <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist([[${i}]], [[${page.findStr}]])" th:text="${i}">1</span>
+                </th:block>
+                <th:block th:if="${page.totPage le 1}">
+                    <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist(1, [[${page.findStr}]])">1</span>
                 </th:block>
                 <th:block th:if="${page.totPage > page.endPage}">
-                    <span th:onClick="|noticelist(${page.endPage + 1})|">&#187;</span>
+                    <span class="paging-button"  style="display: flex; justify-content: center; padding-top: 3px;" th:onClick="noticelist(${page.endPage + 1})">&#187;</span>
                 </th:block>
             </nav>
         </div>

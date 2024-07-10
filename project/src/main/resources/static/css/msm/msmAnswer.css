@@ -2,37 +2,16 @@ body{
     background-color:#121216; 
 }
 h1{
-    text-align: center;
+    margin-left: 100px;
     color:white;
 }
-.container{
-    border:1px solid black;
-    width:100%;
-    height:800px;
-    display: inline-block;
-    color:white;
-    
-}
-.left{
-    display: inline-block;
-    border:1px solid black;
-    width:45%;
-    height:80%;
-    margin: 3.8em;
-    border: 3px solid #8753fb;
-    border-radius: 10px;
-    background-color: #1e202b;
-    color:white;
-}
-.right{
-    display: inline-block;
-    border:1px solid black;
-    width:45%;
-    height:80%;
-    border: 3px solid #8753fb;
-    border-radius: 10px;
-    background-color: #1e202b;
-    color:white;
+input{
+  width:80%;
+  height:600px;
+  margin-left:10%;
+  border: 1px solid #8753fb;
+  background-color: #1e202b;
+  color: white;
 }
 button{
     float:right;
