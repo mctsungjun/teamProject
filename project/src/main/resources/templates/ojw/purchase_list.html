@@ -16,67 +16,66 @@
                 <table class="table_list">
                     <tr>
                         <td>주문일</td>
-                        <td colspan="3">[[${vo.nal}]]</td>
+                        <td colspan="3">[[${vo.p_nal}]]</td>
                     </tr>
                     <tr>
                         <td colspan="4">거 래 처 정 보</td>
                     </tr>
                     <tr>
-                        <td>거래처 주소</td>
-                        <td></td>
+                        <td>&nbsp;거래처 주소</td>
+                        <td>[[${vo.customerAddress}]]</td>
                         <td>전화번호</td>
-                        <td></td>
+                        <td class="photenumber">[[${vo.customerBusinessNumber}]]</td>
                     </tr>
                     <tr>
                         <td>거래처명</td>
-                        <td></td>
+                        <td>[[${vo.customerClientName}]]</td>
                         <td>이메일</td>
-                        <td></td>
+                        <td class="email">[[${vo.customerEmail}]]</td>
                     </tr>
                     <tr>
                         <td>No.</td>
-                        <td colspan="2">품목</td>
-                        <td>수량</td>
+                        <td colspan="2" class="list_product">품목</td>
+                        <td class="list_ea">수량</td>
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td colspan="2">[[${vo.productName}]]</td>
-                        <td>[[${vo.ea}]]</td>
+                        <td colspan="2" class="list_product">[[${vo.p_productName}]]</td>
+                        <td class="list_ea">[[${vo.p_ea}]]</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2" class="list_product"></td>
+                        <td class="list_ea"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2" class="list_product"></td>
+                        <td class="list_ea"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2" class="list_product"></td>
+                        <td class="list_ea"></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2" class="list_product"></td>
+                        <td class="list_ea"></td>
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2" class="list_product"></td>
+                        <td class="list_ea"></td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td colspan="2"></td>
-                        <td></td>
+                        <td colspan="2" class="list_product"></td>
+                        <td class="list_ea"></td>
                     </tr>
                     <tr>
                         <td>총액</td>
-                        <td colspan="2">[[${vo.price*vo.ea}]]</td>
-                        <td></td>
+                        <td colspan="2">[[${vo.p_price*vo.p_ea}]]</td>
                     </tr>
                 </table>
             </div>

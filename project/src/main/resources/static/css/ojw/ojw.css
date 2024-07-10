@@ -146,6 +146,9 @@ td{
 .btnList{
     margin-top: 25px;
 }
+.purchase_list .list_product{
+    width: 130px;
+}
 
 /* ----------------------- purchase_modify ------------------------- */
 .purchase_input{
