@@ -5,27 +5,35 @@
 
 
 <mapper namespace="msmQa">
-    <select id="list" parameterType="String" resultType="com.team.project.msm.msmQaVo">
-        select qusId, qusDate, qusTitle, qusNum, qusView
-        from qa
-        order by qusNum desc
+    <!-- qa 페이지에서 리스트를 불러올때 -->
+    <select id="qalist" parameterType="String" resultType="msmQaVo">
+        select * from qa
+        <!--where qusNum=#{_parameter} where문을 뺴면 데이터가 나옴-->
+        order by qusNum desc <!--정렬 빼도 됨-->
     </select>
 
-    <select id="view" parameterType="Integer" resultType="com.team.project.msm.msmQaVo">
+    <!-- qaview 페이지에서 자세한 내용을 볼때 -->
+    <select id="qaView" parameterType="Integer" resultType="msmQaVo">
         select * from qa
         where qusNum = #{qusNum}
     </select>
 
-    <select id="qaFiles" parameterType="Integer" resultType="com.team.project.msm.msmQaVo">
-        select qusId, qusCon, qusDate, qusTitle, ansId, ansCon, ansDate
+    <!-- qa 페이지에서 검색창을 이용해 리스트를 불러올때-->
+    <select id="search" parameterType="String" resultType="msmQaVo">
+        select qusNum, qusId, qusTitle, qusDate
         from qa
+        where qusTitle like concat('%', #{findStr}, '%')
     </select>
 
-    <select id="detail" resultType="com.team.project.msm.msmQaVo">
-        select qusId, qusCon, qusDate, qusTitle, ansId, ansCon, ansDate
-        from qa
-    </select>
+    <!-- question 페이지에서 작성 버튼을 눌렀을때 적힌 데이터를 저장할때-->
+    <insert id="saveQuestion" parameterType="msmQaVo">
+        insert into qa(qusId, qusCon, qusDate, qusTitle, qusNum)
+        values(#{qusId}, #{qusCon}, now(), #{qusTitle}, #{qusNum})
+    </insert>
+    
+    <!-- answer 페이지에서 작성 버튼을 눌렀을때 적힌 데이터를 저장할때-->
+    <insert id="saveAnswer" parameterType="msmQaVo">
+        insert into qa (ansCon, ansDate)
+        values (#{ansCon}, now());
+    </insert>
 </mapper>
-
-
-

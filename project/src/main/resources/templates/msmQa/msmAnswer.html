@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/msm/msmQnswer.css">
+    <link rel="stylesheet" href="css/msm/msmAnswer.css">
+    <script src="js/msmQa.js"></script>
 </head>
-<body>
-    <h1>답변</h1>
-    <div class="container">
-        <input type="text" class="left" size="130"></input>
-        <input type="text" class="right" ></input>
+<body>   
+    <div class="ansIndex">
+        <h1>답변</h1>
+        <form name="frm" method="post" class="frm">
+            <div class="ansContainer">
+                <input type="text" class="input-answer"></input>
+            </div>
+        </form>
     </div>
-    <button type="button">취소</button>
-    <button type="button">작성</button>
+    <button type="button" class='ansWrite'>작성</button>
+    <button type="button" class='ansCancel' onclick="alert()">취소</button>
 </body>
 </html>
