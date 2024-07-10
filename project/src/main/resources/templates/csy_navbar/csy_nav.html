@@ -9,24 +9,26 @@
     <div>
         <div class="nav">
             <!-- 이거 여기 아니면 navbar 버튼 생성되기 전에 onclick이 먼저 나와서 null error 뜸 -->
+            
             <script defer src="js/csy_navbar.js"></script>
             <div style="width:100%;">
                 <!-- * 아이콘 찾는 곳: https://fontawesome.com/search * -->
                 <!-- * 임시 홈, 디자인 가이드: 공지 넣을까 싶음 * -->
-                <div class="nav-icon-block">
+                <!-- <div class="nav-icon-block">
                     <input type="radio" name="navbar-elements" id="navBtnToDesignGuide" checked="checked">
                     <label for="navBtnToDesignGuide" class="navIcon">
                         <i class="fa fa-home"></i><h4 style="font-size: 13px; margin-top: 2px;">임시</h4>
                     </label>
-                </div>
-
+                </div> -->
+                
+                <!-- * 공지사항 * -->
                 <div class="nav-icon-block">
-                    <input type="radio" name="navbar-elements" id="navBtnToAnnouncement">
+                    <input type="radio" name="navbar-elements" id="navBtnToAnnouncement" checked="checked">
                     <label for="navBtnToAnnouncement" class="navIcon">
                         <i class="fa-solid fa-bullhorn"></i><h4 style="font-size: 13px;">공지사항</h4>
                     </label>
                 </div>
-                
+
                 <!-- * 쇼핑몰 * -->
                 <div class="nav-icon-block">
                     <input type="radio" name="navbar-elements" id="navBtnToShopping">
@@ -68,20 +70,21 @@
                 </div>
 
                 <!-- * 거래처 관리 * -->
-                <div class="nav-icon-block">
+                <!-- <div class="nav-icon-block">
                     <input type="radio" name="navbar-elements" id="navBtnToPartners">
                     <label for="navBtnToPartners" class="navIcon">
                         <i class="fa-solid fa-people-arrows"></i><h4 style="font-size: 13px;">거래처</h4>
                     </label>
-                </div>
-                
-                <!-- * 게시판 + 공지사항? * -->
+                </div> -->
+
+                <!-- * 게시판 * -->
                 <div class="nav-icon-block">
                     <input type="radio" name="navbar-elements" id="navBtnToBoard">
                     <label for="navBtnToBoard" class="navIcon">
                         <i class="fa-solid fa-feather"></i><h4 style="font-size: 13px;">게시판</h4>
                     </label>
                 </div>
+                
             </div>
             <!-- * 하단 아이콘들 * -->
             <div style="width:100%; align-content: end;">

@@ -1,14 +1,14 @@
-// * 임시 홈, 디자인 가이드: 공지 넣을까 싶음
-document.querySelector("#navBtnToDesignGuide").onclick = () => {
-    $.ajax ({
-        url : "/design_guide",
-        type: "GET",
-        success: (resp) => {
-            let temp = $(resp).find(".designGuide");  // * nav    : nav.html
-            $(".content").html(temp);                 // * navbar : index.html
-        }
-    })
-}
+// // * 임시 홈, 디자인 가이드: 공지 넣을까 싶음
+// document.querySelector("#navBtnToDesignGuide").onclick = () => {
+//     $.ajax ({
+//         url : "/design_guide",
+//         type: "GET",
+//         success: (resp) => {
+//             let temp = $(resp).find(".designGuide");  // * nav    : nav.html
+//             $(".content").html(temp);                 // * navbar : index.html
+//         }
+//     })
+// }
 
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToStock").onclick = async () => {
@@ -79,8 +79,8 @@ document.querySelector("#navBtnToShopping").onclick = () => {
     })
 }
 
-// * 거래처 관리
-document.querySelector("#navBtnToPartners").onclick = () => { }
+// // * 거래처 관리
+// document.querySelector("#navBtnToPartners").onclick = () => { }
 
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
