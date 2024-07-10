@@ -12,11 +12,17 @@
         or nal like '%${findStr}%'
         or ea like '%${findStr}%'
         or price like '%${findStr}%'
+        order by nal desc
     </select>
     
     <select id="view" parameterType="Integer" resultType="SaleVo">
         select id, ProductCode, ProductName, price, ea, nal from sale
         where sno=#{_parameter}
+    </select>
+
+    <select id="viewphoto" parameterType="ProductVo" resultType="SaleVo">
+        select photo, productCode from product
+        where ProductCode=#{productCode}
     </select>
 
     <select id="list" parameterType="Integer" resultType="SaleWithUsersVo">
@@ -119,8 +125,8 @@
     
     <!-- 구매 버튼-->
     <insert id="gumae" parameterType="SaleVo">
-        insert into sale(id,ProductCode, ea, price,ProductName) 
-        values(#{id},#{productCode},#{ea},#{price},#{productName})
+        insert into sale(id,ProductCode, ea, price,ProductName,photo) 
+        values(#{id},#{productCode},#{ea},#{price},#{productName}, #{photo})
     </insert>
 
     <!--재고-->
@@ -131,11 +137,16 @@
 
     <update id="stockplusmodify" parameterType="PurchaseVo">
         update stock set ea = ea + #{ea}
-        where ProductCode = #{ProductCode}
+        where ProductCode = #{productCode}
     </update> 
 
     <insert id="stockplusnew" parameterType="PurchaseVo">
         insert into stock(ProductCode,ProductName,ea)
-        values(productCode,productName,ea);
+        values(#{productCode}, #{productName}, #{ea})
     </insert>
+    
+     <select id="checkStock" parameterType="PurchaseVo" resultType="Integer">
+        SELECT COUNT(*) FROM stock WHERE ProductCode = #{productCode}
+    </select>
+
 </mapper>

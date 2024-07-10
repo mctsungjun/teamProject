@@ -17,6 +17,7 @@ public class StockDao {
     
     public SqlSession getSession(){
         SqlSession session=null;
+
         try{Reader reader = Resources.getResourceAsReader("com/team/project/mybatis/config.xml");
         SqlSessionFactory factory = 
             new SqlSessionFactoryBuilder().build(reader);
