@@ -10,13 +10,13 @@
 <body>   
     <div class="ansIndex">
         <h1>답변</h1>
-        <form name="frm" method="post" class="frm">
+        <form name="answerfrm" method="post" class="frm"  enctype="multipart/form-data">
             <div class="ansContainer">
                 <input type="text" class="input-answer"></input>
             </div>
         </form>
-    </div>
+    </div> <!-- 7.10 추가 코드의 주석을 풀면 onclick="ansWrite()"을 각 버튼에 추가할것-->
     <button type="button" class='ansWrite'>작성</button>
-    <button type="button" class='ansCancel' onclick="alert()">취소</button>
+    <button type="button" class='ansCancel'>취소</button>
 </body>
 </html>

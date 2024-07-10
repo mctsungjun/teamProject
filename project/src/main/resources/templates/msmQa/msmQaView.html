@@ -4,61 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물 상세보기</title>
-    <link rel="stylesheet" href="css/msm/msmQaView.css">
+    
     <script defer src="js/msmQa.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div>
-        <div class="qaview-container">
-            <link rel="stylesheet" href="css/msm/msmQaView.css">
-            <div class="left-container">
+    <div class="qaview-container">
+        <link rel="stylesheet" href="css/msm/msmQaView.css">
+        <script th:inline="javascript">
+            
+        </script>
 
-                <div class="qTitle">
-                    <span class="allTitle">게시물 제목</span>
-                    <div class="contentBox">
-                    <span id="qTitle">[[${q.qusTitle}]]</span>
-                    </div>
-                </div>
-
-                <div class="qWriter">
-                    <span class="allTitle">작성자</span>
-                    <div class="contentBox">
-                    <span id="qWriter">[[${q.qusId}]]</span>
-                    </div>
-                </div>
-
-                <div class="qDate">
-                    <span class="allTitle">게시 시간</span>
-                    <div class="contentBox">
-                    <span id="qDate">[[${q.qusDate}]]</span>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <div class="right-container">
-                <div class="qContent">
-                    <span class="allTitle">질문 내용</span>
-                    <div class="qusContentBox">
-                    <span id="qContent">[[${q.qusCon}]]</span>
-                    </div>
-                </div>
-                <div class="ansContent">
-                    <span class="allTitle">답변 내용</span>
-                    <div class="ansContentBox">
-                    <span class="qAnswer" th:if="${q.ansCon == null}">답변이 없습니다.</span>
-                    <input type="text" id="ansContentInput" th:value="${q.ansCon}"
-                    placeholder="답변 작성하기 버튼을 눌러 답변을 작성해주세요." readonly>
-                </div>
-            </div>
+        <button type="button" class="white-text-button" onclick="toBoardList();">↶ 목록으로 돌아가기</button>
+        <div style="background-color:var(--purple); height: 80px; margin: 0; padding: 0 20px 0 20px;"><h2 style="line-height: 80px;">[[${q.qusTitle}]]</h2></div>
+        <div style="display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-content: space-between;
+            padding: 5px 20px 0 20px;
+            ">
+        <div style="width: 50%; text-align: left; color: var(--purple)">[[${q.qusId}]]</div>
+        <div style="width: 50%; text-align: right; color: var(--purple)">[[${q.qusDate}]]</div>
         </div>
-        <div class="btns">
-        <button class="goAns" onclick="qaBack()">답변 작성하기</button>
-        <button class="qaBack" onclick="qaBack()">뒤로가기</button>
-    </div> 
+        <div style="margin: 30px 20px 20px 20px; overflow: auto" th:utext="${q.qusCon}"></div>
+
+        <div style="display: flex; align-content:space-between; padding: 30px 20px 5px 20px">
+    <div style="width: 50%; text-align: left;">
+        
+            </div>
+            <th:block th:if="${session.id eq q.qusId}">
+                <div style="width: 50%; text-align: right; display: inline-block;">
+                    <button type="button" class="purple-text-button">수정</button>
+                    <button type="button" class="purple-text-button" style="margin-left: 15px;">삭제</button>
+                </div>
+            </th:block>
+        </div>
+
+
+
+        <!-- * 여기부터 커맨트 * -->
+        <div class="board-detail-comment-title-background">
+            <h5 class="board-detail-comments-title-text">ANSWERS</h5>
+        </div>
+        <!-- * 유저의 프로필 이미지 * -->
+        <!-- <div th:each="q:${commentList}"> -->
+        <div class="board-detail-comment">
+            <div class="board-detail-img-div">
+                <img src="https://picsum.photos/200" class="board-detail-img" alt="User Profile Image">
+            </div>
+            <!-- * 커멘트 보이는 부분 * -->
+            <div class="board-detail-text-div">
+                <div class="board-detail-comment-specials">
+                    <span class="board-detail-comment-nickname">[[${q.ansId}]]</span>
+                    <div th:if="${q.ansId != 'DELETED COMMENT'}" class="board-detail-comment-buttons">
+                        <span class="board-detail-comment-button"><i class="fa-solid fa-reply"></i></span>
+                        <th:block th:if="${session.id eq q.ansId}">
+                            <span class="board-detail-comment-button"><i class="fa-solid fa-pencil"></i></span>
+                            <span class="board-detail-comment-button"><i class="fa-regular fa-trash-can"></i></span>
+                        </th:block>
+                        
+                    </div>
+                </div>
+                <span class="board-detail-comment-comment">[[${q.ansCon}]]</span>
+            </div>
+                <!-- * 커멘트 수정 부분 * -->
+                <form class="board-detail-comment-modify-form" style="display:none; width: 100%;">
+                        <textarea name="content" class="board-comment-textarea">[[${q.ansCon}]]</textarea>
+                        <div style="display: block; width: 83px; height: 72px;">
+                            <div style="position: relative; height: 72px;">
+                                <span class="board-detail-comment-button" style="font-size:18px; position: absolute; top: 0px; right:5px;"><i class="fa-solid fa-xmark"></i></span>
+                                <button type="button" class="purple-text-button" style="position: absolute; bottom: 0px; right: 0px;">수정</button>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        <!-- * 신규 커맨트 작성란 * -->
+        <form name="csyBoardFrmComment" class="board-comment-write-box">
+            <input type="text" style="display: none" name="post_sno" th:value="${q.qusNum}"/>
+            <input type="text" name="id" style="display: none" />
+            <!-- TODO: 하려면 하던가: 이미지 부분 -->
+            <div class="board-detail-img-div">
+                <img src="https://picsum.photos/200" class="board-detail-img" alt="User Profile Image">
+            </div>
+            <textarea name="content" class="board-comment-textarea"></textarea>
+            <div style="flex-grow: 1; margin-left: 15px; display: flex;">
+            <button type="button" class="purple-text-button" style="height: 100%; align-items: end; align-self: self-end;">작성</button>
+            </div>
+        </form>
+        <div style="height: 180px"></div>
     </div>
+</div>
 </div>
 </body>
 </html>

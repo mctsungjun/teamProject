@@ -26,7 +26,7 @@
     </select>
 
     <!-- question 페이지에서 작성 버튼을 눌렀을때 적힌 데이터를 저장할때-->
-    <insert id="saveQuestion" parameterType="msmQaVo">
+    <insert id="saveQuestion" parameterType="String">
         insert into qa(qusId, qusCon, qusDate, qusTitle, qusNum)
         values(#{qusId}, #{qusCon}, now(), #{qusTitle}, #{qusNum})
     </insert>
@@ -36,4 +36,27 @@
         insert into qa (ansCon, ansDate)
         values (#{ansCon}, now());
     </insert>
+
+    <!-- question, answer 둘 다 삭제 하기-->
+    <delete id="delete" parameterType="String">
+        delete from qa where qusNum=#{qusNum}
+    </delete>
+
+    <!--insert 부분에 answer관련 데이터까지 싹다 받은 후 update를 통해 수정할 예정-->
+<!-- 7.10 추가
+    <insert id="saveQuestion" parameterType="msmQaVo">
+        insert into qa (qusId, qusCon, qusDate, qusTitle, qusNum)
+        values (#{qusId}, #{qusCon}, NOW(), #{qusTitle}, #{qusNum});
+        
+        answer 관련 데이터 추가
+        insert into qa (qusNum, ansCon, ansDate)
+        values (#{qusNum}, NULL, NULL);
+    </insert>
+    
+    답변 수정
+    <update id="updateAnswer" parameterType="msmQaVo">
+        update qa set ansCon = #{ansCon}, ansDate = NOW()
+        WHERE qusNum = #{qusNum};
+    </update>
+-->
 </mapper>

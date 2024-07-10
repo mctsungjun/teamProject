@@ -3,6 +3,7 @@ package com.team.project.msm;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,11 +43,10 @@ public class msmQaDao {
 
     //질문 내용을 저장할때
     @Transactional
-    public String qusWrite(msmQaVo vo){
+    public String qusWrite(String qusNum){
         String msg="";
         session = new MyFactory().getSession();
-
-        int cnt = session.insert("msmQa.saveQuestion", vo);
+        int cnt = session.insert("msmQa.saveQuestion", qusNum);
         if(cnt>0){
             session.commit();
             msg="정상적으로 입력됨";
@@ -75,4 +75,19 @@ public class msmQaDao {
         session.close();
         return msg;
     }
+
+    public String delete(String qusNum){
+        session = new MyFactory().getSession();
+        String msg = "";
+        int cnt = session.delete("msmQa.delete", qusNum);      
+        if(cnt>0){
+            msg="삭제됨";
+            session.commit();
+        }else{
+            session.rollback();
+            msg = "삭제중 오류발생";
+        }
+        return msg;
+    }    
 }
+

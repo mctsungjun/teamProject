@@ -113,7 +113,7 @@ document.querySelector("#navBtnToCS").onclick = () => {
         url: "/qa",
         type: "GET",
         success: (resp) => {
-            let temp = $(resp).find("#qaBoard");
+            let temp = $(resp).find(".topContainer");
             $(".content").html(temp);
         }
     });
@@ -156,11 +156,7 @@ document.querySelector("#navBtnToAnnouncement").onclick = () => {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
-<<<<<<< HEAD
-        data : {"nowPage" : 1,"findStr" : "" },
-=======
         data : {"nowPage": 1, "findStr": ""},
->>>>>>> 2fbb0cd65653ad3482b85925ad9caf74692b69ba
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
             $(".content").html((temp))

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 public class msmQaController {
     
@@ -65,10 +67,15 @@ public class msmQaController {
     }
     
     @RequestMapping(path="/questionR")
-    public String questionR(msmQaVo qusNum){
+    public String questionR(String qusNum, HttpSession session){
+        String id = (String) session.getAttribute("id");
         String msg = dao.qusWrite(qusNum);
         return msg;
     }
 
-    
+    @RequestMapping(path="/qaDeleteR")
+    public String delete(String qusNum){
+        String msg = dao.delete(qusNum);
+        return msg;
+    }
 }

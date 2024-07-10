@@ -1,23 +1,35 @@
 /*-------msm css----------*/
-body{
+/* body{
     background-color: #1e202b;
-}
-.topContainer{
-    background-color: #1e202b;
-    color:white;  
+} */
+.topContainer {
+    padding: 28px 18% 0px 18%;
+    width: 100%;
+    /* background-color: #1e202b;
+    color:white;   */
 }
 .title{
     width:100%;
 }
 .topTitle{
+    /* /* width:100%; */
     font-size:50px;
-    color:white;
-    float:right;
+    background: transparent;
+    border: none;
+    /* font-size: 25px; */
+    width: 100%;
+    height: 40px;
+    margin-bottom: 15px;
+    outline: none;
+    padding-bottom: 5px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    
 }
 .search-wrap{
     height:30px;
     width:100%;
-    margin-left:1210px;
+    /* margin-left:800px; */
 }
 .search input{ 
     width: 350px;
@@ -42,7 +54,7 @@ body{
     margin-top: 30px;   
 }
 .qaTitle{
-    padding: 14px 0;
+    /* padding: 14px 0; */
     color:white;  
     font-size:20px;
 }
@@ -70,17 +82,12 @@ body{
 }
 .writer{
     display:inline-block;
-    width:15%;
+    width:20%;
     text-align: center;
 }
 .date{
     display:inline-block;
     width:17%;
-    text-align: center;
-}
-.view{
-    display:inline-block;
-    width:10%;
     text-align: center;
 }
 .qaItems{
@@ -89,17 +96,11 @@ body{
     height:40px;
     line-height:40px;
 }
-.btnAdd{
-    margin-top: 10px;
-    border:1px solid #1e202b;
-    background-color: #8753fb;
-    color:white;
-    float:right;
-    width:70px;
-    height:35px;
+.qaItems :hover{
+    cursor: pointer;
+    background-color:rgb(175, 165, 151);
 }
-.btnMain{
-    margin-right: 5px;
+.btnAdd{
     margin-top: 10px;
     border:1px solid #1e202b;
     background-color: #8753fb;
@@ -116,6 +117,28 @@ body{
     font-size:14px;
     width:130px;
     height:40px;
-    margin-right:100px;
-    margin-top:50px;
+    margin-top:20px;
+    /* margin-right:10px; */
 }
+
+
+
+.topContainer .item_list { width: 100%; }
+.topContainer .item_title, .topContainer .item {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    padding: 8px 0px 8px 0px;
+    letter-spacing: .1rem;
+}
+
+
+.topContainer .item_title{ font-weight: 400; font-size: 17px; background-color:var(--purple); margin-top: 20px;}
+
+.topContainer span.num { width: 140px; }
+.topContainer span.writer { width: 120px; }
+.topContainer span.title { flex-grow: 1; }
+.topContainer span.date { width: 180px; padding-right: 15px; }
+
+.item_list .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+.item_list .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }

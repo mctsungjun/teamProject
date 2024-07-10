@@ -7,29 +7,31 @@
     <title>Document</title>
     
     </head>
-    <body class="qa-container">
+    <body> <!--  class="qa-container" -->
     <!--06.26추가-->
     <div>
-
     <div class="question" id="questionId">
         <link rel="stylesheet" href="css/msm/msmQuestion.css">
         <script defer src="js/msmQa.js"></script>
-        <h2 class="title">질문 남기기</h2>
-        <div class="container">
-            <form name="frm" method="post" class="frm" enctype="multipart/form-data">
-                <div class="titleDiv">
+        <h1 class="boardListTitle">질문 남기기</h1>
+        <!-- <div class="container"> -->
+            <form name="frm" method="post" style="width: 100%;" enctype="multipart/form-data"> <!-- class="frm" -->
+                <!-- <div class="idDiv">
+                    <p class="pId">작성자</p>
+                    <input type="text" class="input-id" name="qusId">    
+                </!--div> -->
+                <div class="titleDiv" style="width: 100%;" >
                     <p class="pTitle">제목</p>
                     <input type="text" class="input-title" name="qusTitle">
                 </div>
-
-                <div class="contentDiv">
+                <div class="contentDiv" style="width: 100%;" >
                     <p class="pContent">내용</p>
-                    <input type="text" class="input-question" name="qusCon">
+                    <textarea class="input-question" name="qusCon"></textarea>
                 </div>
-                </div>
-                <div class="btns">
-                    <button type="button" class="qaCancel" onclick="qusBack()">취소</button>
-                    <button type="button" class="qaWrite" onclick="qaWrite()">작성</button>
+                <!--</div>-->
+                <div style="width: 100%; display: flex; justify-content: right; margin-top: 20px;">
+                    <button type="button" class="purple-text-button" style="width: 100px; margin-right: 20px;" onclick="qusBack()">취소</button> <!-- qaCancel --> 
+                    <button type="button" class="purple-text-button" style="width: 100px;" onclick="qaWrite()">작성</button> <!-- qaWrite -->
                 </div>
             </form>
         </div>

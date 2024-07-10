@@ -1,7 +1,10 @@
-.qaview-container{
-  background-color: #1e202b;  
-  height:100%;  
+.qaview-container {
+  padding: 28px 18% 0px 18%;
+  width: 100%;
+  /* background-color: #1e202b;
+  color:white;   */
 }
+/* 
 .left-container{
   align-items: center;
   justify-items: center;
@@ -17,19 +20,17 @@
   margin-top: 50px;
 }
 .allTitle{
-  width:120px;
+  width:140px;
   height:30px;
   padding-right:20px;
 }
-
 span{
   color: white;
   font-size: 18px;
-  text-align: center;
-  
+  text-align: center;  
 }
 .contentBox{
-  width:80%;
+  width:300px;
   border: 1px solid #8753fb;
 }
 .contentBox span{
@@ -54,14 +55,14 @@ span{
   position: relative;
 }
 .qusContentBox{
-  width:800px;
-  height:800px;
+  width:700px;
+  height:700px;
   border: 1px solid #8753fb;
   margin : 0 auto;
 }
 .ansContentBox{
-  width:800px;
-  height:800px;
+  width:700px;
+  height:700px;
   border: 1px solid #8753fb;
   margin : 0 auto;
 }
@@ -102,4 +103,4 @@ button{
   border: 1px solid #8753fb;
   margin-right:10px;
 }
-
+ */

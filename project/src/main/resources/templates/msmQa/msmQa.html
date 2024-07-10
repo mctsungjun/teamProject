@@ -4,44 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물 목록</title>
-    <link rel="stylesheet" href="css/msm/msmQa.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/msmQa.js"></script>
 </head>
 <body>
+    <div>
     <div class="topContainer">
-    <div class="title">
-        <label for="search" class="topTitle">질문과 답변</label>
-        <form id="searchFrm" class="search" action="/qa" method="GET">
-            <div class="search-wrap">
-                <input id="search" type="search" name="findStr" placeholder="검색어를 입력해주세요." value="">
+        <link rel="stylesheet" href="css/msm/msmQa.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/msmQa.js"></script>
+        <h1 for="search" class="boardListTitle-admin">질문과 답변</h1>
+            <div style="display: flex; justify-content: right;">
+                <input type="text" class="underline-textbox findStr" style="margin-right: 10px;" placeholder="검색 내용을 입력하세요.">
                 <button type="submit" class="btnSearch">검색</button>
             </div>
-        </form>
-    </div>
 
-    <div id="board-list">
-        <div class="container">
-            <div class="board-table">
-                <div class="qaTitle">
-                    <span class="num">NO</span>
-                    <span class="writer">작성자</span>
-                    <span class="title">제목</span>
-                    <span class="date">작성일</span>
-                </div>
-
-                <div class="qaItems" th:each="q : ${list}">
-                    <div class="qaItem">
-                        <span class="num" th:onclick="qaView([[${q.qusNum}]])">[[${q.qusNum}]]</span>
-                        <span class="writer" th:onclick="qaView([[${q.qusNum}]])">[[${q.qusId}]]</span>
-                        <span class="title" th:onclick="qaView([[${q.qusNum}]])">[[${q.qusTitle}]]</span>
-                        <span class="date" th:onclick="qaView([[${q.qusNum}]])">[[${q.qusDate}]]</span>
-                    </div>
-                </div>
-                <button type="button" class="addQuestion" onclick="addQuestion()">질문 작성하기</button>
+    <div class="item_list">
+        <div class="item_title">
+            <span class="num">NO</span>
+            <span class="writer">작성자</span>
+            <span class="title">제목</span>
+            <span class="date">작성일</span>
+        </div>
+        <div class="items" th:each="q : ${list}">
+            <div class="item"  th:onclick="qaView([[${q.qusNum}]])">
+                <span class="num">[[${q.qusNum}]]</span>
+                <span class="writer">[[${q.qusId}]]</span>
+                <span class="title">[[${q.qusTitle}]]</span>
+                <span class="date">[[${q.qusDate}]]</span>
             </div>
         </div>
+        <button type="button" class="addQuestion" onclick="addQuestion()">질문 작성하기</button>
     </div>
+</div>
 </div>
 </body>
 </html>
