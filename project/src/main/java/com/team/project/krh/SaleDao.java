@@ -42,6 +42,7 @@ public class SaleDao {
     public SaleWithUsersVo sale_list(Integer sno){
         session=new MyFactory().getSession();
         SaleWithUsersVo vo=session.selectOne("salestock.list",sno);
+        System.out.println(vo);
         session.close();
         return vo;
     }
