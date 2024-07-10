@@ -36,7 +36,7 @@ public class PurchaseController {
     @RequestMapping(path="/purchase_list")
     public ModelAndView purchase_list(Integer no){
         ModelAndView mv = new ModelAndView();
-        PurchaseVo vo = PurchaseDao.purchase_list(no);
+        PurchaseCustomerVo vo = PurchaseDao.purchase_list(no);
         mv.addObject("vo", vo);
         mv.setViewName("ojw/purchase_list");
         return mv;

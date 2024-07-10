@@ -20,6 +20,13 @@
         select no, productCode, productName, price, ea, nal, customer from purchase
         where no=#{_parameter}
     </select>
+    <select id="purchase_customer" parameterType="Integer" resultType="PurchaseCustomerVo">
+        SELECT p.no as p_no, p.productCode as p_productCode, p.productName as p_productName, p.price as p_price, p.ea as p_ea, p.nal as p_nal, p.customer as p_customer,
+               c.businessNumber as customerBusinessNumber, c.address as customerAddress, c.email as customerEmail, c.clientName as customerClientName
+        FROM purchase p
+        INNER JOIN customer c ON p.customer = c.clientName
+        WHERE p.no=#{_parameter}
+    </select>
     <insert id="purchase_register" parameterType="PurchaseVo">
         insert into purchase(productName, productCode, price, ea, customer)
         values(#{productName}, #{productCode}, #{price}, #{ea}, #{customer});

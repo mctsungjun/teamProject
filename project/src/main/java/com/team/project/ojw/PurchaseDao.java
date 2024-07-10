@@ -32,9 +32,10 @@ public class PurchaseDao {
         return vo;
     }
 
-    public PurchaseVo purchase_list(Integer no){
+    public PurchaseCustomerVo purchase_list(Integer no){
         session = new MyFactory().getSession();
-        PurchaseVo vo = session.selectOne("project.purchase_list",no);
+        PurchaseCustomerVo vo = session.selectOne("project.purchase_customer",no);
+        System.out.println(vo);
         session.close();
         return vo;
     }
