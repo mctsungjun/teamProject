@@ -17,6 +17,7 @@
 		<typeAlias type="com.team.project.bjm.NoticeVo" alias="NoticeVo" />
 		<typeAlias type="com.team.project.bjm.NoticeAtt" alias="NoticeAtt" />
 		<typeAlias type="com.team.project.bjm.NoticePage" alias="NoticePage" />
+		<typeAlias type="com.team.project.bjm.CustomerVo" alias="CustomerVo" />
 		<typeAlias type="com.team.project.krh.StockPage" alias="StockPage" />
 		<typeAlias type="com.team.project.krh.Page" alias="Page"/>
 		<typeAlias type="com.team.project.krh.SaleVo" alias="SaleVo" />
@@ -41,5 +42,6 @@
 		<mapper resource="com/team/project/mybatis/ojw_PurchaseProduct.xml" />
 		<mapper resource="com/team/project/mybatis/msmQa.xml"/>
 		<mapper resource="com/team/project/mybatis/bjm_notice.xml" />
+		<mapper resource="com/team/project/mybatis/bjmcustomer.xml" />
 	</mappers>
 </configuration>
