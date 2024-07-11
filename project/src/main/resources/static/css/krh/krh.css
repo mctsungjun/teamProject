@@ -292,9 +292,13 @@
     text-align: center;
 }
 .salepage{
-    width:1200px;
-    margin:30px auto;
-    min-height: 600px;
+    /* width:100%; */
+    /* margin:30px auto; */
+    margin: 28px 18% 80px 18%;
+    /* min-height: 600px; */
+    /* display: grid; */
+    /* align-content: space-between; 
+    justify-content: space-between; */
 }
 .salepage .salepagesearch{
     text-align: right;
@@ -338,7 +342,9 @@
     list-style: none;
     width:200px;
     display: inline-block;
-    margin:47px;
+    /* margin:47px; */
+    margin-top: 47px;
+    margin-bottom: 47px;
     text-align: left;
 }
 .salepagelist .price{
