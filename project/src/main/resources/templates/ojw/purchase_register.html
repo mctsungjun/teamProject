@@ -8,31 +8,85 @@
 <body>
     <div class="products">
         <div class="purchase_register">
-            <link rel="stylesheet" href="css/ojw/ojw.css">
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-            <script defer src="js/ojw_product.js"></script>
-            <h3>신규 구매 등록</h3>
-            <hr/>
-            <form name="frm" method="post" class="frm" enctype="multipart/form-data">
-                <div class="product_input">
-                    <label class="label">제품 코드</label><br/>
-                    <input type="text" name="productCode" class="input"><br/>
-                    <label class="label">제품명</label><br/>
-                    <input type="text" name="productName" class="input"><br/>
-                    <label class="label">단가</label><br/>
-                    <input type="text" name="price" class="input"><br/>
-                    <label class="label">수량</label><br/>
-                    <input type="text" name="ea" class="input"><br/>
-                    <label class="label">거래처</label><br/>
-                    <input type="text" name="customer" class="input"><br/>
+        <!-- <link rel="stylesheet" href="css/ojw/ojw.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
+        <script defer src="js/ojw_product.js"></script>
+
+        <script th:inline="javascript">
+            $( document ).ready(function() {
+                    $("#purchase-modify-ea").on("change keyup paste", function(){
+                        var ea = $('#purchase-modify-ea').val();
+                        var price = $('#purchase-modify-price').val();
+                        var totPrice = price * ea;
+                        document.getElementById('purchase-modify-total-price').innerText = totPrice;
+                })
+                });
+
+            function productNameChange() {
+                let list = [[${list}]];
+                var selectedProduct = document.getElementById('ojw_productName').value;
+                list.forEach(function(product) {
+                    if (product.productName === selectedProduct) {
+                        document.getElementById('ojw_productCode').value = product.productCode;
+                        document.getElementById('purchase-modify-price').value = product.price;
+                    }
+                });
+                
+                var ea = $('#purchase-modify-ea').val();
+                var price = $('#purchase-modify-price').val();
+                var totPrice = price * ea;
+                document.getElementById('purchase-modify-total-price').innerText = totPrice;
+            }
+            
+        </script>
+        <h3>신규 구매 등록</h3>
+        <hr/>
+        <form name="frm" method="post" class="frm" enctype="multipart/form-data">
+            <div class="product_input">
+                <div style="display: flex; margin-bottom: 35px; ">
+                    <div style="width: 500px;">
+                        <label for="productName">제품명</label>
+                        <select class="form-control login-select"  name="productName" id="ojw_productName" style="width: 100%;" th:onchange="productNameChange()">
+                            <option th:each="vo : ${list}">[[${vo.productName}]]</option>
+                        </select>
+                    </div>
+                    <div style="width: 300px; padding-left: 30px;">
+                        <label for="productCode">제품 코드</label>
+                        <input type="text" name="productCode" id="ojw_productCode" class="form-control login-text-input" style="width: 100%; color: var(--dark-gray); font-weight: 400;" readonly />
+                    </div>
+
                 </div>
-                <div class="productRegisterButton">
-                    <button type="button" class="btnRegisterR">등록</button>
-                    <button type="button" class="btnList">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
+                <div style="display: flex; justify-content: space-between; margin-bottom: 35px;">
+                    <div>
+                        <label for="price" class="form-label" style="font-weight:400; font-size: 16px;">단가</label>
+                        <input type="text" class="form-control login-text-input" id="purchase-modify-price" value="0" style="width: 300px; color: var(--dark-gray); font-weight: 400;" name="price" readonly />
+                    </div>
+                    <span style="font-size: 20px; padding-top: 32px;"> x </span>
+                    <div>
+                        <label for="ea" class="form-label" style="font-weight:400; font-size: 16px;">수량</label>
+                        <input type="number" class="form-control login-text-input" id="purchase-modify-ea" style="width: 300px;" name="ea" />
+                    </div>
+
+                    <span style="font-size: 20px; padding-top: 32px;"> = </span>
+                    <div>
+                        <label class="form-label" style="font-weight:400; font-size: 16px;">총액</label>
+                        <div style="width: 300px; color: var(--white); font-weight: 400; padding-top: 5px; font-size: 21px; letter-spacing: 3px;">
+                            <span id="purchase-modify-total-price">0</span> 원
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 500px;">
+                    <label for="customer">거래처</label>
+                    <input type="text" name="customer" class="form-control login-text-input" style="width: 100%;">
+                </div>
+
+                <div class="productRegisterButton" style="display: flex; justify-content: right;">
+                    <button type="button" class="purple-text-button btnRegisterR" style="margin-right: 15px;">등록</button>
+                    <button type="button" class="purple-text-button btnList">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
                 </div>
             </form>
         </div>
     </div>
-
 </body>
 </html>

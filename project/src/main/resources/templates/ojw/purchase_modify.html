@@ -11,16 +11,16 @@
             <!-- <link rel="stylesheet" href="css/ojw/ojw.css"> -->
             <!-- <script src="https:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
             <script defer src="js/ojw_purchase.js"></script>
+        
             <script>
-                // $( document ).ready( function() {
-                    // #purchase-modify-price, 
-                    $( '#purchase-modify-ea' ).change( function() {
-                    var price = $( '.purchase-modify-price' ).val();
-                    var ea = $( '.purchase-modify-ea' ).val();
-                    var totPrice = price * ea;
-                    $( '.purchase-modify-total-price' ).text( totPrice );
-                    } );
-                // } );
+                $( document ).ready(function() {
+                    $("#purchase-modify-ea").on("change keyup paste", function(){
+                        var ea = $('#purchase-modify-ea').val();
+                        var price = $('#purchase-modify-price').val();
+                        var totPrice = price * ea;
+                        document.getElementById('purchase-modify-total-price').innerText = totPrice;
+                })
+                });
             </script>
             <div style="display:flex; justify-content: space-between; margin-bottom: 40px;">
                 <!-- * 프로필 대표 이미지 부분 * -->
@@ -78,13 +78,17 @@
                     <span style="font-size: 20px; padding-top: 32px;"> x </span>
                     <div>
                         <label for="ea" class="form-label" style="font-weight:400; font-size: 16px;">수량</label>
-                        <input type="number" class="form-control login-text-input" id="purchase-modify-ea" style="width: 300px;" name="ea" th:value="${vo.ea}" />
+                        <input type="text" class="form-control login-text-input" id="purchase-modify-ea" style="width: 300px;" name="ea" th:value="${vo.ea}" />
                     </div>
 
                     <span style="font-size: 20px; padding-top: 32px;"> = </span>
                     <div>
                         <label class="form-label" style="font-weight:400; font-size: 16px;">총액</label>
-                        <input type="number" class="form-control login-text-input purchase-modify-total-price" th:value="${vo.price*vo.ea}" style="width: 300px; color: var(--dark-gray); font-weight: 400;" readonly />
+                        <!-- <input type="number" class="form-control login-text-input purchase-modify-total-price" th:value="${vo.price*vo.ea}" style="width: 300px; color: var(--dark-gray); font-weight: 400;" readonly /> -->
+                        <div style="width: 300px; color: var(--white); font-weight: 400; padding-top: 5px; font-size: 21px; letter-spacing: 3px;">
+                            <span id="purchase-modify-total-price">[[${vo.price*vo.ea}]]</span> 원
+
+                            </div>
                     </div>
                 </div>
             </div>

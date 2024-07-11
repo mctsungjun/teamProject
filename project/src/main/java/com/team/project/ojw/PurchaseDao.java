@@ -42,6 +42,19 @@ public class PurchaseDao {
         return vo;
     }
 
+    // * CSY ADDED * //
+    public List<ProductVo> purchase_register_list() {
+        session = new MyFactory().getSession();
+        List<ProductVo> list = session.selectList("project.purchase_get_products");
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
+        System.out.println(list.get(3));
+        System.out.println(list.get(4));
+        session.close();
+        return list;
+    }
+
     public String purchase_register(PurchaseVo vo){
         String msg="";
         session = new MyFactory().getSession();
@@ -49,6 +62,7 @@ public class PurchaseDao {
         //륜하 재고 +
         int count=session.selectOne("salestock.checkStock",vo);
         int stockcnt;
+
         if(cnt>0){
             session.commit();
             msg = "정상적으로 입력됨";

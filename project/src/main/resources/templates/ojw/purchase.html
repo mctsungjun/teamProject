@@ -28,13 +28,14 @@
                         <span class="purchaselist">구매 내역서</span>
                     </div>
                 <div class="items">
-                    <div class="item" th:each="d : ${purchase}" th:onClick="purchase_view([[${d.no}]])">
+                    <div class="item" th:each="d : ${purchase}">
+                        <span style="display: flex;" th:onClick="purchase_view([[${d.no}]])">
                         <span class="productCode">[[${d.productCode}]]</span>
                         <span class="productName">[[${d.productName}]]</span>
                         <span class="price">[[${d.price}]]</span>
                         <span class="ea">[[${d.ea}]]</span>
                         <span class="customer">[[${d.customer}]]</span>
-                        <span class="nal">[[${d.nal}]]</span>
+                        <span class="nal">[[${d.nal}]]</span></span>
                         <span class="purchaselist" th:onClick="purchase_list([[${d.no}]])">보기</span>
                     </div>
                 </div>

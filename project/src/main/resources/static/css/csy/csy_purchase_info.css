@@ -1,4 +1,4 @@
-.purchase, .purchase_view, .purchase_modify {
+.purchase, .purchase_view, .purchase_modify, .purchase_register {
     margin: 28px 18% 80px 18%;
 }
 
@@ -22,7 +22,7 @@
 .purchase span.productName { width: 140px; }
 .purchase span.price { width: 140px; }
 .purchase span.ea { width: 140px; }
-.purchase span.nal { flex-grow: 1; }
+.purchase span.nal { width: 280px; }
 .purchase span.customer { width: 150px; }
 .purchase span.purchaselist { width: 130px; }
 .purchase .item span.purchaselist:hover { color: var(--purple); font-weight: 600; }

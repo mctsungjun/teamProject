@@ -10,7 +10,7 @@
         or productName like '%${findStr}%'
         or price like '%${findStr}%'
         or nal like '%${findStr}%'
-        or customer like '%${findStr}%'
+        or customer like '%${findStr}%'  order by nal desc
     </select>
     <select id="purchase_view" parameterType="Integer" resultType="PurchaseVo">
         select * from purchase
@@ -42,6 +42,10 @@
     <!-- * CSY ADDED * -->
     <select id="purchase_get_photo" parameterType="String" resultType="String">
         select photo from product where productCode=#{_parameter}
+    </select>
+    <!-- * CSY ADDED * -->
+    <select id="purchase_get_products" resultType="ProductVo">
+        select productCode, productName, price from product
     </select>
 
     <!--_______________product______________-->
