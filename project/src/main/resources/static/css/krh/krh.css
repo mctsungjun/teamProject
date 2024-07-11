@@ -347,15 +347,15 @@
     margin-bottom: 47px;
     text-align: left;
 }
-.salepagelist .price{
+.salepagelist .price {
     font-weight: bold;
     font-size: 25px;
 }
-.salepagelist .name{
+.salepagelist .name {
     font-weight: bold;
     font-size: 18px;
 }
-.salepagelist .comment{
+.salepagelist .comment {
     color:rgb(214, 176, 255);
 }
 .salepagelist .explanation{
@@ -366,7 +366,8 @@
     font-size:12px;
 }
 .salepage hr{
-    width:1100px;
+    /* width:1100px; */
+    width: 100%;
     color:black;
 }
 

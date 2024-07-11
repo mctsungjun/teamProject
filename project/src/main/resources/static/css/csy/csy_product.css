@@ -2,7 +2,7 @@
     margin: 28px 18% 80px 18%;
 }
 
-.product_container, .salepageproduct {
+.product_list, .salepageproduct {
     width: 100%;
     display: grid;
     align-content: space-between; 
@@ -14,34 +14,80 @@
     margin-bottom: 50px;
 }
 
+.product_each:hover, .salepageproduct_each:hover {
+    cursor: pointer;
+}
+
 @media (min-width: 700px) {
-    .product_container {
+    .salepageproduct {
         grid-template-columns: repeat(1, 200px); }
+    .product_list {
+        grid-template-columns: repeat(1, 200px); }
+    .product-search { display: none; }
 }
 
 
 @media (min-width: 800px) {
-    .product_container, .salepageproduct {
+    .salepageproduct {
         grid-template-columns: repeat(2, 200px); }
+    .product_list {
+        grid-template-columns: repeat(2, 200px); }
+    .product-search { display: none; }
 }
 
 @media (min-width: 1100px) {
-    .product_container, .salepageproduct  {
+    .salepageproduct  {
         grid-template-columns: repeat(3, 200px); }
+    .product_list  {
+        grid-template-columns: repeat(3, 200px); }
+    .product-search { display: block; }
+    
 }
 
 @media (min-width: 1440px) {
-    .product_container, .salepageproduct  {
+    .salepageproduct  {
+        grid-template-columns: repeat(4, 200px); }
+    .product_list  {
         grid-template-columns: repeat(4, 200px); }
 }
 
 
 @media (min-width: 1800px) {
-    .product_container {
+    .salepageproduct {
+        grid-template-columns: repeat(5, 200px); }
+    .product_list {
         grid-template-columns: repeat(5, 200px); }
 }
 
 @media (min-width: 2000px) {
-    .product_container {
+    .salepageproduct {
         grid-template-columns: repeat(6, 200px); }
+    .product_list {
+        grid-template-columns: repeat(6, 200px); }
+}
+
+
+.sale-explanation {
+    position: absolute;
+    top: 730px;
+    margin-left:48px;
+    width: 1100px;
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    word-spacing: 2px;
+    line-height: 35px;
+    text-align: justify;
+}
+
+@media (min-width: 0px) {
+    .sale-explanation {
+        display: none;
+    }
+}
+
+@media (min-width: 1650px) {
+    .sale-explanation {
+        display: block;
+    }
 }
