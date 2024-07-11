@@ -184,26 +184,87 @@ public ModelAndView login(){
         return mv;
     }
       // 리스트 목록에서 클릭 상세페이지
-      @RequestMapping(path="/sung/view")
-      public ModelAndView view(HttpSession session){
-        String id = (String)session.getAttribute("id");
-        ModelAndView mv = new ModelAndView();
-        String name = dao.getMemberName(id);
-        System.out.println(name);
-        MemberVo vo = dao.detail(id);
-        if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
-          for(PhotoVo pv:vo.getPhotos()){
-              if(pv.photo.contains(vo.getPhoto())){
-                  vo.setPhoto(pv.photo);;
-              }
-          }
-        }
-      System.out.println(vo);
-        mv.addObject("vo", vo);
+    //   @RequestMapping(path="/sung/view")
+    //   public ModelAndView view(HttpSession session){
+    //     String id = (String)session.getAttribute("id");
+    //     ModelAndView mv = new ModelAndView();
+    //     String name = dao.getMemberName(id);
+    //     System.out.println(name);
+    //     MemberVo vo = dao.detail(id);
+    //     if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+    //       for(PhotoVo pv:vo.getPhotos()){
+    //           if(pv.photo.contains(vo.getPhoto())){
+    //               vo.setPhoto(pv.photo);;
+    //           }
+    //       }
+    //     }
+    //   System.out.println(vo);
+    //     mv.addObject("vo", vo);
         
-        mv.setViewName("sung/detail");
+    //     mv.setViewName("sung/detail");
+    //     return mv;
+    //   }
+
+
+
+
+
+
+
+
+
+
+
+    @RequestMapping(path="/sung/view")
+      public ModelAndView view(String id){ModelAndView mv = new ModelAndView();
+        MemberVo vo = new MemberVo();
+        //서버 세션에서 id값 받아오기
+        // dao로 전달
+        
+        // String id = (String)session.getAttribute("id");
+        // System.out.println("id:"  +id);
+        if (id != null && !id.equals("")){
+            // vo = dao.detail(id,name);
+            vo = dao.detail(id);
+            if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
+                for(PhotoVo pv:vo.getPhotos()){
+                    if(pv.photo.contains(vo.getPhoto())){
+                            vo.setPhoto(pv.photo);;
+                    }
+                }
+            }else{
+                PhotoVo defaultPhoto = dao.defaultPhot();
+                vo.setPhoto(defaultPhoto.getPhoto());
+            }
+                System.out.println(vo);
+                mv.addObject("vo", vo);
+                mv.setViewName("sung/list_detail");
+                
+            }
+             // id 값이 null 이거나 공백인 경우 예외 처리합니다.
+        else if( id == null || id.trim().isEmpty()){
+            mv.addObject("logout", "logout");
+            mv.setViewName("redirect:/sung/login");  // 로그인 페이지로 리다이렉트합니다.
+        }
         return mv;
-      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       //대표이미지폼
       @RequestMapping(path="/sung/changeFrom")
@@ -235,7 +296,7 @@ public ModelAndView login(){
                     e.printStackTrace();
                 }
                 PhotoVo pv = new PhotoVo();
-               
+                
                 pv.setOriPhoto(f.getOriginalFilename());
                 pv.setPhoto(sysFile);
                 photos.add(pv);
@@ -348,7 +409,8 @@ public ModelAndView repreChangForm(HttpSession session){
         String msg = dao.changePhoto(id, photo);
         return msg;
     }
-//리스트 폼으로 가기
+
+    //리스트 폼으로 가기
     @RequestMapping(path="/sung/list")
     public ModelAndView list(String code){
         ModelAndView mv = new ModelAndView();
@@ -360,7 +422,8 @@ public ModelAndView repreChangForm(HttpSession session){
         mv.setViewName("sung/list");
         return mv;
     }
-// 리스트 목록에서 검색
+
+    // 리스트 목록에서 검색
     @RequestMapping(path="/sung/search")
     public ModelAndView search(String findStr){
         System.out.println("검색어  "+findStr);

@@ -1,0 +1,66 @@
+.purchase, .purchase_view, .purchase_modify, .purchase_register, .sale-info-container, .saleview, .saleviewmodify {
+    margin: 28px 18% 80px 18%;
+}
+
+.purchase .search .sale-info-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.purchase .item_list { width: 100%; }
+.purchase .item_title, .purchase .item {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 8px 0px 8px 0px;
+    letter-spacing: .1rem;
+}
+
+
+.sale-info-container .item_list { width: 100%; }
+
+.sale-info-container .item_title, 
+.sale-info-container .item {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 8px 0px 8px 0px;
+    letter-spacing: .1rem;
+}
+
+
+.purchase .item_title{ font-weight: 400; font-size: 17px; background-color:var(--purple); }
+.purchase span.productCode { width: 140px; }
+.purchase span.productName { width: 140px; }
+.purchase span.price { width: 140px; }
+.purchase span.ea { width: 140px; }
+.purchase span.nal { width: 280px; }
+.purchase span.customer { width: 150px; }
+.purchase span.purchaselist { width: 130px; }
+.purchase .item span.purchaselist:hover { color: var(--purple); font-weight: 600; }
+
+
+.sale-info-container .item_title{ font-weight: 400; font-size: 17px; background-color:var(--purple); }
+.sale-info-container span.CustomerId { width: 140px; }
+.sale-info-container span.ProductCode { width: 140px; }
+.sale-info-container span.ProductName { width: 140px; }
+.sale-info-container span.price { width: 140px; }
+.sale-info-container span.ea { width: 140px; }
+.sale-info-container span.amt { width: 150px; }
+.sale-info-container span.nal { width: 280px; }
+.sale-info-container span.saleList { width: 130px; }
+.sale-info-container .item span.saleList:hover { color: var(--purple); font-weight: 600; }
+
+
+.item_list .item{ border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+.item_list .item:hover { background-color: rgba(255, 255, 255, 0.1); cursor: pointer; }
+
+.purchase-image-block {
+    height: 320px;
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

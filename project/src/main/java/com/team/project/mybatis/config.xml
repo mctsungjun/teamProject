@@ -2,7 +2,7 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
+  
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.team.project.csy.CsyBoardVo" alias="CsyBoardVo" />
@@ -13,6 +13,7 @@
 		<typeAlias type="com.team.project.ojw.PurchaseVo" alias="PurchaseVo" />
 		<typeAlias type="com.team.project.ojw.ProductVo" alias="ProductVo" />
 		<typeAlias type="com.team.project.ojw.ojw_PhotoVo" alias="ojw_PhotoVo" />
+		<typeAlias type="com.team.project.ojw.PurchaseCustomerVo" alias="PurchaseCustomerVo" />
 		<typeAlias type="com.team.project.msm.msmQaVo" alias="msmQaVo" />
 		<typeAlias type="com.team.project.bjm.NoticeVo" alias="NoticeVo" />
 		<typeAlias type="com.team.project.bjm.NoticeAtt" alias="NoticeAtt" />

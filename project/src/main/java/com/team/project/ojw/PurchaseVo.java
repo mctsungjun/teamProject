@@ -11,5 +11,5 @@ public class PurchaseVo {
     int ea;
     String nal;
     String customer;
-    String purchaseCode;
+    String photo;
 }

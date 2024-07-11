@@ -28,25 +28,49 @@ public class PurchaseDao {
     public PurchaseVo purchase_view(Integer no){
         session = new MyFactory().getSession();
         PurchaseVo vo = session.selectOne("project.purchase_view",no);
+        String photo = session.selectOne("purchase_get_photo", vo.getProductCode());
+        vo.setPhoto(photo);
         session.close();
         return vo;
     }
 
-    public PurchaseVo purchase_list(Integer no){
+    public PurchaseCustomerVo purchase_list(Integer no){
         session = new MyFactory().getSession();
-        PurchaseVo vo = session.selectOne("project.purchase_list",no);
+        PurchaseCustomerVo vo = session.selectOne("project.purchase_customer",no);
+        System.out.println(vo);
         session.close();
         return vo;
+    }
+
+    // * CSY ADDED * //
+    public List<ProductVo> purchase_register_list() {
+        session = new MyFactory().getSession();
+        List<ProductVo> list = session.selectList("project.purchase_get_products");
+        session.close();
+        return list;
     }
 
     public String purchase_register(PurchaseVo vo){
         String msg="";
         session = new MyFactory().getSession();
-
         int cnt = session.insert("project.purchase_register", vo);
+        //륜하 재고 +
+        int count=session.selectOne("salestock.checkStock",vo);
+        int stockcnt;
+
         if(cnt>0){
             session.commit();
             msg = "정상적으로 입력됨";
+            if(count>0){
+                stockcnt=session.update("salestock.stockplusmodify",vo);
+            }else{
+                stockcnt=session.insert("salestock.stockplusnew",vo);
+            }
+            if(stockcnt>0){
+                session.commit();
+            }else{
+                session.rollback();
+            }
         }else{
             session.rollback();
             msg="저장중 오류발생";

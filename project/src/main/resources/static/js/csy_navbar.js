@@ -1,14 +1,14 @@
-// * 임시 홈, 디자인 가이드: 공지 넣을까 싶음
-document.querySelector("#navBtnToDesignGuide").onclick = () => {
-    $.ajax ({
-        url : "/design_guide",
-        type: "GET",
-        success: (resp) => {
-            let temp = $(resp).find(".designGuide");  // * nav    : nav.html
-            $(".content").html(temp);                 // * navbar : index.html
-        }
-    })
-}
+// // * 임시 홈, 디자인 가이드: 공지 넣을까 싶음
+// document.querySelector("#navBtnToDesignGuide").onclick = () => {
+//     $.ajax ({
+//         url : "/design_guide",
+//         type: "GET",
+//         success: (resp) => {
+//             let temp = $(resp).find(".designGuide");  // * nav    : nav.html
+//             $(".content").html(temp);                 // * navbar : index.html
+//         }
+//     })
+// }
 
 // * 제품관리 + 재고 정보 관리
 document.querySelector("#navBtnToStock").onclick = async () => {
@@ -17,8 +17,8 @@ document.querySelector("#navBtnToStock").onclick = async () => {
     $.ajax({
         url:"/stock",
         type:"GET",
-        data:{"findStr":findStr,"nowPage":nowPage},
-        success:async (resp)=>{
+        data:{"findStr": findStr,"nowPage": nowPage},
+        success: async (resp) => {
             let temp=$(resp).find(".stockpage");
             $(".content").html(temp);
         }
@@ -59,7 +59,7 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
         url:"/sale",
         type:"GET",
         success:(resp)=>{
-            let temp=$(resp).find(".big");
+            let temp=$(resp).find(".sale-info-container");
             $('.content').html(temp);
             search();
         }
@@ -74,13 +74,13 @@ document.querySelector("#navBtnToShopping").onclick = () => {
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
-            salepage();
+            // salepage();
         }
     })
 }
 
-// * 거래처 관리
-document.querySelector("#navBtnToPartners").onclick = () => { }
+// // * 거래처 관리
+// document.querySelector("#navBtnToPartners").onclick = () => { }
 
 // * 게시판 + 공지사항을 여기 넣을까?
 document.querySelector("#navBtnToBoard").onclick = () => {
@@ -156,11 +156,14 @@ document.querySelector("#navBtnToAnnouncement").onclick = () => {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
+<<<<<<< HEAD
         data : {"nowPage": 1, "findStr": ""},
+=======
+        data : {"nowPage" : 1,"findStr" : "" },
+>>>>>>> 27d965d66c00ac8a4a8a069118768639cd95aaab
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
-            $(".content").html((temp))
-            console.log(temp)
+            $(".content").html(temp)
         }
     })
 }

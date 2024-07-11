@@ -1,11 +1,14 @@
 package com.team.project.krh;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import java.util.*;
-import com.team.project.mybatis.MyFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.team.project.mybatis.MyFactory;
+import com.team.project.ojw.ProductVo;
 @Service
 @Component
 public class SaleDao {
@@ -25,6 +28,8 @@ public class SaleDao {
     public SaleVo sale_view(Integer sno){
         session=new MyFactory().getSession();
         SaleVo vo=session.selectOne("salestock.view",sno);
+        String photo = session.selectOne("purchase_get_photo", vo.getProductCode());
+        vo.setPhoto(photo);
         session.close();
         return vo;
     }
@@ -42,6 +47,7 @@ public class SaleDao {
     public SaleWithUsersVo sale_list(Integer sno){
         session=new MyFactory().getSession();
         SaleWithUsersVo vo=session.selectOne("salestock.list",sno);
+        System.out.println(vo);
         session.close();
         return vo;
     }
@@ -65,7 +71,6 @@ public class SaleDao {
 
     public String delete(Integer sno){
         session=new MyFactory().getSession();
-
         int cnt=session.delete("salestock.deletesale", sno);
         String msg="";
         if(cnt>0){
@@ -78,5 +83,13 @@ public class SaleDao {
         System.out.println(msg);
         session.close();
         return msg;
+    }
+
+    // * CSY ADDED * //
+    public List<ProductVo> product_list() {
+        session = new MyFactory().getSession();
+        List<ProductVo> list = session.selectList("project.purchase_get_products");
+        session.close();
+        return list;
     }
 }

@@ -20,8 +20,8 @@
     vertical-align: middle;
 }
 .title{
-    border-top: 2px solid gray;
-    border-bottom: 2px solid gray;
+    border-top: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
     margin-top: 10px;
     font-weight: bold;
     height: 40px;
@@ -125,26 +125,27 @@ hr{
 /* ----------------------- purchase_list ------------------------- */
 
 .purchase_list{
-    border: 1px solid #000;
-    width: 500px;
+    border: 1px solid black;
+    width: 580px;
     text-align: center;
     padding-bottom: 30px;
     margin: 0 auto;
     margin-bottom: 10px;
 }
 table{
-    border: 1px solid #000;
+    border: 1px solid black;
     border-collapse: collapse;
     margin: 0 auto;
-    width: 400px;
+    width: 480px;
 }
 td{
-    border: 1px solid #000;
-    width: 50px;
+    border: 1px solid black;
+    width: 60px;
     padding: 10px 5px;
 }
-.btnList{
-    margin-top: 25px;
+
+.purchase_list .list_product{
+    width: 130px;
 }
 
 /* ----------------------- purchase_modify ------------------------- */
@@ -325,4 +326,3 @@ h3{
 .product_modify .product_input{
     text-align: center;
 }
-

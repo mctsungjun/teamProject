@@ -4,61 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>판매 상세보기</title>
-    <style>
+    <!-- <style>
         .saleviewlist:hover{
             cursor: pointer;
             text-decoration: underline;
             color:blue;
         }
-        </style>
+        </style> -->
 </head>
 <body>
     <div class="sale">
         <div class="saleview">
-            <link rel="stylesheet" href="css/krh/krh.css">
+            <!-- <link rel="stylesheet" href="css/krh/krh.css"> -->
             <script defer src="js/krh_sale_stock.js"></script>
-            <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-            <h2>판매 내역 상세 보기</h2>
-            <!--지언니가 등록한..사진..대표사진..-->
+            <!-- <script src="http:///code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
             
-            <img th:src="${vo.photo}" width="200px" height="200px">
-            <!--controller에서 연결받기..-->
-            <table class="saleviewtable">
-                <tr>
-                    <th>고객 아이디</th>
-                    <td>[[${vo.id}]]</td>
-                </tr>
-                <tr>
-                    <th>제품 코드</th>
-                    <td>[[${vo.ProductCode}]]</td>
-                </tr>
-                <tr>
-                    <th>제품 명</th>
-                    <td>[[${vo.ProductName}]]</td>
-                </tr>
-                <tr>
-                    <th>판매가</th>
-                    <td>[[${vo.price}]]</td>
-                </tr>
-                <tr>
-                    <th>판매 수량</th>
-                    <td>[[${vo.ea}]]</td>
-                </tr>
-                <tr>
-                    <th>판매 금액</th>
-                    <td>[[${vo.ea*vo.price}]]</td>
-                </tr>
-                <tr>
-                    <th>판매 일자</th>
-                    <td>[[${vo.nal}]]</td>
-                </tr>
-            </table>
-            <br/>
-            <div class="saleviewbutton">
-                <button type="button" class="btnModify">수정</button> <!--sale_view_modify.html로 연결-->
-                <button type="button" class="btnDelete">삭제</button> 
-                <button type="button" class="btnList">취소</button>
+            
+
+            <div style="display:flex; justify-content: space-between; margin-bottom: 40px;">
+                <!-- * 프로필 대표 이미지 부분 * -->
+                <div class="user-profile-block purchase-image-block no-drag" style="margin-right: 25px;">
+                    <div class="profile-border mypage-profile-border">
+                        <div class="profile-border1 mypage-profile-border3"></div>
+                        <div class="profile-border1 mypage-profile-border1"></div>
+                    </div>
+                    <div class="profile-border1 mypage-profile-border2"></div>
+                    <img class="repre mypage-profile-image" th:src="|ojw_upload/${vo.photo}">
+                    <!-- <img src="https://picsum.photos/200" class="mypage-profile-image" alt="User Profile Image"> -->
+                </div>
+                <!-- * 페이지 제목 * -->
+                <div style="margin-top: 130px; width: 95%; flex-direction: column; display: flex; justify-content: end;">
+                    <h1 class="myPageTitle"
+                        style="width: 100%; margin-bottom: 28px; text-align: right; letter-spacing: 7px; font-size: 50px;">[[${vo.ProductName}]]</h1>
+                        <div style="width: 100%; display: flex; justify-content: right;">
+                            <div style="width: 90%; text-align: right; margin-top:6px;">
+                                <hr style="border: 0.2px solid var(--purple); filter: blur(6px); margin-bottom: 8px;">
+                            </div>
+                        </div>
+                        <div style="width: 100%; display: flex; justify-content: right;">
+                            <div style="width: 100%; text-align: right; margin-top:0px;">
+                                <hr style="border: 1.8px solid var(--purple); filter: blur(6px);">
+                            </div>
+                        </div>
+                </div>
             </div>
+
+
+        
+            <div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">고객 아이디</div>
+                    <div class="mypage-table-right">[[${vo.id}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">제품 코드</div>
+                    <div class="mypage-table-right">[[${vo.ProductCode}]]</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">판매가</div>
+                    <div class="mypage-table-right">[[${vo.price}]] 원</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">판매 수량</div>
+                    <div class="mypage-table-right">[[${vo.ea}]] 개</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">총액</div>
+                    <div class="mypage-table-right">[[${vo.price*vo.ea}]] 원</div>
+                </div>
+                <div class="mypage-table">
+                    <div class="mypage-table-left">판매 일자</div>
+                    <div class="mypage-table-right">[[${vo.nal}]]</div>
+                </div>
+            </div>
+            <div style="margin-top: 30px; display: flex; justify-content: right;">
+                <div class="saleviewbutton">
+                    <button type="button" class="purple-text-button btnModify" style="letter-spacing: 4px; width: 90px; letter-spacing: 6px; height: 40px; margin-right: 15px;">수정</button> <!--sale_view_modify.html로 연결-->
+                    <button type="button" class="purple-text-button btnDelete" style="letter-spacing: 4px; width: 90px; letter-spacing: 6px; height: 40px; margin-right: 15px;">삭제</button> 
+                    <button type="button" class="purple-text-button btnList" style="letter-spacing: 4px; width: 90px; letter-spacing: 6px; height: 40px;">취소</button>
+                </div>
+            </div>
+            <div style="height: 120px;"></div>
+        </div>
         </div>
     </div>
 </body>

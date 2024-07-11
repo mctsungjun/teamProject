@@ -10,7 +10,7 @@
         or productName like '%${findStr}%'
         or price like '%${findStr}%'
         or nal like '%${findStr}%'
-        or customer like '%${findStr}%'
+        or customer like '%${findStr}%'  order by nal desc
     </select>
     <select id="purchase_view" parameterType="Integer" resultType="PurchaseVo">
         select * from purchase
@@ -19,6 +19,13 @@
     <select id="purchase_list" parameterType="Integer" resultType="PurchaseVo">
         select no, productCode, productName, price, ea, nal, customer from purchase
         where no=#{_parameter}
+    </select>
+    <select id="purchase_customer" parameterType="Integer" resultType="PurchaseCustomerVo">
+        SELECT p.no as p_no, p.productCode as p_productCode, p.productName as p_productName, p.price as p_price, p.ea as p_ea, p.nal as p_nal, p.customer as p_customer,
+               c.businessNumber as customerBusinessNumber, c.address as customerAddress, c.email as customerEmail, c.clientName as customerClientName
+        FROM purchase p
+        INNER JOIN customer c ON p.customer = c.clientName
+        WHERE p.no=#{_parameter}
     </select>
     <insert id="purchase_register" parameterType="PurchaseVo">
         insert into purchase(productName, productCode, price, ea, customer)
@@ -31,6 +38,15 @@
     <delete id="purchase_delete" parameterType="Integer">
         delete from purchase where no=#{no}
     </delete>
+
+    <!-- * CSY ADDED * -->
+    <select id="purchase_get_photo" parameterType="String" resultType="String">
+        select photo from product where productCode=#{_parameter}
+    </select>
+    <!-- * CSY ADDED * -->
+    <select id="purchase_get_products" resultType="ProductVo">
+        select productCode, productName, price from product
+    </select>
 
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">

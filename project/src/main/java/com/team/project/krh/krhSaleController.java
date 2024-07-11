@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.ojw.ProductVo;
+
 
 @RestController
 public class krhSaleController {
@@ -47,13 +49,16 @@ public class krhSaleController {
     public ModelAndView sale_view_modify(Integer sno){
         ModelAndView mv= new ModelAndView();
         SaleVo vo=saleDao.sale_view(sno);
+        List<ProductVo> list = saleDao.product_list();
         mv.addObject("vo", vo);
+        mv.addObject("list", list);
         mv.setViewName("krh/sale_view_modify");
         return mv;
     }
-     
+
     @RequestMapping(path="/sale_view_modifyR")
     public ModelAndView modifyR(@ModelAttribute SaleVo vo){
+        System.out.println(vo);
         ModelAndView mv=new ModelAndView();
         String msg=saleDao.sale_view_modify(vo);
         mv=search("");

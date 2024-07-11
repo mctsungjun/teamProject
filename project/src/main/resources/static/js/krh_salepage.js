@@ -9,13 +9,13 @@ function salepage(){
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".salepage").html(temp);
-            salepagesearch();
-            loadItem(findStr,nowPage);
+            //salepagesearch();
+            //loadItem(findStr,nowPage);
             
         }
     })
 }
-salepage();
+// salepage();
 
 export function salepagesearch(){
     let btnSearch = document.querySelector(".btnSearch");
@@ -43,7 +43,7 @@ export function salepagesearch(){
     }
     return {salepage_view}
 }
-salepagesearch();
+// salepagesearch();
 
 function loadItem(findStr,nowPage){
     console.log("loadItem.....", findStr, nowPage)

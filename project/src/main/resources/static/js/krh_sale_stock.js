@@ -8,8 +8,8 @@ function sale(){
         url:"/sale",
         type:"GET",
         success:(resp)=>{
-            let temp=$(resp).find(".big");
-            $('.big').html(temp);
+            let temp=$(resp).find(".sale-info-container");
+            $('.content').html(temp);
             search();
         }
     })
@@ -21,7 +21,7 @@ function sale_list(sno) {
         data: { "sno": sno },
         success: function(resp) {
             let temp=$(resp).find(".salelist");
-            $('.big').html(temp); // 받은 HTML을 .big 클래스를 가진 요소에 삽입
+            $('.content').html(temp); // 받은 HTML을 .big 클래스를 가진 요소에 삽입
             salelistevent(sno);
         }
     })
@@ -55,7 +55,7 @@ function search(){
         });
    })    
 }
-search();
+// search();
 
 function sale_view(sno){
     $.ajax({
@@ -64,7 +64,7 @@ function sale_view(sno){
         data:{"sno":sno},
         success:(resp)=>{
             let temp=$(resp).find(".saleview");
-            $('.big').html(temp);
+            $('.content').html(temp);
             ViewEvents(sno);
         }
     })
@@ -82,7 +82,7 @@ function ViewEvents(sno){
             data:{"sno":sno},
             success:(resp)=>{
                 let temp=$(resp).find(".saleviewmodify");
-                $('.big').html(temp);
+                $('.content').html(temp);
                 sale_view_modify(sno);
             }
         })
@@ -118,10 +118,8 @@ let sale_view_modify=(sno)=>{
     })
 
     btnModifyR.addEventListener('click',()=>{
-
         let frm=document.viewfrm;
         let frmData=new FormData(frm);
-
         $.ajax({
             url:"/sale_view_modifyR",
             type:"POST",
