@@ -59,7 +59,7 @@ document.querySelector("#navBtnToSellInfo").onclick = () => {
         url:"/sale",
         type:"GET",
         success:(resp)=>{
-            let temp=$(resp).find(".big");
+            let temp=$(resp).find(".sale-info-container");
             $('.content').html(temp);
             search();
         }
@@ -74,7 +74,7 @@ document.querySelector("#navBtnToShopping").onclick = () => {
         success:(resp)=>{
             let temp=$(resp).find(".salepage")
             $(".content").html(temp);
-            salepage();
+            // salepage();
         }
     })
 }

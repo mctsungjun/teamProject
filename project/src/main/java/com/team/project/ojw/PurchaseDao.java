@@ -46,11 +46,6 @@ public class PurchaseDao {
     public List<ProductVo> purchase_register_list() {
         session = new MyFactory().getSession();
         List<ProductVo> list = session.selectList("project.purchase_get_products");
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
-        System.out.println(list.get(2));
-        System.out.println(list.get(3));
-        System.out.println(list.get(4));
         session.close();
         return list;
     }

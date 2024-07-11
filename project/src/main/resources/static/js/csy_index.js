@@ -19,12 +19,12 @@ let loadNav = () => {
 // * GIT에는 업로드 X
 let loadMain = (findStr) => {
     $.ajax({
-        url : "/purchase",
-        type : "GET",
-        success : (resp) =>{
-            let temp = $(resp).find(".purchase");
+        url:"/sale",
+        type:"GET",
+        success:(resp)=>{
+            let temp=$(resp).find(".sale-info-container");
             $('.content').html(temp);
-            purchase_search();
+            search();
         }
     })
 

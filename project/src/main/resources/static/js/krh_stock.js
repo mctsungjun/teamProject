@@ -96,6 +96,8 @@ function graph(){
         success:function(resp){
             let x=[];
             let y=[];
+
+
             new Chart(document.getElementById("bar-chart"),{
                 type: 'bar',
                 data: {

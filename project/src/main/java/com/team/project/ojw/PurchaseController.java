@@ -66,6 +66,7 @@ public class PurchaseController {
         ModelAndView mv = new ModelAndView();
         PurchaseVo vo = PurchaseDao.purchase_view(no);
         mv.addObject("vo", vo);
+        mv.addObject("list", PurchaseDao.purchase_register_list());
         mv.setViewName("ojw/purchase_modify");
         return mv;
     }

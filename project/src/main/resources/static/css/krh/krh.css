@@ -72,16 +72,16 @@
 .list .saleList:hover{
     font-weight: bold;
 }
-.big .change .findStr{
+/* .big .change .findStr{
     color: black;
     border-radius: 10px;
     padding:5px;
-}
-.big .change .btnSearch{
+} */
+/* .big .change .btnSearch{
     background-color:#8753fb;
     border-radius: 10px;
     padding:5px;
-}
+} */
 .salelist{
     border: 3px solid rgb(255, 255, 255);
     width:500px;
@@ -248,17 +248,17 @@
     margin-bottom:20px;
 }
 
-.stockleft .change .btnSearch{
+/* .stockleft .change .btnSearch{
     background-color:#8753fb;
     border-radius: 10px;
     padding:5px;
-}
+} */
 
-.stockleft .change .findStr{
+/* .stockleft .change .findStr{
     color:black;
     border-radius: 10px;
     padding:5px;
-}
+} */
 /*재고 그래프 */
 .stockright #bar-chart {
     border-color: white;
@@ -301,16 +301,16 @@
     margin-top:50px;
     height:35px;
 }
-.salepage .salepagesearch .findStr{
+/* .salepage .salepagesearch .findStr{
     color: black;
     border-radius: 10px;
     padding:5px;
-}
-.salepage .salepagesearch .btnSearch{
+} */
+/* .salepage .salepagesearch .btnSearch{
     background-color:#8753fb;
     border-radius: 10px;
     padding:5px;
-}
+} */
 .salepage .sort{
     margin-left:52px;
     margin-bottom:10px;
