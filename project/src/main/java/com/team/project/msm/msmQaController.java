@@ -19,13 +19,12 @@ public class msmQaController {
     @RequestMapping(path="/qa")
     public ModelAndView qa(String findStr) {
         ModelAndView mv = new ModelAndView();
-        List<msmQaVo> list;
+        List<msmQaVo> list = dao.list();  
 
-        //검색 기능
         if (findStr != null && !findStr.isEmpty()) {
-            list = dao.search(findStr);
+        list = dao.search(findStr);
         } else {
-            list = dao.list();
+        list = dao.list();
         }
 
         mv.addObject("list", list);
@@ -42,9 +41,23 @@ public class msmQaController {
         mv.addObject("q", vo);
         mv.setViewName("msmQa/msmQaView");
         return mv;
-
     }
-    
+
+    @RequestMapping(path="/qusModify")
+    public ModelAndView qusModify(String qusNum){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("vo", dao.qusModifyEnter(qusNum));
+        mv.setViewName("msmQa/qusModify");
+        return mv;
+    }
+
+    @RequestMapping(path="/qusModifyR")
+    public String qaModify(msmQaVo vo){
+        System.out.println(vo);
+        String msg = dao.qusModify(vo);
+        return msg;
+    }
+
     @RequestMapping(path="/answer")
     public ModelAndView answer(){
         ModelAndView mv = new ModelAndView();
@@ -53,8 +66,10 @@ public class msmQaController {
     }
     
     @RequestMapping(path="/answerR")
-    public String answerR(msmQaVo qusNum){
-        String msg = dao.ansWrite(qusNum);
+    public String answerR(msmQaVo vo, HttpSession session){
+        String id = (String) session.getAttribute("id");
+        vo.setAnsId(id);
+        String msg = dao.ansWrite(vo);
         return msg;
     }
     
@@ -67,15 +82,23 @@ public class msmQaController {
     }
     
     @RequestMapping(path="/questionR")
-    public String questionR(String qusNum, HttpSession session){
+    public String questionR(msmQaVo vo, HttpSession session){
         String id = (String) session.getAttribute("id");
-        String msg = dao.qusWrite(qusNum);
+        vo.setQusId(id);
+        String msg = dao.qusWrite(vo);
         return msg;
     }
 
     @RequestMapping(path="/qaDeleteR")
-    public String delete(String qusNum){
-        String msg = dao.delete(qusNum);
+    public String qaDelete(String qusNum){
+        System.out.println(qusNum);
+        String msg = dao.qaDelete(qusNum);
         return msg;
     }
+ 
+    @RequestMapping(path="/ansModifyR")
+    public String ansModify(msmQaVo vo){
+        String msg = dao.ansModify(vo);
+        return msg;
+    }        
 }

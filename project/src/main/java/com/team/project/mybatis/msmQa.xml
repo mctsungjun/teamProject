@@ -7,7 +7,7 @@
 <mapper namespace="msmQa">
     <!-- qa 페이지에서 리스트를 불러올때 -->
     <select id="qalist" parameterType="String" resultType="msmQaVo">
-        select * from qa
+        select qusNum, qusId, qusTitle, qusDate from qa
         <!--where qusNum=#{_parameter} where문을 뺴면 데이터가 나옴-->
         order by qusNum desc <!--정렬 빼도 됨-->
     </select>
@@ -25,38 +25,45 @@
         where qusTitle like concat('%', #{findStr}, '%')
     </select>
 
-    <!-- question 페이지에서 작성 버튼을 눌렀을때 적힌 데이터를 저장할때-->
+    <!--insert 부분에 answer관련 데이터까지 싹다 받은 후 update를 통해 수정할 예정-->
     <insert id="saveQuestion" parameterType="String">
-        insert into qa(qusId, qusCon, qusDate, qusTitle, qusNum)
-        values(#{qusId}, #{qusCon}, now(), #{qusTitle}, #{qusNum})
-    </insert>
-    
-    <!-- answer 페이지에서 작성 버튼을 눌렀을때 적힌 데이터를 저장할때-->
-    <insert id="saveAnswer" parameterType="msmQaVo">
-        insert into qa (ansCon, ansDate)
-        values (#{ansCon}, now());
+        insert into qa (qusId, qusCon, qusDate, qusTitle)
+        values (#{qusId}, #{qusCon}, NOW(), #{qusTitle});
     </insert>
 
+    <update id="updateAnswer" parameterType="msmQaVo">
+        update qa set ansCon = #{ansCon}, ansDate = NOW(), ansId = #{ansId}
+        where qusNum = #{qusNum}
+    </update>
+    
     <!-- question, answer 둘 다 삭제 하기-->
     <delete id="delete" parameterType="String">
-        delete from qa where qusNum=#{qusNum}
+        delete from qa
+        where qusNum = #{qusNum}
     </delete>
 
-    <!--insert 부분에 answer관련 데이터까지 싹다 받은 후 update를 통해 수정할 예정-->
-<!-- 7.10 추가
-    <insert id="saveQuestion" parameterType="msmQaVo">
-        insert into qa (qusId, qusCon, qusDate, qusTitle, qusNum)
-        values (#{qusId}, #{qusCon}, NOW(), #{qusTitle}, #{qusNum});
-        
-        answer 관련 데이터 추가
-        insert into qa (qusNum, ansCon, ansDate)
-        values (#{qusNum}, NULL, NULL);
-    </insert>
-    
-    답변 수정
-    <update id="updateAnswer" parameterType="msmQaVo">
-        update qa set ansCon = #{ansCon}, ansDate = NOW()
-        WHERE qusNum = #{qusNum};
+    <update id="ansDelete" parameterType="String">
+        update ansId = NULL, ansCon = NULL
+        where ansId = #{qusId}
     </update>
--->
+
+    <!-- 보류: 이따 수정해야함. qusTitle로 불러오는게 아니라, qusNum -->
+    <update id="qusModify" parameterType="msmQaVo">
+        update qa set qusTitle = #{qusTitle}, qusCon = #{qusCon}
+        where qusTitle = #{qusTitle}
+    </update>
+
+    <select id="qusModifyPresentData" parameterType="int" resultType="msmQaVo">
+        select qusNum, qusTitle, qusCon from qa where qusNum = ${_parameter}
+    </select>
+
+    <update id="ansModify" parameterType="msmQaVo">
+        update qa set ansCon = NULL, ansDate = NULL
+        where ansId = #{ansId}
+    </update>
+
+    <select id="ansModifyPresentData" parameterType="int" resultType="msmQaVo">
+        select ansId, ansCon from qa where qusNum = ${_parameter}
+    </select>
+
 </mapper>

@@ -28,10 +28,17 @@ public class msmQaDao {
     }
 
     public List<msmQaVo> search(String findStr) {
+       findStr = "%" + findStr + "%";
        List<msmQaVo> list = session.selectList("msmQa.search", findStr);
        return list;
     }   
 
+    // public List<msmQaVo> searchList(String findStr){
+    //     findStr = "%" + findStr + "%";
+    //     List<msmQaVo> list = session.selectList("msmQa.qalist",findStr);
+    //     return list;
+    // }
+    
     //질문 및 답변을 자세하게 볼때
     public msmQaVo qaview(Integer qusNum){
         session = new MyFactory().getSession();
@@ -39,20 +46,18 @@ public class msmQaDao {
         return vo;
     }
     
- 
-
     //질문 내용을 저장할때
     @Transactional
-    public String qusWrite(String qusNum){
+    public String qusWrite(msmQaVo vo){
         String msg="";
         session = new MyFactory().getSession();
-        int cnt = session.insert("msmQa.saveQuestion", qusNum);
+        int cnt = session.insert("msmQa.saveQuestion", vo);
         if(cnt>0){
             session.commit();
             msg="정상적으로 입력됨";
         }else{
             session.rollback();
-            msg="저장중 오류발생";
+            msg="4저장중 오류발생";
         }
         return msg;
     }
@@ -63,20 +68,20 @@ public class msmQaDao {
     public String ansWrite(msmQaVo vo){
         String msg="";
         session = new MyFactory().getSession();
+        int cnt = session.update("msmQa.updateAnswer", vo);
+        System.out.println(vo);
 
-        int cnt = session.update("msmQa.saveAnswer", vo);
         if(cnt>0){
             session.commit();
             msg="정상적으로 입력됨";
         }else{
             session.rollback();
-            msg="저장중 오류발생";
+            msg="1저장중 오류발생";
         }
-        session.close();
         return msg;
     }
 
-    public String delete(String qusNum){
+    public String qaDelete(String qusNum){
         session = new MyFactory().getSession();
         String msg = "";
         int cnt = session.delete("msmQa.delete", qusNum);      
@@ -89,5 +94,47 @@ public class msmQaDao {
         }
         return msg;
     }    
+    @Transactional
+    public String qusModify(msmQaVo vo){
+        String msg="";
+        session = new MyFactory().getSession();
+        int cnt = session.update("msmQa.qusModify", vo);
+        System.out.println(vo);
+
+        if(cnt>0){
+            session.commit();
+            msg="정상적으로 입력됨";
+        }else{
+            session.rollback();
+            msg="11저장중 오류발생";
+        }
+        return msg;
+    }
+
+    public msmQaVo qusModifyEnter(String qusNum) {
+        int num = Integer.parseInt(qusNum);
+        msmQaVo vo = session.selectOne("qusModifyPresentData", num);
+        System.out.println(vo);
+        return vo;
+    }
+
+
+    @Transactional
+    public String ansModify(msmQaVo vo){
+        System.out.println(vo);
+        String msg="";
+        session = new MyFactory().getSession();
+        int cnt = session.update("msmQa.ansModify", vo);
+        System.out.println(vo);
+
+        if(cnt>0){
+            session.commit();
+            msg="정상적으로 입력됨";
+        }else{
+            session.rollback();
+            msg="6저장중 오류발생";
+        }
+        return msg;
+    }
 }
 

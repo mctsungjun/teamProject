@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물 상세보기</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <div>
     <div class="qaview-container">
         <link rel="stylesheet" href="css/msm/msmQaView.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script th:inline="javascript">
             async function qaGo(){
                 let obj = await import ("/js/msmQa.js");
@@ -19,9 +20,37 @@
                 let obj = await import ("/js/msmQa.js");
                 obj.qaBack();
             }
+            async function writeToQus(){
+                let obj = await import ("/js/msmQa.js");
+                obj.writeToQus();
+            }
+            async function ansWrite1(){
+                let obj = await import ("/js/msmQa.js");
+                obj.ansWrite1();
+            }
+            async function delQa(qusNum){
+                let obj = await import ("/js/msmQa.js");
+                obj.delQa(qusNum);
+            }
+            async function qusModify(qusId){
+                let obj = await import ("/js/msmQa.js");
+                obj.qusModify(qusId);
+            }
+            async function ansModify(ansId){
+                let obj = await import ("/js/msmQa.js");
+                obj.ansModify(ansId);
+            }
+            async function goQusModify(qusNum){
+                let obj = await import ("/js/msmQa.js");
+                obj.goQusModify(qusNum);
+            }
+            async function delAns(){
+                let obj = await import ("/js/msmQa.js");
+                obj.delAns();
+            }    
         </script>
 
-        <button type="button" class="white-text-button" onclick="toBoardList();">↶ 목록으로 돌아가기</button>
+        <button type="button" class="white-text-button" onclick="writeToQus();">↶ 목록으로 돌아가기</button>
         <div style="background-color:var(--purple); height: 80px; margin: 0; padding: 0 20px 0 20px;"><h2 style="line-height: 80px;">[[${q.qusTitle}]]</h2></div>
         <div style="display: flex;
             width: 100%;
@@ -30,7 +59,7 @@
             align-content: space-between;
             padding: 5px 20px 0 20px;
             ">
-        <div style="width: 50%; text-align: left; color: var(--purple)">[[${q.qusId}]]</div>
+        <div style="width: 50%; text-align: left; color: var(--purple)" name="[[${q.qusId}]]">[[${q.qusId}]]</div>
         <div style="width: 50%; text-align: right; color: var(--purple)">[[${q.qusDate}]]</div>
         </div>
         <div style="margin: 30px 20px 20px 20px; overflow: auto" th:utext="${q.qusCon}"></div>
@@ -41,8 +70,8 @@
             </div>
             <th:block th:if="${session.id eq q.qusId}">
                 <div style="width: 50%; text-align: right; display: inline-block;">
-                    <button type="button" class="purple-text-button">수정</button>
-                    <button type="button" class="purple-text-button" style="margin-left: 15px;">삭제</button>
+                    <button type="button" class="purple-text-button" th:onclick="goQusModify([[${q.qusNum}]])">수정</button>
+                    <button type="button" id="delQa" class="purple-text-button" style="margin-left: 15px;" th:onclick="delQa([[${q.qusNum}]])">삭제</button>
                 </div>
             </th:block>
         </div>
@@ -50,9 +79,11 @@
 
 
         <!-- * 여기부터 커맨트 * -->
+        
         <div class="board-detail-comment-title-background">
             <h5 class="board-detail-comments-title-text">ANSWERS</h5>
         </div>
+        <div th:if="${q.ansCon != null}">
         <!-- * 유저의 프로필 이미지 * -->
         <!-- <div th:each="q:${commentList}"> -->
         <div class="board-detail-comment">
@@ -60,46 +91,46 @@
                 <img src="https://picsum.photos/200" class="board-detail-img" alt="User Profile Image">
             </div>
             <!-- * 커멘트 보이는 부분 * -->
+            <form id="ansContain" enctype="multipart/form-data" class="ansContain" method="post">
             <div class="board-detail-text-div">
                 <div class="board-detail-comment-specials">
-                    <span class="board-detail-comment-nickname">[[${q.ansId}]]</span>
+                    <span class="board-detail-comment-nickname" name="ansId">[[${q.ansId}]]</span>
+                    <input type="text" style="display: none" name="ansId" th:value="${q.ansId}"/>
                     <div th:if="${q.ansId != 'DELETED COMMENT'}" class="board-detail-comment-buttons">
-                        <span class="board-detail-comment-button"><i class="fa-solid fa-reply"></i></span>
                         <th:block th:if="${session.id eq q.ansId}">
-                            <span class="board-detail-comment-button"><i class="fa-solid fa-pencil"></i></span>
-                            <span class="board-detail-comment-button"><i class="fa-regular fa-trash-can"></i></span>
+                            <span class="board-detail-comment-button"><i class="fa-regular fa-trash-can" onclick="delAns()"></i></span>
                         </th:block>
-                        
                     </div>
                 </div>
-                <span class="board-detail-comment-comment">[[${q.ansCon}]]</span>
+                <span class="board-detail-comment-comment" name="ansCon">[[${q.ansCon}]]</span>
+                <input type="text" style="display: none" name="ansCon" th:value="${q.ansCon}"/>
             </div>
-                <!-- * 커멘트 수정 부분 * -->
-                <form class="board-detail-comment-modify-form" style="display:none; width: 100%;">
-                        <textarea name="content" class="board-comment-textarea">[[${q.ansCon}]]</textarea>
-                        <div style="display: block; width: 83px; height: 72px;">
-                            <div style="position: relative; height: 72px;">
-                                <span class="board-detail-comment-button" style="font-size:18px; position: absolute; top: 0px; right:5px;"><i class="fa-solid fa-xmark"></i></span>
-                                <button type="button" class="purple-text-button" style="position: absolute; bottom: 0px; right: 0px;">수정</button>
-                            </div>
-                    </div>
-                </form>
-            </div>
+            </form>
+        </div>
+    </div>
         <!-- * 신규 커맨트 작성란 * -->
+        <div th:if="${q.ansCon == null}">
         <form name="csyBoardFrmComment" class="board-comment-write-box">
-            <input type="text" style="display: none" name="post_sno" th:value="${q.qusNum}"/>
+            <input type="text" style="display: none" name="qusNum" th:value="${q.qusNum}"/>
             <input type="text" name="id" style="display: none" />
             <!-- TODO: 하려면 하던가: 이미지 부분 -->
             <div class="board-detail-img-div">
                 <img src="https://picsum.photos/200" class="board-detail-img" alt="User Profile Image">
             </div>
-            <textarea name="content" class="board-comment-textarea"></textarea>
+                <textarea name="ansCon" class="board-comment-textarea" ></textarea>
             <div style="flex-grow: 1; margin-left: 15px; display: flex;">
-            <button type="button" class="purple-text-button" style="height: 100%; align-items: end; align-self: self-end;">작성</button>
+                <div style="flex-grow: 1; margin-left: 15px; display: flex;">
+                    <button type="button" id="ansWrite" class="purple-text-button" style="height: 100%; align-items: end; align-self: self-end;" onclick="ansWrite1()">작성</button>
+                </div>
             </div>
+        </div>
+            <th:block th:if="${session.id == q.ansId}">
+            <!-- <button type="button" class="purple-text-button" style="height: 100%; width: 50%; margin-top:10%;">답변 수정</button> -->
+            </th:block>
         </form>
         <div style="height: 180px"></div>
     </div>
+
 </div>
 </div>
 </body>

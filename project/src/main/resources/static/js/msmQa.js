@@ -1,30 +1,3 @@
-// * 예시: 
-// function 123(){
-//     let qaBack = document.querySelector(".qaBack");
-//     qaBack.addEventListener('click', ()=>{
-//         $.ajax({
-//             url     : "/qa",
-//             type    : "GET",
-//             success : (resp)=>{
-//                 let temp = $(resp).find(".topContainer");
-//                 $('.qaview-container').html(temp);
-//             }
-//         })
-//     })
-// }
-
-// export function 123(){
-//     $.ajax({
-//         url     : "/qa",
-//         type    : "GET",
-//         success : (resp)=>{
-//             let temp = $(resp).find(".topContainer");
-//             $('.qaview-container').html(temp);
-//         }
-//     })
-// }
-
-
 
 //qa 페이지로 되돌리기
 export function qa(){
@@ -32,65 +5,44 @@ export function qa(){
     if(sessionStorage.getItem("findStr") != null){
         findStr = sessionStorage.getItem("findStr");
     }
-
     $.ajax({
         url     : "/qa",
         type    : "GET",
         success : (resp) =>{
             let temp = $(resp).find(".topContainer");
-            $(".topContainer").html(temp);
+            $('.topContainer').html(temp);
             qaSearch();
         }
     })
 }
+
 //----------------qa 부분-------------------------------------
 
 // 질문 작성하기 버튼을 눌렀을때 question 페이지로 이동
 export function addQuestion(){
-    let addQa = document.querySelector(".addQuestion");
-    addQa.addEventListener('click', ()=>{
         console.log("123123123123");
         $.ajax({
             url     : "/question",
             type    : "GET",
             success : (resp) => {
                 let temp = $(resp).find("#questionId");
-                $(".topContainer").html(temp);
+                $('.content').html(temp);
             }
         })
-    })
-}
-//검색하기
-export function qaSearch(){
-    let btnSearch = document.querySelector(".btnSearch")
-    //(".findStr") -> findStr
-    let findStr = sessionStorage.getItem("findStr");
-    if(findStr != null){
-    //$(.findStr) -> $('#search'), val(findStr) -> val();
-        $('#search').val();
-    //sessionStorage.setItem("findStr", findStr); 추가
-        sessionStorage.setItem("findStr", findStr);
     }
-    btnSearch.addEventListener("click",()=>{
-        findStr = $('.search').val();
-        sessionStorage.setItem("findStr",findStr);
-        $.ajax({
-            url : '/qa',
-            type : "GET",
-            data : {"findStr" : findStr},
-            success : (resp)=>{
-                let temp = $(resp).find(".topContainer");
-                $(".topContainer").html(temp);
-            }
-        });
-    });
-}
-    //07.10추가
-    $(document).ready(() => {
-        qaSearch();
-});
-
-//---------상세보기-------------------- 근데 onclick이 들어가서 
+//검색하기 findStr 값을 불러오는건 성공함
+// export function qaSearch(){
+//     let findStr = document.getElementById('findStr').value;
+//     $.ajax({
+//         url     : "/qa",
+//         type    : "POST",
+//         data    : {"findStr" : findStr},
+//         success : (resp)=>{
+//             console.log(findStr);
+//         }
+//     })
+// }
+//---------상세보기-------------------- 
 export function qaView(qusNum){
     console.log("!23123")
     $.ajax({
@@ -110,7 +62,6 @@ export function qaView(qusNum){
 //답변 작성하기 버튼을 눌렀을때 answer페이지로 이동
 export function qaGo(){
     let qaGo = document.querySelector(".goAns");
-    //if (qaGo.disabled) return; // 버튼이 비활성화된 경우 함수 실행 중지
     let qaBack = document.querySelector(".qaBack");
     qaGo.addEventListener('click', ()=>{
         console.log("123123123123");
@@ -132,7 +83,7 @@ export function qaBack(){
             type    : "GET",
             success : (resp)=>{
                 let temp = $(resp).find(".topContainer");
-                $('.qaview-container').html(temp);
+                $('.content').html(temp);
             }
         })
     })
@@ -144,13 +95,10 @@ export function qaBack(){
 
 //질문글 저장
 export function qaWrite(){
-    let btnQaWrite = document.querySelector('.qaWrite');
-    let btnQaCancel = document.querySelector('.qaCancel');
-
-    btnQaWrite.addEventListener('click', ()=> {
         let frm = document.frm;
         let frmData = new FormData(frm);
-        console.log("질문 남기기")   
+        console.log("질문 남기기")
+        // alert(frmData.qusCon);
         $.ajax({
             url: '/questionR',
             type: 'POST',
@@ -158,91 +106,181 @@ export function qaWrite(){
             contentType: false,
             processData: false,
             success: (resp)=>{
-                //작성이 완료되면 qa의 메인페이지로 이동
-                alert('작성이 완료 되었습니다');
+                alert('작성이 완료 되었습니다')
+                writeToQus();
             }
         });
-    });
-}
-export function qusBack(){
-    let btnQaCancel = document.querySelector(".qaCancel");
-        btnQaCancel.addEventListener('click', () => {
-            $.ajax({
-                url     : "/qa",
-                type    : "POST",
-                success : (resp)=>{
-                    let temp = $(resp).find(".topContainer");
-                    $('#questionId').html(temp);
-                }
-            })
+    }
+
+export function writeToQus(){
+    $.ajax({
+        url     : "/qa",
+        type    : "POST",
+        success : (resp)=>{
+            let temp = $(resp).find(".topContainer");
+            $('.content').html(temp);
+        }
     })
 }
+
+function answerToans(){
+    $.ajax({
+        url     : "/qaview",
+        type    : "POST",
+        success : (resp)=>{
+            let temp = $(resp).find(".content");
+            $('.content').html(temp);
+        }
+    })
+}
+
+export function qusBack(){
+        $.ajax({
+            url     : "/qa",
+            type    : "POST",
+            success : (resp)=>{
+               let yn = confirm("질문작성을 취소 하시겠습니까?");
+            if(!yn) return;
+                let temp = $(resp).find(".topContainer");
+                $('.content').html(temp);
+            }
+        })
+    }
+
 
 //-------------answer 부분---------------------------------
-
-//답변글 저장
-/*
-export function ansWrite(){
-    let btnQaWrite = document.querySelector('.ansWrite');
-    let btnAnsCancel = document.querySelector('.ansCancel');
-
-    btnQaWrite.addEventListener('click', ()=> {
-        let frm = document.frm;
-        let frmData = new FormData(frm);
-            
-        $.ajax({
-            url: '/answerR',
-            type: 'POST',
-            data: frmData,
-            contentType: false,
-            processData: false,
-            success: (resp)=>{
-                //작성이 완료되면 qa의 메인페이지로 이동 은 일단 제외
-                alert('답변 작성이 완료 되었습니다');
-            }
-        });
-    });
-} */
-export function ansWrite(qusNum){
-    btnAnsWrite = document.querySelector('.ansWrite');
-    btnAnsCancel = document.querySelector('.ansCancel');
-
-    btnAnsCancel.addEventListener('click',()=>{
-        qa();
-    })
-
-    btnAnsWrite.addEventListener("click",()=>{
-        let frm = document.answerfrm;
-        let frmData = new FormData(frm);
-
+export function ansWrite1(){
+        let frm = document.csyBoardFrmComment;
+        let frmData = $(frm).serialize();
+        console.log(frmData);
+        let yn = confirm("답변을 작성하시겠습니까?")
+        if(!yn) return;
         $.ajax({
             url : "/answerR",
             type : "POST",
-            contentType : false,
-            processData : false,
             data : frmData,
             success : (resp)=>{
-                qa();
+                alert("답변이 작성되었습니다.")
+                location.reload(true);
             }
         })
+    }
+
+
+
+export function delQa(qusNum){    
+        let yn = confirm("삭제 하시겠습니까?");
+        if(!yn) return;
+        $.ajax({
+            url : "/qaDeleteR",
+            type: "GET" ,
+            data:{"qusNum" :  qusNum},
+            success : (resp)=>{
+                writeToQus();
+            }
+        })
+    }  
+
+export function goQusModify(qusNum){
+    console.log("수정하러가자");
+    console.log(qusNum);
+    $.ajax({
+        url     : "/qusModify",
+        type    : "GET",
+        data    : {"qusNum" : qusNum},
+        success : (resp) => {
+            let temp = $(resp).find("#qusModifyId");
+            $('.qaview-container').html(temp);
+        }
     })
 }
 
+export function qusModify(){
+    let frm = document.qusfrm;
+    let frmData = $(frm).serialize();
+    console.log(frmData);
+    let yn = confirm('수정하시겠습니까?');
+    if(!yn) return;
+    $.ajax({
+        url     : "/qusModifyR",
+        type    : "POST",
+        data    : frmData,
+        success : (resp) =>{
+            alert("수정이 완료되었습니다.");
+            afterModifyQus();
+        }
+    })
+}
 
+export function qusModifyCancel(){
+    let yn = confirm("수정을 취소하시겠습니까?");
+        if(!yn) return;
+    $.ajax({
+        url     : "/qusModifyR",
+        type    : "POST",
+        success : (resp) =>{
+            afterModifyQus();
+        }
+    })
+}
 
+function afterModifyQus(){
+    let frm = document.qusfrm;
+    let frmData = $(frm).serialize();
+    $.ajax({
+        url     : "/qaview",
+        type    : "GET",
+        data    : frmData,
+                  
+        success : (resp)=>{
+            let temp = $(resp).find(".qaview-container");
+            $('.content').html(temp);
+        }
+    })
+}
 
+function afterDelAns(){
+    let frm = document.qusfrm;
+    let frmData = $(frm).serialize();
+    $.ajax({
+        url     : "/qaview",
+        type    : "GET",
+        data    : frmData,           
+        success : (resp)=>{
+            let temp = $(resp).find(".qaview-container");
+            $('.qaview-container').html(temp);
+        }
+    })
+}
 
+export function ansModify(ansId){
+    console.log(ansId);
+    $.ajax({
+        url : "/ansModifyR",
+        type : "GET",
+        data : {"ansId" : ansId},
+        success : (resp) =>{ 
+           console.log(ansId);
+            qa("");
+        }
+    })
+}
 
-
-
-
-
-
-/* 이거 왜있는지 모르겠음
-export function backMain(){
-    let btnBack = document.querySelector('.qaback');
-    btnBack.addEventListener('click', function(){
-    window.localStorage.href="/qa.html"
-    }
-)};
-*/
+export function delAns(){
+    let yn = confirm("답변을 삭제 하시겠습니까?");
+    if(!yn) return;
+    console.log("123123")
+    let frm = $('#ansContain');
+    let frmData = $(frm).serialize();
+    console.log(frmData);
+    $.ajax({
+        url    : "/ansModifyR",
+        type   : "GET",
+        data   : frmData,
+        success : (resp)=>{
+            console.log(frmData);
+            alert("답변이 삭제되었습니다.");
+            location.reload(true);
+        }
+    })
+}

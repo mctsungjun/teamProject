@@ -15,16 +15,20 @@
                 let obj = await import ("/js/msmQa.js");
                 obj.addQuestion();
                 }
+            async function qaView(qusNum){
+                let obj = await import ("/js/msmQa.js");
+                obj.qaView(qusNum);
+            }
             async function qaSearch(){
                 let obj = await import ("/js/msmQa.js");
                 obj.qaSearch();
             }
         </script>
         <h1 for="search" class="boardListTitle-admin">질문과 답변</h1>
-            <div style="display: flex; justify-content: right;">
-                <input type="text" class="underline-textbox findStr" style="margin-right: 10px;" placeholder="검색 내용을 입력하세요.">
-                <button type="submit" class="btnSearch">검색</button>
-            </div>
+            <!-- <div style="display: flex; justify-content: right;">
+                <input type="text" class="underline-textbox findStr" style="margin-right: 10px;" placeholder="검색 내용을 입력하세요." id="findStr">
+                <button type="submit" class="btnSearch" onclick="qaSearch()">검색</button>
+            </div> -->
 
     <div class="item_list">
         <div class="item_title">

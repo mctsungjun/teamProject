@@ -23,9 +23,10 @@
             }
 
         </script>
+        <div>
         <h1 class="boardListTitle">질문 남기기</h1>
         <!-- <div class="container"> -->
-            <form name="frm" method="post" style="width: 100%;" enctype="multipart/form-data"> <!-- class="frm" -->
+            <form name="frm" method="post" style="width: 100%;" enctype="multipart/form-data" class="frm"> <!-- class="frm" -->
                 <!-- <div class="idDiv">
                     <p class="pId">작성자</p>
                     <input type="text" class="input-id" name="qusId">    
@@ -38,12 +39,13 @@
                     <p class="pContent">내용</p>
                     <textarea class="input-question" name="qusCon"></textarea>
                 </div>
+            </form>
                 <!--</div>-->
                 <div style="width: 100%; display: flex; justify-content: right; margin-top: 20px;">
-                    <button type="button" class="purple-text-button" style="width: 100px; margin-right: 20px;" onclick="qusBack()">취소</button> <!-- qaCancel --> 
-                    <button type="button" class="purple-text-button" style="width: 100px;" onclick="qaWrite()">작성</button> <!-- qaWrite -->
+                    <button type="button" id="qaCancel" class="purple-text-button" style="width: 100px; margin-right: 20px;" onclick="qusBack()">취소</button> <!-- qaCancel --> 
+                    <button type="button" id="qaWrite" class="purple-text-button" style="width: 100px;" onclick="qaWrite()">작성</button> <!-- qaWrite -->
                 </div>
-            </form>
+            
         </div>
     </div>
 </div>

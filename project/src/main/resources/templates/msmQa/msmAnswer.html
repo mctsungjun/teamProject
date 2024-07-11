@@ -9,10 +9,6 @@
     <div class="ansIndex">
     <link rel="stylesheet" href="css/msm/msmAnswer.css">
     <script th:inline="javascript">
-        async function ansWrite(qusNum){
-            let obj = await import ("/js/msmQa.js");
-            obj.ansWrite(qusNum);
-        }
         async function qaBack(){
             let obj = await import ("/js/msmQa.js");
             obj.qaBack();
