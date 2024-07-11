@@ -456,15 +456,16 @@
 .salepage_view .viewbottom{
     width:1100px;
     position: relative;
-    border: 1px solid rgb(227, 227, 227);
     top:50px;
     text-align:center;
     word-break: normal;
     margin: 0 auto;
+    margin-top:40px;
     display: inline-block;
     vertical-align: top;
     min-height: 200px;
     margin-top:50px;
+    font-size:20px;
 }
 .viewright .name{
     padding:10px;
