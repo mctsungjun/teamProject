@@ -12,4 +12,5 @@ public class msmQaVo {
     String ansId;
     String ansCon;
     String ansDate;
+    String photo; //포토는 여유가 안되면 삭제 예정 ><
 }

@@ -88,7 +88,12 @@
         <!-- <div th:each="q:${commentList}"> -->
         <div class="board-detail-comment">
             <div class="board-detail-img-div">
-                <img src="https://picsum.photos/200" class="board-detail-img" alt="User Profile Image">
+
+                <!-- * 여기 * -->
+                <img src="upload/serviceIcon.png" class="board-detail-img" alt="User Profile Image">
+                <!-- 대충 이런거 -->
+                <!-- <img th:src="@{|upload/${q.photo}|}"  class="board-detail-img" alt="User Profile Image"> -->
+
             </div>
             <!-- * 커멘트 보이는 부분 * -->
             <form id="ansContain" enctype="multipart/form-data" class="ansContain" method="post">
@@ -99,7 +104,7 @@
                     <div th:if="${q.ansId != 'DELETED COMMENT'}" class="board-detail-comment-buttons">
                         <th:block th:if="${session.id eq q.ansId}">
                             <span class="board-detail-comment-button"><i class="fa-regular fa-trash-can" onclick="delAns()"></i></span>
-                        </th:block>
+                        </th:block>  
                     </div>
                 </div>
                 <span class="board-detail-comment-comment" name="ansCon">[[${q.ansCon}]]</span>

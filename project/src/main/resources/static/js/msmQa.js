@@ -176,6 +176,7 @@ export function delQa(qusNum){
             type: "GET" ,
             data:{"qusNum" :  qusNum},
             success : (resp)=>{
+                alert("삭제 되었습니다.");
                 writeToQus();
             }
         })
