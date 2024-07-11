@@ -39,6 +39,11 @@
         delete from purchase where no=#{no}
     </delete>
 
+    <!-- * CSY ADDED * -->
+    <select id="purchase_get_photo" parameterType="String" resultType="String">
+        select photo from product where productCode=#{_parameter}
+    </select>
+
     <!--_______________product______________-->
     <select id="product_search" parameterType="String" resultType="ProductVo">
         select productName, comment, price, photo, productCode from product

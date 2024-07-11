@@ -14,7 +14,7 @@ function product(){
         }
     })
 }
-product();
+// product();
 function product_search(){
     let btnRegister = document.querySelector(".btnRegister");
     let btnSearch = document.querySelector(".btnSearch");

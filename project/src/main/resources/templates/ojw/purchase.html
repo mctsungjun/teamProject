@@ -6,41 +6,44 @@
     <title>list</title>
 </head>
 <body>
-    <div class="products">
+    <div>
         <div class="purchase">
-            <link rel="stylesheet" href="css/ojw/ojw.css">
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
             <script defer src="js/ojw_purchase.js"></script>
-            <h1>구매정보</h1>
+            <div style="width: 100%; display: flex; text-align: left;">
+            <h1 class="boardListTitle-admin" style="width: 100%; display: flex; text-align: left;">구매 정보</h1></div>
             <div class="list">
-                <form name="frm" class="frm" method="post">
-                    <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
-                    <button type="button" class="btnSearch">검색</button>
-                    <button type="button" class="btnRegister">신규 등록</button>
+                <form name="frm" class="frm search" method="post" style="width: 100%; display: flex; justify-content: right; margin-bottom: 12px;">
+                    <input type="text" name="findStr" class="underline-textbox findStr" style="margin-right: 15px;" placeholder="검색어를 입력하세요.">
+                    <button type="button" class="btnSearch purple-text-button">검색</button>
                 </form>
-                <div class="title">
-                    <span class="productCode">제품 코드</span>
-                    <span class="productName">제품명</span>
-                    <span class="price">단가</span>
-                    <span class="ea">수량</span>
-                    <span class="nal">날짜</span>
-                    <span class="customer">거래처</span>
-                    <span class="purchaselist">구매 내역서</span>
-                </div>
+                <!-- <div class="title"> -->
+                <div class="item_list">
+                    <div class="item_title contentTitle">
+                        <span class="productCode">제품 코드</span>
+                        <span class="productName">제품명</span>
+                        <span class="price">단가</span>
+                        <span class="ea">수량</span>
+                        <span class="customer">거래처</span>
+                        <span class="nal">날짜</span>
+                        <span class="purchaselist">구매 내역서</span>
+                    </div>
                 <div class="items">
-                    <div class="item" th:each="d : ${purchase}">
-                        <span class="productCode" th:onclick="purchase_view([[${d.no}]])">[[${d.productCode}]]</span>
-                        <span class="productName" th:onclick="purchase_view([[${d.no}]])">[[${d.productName}]]</span>
-                        <span class="price" th:onclick="purchase_view([[${d.no}]])">[[${d.price}]]</span>
-                        <span class="ea" th:onclick="purchase_view([[${d.no}]])">[[${d.ea}]]</span>
-                        <span class="nal" th:onclick="purchase_view([[${d.no}]])">[[${d.nal}]]</span>
-                        <span class="customer" th:onclick="purchase_view([[${d.no}]])">[[${d.customer}]]</span>
+                    <div class="item" th:each="d : ${purchase}" th:onClick="purchase_view([[${d.no}]])">
+                        <span class="productCode">[[${d.productCode}]]</span>
+                        <span class="productName">[[${d.productName}]]</span>
+                        <span class="price">[[${d.price}]]</span>
+                        <span class="ea">[[${d.ea}]]</span>
+                        <span class="customer">[[${d.customer}]]</span>
+                        <span class="nal">[[${d.nal}]]</span>
                         <span class="purchaselist" th:onClick="purchase_list([[${d.no}]])">보기</span>
                     </div>
+                </div>
+                <div style="width: 100%; display: flex; justify-content: right; margin-top: 20px;">
+                    <button type="button" class="btnRegister purple-text-button" style="width: 110px;">신규 등록</button>
+                </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

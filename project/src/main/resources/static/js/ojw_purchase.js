@@ -9,12 +9,12 @@ function purchase(){
         type : "GET",
         success : (resp) =>{
             let temp = $(resp).find(".purchase");
-            $('.purchase').html(temp);
+            $('.content').html(temp);
             purchase_search();
         }
     })
 }
-purchase();
+// purchase();
 function purchase_search(){
     let btnSearch = document.querySelector(".btnSearch");
     let btnRegister = document.querySelector(".btnRegister");
@@ -43,7 +43,7 @@ function purchase_search(){
             type : "GET",
             success : (resp)=>{
                 let temp = $(resp).find('.purchase_register');
-                $('.purchase').html(temp);
+                $('.content').html(temp);
                 purchase_register();
             }
         })
@@ -81,7 +81,7 @@ let purchase_view=(no)=>{
         data : {"no" : no},
         success:(resp)=>{
             let temp=$(resp).find(".purchase_view");
-            $('.purchase').html(temp);
+            $('.content').html(temp);
             purchaseViewEvent(no);
         }
     })
@@ -96,7 +96,7 @@ function purchase_list(no){
         success:(resp)=>{
             console.log(resp);
             let temp=$(resp).find(".purchase_list");
-            $('.purchase').html(temp);
+            $('.content').html(temp);
             purchaseListEvent(no);
             console.log(temp);
         }
@@ -125,7 +125,7 @@ function purchaseViewEvent(no){
             data : {"no" : no},
             success : (resp)=>{
                 let temp = $(resp).find(".purchase_modify")
-                $(".purchase").html(temp);
+                $(".content").html(temp);
                 purchase_modify(no);
             }
         })

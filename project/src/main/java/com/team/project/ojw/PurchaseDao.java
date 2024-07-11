@@ -28,6 +28,8 @@ public class PurchaseDao {
     public PurchaseVo purchase_view(Integer no){
         session = new MyFactory().getSession();
         PurchaseVo vo = session.selectOne("project.purchase_view",no);
+        String photo = session.selectOne("purchase_get_photo", vo.getProductCode());
+        vo.setPhoto(photo);
         session.close();
         return vo;
     }
