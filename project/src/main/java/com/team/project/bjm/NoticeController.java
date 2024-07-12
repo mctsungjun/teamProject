@@ -25,7 +25,7 @@ public class NoticeController {
     @Autowired
     NoticeDao dao;
 
-    public static String upload="C:\\workspace-github-backup\\github\\project\\src\\main\\resources\\static\\upload\\";
+    public static String upload="C:\\Users\\i\\Documents\\GitHub\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
 
     @RequestMapping(path="/bjmNoticeList")
     public ModelAndView noticeList(NoticePage page, NoticeVo vo){ // NoticePage page, findStr findStr, NoticeVo vo

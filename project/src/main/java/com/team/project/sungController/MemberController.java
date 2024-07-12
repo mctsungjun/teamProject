@@ -48,7 +48,7 @@ public class MemberController {
    @Autowired
    KakaoApi kakaoApi;
    String id;
-   public static String uploadPath= "C:\\Users\\i\\teamProject\\teamProject-csy\\teamProject-csy\\project\\src\\main\\resources\\static\\upload\\";
+   public static String uploadPath= "C:\\Users\\i\\Documents\\GitHub\\teamProject\\project\\src\\main\\resources\\static\\upload\\";
     
     // 메인화면 보이기
     // @RequestMapping(path="/index")
