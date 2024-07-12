@@ -9,6 +9,23 @@ export function boardList() {
     })
 }
 
+export function csyBoardHack() {
+    $.ajax ({
+        url : "/board/hack",
+        type: "POST",
+        success: (resp) => {
+            $.ajax ({
+                url : "/board",
+                type: "GET",
+                success: (resp) => {
+                    let temp = $(resp).find("#board");
+                    $(".content").html(temp);
+                }
+            });
+        }
+    })
+}
+
 
 export function csyPostDelete(sno) {
     let yn = confirm('게시물을 삭제하시겠습니까?');

@@ -209,4 +209,17 @@ public class CsyBoardDao {
         }
         return isSucceeded;
     }
+
+    public boolean hack() {
+        boolean isSucceeded = false;
+        int cnt = session.update("csyBoard.hack");
+
+        if(cnt>0){
+            session.commit();
+            isSucceeded = true;
+        }else{
+            session.rollback();
+        }
+        return isSucceeded;
+    }
 }

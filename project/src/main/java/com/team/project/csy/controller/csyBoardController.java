@@ -111,4 +111,8 @@ public class csyBoardController {
     public boolean boardDetailCommentModify(CsyBoardCommentVo vo) {
         return BoardDao.commentModify(vo);
     }
+    @RequestMapping("/board/hack")
+    public boolean boardHack() {
+        return BoardDao.hack();
+    }
 }
