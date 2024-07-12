@@ -19,24 +19,14 @@ let loadNav = () => {
 // * GIT에는 업로드 X
 let loadMain = (findStr) => {
     $.ajax({
-        url : "/product",
-        type : "GET",
-        success : (resp)=>{
-            let temp = $(resp).find(".product");
-            $('.content').html(temp);
-            product_search();
+        url:"/salepage",
+        type:"GET",
+        success:(resp)=>{
+            let temp=$(resp).find(".salepage")
+            $(".content").html(temp);
+            // salepage();
         }
-    })
-
-    // $.ajax({
-    //     url:"/salepage",
-    //     type:"GET",
-    //     success:(resp)=>{
-    //         let temp=$(resp).find(".salepage")
-    //         $(".content").html(temp);
-    //         // salepage();
-    //     }
-    // });
+    });
 }
 
 let loadAuthPage = () => {
