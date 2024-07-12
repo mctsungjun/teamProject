@@ -31,13 +31,11 @@ public class CsyBoardDao {
     
 
     public String userProfilePic(String id) {
-        String userProfilePic = session.selectOne("csyBoard.userProfilePic");
-        System.out.println(userProfilePic);
+        String userProfilePic = session.selectOne("csyBoard.userProfilePic", id);
 
         if (userProfilePic == null) {
             userProfilePic = session.selectOne("csyBoard.defaultPhoto");
         }
-        System.out.println(userProfilePic);
 
         return userProfilePic;
     }

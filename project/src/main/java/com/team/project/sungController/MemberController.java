@@ -162,7 +162,7 @@ public ModelAndView login(){
             if(vo.getPhoto() !=null && !vo.getPhoto().equals(" ")){
                 for(PhotoVo pv:vo.getPhotos()){
                     if(pv.photo.contains(vo.getPhoto())){
-                            vo.setPhoto(pv.photo);;
+                            vo.setPhoto(pv.photo);
                     }
                 }
             }else{
