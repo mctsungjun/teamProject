@@ -11,6 +11,19 @@
             <!-- <link rel="stylesheet" href="css/ojw/ojw.css"> -->
             <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
             <script defer src="js/ojw_product.js"></script>
+            <script>
+                function product_view(productCode) {
+                    $.ajax({
+                        url : "/product_view",
+                        type : "GET",
+                        data : {"productCode" : productCode},
+                        success : (resp)=>{
+                            let temp = $(resp).find(".product_view");
+                            $(".content").html(temp);
+                            productViewEvent(productCode);
+                        }
+                    })}
+            </script>
             <h1 class="boardListTitle-admin" style="width: 100%; margin-bottom: 25px;">제품 수정</h1>
             <hr style="margin-bottom: 58px;"/>
             <form name="productfrm" method="post" class="frm" enctype="multipart/form-data">
@@ -48,7 +61,7 @@
                     </div>
 
                     <div class="productRegisterButton" style="display: flex; justify-content: right;">
-                        <button type="button" class="purple-text-button btnList" style="margin-right: 15px;">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
+                        <button type="button" class="purple-text-button" th:onclick="product_view([[${vo.productCode}]])" style="margin-right: 15px;">취소</button> <!--취소버튼 클릭시 목록으로 복귀-->
                         <button type="button" class="purple-text-button btnModifyR">등록</button>
                     </div>
                     </div>

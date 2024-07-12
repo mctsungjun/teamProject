@@ -180,7 +180,7 @@
 }
 
 /*재고관리*/
-.stockpage{
+/* .stockpage{
     width:1200px;
     margin:30px auto;
     min-height: 400px;
@@ -188,23 +188,24 @@
 .stockbottom{
     width:1200px;
     margin:50px auto;
-}
+} */
 .stockleft{
     width:450px;
     text-align: left;
-    margin-top: 48px;
+    /* margin-top: 48px; */
     float: left;
-    margin-right:100px;
+    /* margin-right:100px; */
     
 }
 .stockright{
     width:450px;
     text-align: left;
-    margin-top: 100px;
-    border: 1px solid black;
+    /* margin-top: 100px; */
+    padding: 15px 30px 15px 30px;
+    border: 1px solid var(--white);
     min-height: 400px;
     float: right;
-    margin-left:100px;
+    /* margin-left:100px; */
 }
 .stock h1{
     margin-top:50px;
@@ -245,7 +246,7 @@
 
 .stockleft .change{
     text-align: right;
-    margin-bottom:20px;
+    /* margin-bottom:20px; */
 }
 
 /* .stockleft .change .btnSearch{

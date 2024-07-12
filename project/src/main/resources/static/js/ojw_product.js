@@ -158,11 +158,11 @@ function productViewEvent(productCode){
 
 let product_modify=(productCode)=>{
     let btnModifyR = document.querySelector('.btnModifyR');
-    let btnList = document.querySelector('.btnList');
+    // let btnList = document.querySelector('.btnList');
 
-    btnList.addEventListener('click',()=>{
-        product(productCode);
-    })
+    // btnList.addEventListener('click',()=>{
+    //     product(productCode);
+    // })
 
     btnModifyR.addEventListener("click",()=>{
         let frm = document.productfrm;
@@ -175,7 +175,8 @@ let product_modify=(productCode)=>{
             processData : false,
             data : frmData,
             success : (resp)=>{
-                product();
+                // product();
+                product_view(productCode);
             }
         })
     })

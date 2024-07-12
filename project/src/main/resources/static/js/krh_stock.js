@@ -106,7 +106,7 @@ function graph(){
                         {
                         label: "현 재고",
                         backgroundColor: "#8753fb",
-                        data:resp.y
+                        data:resp.y,
                         }
                     ]
                 },
@@ -114,8 +114,7 @@ function graph(){
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: '제품별 재고 현황'
-                        
+                        text: '제품별 재고 현황',
                     },
                     scales: {
                         yAxes: [{
