@@ -106,21 +106,39 @@ function graph(){
                         {
                         label: "현 재고",
                         backgroundColor: "#8753fb",
-                        data:resp.y
+                        data:resp.y,
                         }
                     ]
                 },
                 options: {
+                    // layout: {
+                    //     padding: {
+                    //       top: 80
+                    //     }
+                    //   },   
                     legend: { display: false },
-                    title: {
-                        display: true,
-                        text: '제품별 재고 현황'
-                        
-                    },
+                    // title: {
+                    //     display: true,
+                    //     text: '제품별 재고 현황',
+                    //     family: 'Courier New',
+                    //     fontColor : 'rgba(255, 255, 255, 0.8)',
+                    //     fontSize : 20,
+                    //     fontStyle: 300,
+                    // },
                     scales: {
+                        xAxes: [{
+                            ticks:{
+                                fontColor : 'rgba(255, 255, 255, 0.6)',
+                                fontSize : 12,
+                                fontStyle: 100,
+                            },
+                        }],
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                fontColor : '#8753fb',
+                                fontSize : 12,
+                                fontStyle: 100,
                             }
                         }]
                     }

@@ -11,25 +11,33 @@
         <div class="salepage">
             <link rel="stylesheet" href="css/krh/krh.css">
             <script defer src="js/krh_salepage.js"></script>
-            <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+            <!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
         <script type="module">
             import {salepagesearch} from "./js/krh_salepage.js"
             let ls=salepagesearch();
             window.ls=ls;
         </script>
-            <h1 class="boardListTitle-admin" style="width: 100%; display: flex; justify-content: center; padding-bottom: 0px; margin-bottom: 0px;">판매 페이지</h1>
+            <div class="salepagesearch">
+                
+            </div>
+            <h1 class="boardListTitle-admin" style="
+            position: absolute; left:50%; top: 50px;
+            transform:translateX(-50%); font-size: 60px; font-weight: 300; letter-spacing: 5px;
+            width: 100%; display: flex; justify-content: center; padding-bottom: 0px; margin-bottom: 0px;">판매 페이지</h1>
             <div class="change">
                 <!--검색 기준-->
-                <div class="salepagesearch">
-                    <form name="frm" class="frm" method="GET" style="margin-bottom: 0;">
-                        <input type="text" name="findStr" class="underline-textbox findStr" style="margin-right: 15px; margin-bottom: 0;" placeholder="검색어를 입력하세요.">
-                    <button type="button" class="btnSearch purple-text-button">검색</button>
-                        <!-- <input type="text" name="findStr" class="findStr" placeholder="검색어를 입력하세요.">
-                        <button type="button" class="btnSearch">검색</button> -->
-                    </form>
-                </div>
+                
             </div>
+            <div style="height: 1px; margin-top: 50px;"></div>
             <hr style="border: 0px; border-bottom: 1px solid rgba(255, 255, 255, 0.6);" />
+
+            <div class="responsive-search" style="position: absolute; right: 18%; top: 30px;">
+                <div style="display: flex; justify-content: right;">
+                    <input type="text" name="findStr" class="underline-textbox findStr" style="width: 210px; margin: 0;" placeholder="찾으시는 상품이 있으신가요?">
+                    <!-- <input type="text" name="findStr" class="underline-textbox findStr" style="margin-right: 15px; margin-bottom: 0;" placeholder="검색어를 입력하세요."> -->
+                    <button type="button" class="btnSearch purple-text-button" style="margin-left: 15px;">검색</button>
+                </div>
+        </div>
             <div class="salepagelist">
                 <ul class="salepageproduct">
                     <li class="salepageproducteach" th:each="j:${map.list}" th:onClick="ls.salepage_view([[${j.productCode}]])">

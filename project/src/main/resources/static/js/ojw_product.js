@@ -9,7 +9,7 @@ function product(){
         type : "GET",
         success : (resp)=>{
             let temp = $(resp).find(".product");
-            $('.product').html(temp);
+            $('.content').html(temp);
             product_search();
         }
     })
@@ -34,6 +34,10 @@ function product_search(){
             success : (resp)=>{
                 let temp = $(resp).find(".product_list");
                 $(".product_list").html(temp);
+
+                // let temp = $(resp).find(".product");
+                // $('.content').html(temp);
+                // product_search();
             }
         })
     })
@@ -44,7 +48,7 @@ function product_search(){
             type : "GET",
             success : (resp)=>{
                 let temp = $(resp).find('.product_register');
-                $('.product').html(temp);
+                $('.content').html(temp);
                 product_register();
             }
         })
@@ -107,7 +111,7 @@ let product_view=(productCode)=>{
         data : {"productCode" : productCode},
         success : (resp)=>{
             let temp = $(resp).find(".product_view");
-            $(".product").html(temp);
+            $(".content").html(temp);
             productViewEvent(productCode);
         }
     })
@@ -126,7 +130,7 @@ function productViewEvent(productCode){
             data : {"productCode" : productCode},
             success : (resp)=>{
                 let temp = $(resp).find(".product_modify")
-                $(".product").html(temp);
+                $(".content").html(temp);
                 product_modify(productCode);
             }
         })
@@ -154,11 +158,11 @@ function productViewEvent(productCode){
 
 let product_modify=(productCode)=>{
     let btnModifyR = document.querySelector('.btnModifyR');
-    let btnList = document.querySelector('.btnList');
+    // let btnList = document.querySelector('.btnList');
 
-    btnList.addEventListener('click',()=>{
-        product(productCode);
-    })
+    // btnList.addEventListener('click',()=>{
+    //     product(productCode);
+    // })
 
     btnModifyR.addEventListener("click",()=>{
         let frm = document.productfrm;
@@ -171,7 +175,8 @@ let product_modify=(productCode)=>{
             processData : false,
             data : frmData,
             success : (resp)=>{
-                product();
+                // product();
+                product_view(productCode);
             }
         })
     })

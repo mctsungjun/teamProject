@@ -29,13 +29,12 @@
                     </div>
                 <div class="items">
                     <div class="item" th:each="d : ${purchase}">
-                        <span style="display: flex;" th:onClick="purchase_view([[${d.no}]])">
-                        <span class="productCode">[[${d.productCode}]]</span>
-                        <span class="productName">[[${d.productName}]]</span>
-                        <span class="price">[[${d.price}]]</span>
-                        <span class="ea">[[${d.ea}]]</span>
-                        <span class="customer">[[${d.customer}]]</span>
-                        <span class="nal">[[${d.nal}]]</span></span>
+                        <span class="productCode"  th:onClick="purchase_view([[${d.no}]])">[[${d.productCode}]]</span>
+                        <span class="productName"  th:onClick="purchase_view([[${d.no}]])">[[${d.productName}]]</span>
+                        <span class="price"  th:onClick="purchase_view([[${d.no}]])">[[${d.price}]]</span>
+                        <span class="ea"  th:onClick="purchase_view([[${d.no}]])">[[${d.ea}]]</span>
+                        <span class="customer"  th:onClick="purchase_view([[${d.no}]])">[[${d.customer}]]</span>
+                        <span class="nal"  th:onClick="purchase_view([[${d.no}]])">[[${d.nal}]]</span>
                         <span class="purchaselist" th:onClick="purchase_list([[${d.no}]])">보기</span>
                     </div>
                 </div>
@@ -44,6 +43,7 @@
                 </div>
                 </div>
             </div>
+            <div style="height: 120px;"></div>
         </div>
     </div>
 </body>

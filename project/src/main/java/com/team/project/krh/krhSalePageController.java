@@ -1,9 +1,13 @@
 package com.team.project.krh;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.*;
+
 import com.team.project.ojw.ProductVo;
 
 import jakarta.servlet.http.HttpSession;
@@ -65,7 +69,6 @@ public class krhSalePageController {
 
     @RequestMapping("/submit")
     public Map<String,Object> submitForm(SaleVo vo, HttpSession session){
-        System.out.println("여기까지 오나요");
         Map<String, Object> map=new HashMap<>();
         String id = (String) session.getAttribute("id");
         vo.setId(id);
