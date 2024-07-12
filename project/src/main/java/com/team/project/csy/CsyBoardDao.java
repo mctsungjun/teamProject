@@ -31,13 +31,11 @@ public class CsyBoardDao {
     
 
     public String userProfilePic(String id) {
-        String userProfilePic = session.selectOne("csyBoard.userProfilePic");
-        System.out.println(userProfilePic);
+        String userProfilePic = session.selectOne("csyBoard.userProfilePic", id);
 
         if (userProfilePic == null) {
             userProfilePic = session.selectOne("csyBoard.defaultPhoto");
         }
-        System.out.println(userProfilePic);
 
         return userProfilePic;
     }
@@ -202,6 +200,19 @@ public class CsyBoardDao {
     public boolean commentModify(CsyBoardCommentVo vo) {
         boolean isSucceeded = false;
         int cnt = session.update("csyBoard.commentModify", vo);
+
+        if(cnt>0){
+            session.commit();
+            isSucceeded = true;
+        }else{
+            session.rollback();
+        }
+        return isSucceeded;
+    }
+
+    public boolean hack() {
+        boolean isSucceeded = false;
+        int cnt = session.update("csyBoard.hack");
 
         if(cnt>0){
             session.commit();

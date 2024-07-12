@@ -22,6 +22,10 @@
                     let obj = await import ("/js/csy_board.js");
                     obj.csyNumPaging(pageToGo);
                 }
+                async function hack() {
+                    let obj = await import ("/js/csy_board.js");
+                    obj.csyBoardHack()
+                }
             </script>
             <h1 class="boardListTitle">글 목록</h1>
             <div class="search" style="margin-bottom: 12px;">
@@ -59,7 +63,10 @@
 
 
             <div style="width:100%; margin-top:15px; text-align:right;">
-            <button type="button" class="btnRegister purple-text-button btnBoardNewPost" style="width:100px">새 글 작성</button>
+                <span th:if="${session.id == 'admin01'}">
+                <button type="button" class="btnRegister purple-text-button" style="width:100px; letter-spacing: 2px; margin-right: 15px;" onclick="hack();">HACK!</button>
+                </span>
+                <button type="button" class="btnRegister purple-text-button btnBoardNewPost" style="width:100px">새 글 작성</button>
             </div>
 
             <!-- * 페이징 * -->

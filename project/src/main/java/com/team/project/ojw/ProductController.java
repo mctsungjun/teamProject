@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductController {
     @Autowired
     ProductDao ProductDao;
-    public static String ojw_upload = "C:\\Project\\Final_Project\\project\\src\\main\\resources\\static\\ojw_upload\\";
+    public static String ojw_upload = "C:\\Users\\i\\Documents\\GitHub\\teamProject\\project\\src\\main\\resources\\static\\ojw_upload\\";
 
     @RequestMapping(path="/product")
     public ModelAndView product(String findStr){
