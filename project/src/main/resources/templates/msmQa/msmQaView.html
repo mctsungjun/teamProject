@@ -91,8 +91,6 @@
 
                 <!-- * 여기 * -->
                 <img src="upload/serviceIcon.png" class="board-detail-img" alt="User Profile Image">
-                <!-- 대충 이런거 -->
-                <!-- <img th:src="@{|upload/${q.photo}|}"  class="board-detail-img" alt="User Profile Image"> -->
 
             </div>
             <!-- * 커멘트 보이는 부분 * -->
@@ -103,7 +101,7 @@
                     <input type="text" style="display: none" name="ansId" th:value="${q.ansId}"/>
                     <div th:if="${q.ansId != 'DELETED COMMENT'}" class="board-detail-comment-buttons">
                         <th:block th:if="${session.id eq q.ansId}">
-                            <span class="board-detail-comment-button"><i class="fa-regular fa-trash-can" onclick="delAns()"></i></span>
+                            <span class="board-detail-comment-button"><i class="fa-regular fa-trash-can" onclick="delAns()" style="margin-left:950px;"></i></span>
                         </th:block>  
                     </div>
                 </div>
@@ -120,7 +118,7 @@
             <input type="text" name="id" style="display: none" />
             <!-- TODO: 하려면 하던가: 이미지 부분 -->
             <div class="board-detail-img-div">
-                <img src="https://picsum.photos/200" class="board-detail-img" alt="User Profile Image">
+                <img src="upload/serviceIcon.png" class="board-detail-img" alt="User Profile Image">
             </div>
                 <textarea name="ansCon" class="board-comment-textarea" ></textarea>
             <div style="flex-grow: 1; margin-left: 15px; display: flex;">

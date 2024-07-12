@@ -1,4 +1,4 @@
-
+// 이제 필요한게 qa홈페이지로 되돌릴 링크를 다시 정해야뎀
 //qa 페이지로 되돌리기
 export function qa(){
     let findStr="";
@@ -109,7 +109,7 @@ export function qaWrite(){
                 alert('작성이 완료 되었습니다')
                 writeToQus();
             }
-        });
+        }); 
     }
 
 export function writeToQus(){
@@ -160,13 +160,21 @@ export function ansWrite1(){
             type : "POST",
             data : frmData,
             success : (resp)=>{
-                alert("답변이 작성되었습니다.")
-                location.reload(true);
+                alert("답변이 작성되었습니다.");
+                let params = new URLSearchParams(frmData);
+                let qusNum = params.get('qusNum');
+
+                $.ajax({
+                    url :  "/qaview",
+                    type : "GET",
+                    data : {"qusNum" : qusNum},
+                    success : (updatedHtml) =>{
+                        $('.qaview-container').replaceWith(updatedHtml);
+                    }
+                })
             }
         })
     }
-
-
 
 export function delQa(qusNum){    
         let yn = confirm("삭제 하시겠습니까?");
@@ -281,7 +289,16 @@ export function delAns(){
         success : (resp)=>{
             console.log(frmData);
             alert("답변이 삭제되었습니다.");
-            location.reload(true);
+            writeToQus();
         }
     })
 }
+ 
+
+
+
+// $.ajax({
+//     url : "/qaview",
+//     type : "GET",
+//     data : qusNum
+// })

@@ -156,11 +156,7 @@ document.querySelector("#navBtnToAnnouncement").onclick = () => {
     $.ajax({
         url : "/bjmNoticeList",
         type : "GET",
-<<<<<<< HEAD
-        data : {"nowPage": 1, "findStr": ""},
-=======
         data : {"nowPage" : 1,"findStr" : "" },
->>>>>>> 27d965d66c00ac8a4a8a069118768639cd95aaab
         success : (resp) => {
             let temp = $(resp).find(".noticeList");
             $(".content").html(temp)
