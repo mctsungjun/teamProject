@@ -13,7 +13,7 @@
             <script defer src="js/krh_stock.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
             <!-- <div style="display: flex; justify-content: space-between;"> -->
-            <div style="height: 38px;"></div>
+            <div style="height: 20px;"></div>
             <h1>재고 관리</h1>
             <!-- <div class="product-search responsive-search" style="width: 600px; text-align: right; align-content: end;">
                 <input type="text" name="findStr" class="underline-textbox findStr" style="margin-right: 15px;" placeholder="검색어를 입력하세요.">
@@ -21,7 +21,7 @@
             </div> -->
             <hr style="border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.8)">
             <!--재고현황-->
-            <div style="display: flex; justify-content: right; margin-top: 64px; margin-bottom: 24px;">
+            <div style="display: flex; justify-content: right; margin-top: 64px; margin-bottom: 28.5px;">
                 <input type="text" name="findStr" class="underline-textbox findStr" style="margin-right: 15px;" placeholder="검색어를 입력하세요.">
                 <button type="button" class="btnSearch purple-text-button">검색</button>
             </div>
@@ -30,14 +30,15 @@
                     <div class="change">
                     </div>
                     <div class="stocklist">
-                        <div class="title">
+                        <div class="title" style="border-top: 1px solid rgba(255, 255, 255, 0.6);
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.6);">
                             <span class="ProductCode">제품 코드</span>
                             <span class="ProductName">제품 명</span>
                             <span class="ea">현 재고</span>
                         </div>
                         <!--구매 내역서... -->
                         <div class="stockitems">
-                            <div class="stockitem" th:each="f:${map.list}">
+                            <div class="stockitem" th:each="f:${map.list}" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 5px 0px 5px 0px;">
                                 <span class="ProductCode">[[${f.ProductCode}]]</span>
                                 <span class="ProductName">[[${f.ProductName}]]</span>
                                 <span class="ea">[[${f.ea}]]</span>
@@ -52,8 +53,9 @@
                     <!--페이징 처리-->
                 </div>
                 <!--그래프-->
-                <div class="stockright">
-                    <canvas id="bar-chart" width="400" height="440"></canvas>
+                <div class="stockright" style="width: 540px;">
+                    <span style="width: 100%; display: flex; justify-content: center; letter-spacing: 2px; font-size: 18px; font-weight: 200; margin-bottom: 20px; margin-top: 10px;">제품 별 재고 현황</span>
+                    <canvas id="bar-chart" width="500" height="440"></canvas>
                 </div>
             </div>
         </div></div>

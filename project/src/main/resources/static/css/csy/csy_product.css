@@ -65,22 +65,24 @@
 
 
 @media (min-width: 1800px) {
-    .salepageproduct {
-        grid-template-columns: repeat(5, 200px); }
+    .salepageproduct  {
+        grid-template-columns: repeat(4, 200px); }
     .product_list {
         grid-template-columns: repeat(5, 200px); }
     .responsive-search { display: block; }
 }
 
 @media (min-width: 2000px) {
-    .salepageproduct {
-        grid-template-columns: repeat(6, 200px); }
+    .salepageproduct  {
+        grid-template-columns: repeat(4, 200px); }
     .product_list {
         grid-template-columns: repeat(6, 200px); }
     .responsive-search { display: block; }
 }
 
 @media (min-width: 1650px) {
+    .salepageproduct  {
+        grid-template-columns: repeat(4, 200px); }
     .sale-explanation {
         display: block;
     }

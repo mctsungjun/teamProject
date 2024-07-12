@@ -10,27 +10,33 @@
         <div class="product_view">
             <link rel="stylesheet" href="css/ojw/ojw.css">
             <script defer src="js/ojw_product.js"></script>
-            <h1 class="boardListTitle-admin" style="width: 100%;">제품관리 상세페이지</h1>
-            <hr style="border-bottom: 1px solid rgba(255, 255, 255, 0.8);">
-            <div class="product_view_left" th:src="|ojw_upload/${vo.photo}">
-                <img th:src="|ojw_upload/${vo.photo}" width="350px" height="350px">
-            </div>
-            <div class="product_image_sub">
-                <span th:each="p:${vo.photos}" class="product_image_sub_each">
-                    <img th:src="|ojw_upload/${p.photo}" width="100px" height="100px">
-                </span>
-            </div>
-            <div class="product_view_right">
-                <h2>[[${vo.productCode}]] / [[${vo.productName}]]</h2>
-                <hr/>
-                <span class="price">[[${vo.price}]]</span>
-                <span class="spec">[[${vo.spec}]]</span>
-                <div class="explanation">
-                    [[${vo.explanation}]]
+            <h1 class="boardListTitle-admin" style="width: 100%; margin-top: 48px;">제품 관리</h1>
+            <hr style="border-bottom: 1px solid rgba(255, 255, 255, 0.9); margin-top: 29px;">
+            <div style="height: 40px;"></div>
+            <div class="top-container" style="display: flex; justify-content: space-between; position:relative;">
+                <div class="product-images">
+                    <div class="product_view_left" th:src="|ojw_upload/${vo.photo}">
+                        <img th:src="|ojw_upload/${vo.photo}" width="350px" height="350px">
+                    </div>
+                    <div class="product_image_sub">
+                        <span th:each="p:${vo.photos}" class="product_image_sub_each">
+                            <img th:src="|ojw_upload/${p.photo}" width="100px" height="100px">
+                        </span>
+                    </div>
                 </div>
-                
+                <div class="product_view_right" style="position:absolute; right:0px; bottom:0px;">
+                    <h2>[[${vo.productCode}]] / [[${vo.productName}]]</h2>
+                    <div style="width: 100%; display: flex; justify-content: right;">
+                    <hr style="border-bottom: 1.5px solid rgba(255, 255, 255, 0.5); width: 400px; margin-top: 5px; margin-bottom: 3px;" /></div>
+                    <span class="price">[[${vo.price}]]</span>
+                    <span class="spec">[[${vo.spec}]]</span>
+                    <div class="explanation">
+                        [[${vo.explanation}]]
+                    </div>
+                    
+                </div>
             </div>
-            <div  class="product_view_right" style="margin-top: 20px;">
+            <div style="display: flex; justify-content: right; margin-top: -20px;">
                 <button type="button" class="btnModify purple-text-button" style="margin-right: 8px;">수정</button>
                 <button type="button" class="btnDelete purple-text-button" style="margin-right: 8px;">삭제</button>
                 <button type="button" class="btnList purple-text-button">목록</button>
